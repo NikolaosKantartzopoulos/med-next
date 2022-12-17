@@ -1,0 +1,20 @@
+.loadingSpinner {
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 10px auto;
+  border-radius: 50%;
+  border: 6px solid var(--darkHeaderColor);
+  border-color: var(--darkHeaderColor) transparent;
+  animation: loadingSpinner 1s linear infinite;
+}
+
+@keyframes loadingSpinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

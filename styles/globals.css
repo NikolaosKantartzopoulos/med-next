@@ -1,0 +1,17 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body,
+html {
+  min-height: 100vh;
+}
+
+* {
+  --dark-main-1: darkblue;
+  --dark-main-2: dodgerblue;
+  --light-main-1: bisque;
+  --light-main-2: white;
+}

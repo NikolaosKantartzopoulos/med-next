@@ -1,3 +1,9 @@
+import ManageAssetsComponent from "../components/main/admin/add-exam.js/manage-assets-component";
+
 export default function Home() {
-	return <div>Start</div>;
+	return (
+		<div>
+			<ManageAssetsComponent />
+		</div>
+	);
 }
