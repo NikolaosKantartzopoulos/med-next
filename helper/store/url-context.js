@@ -1,13 +1,13 @@
 import { createContext } from "react";
 
 const UrlContext = createContext({
-	databaseURL: "",
+	dbURL: "",
 });
 
 export function UrlContextProvider(props) {
-	const databaseURL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.6fxb7u9.mongodb.net/?retryWrites=true&w=majority`;
+	const dbURL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.oftkpuh.mongodb.net/?retryWrites=true&w=majority`;
 
-	const urlContext = { databaseURL: databaseURL };
+	const urlContext = { dbURL: dbURL };
 
 	return (
 		<UrlContext.Provider value={urlContext}>

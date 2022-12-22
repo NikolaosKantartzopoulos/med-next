@@ -1,32 +1,38 @@
-.InputDiv {
-  display: grid;
-  grid-template-columns: 0.5fr 1.5fr;
-  margin: 0.1rem auto;
-  border: 3px solid var(--darkHeaderColor);
+.inputDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.inputComp {
-  transition: all 0.2s;
-  border: 2px solid var(--darkHeaderColor);
-  border-radius: 5px;
-  margin: 0.5rem auto;
-  box-shadow: 0 0 3px var(--darkHeaderColor), inset 0 0 0 var(--darkHeaderColor);
+.myLabel {
+  height: 2rem;
+  color: var(--dark-main-1);
+  border-top: 2px solid var(--dark-main-1);
+  border-left: 2px solid var(--dark-main-1);
+  border-bottom: 2px solid var(--dark-main-1);
+  min-width: 9rem;
+  padding-left: 0.5rem;
+  padding-top: 0.3rem;
+  text-align: center;
+}
+
+.myInput {
+  border: none;
+  background-color: var(--support-1);
+  height: 2rem;
+  padding-left: 0.5rem;
+  border-bottom: 2px solid var(--dark-main-1);
+  border-top: 2px solid var(--dark-main-1);
+  color: var(--classic);
+}
+
+.myInput:focus,
+.myInput:active {
+  transition: all 0.25s;
+  border: none;
   outline: none;
-  padding: 0.25rem;
-  width: 95%;
-}
-
-.inputComp:active,
-.inputComp:focus {
-  background-color: white;
-
-  box-shadow: 0 0 5px var(--darkHeaderColor), inset 0 0 5px var(--darkHeaderColor);
-  outline: none;
-}
-
-.labelComp {
-  padding-top: 0.8rem;
-  margin-left: 1rem;
-  text-align: left;
-  color: var(--darkHeaderColor);
+  border-bottom: 2px solid var(--dark-main-1);
+  border-top: 2px solid var(--dark-main-1);
+  background-color: var(--light-main-1);
 }

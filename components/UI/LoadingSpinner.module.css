@@ -4,8 +4,8 @@
   height: 64px;
   margin: 10px auto;
   border-radius: 50%;
-  border: 6px solid var(--darkHeaderColor);
-  border-color: var(--darkHeaderColor) transparent;
+  border: 6px solid var(--dark-main-1);
+  border-color: var(--dark-main-1) transparent;
   animation: loadingSpinner 1s linear infinite;
 }
 

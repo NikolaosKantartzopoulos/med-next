@@ -1,11 +1,11 @@
 import React from "react";
 
-import styles from "./Button.module.css";
+import styles from "./ClickableItem.module.css";
 
-const Button = (props) => {
+function ClickableItem(props) {
 	return (
 		<button
-			className={styles.myButton}
+			className={styles.clickableItem}
 			type={props.type || "button"}
 			onClick={props.onClick}
 			style={props.customStyles}
@@ -13,6 +13,6 @@ const Button = (props) => {
 			{props.children}
 		</button>
 	);
-};
+}
 
-export default Button;
+export default ClickableItem;

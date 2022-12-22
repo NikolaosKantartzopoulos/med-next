@@ -1,0 +1,20 @@
+.entries {
+  border: 1px solid var(--dark-main-1);
+  padding: 0.5rem;
+  font-size: large;
+  width: clamp(380px, 50%, 760px);
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  height: fit-content;
+  overflow: auto;
+  margin: auto;
+}
+
+.titleDivision {
+  background-color: var(--dark-main-1);
+  color: var(--light-main-1);
+  text-align: center;
+  height: 2rem;
+  padding-top: 0.4rem;
+}
