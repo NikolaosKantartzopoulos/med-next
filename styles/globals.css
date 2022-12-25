@@ -15,3 +15,7 @@ html {
   --support-1: lightgrey;
   --classic: black;
 }
+
+h1 {
+  color: var(--dark-main-1);
+}

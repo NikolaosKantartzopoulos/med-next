@@ -17,7 +17,6 @@ export default async function handler(req, res) {
 	if (req.method === "DELETE") {
 		//fetch all existing assets
 
-		console.log(req.body);
 		const [client, db, selectedCollection] = await connectDatabase();
 		const { type, toDel } = req.body;
 		let result = await db.collection("assets").deleteOne(toDel);

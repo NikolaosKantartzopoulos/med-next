@@ -1,0 +1,54 @@
+.responsiveItem {
+  align-items: center;
+  background-color: var(--light-main-1);
+  border: 1px solid var(--dark-main-1);
+  color: var(--dark-main-1);
+  cursor: default;
+  display: flex;
+  flex-flow: row;
+  font-weight: 400;
+  height: 2.5rem;
+  justify-content: space-between;
+  outline: 0;
+  padding: 0.4rem 0.5rem 0.5rem 0.5rem;
+  text-align: center;
+  transform: translateY(0px);
+  transition: all 0.15s;
+  width: clamp(5rem, 100%, 12rem);
+}
+
+.responsiveItem:hover {
+  background-color: var(--light-main-1);
+  border-color: var(--dark-main-1);
+  box-shadow: 0px 2px 3px 3px var(--dark-main-2);
+  color: var(--dark-main-1);
+  transform: translateY(-3px);
+  transition: all 0.15s;
+}
+
+.responsiveItem:active {
+  background-color: var(--light-main-1);
+  border-color: var(--dark-main-1);
+  box-shadow: 0 0 1px 1px var(--dark-main-2);
+  color: var(--dark-main-1);
+  transform: translateY(-0px);
+  transition: all 0.05s;
+}
+
+.manageIcons {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
+
+.image:hover {
+  cursor: pointer;
+  transition: all 0.05s;
+  scale: 1.2;
+}
+
+.image:active {
+  cursor: pointer;
+  transition: all 0.05s;
+  scale: 1.4;
+}

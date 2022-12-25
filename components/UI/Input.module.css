@@ -1,7 +1,7 @@
 .inputDiv {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -24,6 +24,7 @@
   padding-left: 0.5rem;
   border-bottom: 2px solid var(--dark-main-1);
   border-top: 2px solid var(--dark-main-1);
+  border-right: 2px solid var(--dark-main-1);
   color: var(--classic);
 }
 
@@ -34,5 +35,6 @@
   outline: none;
   border-bottom: 2px solid var(--dark-main-1);
   border-top: 2px solid var(--dark-main-1);
+  border-right: 2px solid var(--dark-main-1);
   background-color: var(--light-main-1);
 }

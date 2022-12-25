@@ -1,0 +1,7 @@
+.infoPanel {
+  text-align: center;
+  width: 100%;
+  height: 3rem;
+  color: var(--light-main-1);
+  margin: 0.5rem auto;
+}

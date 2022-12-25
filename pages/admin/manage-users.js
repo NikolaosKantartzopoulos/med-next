@@ -1,7 +1,13 @@
 import React from "react";
 
-function ManageUsers() {
-	return <div>ManageUsers</div>;
+import ManageUsers from "../../components/main/admin/manageAssets/manageUsers/ManageUsers";
+
+function ManageUsersRoute() {
+	return (
+		<div>
+			<ManageUsers />
+		</div>
+	);
 }
 
-export default ManageUsers;
+export default ManageUsersRoute;
