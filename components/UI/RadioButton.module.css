@@ -1,0 +1,17 @@
+.radioButton {
+  min-height: 2rem;
+  margin-bottom: 1rem auto;
+
+}
+
+.radioLabel {
+  color: var(--dark-main-1);
+  cursor: pointer;
+  scale: 1;
+  padding: 0.5rem;
+}
+
+.radioLabel:hover {
+  cursor: pointer;
+  background-color: var(--support-1);
+}

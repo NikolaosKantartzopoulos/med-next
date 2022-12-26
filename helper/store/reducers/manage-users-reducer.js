@@ -5,6 +5,8 @@ export default function manageUsersReducer(state, action) {
 				userEmail: "",
 				userEmaiLBuffer: "",
 				userName: "",
+				userNameBuffer: "",
+				userId: "",
 				userPassword: "",
 				userPasswordBuffer: "",
 				userPosition: "",
@@ -14,6 +16,11 @@ export default function manageUsersReducer(state, action) {
 			return {
 				...state,
 				userName: action.newUsernameValue,
+			};
+		case "setUsernameBuffer":
+			return {
+				...state,
+				userName: action.newUsernameBufferValue,
 			};
 		case "setEmail":
 			return {
@@ -26,10 +33,26 @@ export default function manageUsersReducer(state, action) {
 				userPassword: action.newPasswordValue,
 			};
 		case "setUserPosition":
-			console.log(action.newUserPositionValue);
 			return {
 				...state,
 				userPosition: action.newUserPositionValue,
+				userPosition2: null,
+			};
+		case "setUserPosition2":
+			return {
+				...state,
+				userPosition2: action.newUserPosition2Value,
+			};
+		case "setThisUserForEdit":
+			return {
+				...state,
+				userId: action._id,
+				userEmail: action.email,
+				userName: action.username,
+				userNameBuffer: action.userNameBuffer,
+				userPassword: action.password,
+				userPosition: action.position,
+				userPosition2: action.position2,
 			};
 	}
 }

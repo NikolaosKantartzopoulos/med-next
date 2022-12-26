@@ -75,7 +75,6 @@ function ListExistingDepartments({ allDepartments }) {
 		);
 
 		let subdepartmentsIncluded = departmentToChange.sub;
-		console.log(departmentName);
 		let addThisDepartment = {
 			department: departmentName,
 			sub: subdepartmentsIncluded,
@@ -88,7 +87,6 @@ function ListExistingDepartments({ allDepartments }) {
 
 		setActiveDepartments(toSet);
 
-		console.log("showEdit");
 		setSwitchIcons("showEdit");
 		setEditItemVisible(null);
 		setSubdepartmentNameBeforeEdit(null);
@@ -96,7 +94,6 @@ function ListExistingDepartments({ allDepartments }) {
 		setNewDepartmentInput("");
 	}
 	function deleteDepartmentHandler(e, toBeDeleted) {
-		console.log(toBeDeleted);
 		const filteredArray = activeDepartments.filter(
 			(entry) => entry.department !== toBeDeleted
 		);
@@ -106,9 +103,6 @@ function ListExistingDepartments({ allDepartments }) {
 	// SUBDEPARTMENTS MANAGEMENT
 
 	function addNewSubdepartmentHandler(e, departmentToEdit) {
-		console.log(
-			`addNewSubdepartmentHandler -> departmentToEdit ${departmentToEdit}`
-		);
 		setDepartmentName(departmentToEdit);
 		setDepartmentNameBeforeEdit(departmentToEdit);
 		setSwitchIcons("showSubSave");
@@ -125,7 +119,6 @@ function ListExistingDepartments({ allDepartments }) {
 			setSwitchIcons("showEdit");
 			return;
 		}
-		console.log("addNewSubdepartmentaddNewSubdepartmentaddNewSubdepartment");
 		const departmentToChange = activeDepartments.find(
 			(entry) => entry.department === departmentName
 		);
@@ -136,12 +129,10 @@ function ListExistingDepartments({ allDepartments }) {
 
 		let subdepartments = departmentToChange.sub;
 
-		console.log(`addNewSubdepartment ${subdepartments}`);
 		let addThisDepartment = {
 			department: departmentName,
 			sub: [...subdepartments, newSubdepartmentInput],
 		};
-		console.log(addThisDepartment);
 
 		const newArray = [...filteredArray, addThisDepartment];
 		const toSet = [...newArray].sort((a, b) =>
@@ -165,8 +156,6 @@ function ListExistingDepartments({ allDepartments }) {
 		selectedDepartment,
 		selectedSubdepartment
 	) {
-		console.log("saveEditedSubdepartmentInfo");
-		console.log(subdepartmentName);
 		e.preventDefault();
 		const departmentToChange = activeDepartments.find(
 			(entry) => entry.department === selectedDepartment
@@ -247,7 +236,7 @@ function ListExistingDepartments({ allDepartments }) {
 				{!editItemVisible && (
 					<SingleInputForm
 						id="addNewDepartment"
-						label="Add department"
+						label="Add"
 						onSubmit={(e) => addNewDepartmentHandler(e)}
 						value={newDepartmentInput}
 						onChange={(e) => setNewDepartmentInput(e.target.value)}

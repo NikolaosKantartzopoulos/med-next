@@ -4,18 +4,18 @@ import styles from "./InfoPanel.module.css";
 
 function InfoPanel({ info }) {
 	return (
-		<div className={styles.infoPanel}>
+		<>
 			{info && (
 				<div
 					style={{
-						backgroundColor: info.type == "error" ? "darkred" : "lime",
+						backgroundColor: info.type == "error" ? "darkred" : "green",
 					}}
-					className={styles.info}
+					className={styles.infoPanel}
 				>
 					{info.text}
 				</div>
 			)}
-		</div>
+		</>
 	);
 }
 

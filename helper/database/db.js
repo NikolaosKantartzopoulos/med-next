@@ -23,3 +23,12 @@ export async function getAllDocuments(db, collection, sort) {
 	const documents = await db.collection(collection).find().sort(sort).toArray();
 	return documents;
 }
+
+export async function getDocumentsWithValue(db, collection, value, sort) {
+	const documents = await db
+		.collection(collection)
+		.find({ [`${value}`]: { $exists: true } })
+		.sort(sort)
+		.toArray();
+	return documents;
+}

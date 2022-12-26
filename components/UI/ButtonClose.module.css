@@ -5,14 +5,13 @@
   font-weight: 400;
   text-align: center;
   border: 2px solid transparent;
-  padding: 0.4rem 0.5rem 0.5rem 0.5rem;
+  padding: 0.4rem 0.5rem 0.5rem 0rem;
   font-size: 1rem;
   transition: all .15s ease-in-out;
-
-  border-color: var(--dark-main-1);
+  border-color: var(--error-dark);
   height: 2rem;
   color: var(--light-main-1);
-  background-color: var(--dark-main-1);
+  background-color: var(--error-dark);
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -21,7 +20,7 @@
 
 .myButton:hover {
   background-color: transparent;
-  color: var(--dark-main-1);
-  border-color: var(--dark-main-1);
+  color: var(--error-dark);
+  border-color: var(--error-dark);
 
 }

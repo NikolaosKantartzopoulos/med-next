@@ -1,8 +1,17 @@
-function RadioButton({ id, label, name, disabled }) {
+import styles from "./RadioButton.module.css";
+function RadioButton({ id, label, name, disabled, value, checked }) {
 	return (
-		<div>
-			<label htmlFor={id} disabled={disabled}>
-				<input type="radio" id={id} disabled={disabled} name={name} />
+		<div className={styles.radioButton}>
+			<label htmlFor={id} disabled={disabled} className={styles.radioLabel}>
+				<input
+					type="radio"
+					id={id}
+					disabled={disabled}
+					name={name}
+					value={value}
+					checked={checked}
+					readOnly
+				/>
 				{label}
 			</label>
 		</div>

@@ -1,0 +1,15 @@
+.ManageUsersSection {
+  width: clamp(500px, 100%, 760px);
+  padding: 10px;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+
+}
+
+.UISection {
+  display: flex;
+  min-height: 8rem;
+}

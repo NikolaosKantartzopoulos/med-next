@@ -3,6 +3,7 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  max-width: 15rem;
 }
 
 .myLabel {
@@ -11,8 +12,8 @@
   border-top: 2px solid var(--dark-main-1);
   border-left: 2px solid var(--dark-main-1);
   border-bottom: 2px solid var(--dark-main-1);
-  min-width: 9rem;
-  padding-left: 0.5rem;
+  min-width: 6rem;
+  padding-left: 0.1rem;
   padding-top: 0.3rem;
   text-align: center;
 }
