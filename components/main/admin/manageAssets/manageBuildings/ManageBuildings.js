@@ -8,15 +8,20 @@ import InfoPanel from "../../../../../components/UI/InfoPanel.js";
 
 function ManageBuildings({ allBuildings }) {
 	const router = useRouter();
+	const [activeBuildings, setActiveBuildings] = useState(allBuildings);
 	const [newBuilding, setNewBuilding] = useState("");
-	const [info, setInfo] = useState({ type: "error", text: "" });
-
+	const [info, setInfo] = useState(null);
+	console.log(allBuildings);
 	async function addNewBuildingHandler(e) {
 		e.preventDefault();
 		if (newBuilding.trim() === "") {
 			setInfo({ type: "error", text: "Field is empty" });
 			return;
 		}
+		setActiveBuildings([
+			...activeBuildings,
+			{ building: { address: newBuilding } },
+		]);
 
 		let toPost = { building: { address: newBuilding } };
 		try {
@@ -28,6 +33,8 @@ function ManageBuildings({ allBuildings }) {
 				},
 			});
 			let data = await response.json();
+			setInfo({ type: "good", text: "Building Submited" });
+			setTimeout(() => setInfo(null), 3000);
 		} finally {
 			router.reload();
 		}
@@ -35,6 +42,10 @@ function ManageBuildings({ allBuildings }) {
 
 	async function deleteBuildingHandler(e, deleteAddress) {
 		e.preventDefault();
+		const newValue = activeBuildings.filter(
+			(b) => b.building.address !== deleteAddress
+		);
+		setActiveBuildings(newValue);
 		let toDel = { deleteAddress: deleteAddress };
 		try {
 			let response = await fetch("/api/admin/manage-buildings", {
@@ -57,12 +68,11 @@ function ManageBuildings({ allBuildings }) {
 				onSubmit={(e) => addNewBuildingHandler(e)}
 				value={newBuilding}
 				onChange={(e) => {
-					setInfo({ type: "good", text: "" });
 					setNewBuilding(e.target.value);
 				}}
 			/>
 			<ListExistingBuildings
-				allBuildings={allBuildings}
+				allBuildings={activeBuildings}
 				deleteBuildingHandler={deleteBuildingHandler}
 			/>
 			<InfoPanel info={info}></InfoPanel>

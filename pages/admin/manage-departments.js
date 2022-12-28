@@ -2,10 +2,12 @@ import React from "react";
 import { connectDatabase } from "../../helper/database/db";
 
 import ManageDepartments from "../../components/main/admin/manageAssets/manageDepartments/ManageDepartments";
+import AdminNavbar from "../../components/main/admin/AdminNavbar";
 
 function ManageDepartmentsRoute({ allDepartments }) {
 	return (
 		<div>
+			<AdminNavbar />
 			<ManageDepartments allDepartments={allDepartments} />
 		</div>
 	);
@@ -20,5 +22,6 @@ export async function getStaticProps() {
 		.find({ department: { $exists: true } })
 		.project({ _id: 0 })
 		.toArray();
+	client.close();
 	return { props: { allDepartments: data } };
 }

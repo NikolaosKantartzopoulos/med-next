@@ -17,7 +17,7 @@ function ManageAssetsComponent({ props }) {
 	return (
 		<>
 			<ManageBuildings />
-			<ManageExams />
+			<ManageExam />
 			<ManageDoctors />
 			<ManageUsers />
 		</>

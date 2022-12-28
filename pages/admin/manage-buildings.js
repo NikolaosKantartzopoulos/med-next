@@ -1,9 +1,11 @@
+import AdminNavbar from "../../components/main/admin/AdminNavbar";
 import ManageBuildings from "../../components/main/admin/manageAssets/manageBuildings/ManageBuildings";
 import { connectDatabase } from "../../helper/database/db";
 
 function ManageBuildingsRoute({ allBuildings }) {
 	return (
 		<div>
+			<AdminNavbar />
 			<ManageBuildings allBuildings={allBuildings} />
 		</div>
 	);

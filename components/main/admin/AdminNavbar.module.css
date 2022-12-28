@@ -1,0 +1,9 @@
+.activeLink {
+  border-bottom: 3px solid var(--dark-main-1);
+
+}
+
+
+.adminNavbar {
+  margin-bottom: 2rem;
+}

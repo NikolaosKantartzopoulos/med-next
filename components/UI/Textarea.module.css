@@ -1,0 +1,15 @@
+.Textarea {
+  background-color: var(--support-1);
+  outline: none;
+  border: none;
+  box-shadow: 0 0 2px 2px var(--dark-main-1);
+  width: clamp(300px, 100%, 760px);
+  margin: auto;
+}
+
+.TextareaLabel {
+  color: var(--dark-main-1);
+  font-size: 1.25;
+  font-weight: bold;
+  margin: 10px;
+}

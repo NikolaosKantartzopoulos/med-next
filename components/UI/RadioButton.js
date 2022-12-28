@@ -12,7 +12,7 @@ function RadioButton({ id, label, name, disabled, value, checked }) {
 					checked={checked}
 					readOnly
 				/>
-				{label}
+				<span>{label}</span>
 			</label>
 		</div>
 	);

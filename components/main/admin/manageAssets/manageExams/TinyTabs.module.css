@@ -1,0 +1,17 @@
+.tinyTabsComponent {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
+  height: 3rem;
+  cursor: pointer;
+  color: var(--light-main-1);
+}
+
+.tinyTabsComponent span {
+  border: 1px solid var(--dark-main-1);
+  width: 5rem;
+  text-align: center;
+  padding: 5px;
+}

@@ -1,0 +1,33 @@
+.titleAndDepartments {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  height: 9rem;
+  gap: 1rem;
+}
+
+
+.scheduleTables {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: flex-start;
+  width: fit-content;
+}
+
+.radioButtonsSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+
+}
+
+.radioButtonsDiv {
+  display: flex;
+  flex-direction: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+}

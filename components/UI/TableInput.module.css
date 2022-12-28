@@ -1,0 +1,10 @@
+.TableInput {
+  height: 1.2rem;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  padding-left: 0.5rem;
+  outline: none;
+  border: none;
+  background: transparent;
+}

@@ -122,8 +122,6 @@ function ManageUsers({ allUsers }) {
 		const filteredUsers = activeUsers.filter(
 			(user) => user.username !== manageUsersState.userNameBuffer
 		);
-		console.log(filteredUsers);
-		console.log(userToEdit);
 		let userToAdd = {
 			...userToEdit,
 			username: manageUsersState.userName,
@@ -143,7 +141,6 @@ function ManageUsers({ allUsers }) {
 	}
 
 	function deleteThisUser(e, user) {
-		console.log(user);
 		const filteredUsers = activeUsers.filter((entry) => user._id !== entry._id);
 		setActiveUsers(filteredUsers);
 	}

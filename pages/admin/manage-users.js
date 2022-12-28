@@ -5,10 +5,12 @@ import {
 } from "../../helper/database/db";
 
 import ManageUsers from "../../components/main/admin/manageAssets/manageUsers/ManageUsers";
+import AdminNavbar from "../../components/main/admin/AdminNavbar";
 
 function ManageUsersRoute({ allUsers }) {
 	return (
 		<div>
+			<AdminNavbar />
 			<ManageUsers allUsers={allUsers} />
 		</div>
 	);
