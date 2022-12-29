@@ -5,7 +5,7 @@ import styles from "./InfoPanel.module.css";
 function InfoPanel({ info }) {
 	return (
 		<>
-			{info && (
+			{info ? (
 				<div
 					style={{
 						backgroundColor: info.type == "error" ? "darkred" : "green",
@@ -14,6 +14,8 @@ function InfoPanel({ info }) {
 				>
 					{info.text}
 				</div>
+			) : (
+				<div style={{ height: "2rem", margin: "1rem" }}></div>
 			)}
 		</>
 	);

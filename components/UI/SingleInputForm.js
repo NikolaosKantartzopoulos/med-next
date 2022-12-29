@@ -9,15 +9,27 @@ function SingleInputForm({
 	id,
 	label,
 	onSubmit,
+	onClick,
 	value,
 	onChange,
 	buttonText = "Submit",
+	type = "submit",
 }) {
 	return (
-		<form className={styles.SingleInputFormDiv} onSubmit={onSubmit}>
-			<Input id={id} label={label} value={value} onChange={onChange} />
-			<Button type="submit">{buttonText}</Button>
-		</form>
+		<>
+			{type == "submit" && (
+				<form className={styles.SingleInputFormDiv} onSubmit={onSubmit}>
+					<Input id={id} label={label} value={value} onChange={onChange} />
+					<Button type="submit">{buttonText}</Button>
+				</form>
+			)}
+			{type != "submit" && (
+				<div className={styles.SingleInputFormDiv} onClick={onClick}>
+					<Input id={id} label={label} value={value} onChange={onChange} />
+					<Button type="button">{buttonText}</Button>
+				</div>
+			)}
+		</>
 	);
 }
 

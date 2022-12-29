@@ -12,7 +12,9 @@ function AdminNavbar() {
 			<Link
 				href={"/admin/manage-buildings"}
 				className={
-					currentRoute === "/admin/manage-buildings" && `${styles.activeLink}`
+					currentRoute === "/admin/manage-buildings"
+						? `${styles.activeLink}`
+						: undefined
 				}
 			>
 				Buildings
@@ -20,7 +22,9 @@ function AdminNavbar() {
 			<Link
 				href={"/admin/manage-departments"}
 				className={
-					currentRoute === "/admin/manage-departments" && `${styles.activeLink}`
+					currentRoute === "/admin/manage-departments"
+						? `${styles.activeLink}`
+						: undefined
 				}
 			>
 				Departments
@@ -28,8 +32,9 @@ function AdminNavbar() {
 			<Link
 				href={"/admin/manage-preparations"}
 				className={
-					currentRoute === "/admin/manage-preparations" &&
-					`${styles.activeLink}`
+					currentRoute === "/admin/manage-preparations"
+						? `${styles.activeLink}`
+						: undefined
 				}
 			>
 				Preparations
@@ -37,15 +42,19 @@ function AdminNavbar() {
 			<Link
 				href={"/admin/manage-users"}
 				className={
-					currentRoute === "/admin/manage-users" && `${styles.activeLink}`
+					currentRoute === "/admin/manage-users"
+						? `${styles.activeLink}`
+						: undefined
 				}
 			>
 				Users
 			</Link>
 			<Link
-				href={"/admin/admin/manage-exams"}
+				href={"/admin/manage-exams"}
 				className={
-					currentRoute === "/admin/manage-exams" && `${styles.activeLink}`
+					currentRoute === "/admin/manage-exams"
+						? `${styles.activeLink}`
+						: undefined
 				}
 			>
 				Exams

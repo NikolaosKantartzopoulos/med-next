@@ -6,11 +6,11 @@ function RadioButton({ id, label, name, disabled, value, checked }) {
 				<input
 					type="radio"
 					id={id}
-					disabled={disabled}
 					name={name}
 					value={value}
 					checked={checked}
 					readOnly
+					disabled={disabled}
 				/>
 				<span>{label}</span>
 			</label>

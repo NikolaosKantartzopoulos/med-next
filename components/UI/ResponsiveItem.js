@@ -8,36 +8,47 @@ import saveIcon from "../../public/images/save.svg";
 
 import styles from "./ResponsiveItem.module.css";
 
-function ResponsiveItem(props) {
+function ResponsiveItem({
+	onClick,
+	editItemHandler,
+	saveItemHandler,
+	deleteItemHandler,
+	tier1,
+	tier2,
+	helperValue,
+	customStyles,
+	type,
+	children,
+}) {
 	return (
 		<button
 			className={styles.responsiveItem}
-			type={props.type || "button"}
-			onClick={props.onClick}
-			style={props.customStyles}
+			type={type || "button"}
+			onClick={onClick}
+			style={customStyles}
 		>
-			<div>{props.children}</div>
+			<div>{children}</div>
 			<div className={styles.manageIcons}>
-				{props.helperValue === props.tier2 ? (
+				{helperValue === tier2 ? (
 					<Image
 						src={saveIcon}
 						alt="save"
 						className={styles.image}
-						onClick={(e) => props.saveItemHandler(e, props.tier1, props.tier2)}
+						onClick={(e) => saveItemHandler(e, tier1, tier2)}
 					/>
 				) : (
 					<Image
 						src={editIcon}
 						alt="edit"
 						className={styles.image}
-						onClick={(e) => props.editItemHandler(e, props.tier1, props.tier2)}
+						onClick={(e) => editItemHandler(e, tier1, tier2)}
 					/>
 				)}
 				<Image
 					src={deleteIcon}
 					alt="delete"
 					className={styles.image}
-					onClick={(e) => props.deleteItemHandler(e, props.tier1, props.tier2)}
+					onClick={(e) => deleteItemHandler(e, tier1, tier2)}
 				/>
 			</div>
 		</button>

@@ -217,17 +217,14 @@ function ListExistingDepartments({ allDepartments }) {
 	async function handlePostRequest() {
 		let toPut = { activeDepartments: activeDepartments };
 
-		try {
-			const result = await fetch("/api/admin/manage-departments", {
-				method: "PUT",
-				body: JSON.stringify(toPut),
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
-			const data = await result.json();
-		} finally {
-		}
+		const result = await fetch("/api/admin/manage-departments", {
+			method: "PUT",
+			body: JSON.stringify(toPut),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		const data = await result.json();
 	}
 
 	return (

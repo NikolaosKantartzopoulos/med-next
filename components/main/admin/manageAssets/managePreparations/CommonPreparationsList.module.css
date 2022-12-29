@@ -1,0 +1,62 @@
+.managePreparationsSection {
+  width: clamp(400px, 100%, 760px);
+  margin: auto;
+  position: relative;
+}
+
+.managePreparationsUI {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+  margin: 1rem;
+
+}
+
+
+.buttonSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: flex-start;
+  max-width: 8rem;
+
+}
+
+.headerBar {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem
+}
+
+.titleAndRadio {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+
+.preparationItems {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding: 0.5rem 0px;
+}
+
+@media screen and (min-width: 600px) {
+
+  .preparationItems {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding: 0.5rem 0px;
+  }
+}
+
+.activePreparations {
+  display: flex;
+  flex-direction: column;
+}

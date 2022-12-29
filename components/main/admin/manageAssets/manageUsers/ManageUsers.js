@@ -164,7 +164,6 @@ function ManageUsers({ allUsers }) {
 
 	return (
 		<div className={styles.ManageUsersSection}>
-			<InfoPanel info={info} />
 			<div className={styles.UISection}>
 				<ManageUsersUI
 					actionLoaded={actionLoaded}
@@ -189,6 +188,7 @@ function ManageUsers({ allUsers }) {
 					/>
 				)}
 			</div>
+			<InfoPanel info={info} />
 			<ManageUsersTable
 				activeUsers={activeUsers}
 				editThisUser={editThisUser}

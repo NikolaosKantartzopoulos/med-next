@@ -6,8 +6,10 @@ function Textarea({ id, label, value, onChange, rows, columns, children }) {
 	return (
 		<>
 			{label && (
-				<label className={styles.TextareaLabel}>
-					{label}
+				<>
+					<label className={styles.TextareaLabel} htmlFor={id}>
+						{label}
+					</label>
 					<textarea
 						id={id}
 						value={value}
@@ -18,11 +20,10 @@ function Textarea({ id, label, value, onChange, rows, columns, children }) {
 					>
 						{children}
 					</textarea>
-				</label>
+				</>
 			)}
 			{!label && (
 				<div className={styles.TextareaLabel}>
-					{label}
 					<textarea
 						id={id}
 						value={value}

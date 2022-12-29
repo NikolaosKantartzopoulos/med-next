@@ -8,7 +8,6 @@ function TinyTabs({
 	dispatchExamInputStateAction,
 }) {
 	const [activeExamDoctors, setActiveExamDoctors] = useState(examDoctors);
-	console.log(examDoctors);
 
 	function setDoctorsHandler(docUsername) {
 		if (examDoctors.includes(docUsername)) {

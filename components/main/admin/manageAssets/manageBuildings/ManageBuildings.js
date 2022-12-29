@@ -11,7 +11,6 @@ function ManageBuildings({ allBuildings }) {
 	const [activeBuildings, setActiveBuildings] = useState(allBuildings);
 	const [newBuilding, setNewBuilding] = useState("");
 	const [info, setInfo] = useState(null);
-	console.log(allBuildings);
 	async function addNewBuildingHandler(e) {
 		e.preventDefault();
 		if (newBuilding.trim() === "") {

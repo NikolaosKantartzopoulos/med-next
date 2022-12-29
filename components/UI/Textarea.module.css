@@ -4,12 +4,16 @@
   border: none;
   box-shadow: 0 0 2px 2px var(--dark-main-1);
   width: clamp(300px, 100%, 760px);
-  margin: auto;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start
 }
+
 
 .TextareaLabel {
   color: var(--dark-main-1);
-  font-size: 1.25;
+  font-size: 1.25rem;
   font-weight: bold;
-  margin: 10px;
+  margin-top: 1rem;
 }

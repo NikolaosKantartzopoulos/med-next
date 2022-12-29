@@ -4,11 +4,11 @@ import AdminNavbar from "../../components/main/admin/AdminNavbar.js";
 
 import { connectDatabase } from "../../helper/database/db";
 
-function ManagePreparationsRoute() {
+function ManagePreparationsRoute({ allPreparations }) {
 	return (
 		<div>
 			<AdminNavbar />
-			<ManagePreparation />
+			<ManagePreparation allPreparations={allPreparations} />
 		</div>
 	);
 }
@@ -18,10 +18,14 @@ export default ManagePreparationsRoute;
 export async function getStaticProps() {
 	const [client, db] = await connectDatabase();
 
-	const allPreparations = await db
+	const preparations = await db
 		.collection("preparations")
-		.find({ common: { $exists: true } });
-	console.log(allPreparations);
+		.find({ common: true })
+		.toArray();
+	const allPreparations = preparations.map((prep) => ({
+		...prep,
+		_id: `${prep._id}`,
+	}));
 	client.close();
-	return { props: {} };
+	return { props: { allPreparations: allPreparations } };
 }
