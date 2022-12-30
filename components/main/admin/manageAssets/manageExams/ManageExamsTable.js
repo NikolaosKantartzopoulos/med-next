@@ -1,10 +1,34 @@
 import React from "react";
 import Image from "next/image";
-import tableStyles from "./ManageExamsTable.module.css";
+import tableStyles from "./ManageUsersTable.module.css";
 import editIcon from "../../../../../public/images/edit.svg";
 import deleteIcon from "../../../../../public/images/delete.svg";
 
-function ManageExamsTable({ activeUsers, editThisUser, deleteThisUser }) {
+function printPosition(value) {
+	switch (value) {
+		case "doctor":
+			return "Doctor";
+		case "secretary":
+			return "Secretary";
+		default:
+			return "";
+	}
+}
+
+function printPosition2(value) {
+	switch (value) {
+		case "frontDesk":
+			return "Front Desk";
+		case "typist":
+			return "Typist";
+		case "	phoneCenter":
+			return "Phone Center";
+		default:
+			return "";
+	}
+}
+
+function ManageUsersTable({ activeUsers, editThisUser, deleteThisUser }) {
 	return (
 		<table className={tableStyles.table}>
 			<thead className={tableStyles.tableHead}>
@@ -46,28 +70,4 @@ function ManageExamsTable({ activeUsers, editThisUser, deleteThisUser }) {
 	);
 }
 
-export default ManageExamsTable;
-
-// function printPosition(value) {
-// 	switch (value) {
-// 		case "doctor":
-// 			return "Doctor";
-// 		case "secretary":
-// 			return "Secretary";
-// 		default:
-// 			return "";
-// 	}
-// }
-
-// function printPosition2(value) {
-// 	switch (value) {
-// 		case "frontDesk":
-// 			return "Front Desk";
-// 		case "typist":
-// 			return "Typist";
-// 		case "	phoneCenter":
-// 			return "Phone Center";
-// 		default:
-// 			return "";
-// 	}
-// }
+export default ManageUsersTable;

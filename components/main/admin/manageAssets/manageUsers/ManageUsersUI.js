@@ -51,6 +51,11 @@ function ManageUsersUI({
 						setShowThis(null);
 						setInfo(null);
 					}}
+					customStyle={{
+						backgroundColor: "darkred",
+						color: "white",
+						"backgroundColor:hover": "white",
+					}}
 				>
 					Close
 				</ButtonClose>

@@ -1,0 +1,21 @@
+.sameLine {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem
+}
+
+.sameLine>div {
+  max-width: 8rem;
+}
+
+.sameLine>div {
+  max-width: 8rem;
+}
+
+.sameLine>div>label {
+  width: 2rem;
+}
+
+.sameLine>div>input {
+  width: 5rem;
+}

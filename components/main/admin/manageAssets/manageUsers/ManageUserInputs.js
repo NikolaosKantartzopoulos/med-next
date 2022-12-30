@@ -6,10 +6,8 @@ import styles from "./ManageUserInputs.module.css";
 
 function manageUserInputs({
 	userEmail,
-	userEmaiBuffer,
 	userName,
 	userPassword,
-	userPasswordBuffer,
 	userPosition,
 	userPosition2,
 	dispatchManageUsersAction,

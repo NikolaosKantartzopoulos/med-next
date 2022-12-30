@@ -21,7 +21,7 @@ function printPosition2(value) {
 			return "Front Desk";
 		case "typist":
 			return "Typist";
-		case "	phoneCenter":
+		case "phoneCenter":
 			return "Phone Center";
 		default:
 			return "";

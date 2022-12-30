@@ -30,6 +30,26 @@ function AdminNavbar() {
 				Departments
 			</Link>
 			<Link
+				href={"/admin/manage-eco"}
+				className={
+					currentRoute === "/admin/manage-eco"
+						? `${styles.activeLink}`
+						: undefined
+				}
+			>
+				Eco
+			</Link>
+			<Link
+				href={"/admin/manage-exams"}
+				className={
+					currentRoute === "/admin/manage-exams"
+						? `${styles.activeLink}`
+						: undefined
+				}
+			>
+				Exams
+			</Link>
+			<Link
 				href={"/admin/manage-preparations"}
 				className={
 					currentRoute === "/admin/manage-preparations"
@@ -48,16 +68,6 @@ function AdminNavbar() {
 				}
 			>
 				Users
-			</Link>
-			<Link
-				href={"/admin/manage-exams"}
-				className={
-					currentRoute === "/admin/manage-exams"
-						? `${styles.activeLink}`
-						: undefined
-				}
-			>
-				Exams
 			</Link>
 		</div>
 	);

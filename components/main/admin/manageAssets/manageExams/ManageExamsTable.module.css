@@ -20,11 +20,6 @@
 }
 
 
-.tableBody td:nth-child(6),
-.tableBody td:nth-child(7) {
-  text-align: center;
-}
-
 .tableBody tr:nth-child(odd) {
   background-color: var(--table-row-odd);
 }
@@ -56,13 +51,11 @@
 
 @media screen and (max-width:800px) {
 
-  .tableBody td:nth-child(2),
-  .tableBody td:nth-child(3) {
+  .tableBody td:first-child {
     display: none;
   }
 
-  .tableHead th:nth-child(2),
-  .tableHead th:nth-child(3) {
+  .tableHead th:first-child {
     display: none;
   }
 }

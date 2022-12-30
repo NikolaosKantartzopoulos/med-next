@@ -27,6 +27,7 @@
   border-top: 2px solid var(--dark-main-1);
   border-right: 2px solid var(--dark-main-1);
   color: var(--classic);
+  width: 100%;
 }
 
 .myInput:focus,
