@@ -1,55 +1,49 @@
 import React, { useContext } from "react";
 
-import EcoUITopLine from "./EcoUITopLine.js";
-
 import EcoContext from "../../../../../helper/store/eco-context.js";
 
+import EcoUITopLine from "./EcoUITopLine.js";
 import InfoPanel from "../../../../UI/InfoPanel";
 import Textarea from "../../../../UI/Textarea.js";
+import EcoTable from "./EcoTable.js";
 
 import styles from "./ManageEco.module.css";
+import Button from "../../../../UI/Button.js";
 
 function ManageEco() {
 	const {
-		aFieldIsEmpty,
-		resetInputs,
-		setEditItem,
-		saveEditedItem,
-		setAddItem,
-		saveAddItem,
-		deleteItem,
-		actionLoaded,
-		activeItem,
-		allActiveInsurances,
 		dispatchEcoReducerAction,
 		info,
 		inputsState,
-		manageEcoReducer,
-		setActionLoaded,
-		setActiveItem,
-		setAllActiveInsurances,
 		setInfo,
-		distinctDepartments,
+		loadedAction,
+		handleSubmit,
 	} = useContext(EcoContext);
 
 	return (
 		<div id="ManageEcoComponent" className={styles.manageEcoComponent}>
-			<InfoPanel info={info} />
 			<EcoUITopLine />
-			<Textarea
-				id="ecoDetails"
-				label="Details"
-				value={inputsState.details}
-				rows={10}
-				columns={40}
-				onChange={(e) => {
-					setInfo(null);
-					dispatchEcoReducerAction({
-						type: "setDetails",
-						newDetails: e.target.value,
-					});
-				}}
-			/>
+			{loadedAction && (
+				<Textarea
+					id="ecoDetails"
+					label="Details"
+					value={inputsState.details}
+					rows={10}
+					columns={40}
+					onChange={(e) => {
+						setInfo(null);
+						dispatchEcoReducerAction({
+							type: "setDetails",
+							newDetails: e.target.value,
+						});
+					}}
+					customStyles={{ margin: "auto", width: "100%" }}
+				/>
+			)}
+			<InfoPanel info={info} />
+			<Button onClick={handleSubmit}>Submit</Button>
+
+			<EcoTable />
 		</div>
 	);
 }

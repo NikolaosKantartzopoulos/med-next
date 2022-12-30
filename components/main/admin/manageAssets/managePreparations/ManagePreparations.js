@@ -117,12 +117,6 @@ function CommonPreparationsList({ allPreparations }) {
 
 	return (
 		<section className={styles.managePreparationsSection}>
-			<Button
-				onClick={handlePost}
-				customStyle={{ margin: "auto", position: "absolute", right: 0, top: 0 }}
-			>
-				Submit
-			</Button>
 			<div className={styles.managePreparationsUI}>
 				<PreparationsUI
 					setAddItem={setAddItem}
@@ -157,6 +151,12 @@ function CommonPreparationsList({ allPreparations }) {
 				)}
 			</div>
 			<InfoPanel info={info} />
+			<Button
+				onClick={handlePost}
+				customStyle={{ width: "100%", marginTop: "1rem", marginBottom: "1rem" }}
+			>
+				Submit
+			</Button>
 			<ActivePreparationsList
 				setActionLoaded={setActionLoaded}
 				activePreparationsList={activePreparationsList}

@@ -1,0 +1,8 @@
+.manageEcoComponent {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: clamp(400px, 100%, 760px);
+  position: relative;
+}

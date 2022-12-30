@@ -1,5 +1,4 @@
 .entries {
-  border: 1px solid var(--dark-main-1);
   padding: 0.5rem;
   font-size: large;
   width: clamp(380px, 50%, 760px);

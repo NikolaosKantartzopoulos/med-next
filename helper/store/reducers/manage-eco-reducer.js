@@ -12,14 +12,16 @@ export function manageEcoReducer(state, action) {
 			return { ...state, details: action.newDetails };
 		case "setEco":
 			return { ...state, eco: action.newEco };
+		case "loadItem":
+			return action.item;
 	}
 }
 
 export const initialObject = {
-	_id: "63ada03aae2b68a6d515dde0",
-	title: "Free",
-	department: "CT",
-	cost: "50",
-	details: "asdf",
-	eco: "departmentWide",
+	_id: "",
+	title: "",
+	department: "",
+	cost: "",
+	details: "",
+	eco: "",
 };

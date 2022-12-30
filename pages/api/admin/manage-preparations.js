@@ -5,7 +5,6 @@ export default async function handler(req, res) {
 		const [client, db] = await connectDatabase();
 
 		const prepToPost = req.body;
-		console.log(prepToPost);
 
 		const order = prepToPost.map((item) => ({
 			replaceOne: {

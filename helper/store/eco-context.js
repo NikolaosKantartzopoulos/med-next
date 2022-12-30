@@ -1,4 +1,5 @@
 import { createContext, useReducer, useState } from "react";
+import uuid from "react-uuid";
 
 import {
 	manageEcoReducer,
@@ -13,6 +14,7 @@ const EcoContext = createContext({
 	deleteItem: () => {},
 	dispatchEcoReducerAction: () => {},
 	distinctDepartments: [],
+	handleSubmit: () => {},
 	info: {},
 	inputsState: {},
 	manageEcoReducer: () => {},
@@ -46,8 +48,12 @@ export function EcoContextProvider({
 	);
 
 	function aFieldIsEmpty() {
-		console.log(inputsState);
-		if (inputsState.title.trim() === "" || inputsState.cost.trim() === "") {
+		if (
+			inputsState.title.trim() === "" ||
+			inputsState.cost.trim() === "" ||
+			inputsState.cost.trim() === "" ||
+			inputsState.department === ""
+		) {
 			return true;
 		}
 		return false;
@@ -57,8 +63,23 @@ export function EcoContextProvider({
 		setInfo(null);
 	}
 
-	function setEditItem() {}
-	function saveEditedItem() {}
+	function setEditItem(e, item) {
+		console.log(item);
+		setActionLoaded("editEco");
+		dispatchEcoReducerAction({ type: "loadItem", item: item });
+	}
+	function saveEditedItem() {
+		const filteredArray = allActiveInsurances.filter((ins) => {
+			return (
+				ins.title != inputsState.title ||
+				ins.department != inputsState.department
+			);
+		});
+		const newArray = [...filteredArray, inputsState];
+		setActionLoaded(null);
+		setActiveItem(null);
+		setAllActiveInsurances(newArray);
+	}
 	function setAddItem() {
 		resetInputs();
 		setActionLoaded("addEco");
@@ -68,9 +89,31 @@ export function EcoContextProvider({
 			setInfo({ type: "error", text: "A field is empty" });
 			return;
 		}
-		console.log(inputsState);
+		allActiveInsurances.forEach((ins) => {
+			if (
+				inputsState.title === ins.title &&
+				inputsState.department === ins.department
+			) {
+				setInfo({ type: "error", text: "Already exists" });
+			}
+		});
+		setAllActiveInsurances([
+			...allActiveInsurances,
+			{ ...inputsState, _id: uuid() },
+		]);
+		dispatchEcoReducerAction({ type: "resetAll" });
+		setActionLoaded(null);
+		setActiveItem(null);
 	}
-	function deleteItem() {
+	function deleteItem(e, item) {
+		setAllActiveInsurances([
+			...allActiveInsurances.filter((ins) => {
+				return ins.title != item.title || ins.department != item.department;
+			}),
+		]);
+	}
+
+	function handleSubmit() {
 		console.log(allActiveInsurances);
 	}
 
@@ -86,6 +129,7 @@ export function EcoContextProvider({
 		activeItem,
 		allActiveInsurances,
 		dispatchEcoReducerAction,
+		handleSubmit,
 		info,
 		inputsState,
 		manageEcoReducer,

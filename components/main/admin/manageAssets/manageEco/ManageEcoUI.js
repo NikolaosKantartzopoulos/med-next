@@ -15,6 +15,7 @@ function ManageEcoUI() {
 		setAddItem,
 		saveAddItem,
 		actionLoaded,
+		dispatchEcoReducerAction,
 		setActionLoaded,
 		setActiveItem,
 		setInfo,
@@ -45,6 +46,7 @@ function ManageEcoUI() {
 				{(actionLoaded === "addEco" || actionLoaded === "editEco") && (
 					<ButtonClose
 						onClick={() => {
+							dispatchEcoReducerAction({ type: "resetAll" });
 							setActiveItem(null);
 							setActionLoaded(null);
 							setInfo(null);

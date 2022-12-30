@@ -8,7 +8,7 @@
 }
 
 .arrayComponent {
-  box-shadow: 0 0 3px 3px var(--dark-main-1);
+  /* box-shadow: 0 0 3px 3px var(--dark-main-1); */
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;

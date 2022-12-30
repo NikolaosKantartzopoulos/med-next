@@ -1,0 +1,11 @@
+.UITopLine {
+  display: grid;
+  grid-template-columns: 8rem 16rem 1fr 5rem;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+  margin: auto;
+  width: 100%;
+
+
+}

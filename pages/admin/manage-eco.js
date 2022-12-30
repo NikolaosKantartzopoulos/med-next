@@ -33,7 +33,6 @@ export async function getStaticProps() {
 		.collection("assets")
 		.distinct("department", { sub: { $exists: true } });
 
-	console.log(distinctDepartments);
 	client.close();
 
 	return { props: { distinctDepartments, allInsuranceDocuments } };
