@@ -241,14 +241,15 @@ function ListExistingDepartments({ allDepartments }) {
 					/>
 				)}
 			</div>
-			{!editItemVisible && (
-				<Button
-					onClick={handlePostRequest}
-					customStyle={{ margin: "auto", width: "100%", marginBottom: "1rem" }}
-				>
-					Submit
-				</Button>
-			)}
+
+			<Button
+				onClick={handlePostRequest}
+				customStyle={{ margin: "auto", width: "100%", marginBottom: "1rem" }}
+				disabled={editItemVisible ? true : false}
+			>
+				Submit
+			</Button>
+
 			<div className={styles.arrayComponent}>
 				{activeDepartments.map((dep) => (
 					<div key={dep.department} className={styles.department}>

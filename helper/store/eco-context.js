@@ -89,18 +89,25 @@ export function EcoContextProvider({
 			setInfo({ type: "error", text: "A field is empty" });
 			return;
 		}
+		let problem = false;
 		allActiveInsurances.forEach((ins) => {
 			if (
 				inputsState.title === ins.title &&
 				inputsState.department === ins.department
 			) {
-				setInfo({ type: "error", text: "Already exists" });
+				setInfo((info) => ({ ...info, type: "error", text: "Already exists" }));
+				problem = true;
+				console.log(problem);
 			}
 		});
+		if (problem) {
+			return;
+		}
 		setAllActiveInsurances([
 			...allActiveInsurances,
 			{ ...inputsState, _id: uuid() },
 		]);
+
 		dispatchEcoReducerAction({ type: "resetAll" });
 		setActionLoaded(null);
 		setActiveItem(null);

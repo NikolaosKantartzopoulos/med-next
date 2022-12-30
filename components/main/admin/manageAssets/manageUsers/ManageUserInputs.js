@@ -1,25 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import Input from "../../../../UI/Input";
 import RadioButton from "../../../../UI/RadioButton";
+import UsersContext from "../../../../../helper/store/users-context";
 
 import styles from "./ManageUserInputs.module.css";
 
-function manageUserInputs({
-	userEmail,
-	userName,
-	userPassword,
-	userPosition,
-	userPosition2,
-	dispatchManageUsersAction,
-	setInfo,
-}) {
+function manageUserInputs() {
+	const {
+		setInfo,
+
+		manageUsersState,
+		dispatchManageUsersAction,
+	} = useContext(UsersContext);
 	return (
 		<div className={styles.manageUserInputs}>
 			<div className={styles.textInputSection}>
 				<Input
 					id="userNameInput"
 					label="Username"
-					value={userName}
+					value={manageUsersState.userName}
 					onChange={(e) => {
 						setInfo(null);
 						dispatchManageUsersAction({
@@ -37,7 +36,7 @@ function manageUserInputs({
 				<Input
 					id="userEmailInput"
 					label="Email"
-					value={userEmail}
+					value={manageUsersState.userEmail}
 					onChange={(e) => {
 						setInfo(null);
 						dispatchManageUsersAction({
@@ -55,7 +54,7 @@ function manageUserInputs({
 				<Input
 					id="userPasswordInput"
 					label="Password"
-					value={userPassword}
+					value={manageUsersState.userPassword}
 					onChange={(e) => {
 						setInfo(null);
 						dispatchManageUsersAction({
@@ -83,20 +82,20 @@ function manageUserInputs({
 				>
 					<RadioButton
 						value="doctor"
-						checked={userPosition === "doctor"}
+						checked={manageUsersState.userPosition === "doctor"}
 						id="doctor"
 						label="Doctor"
 						name="selectPosition"
 					/>
 					<RadioButton
 						value="secretary"
-						checked={userPosition === "secretary"}
+						checked={manageUsersState.userPosition === "secretary"}
 						id="secretary"
 						label="Secretary"
 						name="selectPosition"
 					/>
 				</div>
-				{userPosition === "secretary" ? (
+				{manageUsersState.userPosition === "secretary" ? (
 					<div
 						id="secretarySelectPosition2"
 						onChange={(e) =>
@@ -109,21 +108,21 @@ function manageUserInputs({
 					>
 						<RadioButton
 							value="frontDesk"
-							checked={userPosition2 === "frontDesk"}
+							checked={manageUsersState.userPosition2 === "frontDesk"}
 							id="secrFront"
 							label="Front Desk"
 							name="selectPosition2"
 						/>
 						<RadioButton
 							value="typist"
-							checked={userPosition2 === "typist"}
+							checked={manageUsersState.userPosition2 === "typist"}
 							id="secrTypist"
 							label="Typist"
 							name="selectPosition2"
 						/>
 						<RadioButton
 							value="phoneCenter"
-							checked={userPosition2 === "phoneCenter"}
+							checked={manageUsersState.userPosition2 === "phoneCenter"}
 							id="secrPhone"
 							label="Phone Center"
 							name="selectPosition2"

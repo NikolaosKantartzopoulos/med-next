@@ -25,3 +25,9 @@
   border-color: var(--dark-main-1);
 
 }
+
+.myButton:disabled {
+  background-color: var(--support-1);
+  color: darkgray;
+  cursor: not-allowed;
+}

@@ -16,14 +16,14 @@ function ManageEco() {
 		info,
 		inputsState,
 		setInfo,
-		loadedAction,
+		actionLoaded,
 		handleSubmit,
 	} = useContext(EcoContext);
 
 	return (
 		<div id="ManageEcoComponent" className={styles.manageEcoComponent}>
 			<EcoUITopLine />
-			{loadedAction && (
+			{actionLoaded && (
 				<Textarea
 					id="ecoDetails"
 					label="Details"
@@ -40,8 +40,10 @@ function ManageEco() {
 					customStyles={{ margin: "auto", width: "100%" }}
 				/>
 			)}
-			<InfoPanel info={info} />
-			<Button onClick={handleSubmit}>Submit</Button>
+			{info && <InfoPanel info={info} />}
+			<Button onClick={handleSubmit} disabled={actionLoaded ? true : false}>
+				Submit
+			</Button>
 
 			<EcoTable />
 		</div>

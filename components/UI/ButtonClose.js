@@ -13,7 +13,11 @@ const ButtonClose = (props) => {
 			onClick={props.onClick}
 			style={props.customStyle}
 		>
-			<Image src={closeIcon} alt="close" />
+			<Image
+				src={closeIcon}
+				alt="close"
+				style={{ position: "relative", left: "8px" }}
+			/>
 			{props.children}
 		</button>
 	);

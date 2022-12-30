@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+import PreparationsContext from "../../../../../helper/store/preparations-context";
 import ResponsiveItem from "../../../../UI/ResponsiveItem";
 import styles from "./CommonPreparationsList.module.css";
 
-function ActivePreparationsList({
-	activePreparationsList,
-	activeItem,
-	dispatchPreparationsAction,
-	saveUpdatedItem,
-	setEditItem,
-	deleteItem,
-}) {
+function ActivePreparationsList() {
+	const {
+		activeItem,
+		activePreparationsList,
+		deleteItem,
+		saveUpdatedItem,
+		setEditItem,
+	} = useContext(PreparationsContext);
 	return (
 		<div className={styles.activePreparations}>
 			<div>

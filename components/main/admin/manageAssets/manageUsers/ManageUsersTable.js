@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import UsersContext from "../../../../../helper/store/users-context";
 import Image from "next/image";
 import tableStyles from "./ManageUsersTable.module.css";
 import editIcon from "../../../../../public/images/edit.svg";
@@ -28,7 +29,9 @@ function printPosition2(value) {
 	}
 }
 
-function ManageUsersTable({ activeUsers, editThisUser, deleteThisUser }) {
+function ManageUsersTable() {
+	const { activeUsers, editThisUser, deleteThisUser } =
+		useContext(UsersContext);
 	return (
 		<table className={tableStyles.table}>
 			<thead className={tableStyles.tableHead}>

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import UsersContext from "../../../../../helper/store/users-context";
 import Image from "next/image";
 
 import Button from "../../../../UI/Button";
@@ -9,15 +10,16 @@ import saveIcon from "../../../../../public/images/save.svg";
 
 import styles from "./ManageUsersUI.module.css";
 
-function ManageUsersUI({
-	actionLoaded,
-	addNewUserSetupHandler,
-	submitNewUserHandler,
-	submitEditedUser,
-	setActionLoaded,
-	setShowThis,
-	setInfo,
-}) {
+function ManageUsersUI() {
+	const {
+		actionLoaded,
+		setActionLoaded,
+		setInfo,
+		setShowThis,
+		addNewUserSetupHandler,
+		submitNewUserHandler,
+		submitEditedUser,
+	} = useContext(UsersContext);
 	return (
 		<div className={styles.ManageUsersUI}>
 			{actionLoaded === null && (
@@ -27,21 +29,21 @@ function ManageUsersUI({
 						customStyle={{ width: "8rem" }}
 					>
 						<Image src={addIcon} alt="add new user" />
-						Add User
+						Add
 					</Button>
 				</>
 			)}
 			{actionLoaded === "addUser" && (
 				<Button onClick={submitNewUserHandler} customStyle={{ width: "8rem" }}>
 					<Image src={saveIcon} alt="save new user" />
-					Add User
+					Add
 				</Button>
 			)}
 
 			{actionLoaded == "editUser" && (
-				<Button onClick={submitEditedUser} customStyle={{ width: "10rem" }}>
+				<Button onClick={submitEditedUser} customStyle={{ width: "8rem" }}>
 					<Image src={addIcon} alt="submit edited user" />
-					Update User
+					Update
 				</Button>
 			)}
 			{(actionLoaded === "addUser" || actionLoaded === "editUser") && (

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import TitleAndRadio from "./TitleAndRadio";
 
@@ -6,32 +6,31 @@ import ButtonClose from "../../../../UI/ButtonClose";
 import Button from "../../../../UI/Button";
 import Image from "next/image";
 
-import deleteIcon from "../../../../../public/images/delete.svg";
 import addIcon from "../../../../../public/images/plus.svg";
 import saveIcon from "../../../../../public/images/save.svg";
 import styles from "./CommonPreparationsList.module.css";
+import PreparationsContext from "../../../../../helper/store/preparations-context";
 
-function PreparationsUI({
-	setActiveItem,
-	saveUpdatedItem,
-	actionLoaded,
-	setActionLoaded,
-	setInfo,
-	preparationsInputs,
-	dispatchPreparationsAction,
-	setAddItem,
-	saveAddItem,
-}) {
+function PreparationsUI() {
+	const {
+		actionLoaded,
+		dispatchPreparationsAction,
+		preparationsInputs,
+		saveAddItem,
+		saveUpdatedItem,
+		setActionLoaded,
+		setActiveItem,
+		setAddItem,
+		setInfo,
+	} = useContext(PreparationsContext);
 	return (
 		<div className={styles.headerBar}>
 			<div className={styles.buttonSection}>
 				{actionLoaded === null && (
-					<>
-						<Button onClick={setAddItem} customStyle={{ width: "8rem" }}>
-							<Image src={addIcon} alt="add preparation" />
-							Add
-						</Button>
-					</>
+					<Button onClick={setAddItem} customStyle={{ width: "8rem" }}>
+						<Image src={addIcon} alt="add preparation" />
+						Add
+					</Button>
 				)}
 				{actionLoaded === "addPreparation" && (
 					<Button onClick={saveAddItem} customStyle={{ width: "8rem" }}>

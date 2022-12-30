@@ -4,15 +4,17 @@ import {
 	getDocumentsWithValue,
 } from "../../helper/database/db";
 
+import { UsersContextProvider } from "../../helper/store/users-context";
+
 import ManageUsers from "../../components/main/admin/manageAssets/manageUsers/ManageUsers";
 import AdminNavbar from "../../components/main/admin/AdminNavbar";
 
 function ManageUsersRoute({ allUsers }) {
 	return (
-		<div>
+		<UsersContextProvider allUsers={allUsers}>
 			<AdminNavbar />
-			<ManageUsers allUsers={allUsers} />
-		</div>
+			<ManageUsers />
+		</UsersContextProvider>
 	);
 }
 

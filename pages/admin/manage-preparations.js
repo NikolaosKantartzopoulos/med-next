@@ -1,15 +1,16 @@
 import React from "react";
 import ManagePreparation from "../../components/main/admin/manageAssets/managePreparations/ManagePreparations.js";
 import AdminNavbar from "../../components/main/admin/AdminNavbar.js";
+import { PreparationsContextProvider } from "../../helper/store/preparations-context";
 
 import { connectDatabase } from "../../helper/database/db";
 
 function ManagePreparationsRoute({ allPreparations }) {
 	return (
-		<div>
+		<PreparationsContextProvider allPreparations={allPreparations}>
 			<AdminNavbar />
-			<ManagePreparation allPreparations={allPreparations} />
-		</div>
+			<ManagePreparation />
+		</PreparationsContextProvider>
 	);
 }
 
