@@ -20,5 +20,5 @@ export async function getStaticProps() {
 		.find({ building: { $exists: true } })
 		.project({ _id: 0 })
 		.toArray();
-	return { props: { allBuildings: data } };
+	return { props: { allBuildings: data }, revalidate: 10 };
 }
