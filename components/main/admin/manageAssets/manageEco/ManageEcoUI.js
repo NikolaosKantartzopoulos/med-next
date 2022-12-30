@@ -1,5 +1,5 @@
-import React from "react";
-
+import React, { useContext } from "react";
+import EcoContext from "../../../../../helper/store/eco-context.js";
 import ButtonClose from "../../../../UI/ButtonClose";
 import Button from "../../../../UI/Button";
 import Image from "next/image";
@@ -9,15 +9,16 @@ import saveIcon from "../../../../../public/images/save.svg";
 
 import styles from "./ManageEcoUI.module.css";
 
-function ManageEcoUI({
-	actionLoaded,
-	setActionLoaded,
-	setActiveItem,
-	setInfo,
-	setAddItem,
-	saveAddItem,
-	saveEditedItem,
-}) {
+function ManageEcoUI() {
+	const {
+		saveEditedItem,
+		setAddItem,
+		saveAddItem,
+		actionLoaded,
+		setActionLoaded,
+		setActiveItem,
+		setInfo,
+	} = useContext(EcoContext);
 	return (
 		<div className={styles.headerBar}>
 			<div className={styles.buttonSection}>

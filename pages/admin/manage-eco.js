@@ -2,16 +2,19 @@ import React from "react";
 import ManageEco from "../../components/main/admin/manageAssets/manageEco/ManageEco";
 import AdminNavbar from "../../components/main/admin/AdminNavbar.js";
 import { connectDatabase } from "../../helper/database/db";
+import { EcoContextProvider } from "../../helper/store/eco-context";
 
 function ManageEcoRoute({ distinctDepartments, allInsuranceDocuments }) {
 	return (
-		<div>
-			<AdminNavbar />
-			<ManageEco
-				allInsuranceDocuments={allInsuranceDocuments}
-				distinctDepartments={distinctDepartments}
-			/>
-		</div>
+		<EcoContextProvider
+			distinctDepartments={distinctDepartments}
+			allInsuranceDocuments={allInsuranceDocuments}
+		>
+			<div>
+				<AdminNavbar />
+				<ManageEco />
+			</div>
+		</EcoContextProvider>
 	);
 }
 

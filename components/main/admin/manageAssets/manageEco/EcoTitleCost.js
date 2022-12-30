@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+
+import EcoContext from "../../../../../helper/store/eco-context.js";
 
 import Input from "../../../../UI/Input.js";
 
 // import styles from "./EcoTitleCost.module.css";
 
-function EcoTitleCost({ inputsState, setInfo, dispatchEcoReducerAction }) {
+function EcoTitleCost() {
+	const { dispatchEcoReducerAction, inputsState, setInfo } =
+		useContext(EcoContext);
 	return (
 		<div id="ecoTitleCost">
 			<Input

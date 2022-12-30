@@ -1,38 +1,40 @@
-import React from "react";
+import React, { useContext } from "react";
 
-function EcoUITopLine({
-	actionLoaded,
-	dispatchEcoReducerAction,
-	distinctDepartments,
-	inputsState,
-	saveAddItem,
-	saveEditedItem,
-	setActionLoaded,
-	setActiveItem,
-	setAddItem,
-	setInfo,
-}) {
+import EcoContext from "../../../../../helper/store/eco-context.js";
+
+import ManageEcoUI from "./ManageEcoUI.js";
+import EcoRadioButtons from "./EcoRadioButtons";
+import EcoTitleCost from "./EcoTitleCost.js";
+
+import styles from "./EcoUITopLine.module.css";
+
+function EcoUITopLine() {
+	const {
+		aFieldIsEmpty,
+		resetInputs,
+		setEditItem,
+		saveEditedItem,
+		setAddItem,
+		saveAddItem,
+		deleteItem,
+		actionLoaded,
+		activeItem,
+		allActiveInsurances,
+		dispatchEcoReducerAction,
+		info,
+		inputsState,
+		manageEcoReducer,
+		setActionLoaded,
+		setActiveItem,
+		setAllActiveInsurances,
+		setInfo,
+		distinctDepartments,
+	} = useContext(EcoContext);
 	return (
 		<div id="UITopLine" className={styles.UITopLine}>
-			<ManageEcoUI
-				actionLoaded={actionLoaded}
-				setActionLoaded={setActionLoaded}
-				setActiveItem={setActiveItem}
-				setInfo={setInfo}
-				setAddItem={setAddItem}
-				saveAddItem={saveAddItem}
-				saveEditedItem={saveEditedItem}
-			/>
-			<EcoTitleCost
-				inputsState={inputsState}
-				setInfo={setInfo}
-				dispatchEcoReducerAction={dispatchEcoReducerAction}
-			/>
-			<EcoRadioButtons
-				setInfo={setInfo}
-				dispatchEcoReducerAction={dispatchEcoReducerAction}
-				distinctDepartments={distinctDepartments}
-			/>
+			<ManageEcoUI />
+			<EcoTitleCost />
+			<EcoRadioButtons />
 		</div>
 	);
 }
