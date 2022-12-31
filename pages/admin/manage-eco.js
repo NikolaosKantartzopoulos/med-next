@@ -6,21 +6,27 @@ import { EcoContextProvider } from "../../helper/store/eco-context";
 
 function ManageEcoRoute({ distinctDepartments, allInsuranceDocuments }) {
 	return (
-		<EcoContextProvider
-			distinctDepartments={distinctDepartments}
-			allInsuranceDocuments={allInsuranceDocuments}
-		>
-			<div>
-				<AdminNavbar />
-				<ManageEco />
-			</div>
-		</EcoContextProvider>
+		<>
+			{!allInsuranceDocuments ? (
+				<LoadingSpinner />
+			) : (
+				<EcoContextProvider
+					distinctDepartments={distinctDepartments}
+					allInsuranceDocuments={allInsuranceDocuments}
+				>
+					<div>
+						<AdminNavbar />
+						<ManageEco />
+					</div>
+				</EcoContextProvider>
+			)}
+		</>
 	);
 }
 
 export default ManageEcoRoute;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 	const [client, db] = await connectDatabase();
 
 	const documents = await db.collection("eco").find().toArray();

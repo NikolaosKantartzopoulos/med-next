@@ -7,22 +7,25 @@ import { connectDatabase } from "../../helper/database/db";
 
 function ManagePreparationsRoute({ allPreparations }) {
 	return (
-		<PreparationsContextProvider allPreparations={allPreparations}>
-			<AdminNavbar />
-			<ManagePreparation />
-		</PreparationsContextProvider>
+		<>
+			{!allPreparations ? (
+				<LoadingSpinner />
+			) : (
+				<PreparationsContextProvider allPreparations={allPreparations}>
+					<AdminNavbar />
+					<ManagePreparation />
+				</PreparationsContextProvider>
+			)}
+		</>
 	);
 }
 
 export default ManagePreparationsRoute;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 	const [client, db] = await connectDatabase();
 
-	const preparations = await db
-		.collection("preparations")
-		.find({ common: true })
-		.toArray();
+	const preparations = await db.collection("preparations").find().toArray();
 	const allPreparations = preparations.map((prep) => ({
 		...prep,
 		_id: `${prep._id}`,

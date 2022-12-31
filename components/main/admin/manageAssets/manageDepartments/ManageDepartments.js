@@ -1,16 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
 import ListExistingDepartments from "./ListExistingDepartments";
 
-function ManageDepartments({ allDepartments }) {
-	const [newDepartmentName, setNewDepartmentName] = useState("");
-	const [arrayOfNewDepartmentsSubs, setarrayOfNewDepartmentsSubs] = useState(
-		[]
-	);
-
+function ManageDepartments() {
 	return (
 		<div>
-			<ListExistingDepartments allDepartments={allDepartments} />
+			<ListExistingDepartments />
 		</div>
 	);
 }

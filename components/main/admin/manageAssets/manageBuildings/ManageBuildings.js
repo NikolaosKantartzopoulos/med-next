@@ -5,12 +5,14 @@ import ListExistingBuildings from "./ListExistingBuildings";
 
 import SingleInputForm from "../../../../../components/UI/SingleInputForm";
 import InfoPanel from "../../../../../components/UI/InfoPanel.js";
+import LoadingSpinner from "../../../../../components/UI/LoadingSpinner.js";
 
 function ManageBuildings({ allBuildings }) {
 	const router = useRouter();
 	const [activeBuildings, setActiveBuildings] = useState(allBuildings);
 	const [newBuilding, setNewBuilding] = useState("");
 	const [info, setInfo] = useState(null);
+	const [isLoading, setIsLoading] = useState(false);
 	async function addNewBuildingHandler(e) {
 		e.preventDefault();
 		if (newBuilding.trim() === "") {
@@ -24,6 +26,7 @@ function ManageBuildings({ allBuildings }) {
 
 		let toPost = { building: { address: newBuilding } };
 		try {
+			setIsLoading(true);
 			let response = await fetch("/api/admin/manage-buildings", {
 				method: "POST",
 				body: JSON.stringify(toPost),
@@ -32,6 +35,7 @@ function ManageBuildings({ allBuildings }) {
 				},
 			});
 			let data = await response.json();
+			setIsLoading(false);
 			setInfo({ type: "good", text: "Building Submited" });
 			setTimeout(() => setInfo(null), 3000);
 		} finally {
@@ -41,6 +45,7 @@ function ManageBuildings({ allBuildings }) {
 
 	async function deleteBuildingHandler(e, deleteAddress) {
 		e.preventDefault();
+		setIsLoading(true);
 		const newValue = activeBuildings.filter(
 			(b) => b.building.address !== deleteAddress
 		);
@@ -55,26 +60,34 @@ function ManageBuildings({ allBuildings }) {
 				},
 			});
 			let data = await response.json();
+			setIsLoading(false);
 		} finally {
-			router.reload();
+			setInfo({ type: "good", text: "Building Deleted" });
+			setTimeout(() => setInfo(null), 3000);
+			setTimeout(() => router.reload(), 3100);
 		}
 	}
 	return (
 		<div>
-			<SingleInputForm
-				id="buildingsInput"
-				label="Add building"
-				onSubmit={(e) => addNewBuildingHandler(e)}
-				value={newBuilding}
-				onChange={(e) => {
-					setNewBuilding(e.target.value);
-				}}
-			/>
-			<ListExistingBuildings
-				allBuildings={activeBuildings}
-				deleteBuildingHandler={deleteBuildingHandler}
-			/>
-			<InfoPanel info={info}></InfoPanel>
+			{isLoading && <LoadingSpinner />}
+			{!isLoading && (
+				<>
+					<SingleInputForm
+						id="buildingsInput"
+						label="Add building"
+						onSubmit={(e) => addNewBuildingHandler(e)}
+						value={newBuilding}
+						onChange={(e) => {
+							setNewBuilding(e.target.value);
+						}}
+					/>
+					<ListExistingBuildings
+						allBuildings={activeBuildings}
+						deleteBuildingHandler={deleteBuildingHandler}
+					/>
+					<InfoPanel info={info}></InfoPanel>
+				</>
+			)}
 		</div>
 	);
 }

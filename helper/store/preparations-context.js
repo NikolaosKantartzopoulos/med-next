@@ -1,5 +1,5 @@
 import { createContext, useState, useReducer } from "react";
-
+import { useRouter } from "next/router.js";
 import {
 	preparationsReducer,
 	preparationsSample,
@@ -7,7 +7,26 @@ import {
 
 import uuid from "react-uuid";
 
-const PreparationsContext = createContext();
+const PreparationsContext = createContext({
+	actionLoaded: "",
+	activeItem: {},
+	activePreparationsList: [],
+	checkFieldValidity: () => {},
+	deleteItem: () => {},
+	dispatchPreparationsAction: () => {},
+	handlePost: () => {},
+	info: {},
+	isLoading: false,
+	preparationsInputs: {},
+	saveAddItem: () => {},
+	saveUpdatedItem: () => {},
+	setActionLoaded: () => {},
+	setActiveItem: () => {},
+	setActivePreparationsList: () => {},
+	setAddItem: () => {},
+	setEditItem: () => {},
+	setInfo: {},
+});
 
 export function PreparationsContextProvider({ allPreparations, children }) {
 	const [activePreparationsList, setActivePreparationsList] =
@@ -15,6 +34,9 @@ export function PreparationsContextProvider({ allPreparations, children }) {
 	const [activeItem, setActiveItem] = useState(null);
 	const [actionLoaded, setActionLoaded] = useState(null);
 	const [info, setInfo] = useState(null);
+	const [isLoading, setIsLoading] = useState(false);
+
+	const router = useRouter();
 
 	function checkFieldValidity() {
 		if (preparationsInputs.title.trim() === "") {
@@ -96,6 +118,7 @@ export function PreparationsContextProvider({ allPreparations, children }) {
 	}
 
 	async function handlePost() {
+		setIsLoading(true);
 		const response = await fetch("/api/admin/manage-preparations", {
 			method: "POST",
 			body: JSON.stringify(activePreparationsList),
@@ -105,6 +128,8 @@ export function PreparationsContextProvider({ allPreparations, children }) {
 		});
 		const data = await response.json();
 		console.log(data);
+		setIsLoading(false);
+		router.reload();
 	}
 
 	const preparationsContext = {
@@ -116,6 +141,7 @@ export function PreparationsContextProvider({ allPreparations, children }) {
 		dispatchPreparationsAction,
 		handlePost,
 		info,
+		isLoading,
 		preparationsInputs,
 		saveAddItem,
 		saveUpdatedItem,

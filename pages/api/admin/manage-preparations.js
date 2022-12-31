@@ -14,8 +14,23 @@ export default async function handler(req, res) {
 			},
 		}));
 
+		const existingTitles = await db
+			.collection("preparations")
+			.distinct("title", {});
+
+		const titlesToSend = prepToPost.map((a) => a.title);
+		const titlesToDelete = existingTitles.filter(
+			(title) => !titlesToSend.includes(title)
+		);
+		console.log(titlesToDelete);
+		const deleteOrder = titlesToDelete.map((item) => ({
+			deleteOne: { filter: { title: item } },
+		}));
+
 		try {
-			const sent = await db.collection("preparations").bulkWrite(order);
+			const sent = await db
+				.collection("preparations")
+				.bulkWrite([...order, ...deleteOrder]);
 
 			res.status(200).json({ message: "message", added: req.body });
 		} finally {

@@ -9,10 +9,15 @@ import ActivePreparationsList from "./ActivePreparationsList.js";
 
 import styles from "./CommonPreparationsList.module.css";
 import Button from "../../../../UI/Button";
+import LoadingSpinner from "../../../../UI/LoadingSpinner";
 import PrepTextarea from "./PrepTextarea";
 
 function CommonPreparationsList() {
-	const { actionLoaded, handlePost, info } = useContext(PreparationsContext);
+	const { actionLoaded, handlePost, info, isLoading } =
+		useContext(PreparationsContext);
+	if (isLoading) {
+		return <LoadingSpinner />;
+	}
 	return (
 		<section className={styles.managePreparationsSection}>
 			<div className={styles.managePreparationsUI}>

@@ -11,16 +11,22 @@ import AdminNavbar from "../../components/main/admin/AdminNavbar";
 
 function ManageUsersRoute({ allUsers }) {
 	return (
-		<UsersContextProvider allUsers={allUsers}>
-			<AdminNavbar />
-			<ManageUsers />
-		</UsersContextProvider>
+		<>
+			{!allUsers ? (
+				<LoadingSpinner />
+			) : (
+				<UsersContextProvider allUsers={allUsers}>
+					<AdminNavbar />
+					<ManageUsers />
+				</UsersContextProvider>
+			)}
+		</>
 	);
 }
 
 export default ManageUsersRoute;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 	const [client, db] = await connectDatabase();
 	let allUsers = {};
 	try {

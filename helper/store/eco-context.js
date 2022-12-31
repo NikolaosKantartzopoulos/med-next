@@ -1,4 +1,5 @@
 import { createContext, useReducer, useState } from "react";
+import { useRouter } from "next/router.js";
 import uuid from "react-uuid";
 
 import {
@@ -46,6 +47,8 @@ export function EcoContextProvider({
 		manageEcoReducer,
 		initialObject
 	);
+
+	const router = useRouter();
 
 	function aFieldIsEmpty() {
 		if (
@@ -122,6 +125,8 @@ export function EcoContextProvider({
 
 	function handleSubmit() {
 		console.log(allActiveInsurances);
+
+		router.reload();
 	}
 
 	const ecoContext = {

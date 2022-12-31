@@ -8,19 +8,25 @@ import {
 
 function ManageExamsRoute({ allActiveDepartments, allActiveDoctors }) {
 	return (
-		<div>
-			<AdminNavbar />
-			<ManageExam
-				allActiveDepartments={allActiveDepartments}
-				allActiveDoctors={allActiveDoctors}
-			/>
-		</div>
+		<>
+			{!allActiveDepartments ? (
+				<LoadingSpinner />
+			) : (
+				<div>
+					<AdminNavbar />
+					<ManageExam
+						allActiveDepartments={allActiveDepartments}
+						allActiveDoctors={allActiveDoctors}
+					/>
+				</div>
+			)}
+		</>
 	);
 }
 
 export default ManageExamsRoute;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 	const [client, db] = await connectDatabase();
 
 	const allActiveDepartmentsArray = await getDocumentsWithValue(
