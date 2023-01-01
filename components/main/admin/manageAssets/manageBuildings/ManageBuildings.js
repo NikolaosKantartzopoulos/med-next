@@ -74,7 +74,7 @@ function ManageBuildings({ allBuildings }) {
 				<>
 					<SingleInputForm
 						id="buildingsInput"
-						label="Add building"
+						label="Add"
 						onSubmit={(e) => addNewBuildingHandler(e)}
 						value={newBuilding}
 						onChange={(e) => {

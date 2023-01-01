@@ -1,11 +1,13 @@
-import { createContext } from "react";
+import { useState, createContext } from "react";
 
 const VarContext = createContext({
-	sample: "",
+	inProp: true,
+	setInProp: () => {},
 });
 
-export function UrlContextProvider(props) {
-	const varContext = {};
+export function VarContextProvider(props) {
+	const [inProp, setInProp] = useState(false);
+	const varContext = { inProp, setInProp };
 
 	return (
 		<VarContext.Provider value={varContext}>
