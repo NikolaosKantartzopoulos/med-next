@@ -32,7 +32,7 @@ export function DepartmentContextProvider({ allDepartments, children }) {
 			return;
 		}
 		if (newDepartmentInput.trim() == "") {
-			infoMessage(setInfo, "error", "A filed is empty");
+			infoMessage(setInfo, "error", "A field is empty");
 			return;
 		}
 

@@ -1,0 +1,40 @@
+.EcoFiltersSection {
+  margin-top: 1rem;
+  font-size: 1.25rem;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
+
+.EcoFiltersSection input {
+  height: 1rem;
+  width: 1rem;
+}
+
+.setInputLabel {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.EcoFilter {
+  width: 50%;
+
+}
+
+
+.checkLine {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 8px auto;
+
+}

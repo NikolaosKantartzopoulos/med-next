@@ -17,12 +17,12 @@ export default async function handler(req, res) {
 		const existingTitles = await db
 			.collection("preparations")
 			.distinct("title", {});
+		console.log("test");
 
 		const titlesToSend = prepToPost.map((a) => a.title);
 		const titlesToDelete = existingTitles.filter(
 			(title) => !titlesToSend.includes(title)
 		);
-		console.log(titlesToDelete);
 		const deleteOrder = titlesToDelete.map((item) => ({
 			deleteOne: { filter: { title: item } },
 		}));

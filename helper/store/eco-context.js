@@ -1,6 +1,7 @@
 import { createContext, useReducer, useState } from "react";
 import { useRouter } from "next/router.js";
 import uuid from "react-uuid";
+import _ from "lodash";
 
 import {
 	manageEcoReducer,
@@ -28,6 +29,10 @@ const EcoContext = createContext({
 	setAllActiveInsurances: () => {},
 	setEditItem: () => {},
 	setInfo: () => {},
+	checkedInsurances: [],
+	setCheckedInsurances: () => {},
+	checkedDepartments: [],
+	setCheckedDepartments: () => {},
 });
 
 export function EcoContextProvider({
@@ -42,6 +47,13 @@ export function EcoContextProvider({
 	const [activeItem, setActiveItem] = useState(null);
 	const [actionLoaded, setActionLoaded] = useState(null);
 	const [info, setInfo] = useState(null);
+	const [checkedInsurances, setCheckedInsurances] = useState(
+		_.uniq(allActiveInsurances.map((ins) => ins.title))
+	);
+	const [checkedDepartments, setCheckedDepartments] = useState(
+		allActiveInsurances.map((ins) => ins.department)
+	);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const [inputsState, dispatchEcoReducerAction] = useReducer(
 		manageEcoReducer,
@@ -67,7 +79,6 @@ export function EcoContextProvider({
 	}
 
 	function setEditItem(e, item) {
-		console.log(item);
 		setActionLoaded("editEco");
 		dispatchEcoReducerAction({ type: "loadItem", item: item });
 	}
@@ -100,7 +111,6 @@ export function EcoContextProvider({
 			) {
 				setInfo((info) => ({ ...info, type: "error", text: "Already exists" }));
 				problem = true;
-				console.log(problem);
 			}
 		});
 		if (problem) {
@@ -108,8 +118,12 @@ export function EcoContextProvider({
 		}
 		setAllActiveInsurances([
 			...allActiveInsurances,
-			{ ...inputsState, _id: uuid() },
+			{ ...inputsState, _id: uuid(), eco: "departmentWide" },
 		]);
+
+		//addedNow
+		setCheckedInsurances([...checkedInsurances, inputsState.title]);
+		setCheckedDepartments([...checkedDepartments, inputsState.department]);
 
 		dispatchEcoReducerAction({ type: "resetAll" });
 		setActionLoaded(null);
@@ -123,10 +137,18 @@ export function EcoContextProvider({
 		]);
 	}
 
-	function handleSubmit() {
-		console.log(allActiveInsurances);
-
-		router.reload();
+	async function handleSubmit() {
+		setIsLoading(true);
+		const response = await fetch("/api/admin/manage-eco", {
+			method: "POST",
+			body: JSON.stringify(allActiveInsurances),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		const data = await response.json();
+		console.log(data);
+		setIsLoading(false);
 	}
 
 	const ecoContext = {
@@ -141,6 +163,8 @@ export function EcoContextProvider({
 		activeItem,
 		allActiveInsurances,
 		dispatchEcoReducerAction,
+		isLoading,
+		setIsLoading,
 		handleSubmit,
 		info,
 		inputsState,
@@ -150,6 +174,10 @@ export function EcoContextProvider({
 		setAllActiveInsurances,
 		setInfo,
 		distinctDepartments,
+		checkedInsurances,
+		setCheckedInsurances,
+		checkedDepartments,
+		setCheckedDepartments,
 	};
 
 	return (

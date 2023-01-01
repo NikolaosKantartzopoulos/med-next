@@ -1,22 +1,21 @@
 .myButton {
-  cursor: pointer;
-  outline: 0;
-  display: inline-block;
-  font-weight: 400;
-  text-align: center;
-  border: 2px solid transparent;
-  padding: 0.4rem 0.5rem 0.5rem 0.5rem;
-  font-size: 1rem;
-  transition: all .15s ease-in-out;
 
-  border-color: var(--dark-main-1);
-  height: 2rem;
-  color: var(--light-main-1);
+  align-items: center;
   background-color: var(--dark-main-1);
+  border: 2px solid var(--dark-main-1);
+  color: var(--light-main-1);
+  cursor: pointer;
   display: flex;
   flex-direction: row;
+  font-size: 1rem;
+  font-weight: 400;
+  height: 2rem;
   justify-content: space-around;
-  align-items: center;
+  outline: 0;
+  padding: 0.4rem 0.5rem 0.5rem 0.5rem;
+  text-align: center;
+  transition: all .15s ease-in-out;
+
 }
 
 .myButton:hover {

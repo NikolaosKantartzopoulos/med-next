@@ -6,6 +6,7 @@ import {
 } from "../store/reducers/manage-preparations-reducer.js";
 
 import uuid from "react-uuid";
+import { infoMessage } from "../fn/ui.js";
 
 const PreparationsContext = createContext({
 	actionLoaded: "",
@@ -78,8 +79,8 @@ export function PreparationsContextProvider({ allPreparations, children }) {
 		);
 
 		setActivePreparationsList([
-			...[...filteredArray, preparationsInputs].sort((a, b) =>
-				a.title > b.title ? 1 : -1
+			...[...filteredArray, { ...preparationsInputs, _id: uuid() }].sort(
+				(a, b) => (a.title > b.title ? 1 : -1)
 			),
 		]);
 
@@ -128,8 +129,12 @@ export function PreparationsContextProvider({ allPreparations, children }) {
 		});
 		const data = await response.json();
 		console.log(data);
+		setInfo({ type: "ok", text: "Changes submited" });
 		setIsLoading(false);
-		router.reload();
+		setTimeout(() => {
+			setInfo(null);
+			router.reload();
+		}, 3000);
 	}
 
 	const preparationsContext = {

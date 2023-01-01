@@ -5,7 +5,9 @@ import EcoContext from "../../../../../helper/store/eco-context.js";
 import EcoUITopLine from "./EcoUITopLine.js";
 import InfoPanel from "../../../../UI/InfoPanel";
 import Textarea from "../../../../UI/Textarea.js";
+import EcoFilters from "./EcoFilters.js";
 import EcoTable from "./EcoTable.js";
+import LoadingSpinner from "../../../../UI/LoadingSpinner";
 
 import styles from "./ManageEco.module.css";
 import Button from "../../../../UI/Button.js";
@@ -18,7 +20,12 @@ function ManageEco() {
 		setInfo,
 		actionLoaded,
 		handleSubmit,
+		isLoading,
 	} = useContext(EcoContext);
+
+	if (isLoading) {
+		return <LoadingSpinner />;
+	}
 
 	return (
 		<div id="ManageEcoComponent" className={styles.manageEcoComponent}>
@@ -37,14 +44,14 @@ function ManageEco() {
 							newDetails: e.target.value,
 						});
 					}}
-					customStyles={{ margin: "auto", width: "100%" }}
+					customStyles={{ margin: "auto", width: "100%", marginBottom: "1rem" }}
 				/>
 			)}
 			{info && <InfoPanel info={info} />}
 			<Button onClick={handleSubmit} disabled={actionLoaded ? true : false}>
 				Submit
 			</Button>
-
+			<EcoFilters />
 			<EcoTable />
 		</div>
 	);
