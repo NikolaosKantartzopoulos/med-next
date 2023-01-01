@@ -9,5 +9,6 @@
 }
 
 .UISection {
+  margin: auto;
   display: flex;
 }

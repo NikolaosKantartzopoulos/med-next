@@ -12,3 +12,15 @@
   grid-template-columns: repeat(6, 1fr);
   text-align: center;
 }
+
+@media screen and (max-width: 450px) {
+  .adminNavbar {
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+  }
+
+
+}

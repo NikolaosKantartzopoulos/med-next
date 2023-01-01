@@ -23,6 +23,8 @@
   align-items: center;
 }
 
+
+
 .EcoFilter {
   width: 50%;
 
@@ -37,4 +39,26 @@
   align-items: center;
   margin: 8px auto;
 
+}
+
+@media screen and (max-width: 500px) {
+  .EcoFiltersSection {
+    margin-top: 1rem;
+    font-size: 1.25rem;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .checkLine {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 8px auto;
+
+  }
 }
