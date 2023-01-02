@@ -9,6 +9,7 @@ export function UsersContextProvider({ allUsers, children }) {
 	const [actionLoaded, setActionLoaded] = useState(null);
 	const [activeUsers, setActiveUsers] = useState(allUsers);
 	const [info, setInfo] = useState(null);
+	const [isLoading, setIsLoading] = useState(false);
 	const [showThis, setShowThis] = useState(null);
 	const [manageUsersState, dispatchManageUsersAction] = useReducer(
 		manageUsersReducer,
@@ -138,38 +139,39 @@ export function UsersContextProvider({ allUsers, children }) {
 
 	async function handlePostRequest() {
 		let toPost = { activeUsers: activeUsers };
-
-		try {
-			const result = await fetch("/api/admin/manage-users", {
-				method: "POST",
-				body: JSON.stringify(toPost),
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
-			const data = await result.json();
-		} finally {
-			router.reload();
-		}
+		setIsLoading(true);
+		const result = await fetch("/api/admin/manage-users", {
+			method: "POST",
+			body: JSON.stringify(toPost),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		const data = await result.json();
+		setIsLoading(false);
+		setInfo({ type: "ok", text: "Changes submited" });
+		setTimeout(() => setInfo(null));
 	}
 
 	const usersContext = {
 		actionLoaded,
-		setActionLoaded,
 		activeUsers,
-		setActiveUsers,
-		info,
-		setInfo,
-		showThis,
-		setShowThis,
-		manageUsersState,
-		dispatchManageUsersAction,
 		addNewUserSetupHandler,
-		submitNewUserHandler,
-		editThisUser,
-		submitEditedUser,
 		deleteThisUser,
+		dispatchManageUsersAction,
+		editThisUser,
 		handlePostRequest,
+		info,
+		isLoading,
+		manageUsersState,
+		setActionLoaded,
+		setActiveUsers,
+		setInfo,
+		setIsLoading,
+		setShowThis,
+		showThis,
+		submitEditedUser,
+		submitNewUserHandler,
 	};
 	return (
 		<UsersContext.Provider value={usersContext}>

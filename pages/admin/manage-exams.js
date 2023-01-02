@@ -5,22 +5,22 @@ import {
 	connectDatabase,
 	getDocumentsWithValue,
 } from "../../helper/database/db";
+import { ExamContextProvider } from "../../helper/store/exam-context";
 
-function ManageExamsRoute({ allActiveDepartments, allActiveDoctors }) {
+function ManageExamsRoute({
+	allActiveDepartments,
+	allActiveDoctors,
+	allActiveBuildings,
+}) {
 	return (
-		<>
-			{!allActiveDepartments ? (
-				<LoadingSpinner />
-			) : (
-				<div>
-					<AdminNavbar />
-					<ManageExam
-						allActiveDepartments={allActiveDepartments}
-						allActiveDoctors={allActiveDoctors}
-					/>
-				</div>
-			)}
-		</>
+		<ExamContextProvider
+			allActiveDepartments={allActiveDepartments}
+			allActiveDoctors={allActiveDoctors}
+			allActiveBuildings={allActiveBuildings}
+		>
+			<AdminNavbar />
+			<ManageExam />
+		</ExamContextProvider>
 	);
 }
 
@@ -47,12 +47,22 @@ export async function getServerSideProps() {
 		_id: `${a._id}`,
 	}));
 
+	const allActiveBuildingsArray = await db
+		.collection("assets")
+		.find({ building: { $exists: true } })
+		.toArray();
+	const allActiveBuildings = allActiveBuildingsArray.map((a) => ({
+		...a,
+		_id: `${a._id}`,
+	}));
+
 	client.close();
 
 	return {
 		props: {
 			allActiveDepartments: allActiveDepartments,
 			allActiveDoctors: allActiveDoctors,
+			allActiveBuildings: allActiveBuildings,
 		},
 	};
 }

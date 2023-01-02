@@ -243,6 +243,7 @@ export function DepartmentContextProvider({ allDepartments, children }) {
 		editSubHandler,
 		handlePostRequest,
 		info,
+		isLoading,
 		newDepartmentInput,
 		newSubdepartmentInput,
 		saveDepartmentNameHandler,

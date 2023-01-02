@@ -1,21 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import ExamContext from "../../../../../helper/store/exam-context";
 
 import styles from "./TinyTabs.module.css";
 
-function TinyTabs({
-	allActiveDoctors,
-	examDoctors,
-	dispatchExamInputStateAction,
-}) {
-	const [activeExamDoctors, setActiveExamDoctors] = useState(examDoctors);
+function TinyTabs() {
+	const { allActiveDoctors, examInputState, dispatchExamInputStateAction } =
+		useContext(ExamContext);
+	const [examDoctors, setExamDoctors] = useState(examInputState.doctors);
 
 	function setDoctorsHandler(docUsername) {
 		if (examDoctors.includes(docUsername)) {
+			setExamDoctors(examDoctors.filter((doc) => doc != docUsername));
 			dispatchExamInputStateAction({
 				type: "setDoctors",
 				newDoctors: examDoctors.filter((doc) => doc != docUsername),
 			});
 		} else {
+			setExamDoctors([...examDoctors, docUsername]);
 			dispatchExamInputStateAction({
 				type: "setDoctors",
 				newDoctors: [...examDoctors, docUsername],
@@ -33,7 +34,10 @@ function TinyTabs({
 							? "green"
 							: "darkred",
 					}}
-					onClick={() => setDoctorsHandler(`${doc.username}`)}
+					onClick={() => {
+						console.log(doc.username);
+						setDoctorsHandler(`${doc.username}`);
+					}}
 				>
 					{doc.username}
 				</span>

@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import ExamContext from "../../../../../helper/store/exam-context";
 
 import Textarea from "../../../../UI/Textarea";
 
 import styles from "./ManageExam.module.css";
 
-function ManageExamPreparation(dispatchExamInputStateAction, examInputState) {
+function ManageExamPreparation() {
+	const { examInputState, dispatchExamInputStateAction } =
+		useContext(ExamContext);
 	return (
 		<fieldset id="preparationsSection" className={styles.preparationsSection}>
 			<legend>Preparations</legend>

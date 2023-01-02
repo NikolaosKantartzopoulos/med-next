@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import ExamContext from "../../../../../helper/store/exam-context";
 
 import Input from "../../../../UI/Input";
 
 import styles from "./ManageExamTitles.module.css";
 
-function ManageExamTitles({ dispatchExamInputStateAction, examInputState }) {
+function ManageExamTitles() {
+	const { examInputState, dispatchExamInputStateAction } =
+		useContext(ExamContext);
 	return (
 		<div className={styles.manageExamTitlesSection}>
 			<Input

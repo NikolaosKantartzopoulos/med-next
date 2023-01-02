@@ -1,17 +1,15 @@
 import React, { useContext } from "react";
 import Input from "../../../../UI/Input";
 import RadioButton from "../../../../UI/RadioButton";
+
 import UsersContext from "../../../../../helper/store/users-context";
 
 import styles from "./ManageUserInputs.module.css";
 
 function manageUserInputs() {
-	const {
-		setInfo,
+	const { setInfo, isLoading, manageUsersState, dispatchManageUsersAction } =
+		useContext(UsersContext);
 
-		manageUsersState,
-		dispatchManageUsersAction,
-	} = useContext(UsersContext);
 	return (
 		<div className={styles.manageUserInputs}>
 			<div className={styles.textInputSection}>
@@ -114,10 +112,10 @@ function manageUserInputs() {
 							name="selectPosition2"
 						/>
 						<RadioButton
-							value="typist"
-							checked={manageUsersState.userPosition2 === "typist"}
-							id="secrTypist"
-							label="Typist"
+							value="trascriptionist"
+							checked={manageUsersState.userPosition2 === "trascriptionist"}
+							id="secrTrascriptionist"
+							label="Trascriptionist"
 							name="selectPosition2"
 						/>
 						<RadioButton

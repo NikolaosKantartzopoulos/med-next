@@ -1,64 +1,37 @@
-import React, { useReducer, useEffect } from "react";
-
-import {
-	initialObject,
-	examInputReducer,
-} from "../../../../../helper/store/reducers/manage-exam-input-reducer";
+import React, { useContext } from "react";
+import ExamContext from "../../../../../helper/store/exam-context";
 
 import ManageExamTitles from "./ManageExamTitles";
-import ScheduleTable from "./ScheduleTable";
 import ManageExamRadio from "./ManageExamRadio";
 import ManageExamsEco from "./ManageExamsEco";
 import ManageExamPreparation from "./ManageExamPreparation";
+import ExamBuildingsManagement from "./ExamBuildingsManagement.js";
+import ExamTags from "./ExamTags.js";
 
 import Button from "../../../../UI/Button";
 import TinyTabs from "./TinyTabs";
 
 import styles from "./ManageExam.module.css";
 
-function ManageExam({ allActiveDepartments, allActiveDoctors }) {
-	const [examInputState, dispatchExamInputStateAction] = useReducer(
-		examInputReducer,
-		initialObject
-	);
-
+function ManageExam() {
+	const {
+		examInputState,
+		dispatchExamInputStateAction,
+		allActiveDepartments,
+		allActiveDoctors,
+	} = useContext(ExamContext);
 	return (
 		<section className={styles.ManageExamSection}>
-			<ManageExamTitles
-				dispatchExamInputStateAction={dispatchExamInputStateAction}
-				examInputState={examInputState}
-			/>
+			<ManageExamTitles />
 			<div className={styles.RadioAndDoctors}>
-				<ManageExamRadio
-					dispatchExamInputStateAction={dispatchExamInputStateAction}
-					allActiveDepartments={allActiveDepartments}
-					examInputState={examInputState}
-				/>
-				<TinyTabs
-					allActiveDoctors={allActiveDoctors}
-					examDoctors={examInputState.doctors}
-					dispatchExamInputStateAction={dispatchExamInputStateAction}
-				/>
+				<ManageExamRadio />
+				<TinyTabs />
 			</div>
-			<div className={styles.scheduleTables}>
-				{[...examInputState.buildingsSchedule]
-					.sort((a, b) => (a.buildingName > b.buildingName ? 1 : -1))
-					.map((building) => (
-						<ScheduleTable
-							key={building.buildingName}
-							building={building}
-							dispatchExamInputStateAction={dispatchExamInputStateAction}
-						/>
-					))}
-			</div>
-			<ManageExamPreparation
-				dispatchExamInputStateAction={dispatchExamInputStateAction}
-				examInputState={examInputState}
-			/>
-			<ManageExamsEco
-				examInputState={examInputState}
-				dispatchExamInputStateAction={dispatchExamInputStateAction}
-			/>
+			<ExamTags />
+			<ExamBuildingsManagement />
+
+			<ManageExamPreparation />
+			<ManageExamsEco />
 			<Button onClick={() => console.log(examInputState)}>Submit</Button>
 		</section>
 	);

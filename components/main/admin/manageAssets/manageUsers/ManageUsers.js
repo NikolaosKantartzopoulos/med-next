@@ -4,6 +4,7 @@ import UsersContext from "../../../../../helper/store/users-context";
 import ManageUserInputs from "./ManageUserInputs";
 
 import InfoPanel from "../../../../UI/InfoPanel";
+import LoadingSpinner from "../../../../UI/LoadingSpinner";
 import ManageUsersTable from "./ManageUsersTable";
 import ManageUsersUI from "./ManageUsersUI";
 import Button from "../../../../UI/Button";
@@ -11,8 +12,12 @@ import Button from "../../../../UI/Button";
 import styles from "./ManageUsers.module.css";
 
 function ManageUsers() {
-	const { actionLoaded, info, showThis, handlePostRequest } =
+	const { actionLoaded, info, isLoading, showThis, handlePostRequest } =
 		useContext(UsersContext);
+
+	if (isLoading) {
+		return <LoadingSpinner />;
+	}
 	return (
 		<div className={styles.ManageUsersSection}>
 			<div className={styles.UISection}>

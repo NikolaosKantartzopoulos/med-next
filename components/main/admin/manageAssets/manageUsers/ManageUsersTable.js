@@ -20,8 +20,8 @@ function printPosition2(value) {
 	switch (value) {
 		case "frontDesk":
 			return "Front Desk";
-		case "typist":
-			return "Typist";
+		case "trascriptionist":
+			return "Trascriptionist";
 		case "phoneCenter":
 			return "Phone Center";
 		default:

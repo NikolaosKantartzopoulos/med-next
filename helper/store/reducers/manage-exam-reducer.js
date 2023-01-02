@@ -72,6 +72,8 @@ export function examInputReducer(state, action) {
 				],
 			};
 			return { ...toRet };
+		case "setTags":
+			return { ...state, tags: action.newTags };
 		case "setDepartment":
 			return { ...state, department: action.newDepartment };
 		case "setSubepartment":
@@ -86,6 +88,7 @@ export const initialObject = {
 	nhsDescription: "Sampe NHS description",
 	department: "Classic",
 	subdepartment: "Panoramic",
+	tags: ["Tag 1", "Tag 2", "Tag 3"],
 	buildingsSchedule: [
 		{
 			buildingName: "Building 1",
