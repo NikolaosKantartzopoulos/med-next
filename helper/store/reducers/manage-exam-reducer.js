@@ -56,6 +56,36 @@ export function examInputReducer(state, action) {
 					},
 				],
 			};
+		case "addBuilding":
+			const toRetADD = {
+				...state,
+				buildingsSchedule: [
+					...state.buildingsSchedule,
+					{
+						buildingName: action.addBuildingName,
+						schedule: [
+							{ day: "Monday", value: "08:00 - 15:00" },
+							{ day: "Tuesday", value: "08:00 - 15:00" },
+							{ day: "Wednesday", value: "08:00 - 15:00" },
+							{ day: "Thursday", value: "08:00 - 15:00" },
+							{ day: "Friday", value: "08:00 - 15:00" },
+							{ day: "Saturday", value: "08:00 - 15:00" },
+							{ day: "Sunday", value: "" },
+						],
+					},
+				],
+			};
+			return { ...toRetADD };
+		case "removeBuilding":
+			const filteredBuildingsScheduleDEL = state.buildingsSchedule.filter(
+				(bld) => bld.buildingName != action.RemoveBuildingName
+			);
+
+			const toRetDEL = {
+				...state,
+				buildingsSchedule: [...filteredBuildingsScheduleDEL],
+			};
+			return { ...toRetDEL };
 		case "setSchedule":
 			const filteredBuildingsSchedule = state.buildingsSchedule.filter(
 				(bld) => bld.buildingName != action.buildingName

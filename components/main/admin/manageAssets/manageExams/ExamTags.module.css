@@ -5,3 +5,14 @@
   gap: 8px;
   align-items: center;
 }
+
+@media screen and (max-width: 500px) {
+  .examTagsSection {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    gap: 8px;
+    align-items: center;
+  }
+}

@@ -19,12 +19,9 @@ function ManageBuildings({ allBuildings }) {
 			setInfo({ type: "error", text: "Field is empty" });
 			return;
 		}
-		setActiveBuildings([
-			...activeBuildings,
-			{ building: { address: newBuilding } },
-		]);
+		setActiveBuildings([...activeBuildings, { address: newBuilding }]);
 
-		let toPost = { building: { address: newBuilding } };
+		let toPost = { address: newBuilding };
 		try {
 			setIsLoading(true);
 			let response = await fetch("/api/admin/manage-buildings", {
@@ -46,9 +43,7 @@ function ManageBuildings({ allBuildings }) {
 	async function deleteBuildingHandler(e, deleteAddress) {
 		e.preventDefault();
 		setIsLoading(true);
-		const newValue = activeBuildings.filter(
-			(b) => b.building.address !== deleteAddress
-		);
+		const newValue = activeBuildings.filter((b) => b.address !== deleteAddress);
 		setActiveBuildings(newValue);
 		let toDel = { deleteAddress: deleteAddress };
 		try {

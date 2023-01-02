@@ -9,12 +9,8 @@ import TinyInput from "../../../../UI/TinyInput";
 import styles from "./ExamTags.module.css";
 
 function ExamTags() {
-	const {
-		examInputState,
-		dispatchExamInputStateAction,
-		allActiveDepartments,
-		allActiveDoctors,
-	} = useContext(ExamContext);
+	const { examInputState, dispatchExamInputStateAction } =
+		useContext(ExamContext);
 
 	const [activeTabs, setActiveTabs] = useState(examInputState.tags);
 	const [miniValue, setMiniValue] = useState("");

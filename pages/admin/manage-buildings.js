@@ -34,7 +34,7 @@ export async function getServerSideProps() {
 	const [client, db] = await connectDatabase();
 	const data = await db
 		.collection("assets")
-		.find({ building: { $exists: true } })
+		.find({ address: { $exists: true } })
 		.project({ _id: 0 })
 		.toArray();
 	return { props: { allBuildings: data } };

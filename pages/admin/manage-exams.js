@@ -49,7 +49,7 @@ export async function getServerSideProps() {
 
 	const allActiveBuildingsArray = await db
 		.collection("assets")
-		.find({ building: { $exists: true } })
+		.find({ address: { $exists: true } })
 		.toArray();
 	const allActiveBuildings = allActiveBuildingsArray.map((a) => ({
 		...a,
