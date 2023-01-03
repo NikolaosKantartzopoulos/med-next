@@ -11,12 +11,14 @@ function ManageExamsRoute({
 	allActiveDepartments,
 	allActiveDoctors,
 	allActiveBuildings,
+	allActivePreparations,
 }) {
 	return (
 		<ExamContextProvider
 			allActiveDepartments={allActiveDepartments}
 			allActiveDoctors={allActiveDoctors}
 			allActiveBuildings={allActiveBuildings}
+			allActivePreparations={allActivePreparations}
 		>
 			<AdminNavbar />
 			<ManageExam />
@@ -56,6 +58,15 @@ export async function getServerSideProps() {
 		_id: `${a._id}`,
 	}));
 
+	const allActivePreparationsArray = await db
+		.collection("preparations")
+		.find({ common: true })
+		.toArray();
+	const allActivePreparations = allActivePreparationsArray.map((a) => ({
+		...a,
+		_id: `${a._id}`,
+	}));
+
 	client.close();
 
 	return {
@@ -63,6 +74,7 @@ export async function getServerSideProps() {
 			allActiveDepartments: allActiveDepartments,
 			allActiveDoctors: allActiveDoctors,
 			allActiveBuildings: allActiveBuildings,
+			allActivePreparations: allActivePreparations,
 		},
 	};
 }

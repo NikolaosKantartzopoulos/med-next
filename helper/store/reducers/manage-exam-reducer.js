@@ -7,7 +7,7 @@ export function examInputReducer(state, action) {
 		case "setNhsDescription":
 			return { ...state, nhsDescription: action.newNhsDescription };
 		case "setGeneralPreparation":
-			return { ...state, generalPreparation: action.newGeneralPreparation };
+			return { ...state, generalPreparation: action.generalPrepTitle };
 		case "setUniquePreparation":
 			return { ...state, uniquePreparation: action.newUniquePreparation };
 		case "setEcoTitle":

@@ -11,12 +11,14 @@ const ExamContext = createContext({
 	allActiveDepartments: [],
 	allActiveDoctors: [],
 	allActiveBuildings: [],
+	allActivePreparations: [],
 });
 
 export function ExamContextProvider({
 	allActiveDepartments,
 	allActiveDoctors,
 	allActiveBuildings,
+	allActivePreparations,
 	children,
 }) {
 	const [examInputState, dispatchExamInputStateAction] = useReducer(
@@ -30,6 +32,7 @@ export function ExamContextProvider({
 		allActiveDepartments,
 		allActiveDoctors,
 		allActiveBuildings,
+		allActivePreparations,
 	};
 
 	return (

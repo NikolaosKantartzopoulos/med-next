@@ -29,7 +29,6 @@ function ManageExam() {
 			</div>
 			<ExamTags />
 			<ExamBuildingsManagement />
-
 			<ManageExamPreparation />
 			<ManageExamsEco />
 			<Button onClick={() => console.log(examInputState)}>Submit</Button>
