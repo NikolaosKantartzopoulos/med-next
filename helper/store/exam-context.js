@@ -19,6 +19,7 @@ export function ExamContextProvider({
 	allActiveDoctors,
 	allActiveBuildings,
 	allActivePreparations,
+	allActiveEco,
 	children,
 }) {
 	const [examInputState, dispatchExamInputStateAction] = useReducer(
@@ -33,6 +34,7 @@ export function ExamContextProvider({
 		allActiveDoctors,
 		allActiveBuildings,
 		allActivePreparations,
+		allActiveEco,
 	};
 
 	return (

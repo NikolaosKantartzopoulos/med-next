@@ -1,7 +1,6 @@
 .SingleInputFormDiv {
   display: flex;
   flex-direction: row;
-  width: 100%;
   align-items: flex-end;
   margin: 0.5rem;
   justify-content: center;

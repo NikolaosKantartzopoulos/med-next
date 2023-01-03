@@ -1,5 +1,5 @@
 .ManageUsersSection {
-  width: clamp(500px, 100%, 760px);
+  width: clamp(350px, 100%, 760px);
   overflow-y: hidden;
   display: flex;
   flex-direction: column;

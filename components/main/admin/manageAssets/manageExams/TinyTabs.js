@@ -35,7 +35,6 @@ function TinyTabs() {
 							: "darkred",
 					}}
 					onClick={() => {
-						console.log(doc.username);
 						setDoctorsHandler(`${doc.username}`);
 					}}
 				>

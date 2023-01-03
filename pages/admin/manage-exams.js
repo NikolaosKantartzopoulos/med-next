@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ManageExam from "../../components/main/admin/manageAssets/manageExams/ManageExam";
 import AdminNavbar from "../../components/main/admin/AdminNavbar";
 import {
@@ -6,21 +6,26 @@ import {
 	getDocumentsWithValue,
 } from "../../helper/database/db";
 import { ExamContextProvider } from "../../helper/store/exam-context";
+import Button from "../../components/UI/Button";
 
 function ManageExamsRoute({
 	allActiveDepartments,
 	allActiveDoctors,
 	allActiveBuildings,
 	allActivePreparations,
+	allActiveEco,
 }) {
+	const [actionLoaded, setActionLoaded] = useState();
 	return (
 		<ExamContextProvider
 			allActiveDepartments={allActiveDepartments}
 			allActiveDoctors={allActiveDoctors}
 			allActiveBuildings={allActiveBuildings}
 			allActivePreparations={allActivePreparations}
+			allActiveEco={allActiveEco}
 		>
 			<AdminNavbar />
+
 			<ManageExam />
 		</ExamContextProvider>
 	);
@@ -67,6 +72,13 @@ export async function getServerSideProps() {
 		_id: `${a._id}`,
 	}));
 
+	const documents = await db.collection("eco").find().toArray();
+
+	const allActiveEco = documents.map((doc) => ({
+		...doc,
+		_id: `${doc._id}`,
+	}));
+
 	client.close();
 
 	return {
@@ -75,6 +87,7 @@ export async function getServerSideProps() {
 			allActiveDoctors: allActiveDoctors,
 			allActiveBuildings: allActiveBuildings,
 			allActivePreparations: allActivePreparations,
+			allActiveEco: allActiveEco,
 		},
 	};
 }

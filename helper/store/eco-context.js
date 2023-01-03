@@ -147,7 +147,6 @@ export function EcoContextProvider({
 			},
 		});
 		const data = await response.json();
-		console.log(data);
 		setIsLoading(false);
 	}
 

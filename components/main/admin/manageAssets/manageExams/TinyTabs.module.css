@@ -8,8 +8,9 @@
   cursor: pointer;
   color: var(--light-main-1);
   width: 100%;
-  overflow-x: auto;
+  overflow-y: auto;
   height: 100%;
+  max-height: 200px;
 }
 
 .tinyTabsComponent span {

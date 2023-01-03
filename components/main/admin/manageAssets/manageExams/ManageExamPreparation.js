@@ -11,7 +11,6 @@ function ManageExamPreparation() {
 		dispatchExamInputStateAction,
 		allActivePreparations,
 	} = useContext(ExamContext);
-	console.log(allActivePreparations);
 
 	const [activeGeneralPrep, setActiveGeneralPrep] = useState(
 		allActivePreparations[0].title

@@ -1,6 +1,8 @@
 .sameLine {
   display: flex;
   flex-direction: row;
+  height: 2rem;
+  align-items: center;
   gap: 1rem
 }
 
@@ -18,4 +20,23 @@
 
 .sameLine>div>input {
   width: 5rem;
+}
+
+.commonPayment {
+  width: 5rem;
+  border: 2px solid var(--dark-main-1);
+  text-align: center;
+  height: 2rem;
+  padding-top: 0.2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.commonDetails {
+  width: 100%;
+  border: 2px solid var(--dark-main-1);
+  padding: .25rem;
+  margin: 1rem auto;
+
 }

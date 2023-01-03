@@ -17,7 +17,6 @@ export default async function handler(req, res) {
 		const existingTitles = await db
 			.collection("preparations")
 			.distinct("title", {});
-		console.log("test");
 
 		const titlesToSend = prepToPost.map((a) => a.title);
 		const titlesToDelete = existingTitles.filter(

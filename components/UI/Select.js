@@ -1,7 +1,6 @@
 import React from "react";
 
 function Select({ setFn, optionsArray, optionsArraySelect }) {
-	console.log(optionsArray);
 	return (
 		//   <select onChange={(e) => setActiveGeneralPrep(e.target.value)}>
 		//   {allActivePreparations.map((a) => (

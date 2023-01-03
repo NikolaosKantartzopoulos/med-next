@@ -20,7 +20,6 @@ function ExamBuildingsManagement() {
 	const [activeAddresses, setActiveAddresses] = useState(examAddresses);
 
 	function handleTitleCheckboxClick(e, ins) {
-		console.log(activeAddresses);
 		if (
 			examInputState.buildingsSchedule.map((b) => b.buildingName).includes(ins)
 		) {

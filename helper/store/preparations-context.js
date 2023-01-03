@@ -128,7 +128,6 @@ export function PreparationsContextProvider({ allPreparations, children }) {
 			},
 		});
 		const data = await response.json();
-		console.log(data);
 		setInfo({ type: "ok", text: "Changes submited" });
 		setIsLoading(false);
 		setTimeout(() => {

@@ -1,6 +1,6 @@
 .entries {
   font-size: large;
-  width: clamp(380px, 100%, 760px);
+  width: clamp(350px, 100%, 760px);
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
