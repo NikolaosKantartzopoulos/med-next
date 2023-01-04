@@ -1,6 +1,7 @@
 import { useRouter, useContext } from "next/router";
 import React, { useEffect, useState } from "react";
 import ManageExamForm from "../../../components/main/admin/manageAssets/manageExams/ManageExamForm";
+import AdminNavbar from "../../../components/main/admin/AdminNavbar";
 import LoadingSpinner from "../../../components/UI/LoadingSpinner";
 import { ExamContextProvider } from "../../../helper/store/exam-context";
 import {
@@ -44,6 +45,7 @@ function ManageLoadedExam({
 			allActivePreparations={allActivePreparations}
 			allActiveEco={allActiveEco}
 		>
+			<AdminNavbar />
 			{!loading ? (
 				<>
 					<ManageExamForm insertExamToForm={examData} />

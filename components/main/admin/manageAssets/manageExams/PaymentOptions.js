@@ -11,7 +11,9 @@ function PaymentOptions({
 	examInputState,
 	insurancesOfThisDepartment,
 }) {
-	const [commonPayment, setCommonPayment] = useState(true);
+	const [commonPayment, setCommonPayment] = useState(
+		examInputState.eco.find((a) => a.title === insurance.title).common
+	);
 
 	function setPaymentType() {
 		setCommonPayment(!commonPayment);

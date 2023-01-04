@@ -51,7 +51,7 @@ function ManageExamsEco() {
 								id={ins}
 								name={ins}
 								onChange={(e) => handleTitleCheckboxClick(e, ins)}
-								checked={checkedInsurances.includes(ins)}
+								checked={examInputState.eco.map((a) => a.title).includes(ins)}
 							/>
 							<label htmlFor={ins}>{ins}</label>
 						</div>
@@ -59,7 +59,7 @@ function ManageExamsEco() {
 				</div>
 			</div>
 			{insurancesOfThisDepartment
-				.filter((i) => checkedInsurances.includes(i.title))
+				.filter((i) => examInputState.eco.map((a) => a.title).includes(i.title))
 				.sort((a, b) => (a.order > b.order ? 1 : -1))
 				.map((insurance) => (
 					<PaymentOptions
