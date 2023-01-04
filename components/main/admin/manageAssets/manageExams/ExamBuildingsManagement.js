@@ -50,7 +50,9 @@ function ExamBuildingsManagement() {
 								id={ins}
 								name={ins}
 								onChange={(e) => handleTitleCheckboxClick(e, ins)}
-								checked={activeAddresses.includes(ins)}
+								checked={examInputState.buildingsSchedule
+									.map((b) => b.buildingName)
+									.includes(ins)}
 							/>
 							<label htmlFor={ins}>{ins}</label>
 						</div>

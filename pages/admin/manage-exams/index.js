@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import ManageExam from "../../components/main/admin/manageAssets/manageExams/ManageExam";
-import AdminNavbar from "../../components/main/admin/AdminNavbar";
+import ManageExam from "../../../components/main/admin/manageAssets/manageExams/ManageExam";
+import AdminNavbar from "../../../components/main/admin/AdminNavbar";
 import {
 	connectDatabase,
 	getDocumentsWithValue,
-} from "../../helper/database/db";
-import { ExamContextProvider } from "../../helper/store/exam-context";
+} from "../../../helper/database/db";
+import { ExamContextProvider } from "../../../helper/store/exam-context";
 
 function ManageExamsRoute({
 	allActiveDepartments,
@@ -16,7 +16,6 @@ function ManageExamsRoute({
 	allActiveEco,
 }) {
 	const router = useRouter();
-	console.log(router.query);
 	return (
 		<ExamContextProvider
 			allActiveDepartments={allActiveDepartments}

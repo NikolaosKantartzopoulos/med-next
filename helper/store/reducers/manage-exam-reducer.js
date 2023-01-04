@@ -13,6 +13,8 @@ export const initialObject = {
 
 export function examInputReducer(state, action) {
 	switch (action.type) {
+		case "setExamForEdit":
+			return action.exam;
 		case "resetAll":
 			return initialObject;
 		case "setName":
@@ -43,7 +45,6 @@ export function examInputReducer(state, action) {
 			const filteredEcoCaseReset = state.eco.filter(
 				(ins) => ins.title != action.insToReset.title
 			);
-			console.log(action.insToReset);
 			return {
 				...state,
 				eco: [
@@ -61,7 +62,6 @@ export function examInputReducer(state, action) {
 			const setThisUp = state.eco.find(
 				(ins) => ins.title === action.emptyIns.title
 			);
-			console.log(setThisUp);
 			return {
 				...state,
 				eco: [

@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import styles from "./ManageExam.module.css";
 import ExamsTable from "./ExamsTable";
 
-function ManageExam({ insertExamToForm }) {
+function ManageExam() {
 	const router = useRouter();
 	const {
 		examInputState,
@@ -18,15 +18,6 @@ function ManageExam({ insertExamToForm }) {
 		allActiveDoctors,
 	} = useContext(ExamContext);
 	const [actionLoaded, setActionLoaded] = useState(null);
-
-	useEffect(() => {
-		if (insertExamToForm) {
-			dispatchExamInputStateAction({
-				type: "setFormWithThisExam",
-				examInserted: insertExamToForm,
-			});
-		}
-	}, []);
 
 	function setFieldsForNewExamEntry() {
 		setActionLoaded("addNewExam");
@@ -42,7 +33,6 @@ function ManageExam({ insertExamToForm }) {
 			body: JSON.stringify(examInputState),
 		});
 		const data = await response.json();
-		console.log(data);
 	}
 
 	function buttonCloseClicked() {

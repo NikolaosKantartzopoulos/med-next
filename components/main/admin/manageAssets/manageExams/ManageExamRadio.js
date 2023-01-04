@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import ExamContext from "../../../../../helper/store/exam-context";
 
 import RadioButton from "../../../../UI/RadioButton";
@@ -8,6 +8,7 @@ import styles from "./ManageExam.module.css";
 function ManageExamRadio() {
 	const { dispatchExamInputStateAction, allActiveDepartments, examInputState } =
 		useContext(ExamContext);
+
 	return (
 		<div className={styles.ManageExamRadio}>
 			<div className={styles.radioButtons}>

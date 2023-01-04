@@ -11,12 +11,7 @@ function ExamsTable({ allActiveExams }) {
 
 	function setEditItem(e, item) {
 		router.push({
-			pathname: "manage-exam",
-			query: {
-				examName: item.name,
-				examDepartment: item.department,
-				examSubdepartment: item.subdepartment,
-			},
+			pathname: `/admin/manage-exams/${item.name}/${item.department}/${item.subdepartment}`,
 		});
 	}
 

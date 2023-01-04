@@ -30,7 +30,7 @@ function TinyTabs() {
 				<span
 					key={doc.username}
 					style={{
-						backgroundColor: examDoctors.includes(doc.username)
+						backgroundColor: examInputState.doctors.includes(doc.username)
 							? "green"
 							: "darkred",
 					}}

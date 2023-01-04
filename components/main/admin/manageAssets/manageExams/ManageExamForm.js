@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ExamContext from "../../../../../helper/store/exam-context";
 
 import ManageExamTitles from "./ManageExamTitles";
@@ -13,25 +13,44 @@ import TinyTabs from "./TinyTabs";
 
 import styles from "./ManageExam.module.css";
 
-function ManageExamForm() {
+function ManageExamForm({ insertExamToForm }) {
 	const {
 		examInputState,
 		dispatchExamInputStateAction,
 		allActiveDepartments,
 		allActiveDoctors,
 	} = useContext(ExamContext);
+	const [editingExam, setEditingExam] = useState(false);
+	useEffect(() => {
+		if (insertExamToForm) {
+			setEditingExam(true);
+			dispatchExamInputStateAction({
+				type: "setExamForEdit",
+				exam: insertExamToForm.exam,
+			});
+		}
+	}, []);
+	function submitEditedExam() {
+		console.log(examInputState);
+	}
 	return (
-		<section className={styles.ManageExamSection}>
-			<ManageExamTitles />
-			<div className={styles.RadioAndDoctors}>
-				<ManageExamRadio />
-				<TinyTabs />
-			</div>
-			<ExamTags />
-			<ExamBuildingsManagement />
-			<ManageExamPreparation />
-			<ManageExamsEco />
-		</section>
+		<>
+			{editingExam && (
+				<Button onClick={submitEditedExam}>Save edited exam</Button>
+			)}
+
+			<section className={styles.ManageExamSection}>
+				<ManageExamTitles />
+				<div className={styles.RadioAndDoctors}>
+					<ManageExamRadio />
+					<TinyTabs />
+				</div>
+				<ExamTags />
+				<ExamBuildingsManagement />
+				<ManageExamPreparation />
+				<ManageExamsEco />
+			</section>
+		</>
 	);
 }
 
