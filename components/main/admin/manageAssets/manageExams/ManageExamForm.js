@@ -30,8 +30,14 @@ function ManageExamForm({ insertExamToForm }) {
 			});
 		}
 	}, []);
-	function submitEditedExam() {
-		console.log(examInputState);
+	async function submitEditedExam() {
+		await fetch("/api/admin/edit-exam", {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(examInputState),
+		});
 	}
 	return (
 		<>
