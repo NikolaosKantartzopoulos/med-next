@@ -18,7 +18,7 @@ const ButtonClose = (props) => {
 				alt="close"
 				style={{ position: "relative", left: "8px" }}
 			/>
-			{props.children}
+			Close
 		</button>
 	);
 };

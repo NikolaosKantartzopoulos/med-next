@@ -1,6 +1,15 @@
 .ManageExamSection {
   width: clamp(350px, 100%, 760px);
   margin: auto;
+  margin-top: 1rem;
+}
+
+.ExamsUI {
+  display: flex;
+  flex-direction: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
 }
 
 .ManageExamRadio {
@@ -41,6 +50,12 @@
   flex-direction: column;
   gap: 1rem;
 }
+
+
+.ecoSection {
+  margin-top: 1rem;
+}
+
 
 @media screen and (max-width: 450px) {
   .scheduleTables {

@@ -5,6 +5,7 @@ import _ from "lodash";
 import PaymentOptions from "./PaymentOptions";
 
 import styles from "./ManageExam.module.css";
+import checkStyles from "./ManageExamsEco.module.css";
 
 function ManageExamsEco() {
 	const { examInputState, dispatchExamInputStateAction, allActiveEco } =
@@ -39,11 +40,11 @@ function ManageExamsEco() {
 
 	return (
 		<section id="ecoSection" className={styles.ecoSection}>
-			<div className={styles.EcoFilter}>
+			<div className={checkStyles.EcoFilter}>
 				<h4>Insurance</h4>
-				<div className={styles.checkLine}>
+				<div className={checkStyles.checkLine}>
 					{uniqueInsurances.map((ins) => (
-						<div className={styles.setInputLabel} key={ins}>
+						<div className={checkStyles.setInputLabel} key={ins}>
 							<input
 								type="checkbox"
 								value={ins}

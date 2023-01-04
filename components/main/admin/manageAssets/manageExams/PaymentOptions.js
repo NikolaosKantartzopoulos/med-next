@@ -16,6 +16,11 @@ function PaymentOptions({
 	function setPaymentType() {
 		setCommonPayment(!commonPayment);
 		if (!commonPayment) {
+			console.log(insurance);
+			dispatchExamInputStateAction({
+				type: "resetPaymentToCommon",
+				insToReset: insurance,
+			});
 		} else {
 			dispatchExamInputStateAction({
 				type: "setEmptyUniquePayment",

@@ -26,14 +26,34 @@ export function examInputReducer(state, action) {
 		case "addCommonPayment":
 			return {
 				...state,
-				eco: [...state.eco, { title: action.commonInsTitle, type: "common" }],
+				eco: [
+					...state.eco,
+					{
+						title: action.commonInsTitle,
+						common: true,
+					},
+				],
 			};
 		case "removePayment":
 			return {
 				...state,
 				eco: state.eco.filter((ins) => ins.title !== action.commonInsTitle),
 			};
-
+		case "resetPaymentToCommon":
+			const filteredEcoCaseReset = state.eco.filter(
+				(ins) => ins.title != action.insToReset.title
+			);
+			console.log(action.insToReset);
+			return {
+				...state,
+				eco: [
+					...filteredEcoCaseReset,
+					{
+						title: action.insToReset.title,
+						common: true,
+					},
+				],
+			};
 		case "setEmptyUniquePayment":
 			const filteredEcoCasePriceUnique = state.eco.filter(
 				(ins) => ins.title != action.emptyIns.title

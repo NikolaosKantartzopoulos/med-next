@@ -50,7 +50,7 @@ function ExamTags() {
 
 	return (
 		<>
-			<h5>Tags</h5>
+			<h4>Tags</h4>
 			<div className={styles.examTagsSection}>
 				{examInputState.tags.map((tag) => (
 					<ResponsiveItem

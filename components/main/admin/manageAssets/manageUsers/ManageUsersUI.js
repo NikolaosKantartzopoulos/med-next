@@ -58,9 +58,7 @@ function ManageUsersUI() {
 						color: "white",
 						"backgroundColor:hover": "white",
 					}}
-				>
-					Close
-				</ButtonClose>
+				/>
 			)}
 		</div>
 	);

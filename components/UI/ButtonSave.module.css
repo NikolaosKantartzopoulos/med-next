@@ -1,0 +1,31 @@
+.myButton {
+  align-items: center;
+  background-color: var(--dark-main-1);
+  border: 2px solid var(--dark-main-1);
+  color: var(--light-main-1);
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  font-size: 1rem;
+  font-weight: 400;
+  height: 2rem;
+  justify-content: space-around;
+  outline: 0;
+  padding: 0.4rem 0.5rem 0.5rem 0.5rem;
+  text-align: center;
+  transition: all .15s ease-in-out;
+
+}
+
+.myButton:hover {
+  background-color: transparent;
+  color: var(--dark-main-1);
+  border-color: var(--dark-main-1);
+
+}
+
+.myButton:disabled {
+  background-color: var(--support-1);
+  color: darkgray;
+  cursor: not-allowed;
+}

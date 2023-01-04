@@ -53,9 +53,7 @@ function PreparationsUI() {
 							setInfo(null);
 						}}
 						customStyle={{ width: "8rem" }}
-					>
-						Close
-					</ButtonClose>
+					/>
 				)}
 			</div>
 			{actionLoaded && (

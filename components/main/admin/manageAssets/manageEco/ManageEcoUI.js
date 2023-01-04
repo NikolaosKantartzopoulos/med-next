@@ -52,9 +52,7 @@ function ManageEcoUI() {
 							setInfo(null);
 						}}
 						customStyle={{ width: "8rem" }}
-					>
-						Close
-					</ButtonClose>
+					/>
 				)}
 			</div>
 		</div>

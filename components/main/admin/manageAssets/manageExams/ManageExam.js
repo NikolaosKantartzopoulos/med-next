@@ -1,38 +1,71 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ExamContext from "../../../../../helper/store/exam-context";
-
-import ManageExamTitles from "./ManageExamTitles";
-import ManageExamRadio from "./ManageExamRadio";
-import ManageExamsEco from "./ManageExamsEco";
-import ManageExamPreparation from "./ManageExamPreparation";
-import ExamBuildingsManagement from "./ExamBuildingsManagement.js";
-import ExamTags from "./ExamTags.js";
-
+import ButtonAdd from "../../../../UI/ButtonAdd";
+import ButtonSave from "../../../../UI/ButtonSave";
+import ButtonClose from "../../../../UI/ButtonClose";
 import Button from "../../../../UI/Button";
-import TinyTabs from "./TinyTabs";
-
+import ManageExamForm from "./ManageExamForm";
+import { useRouter } from "next/router";
 import styles from "./ManageExam.module.css";
+import ExamsTable from "./ExamsTable";
 
-function ManageExam() {
+function ManageExam({ insertExamToForm }) {
+	const router = useRouter();
 	const {
 		examInputState,
 		dispatchExamInputStateAction,
 		allActiveDepartments,
 		allActiveDoctors,
 	} = useContext(ExamContext);
+	const [actionLoaded, setActionLoaded] = useState(null);
+
+	useEffect(() => {
+		if (insertExamToForm) {
+			dispatchExamInputStateAction({
+				type: "setFormWithThisExam",
+				examInserted: insertExamToForm,
+			});
+		}
+	}, []);
+
+	function setFieldsForNewExamEntry() {
+		setActionLoaded("addNewExam");
+		dispatchExamInputStateAction({ type: "resetAll" });
+	}
+	async function handleSubmitNewExam() {
+		setActionLoaded(null);
+		const response = await fetch("/api/admin/add-exam", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(examInputState),
+		});
+		const data = await response.json();
+		console.log(data);
+	}
+
+	function buttonCloseClicked() {
+		dispatchExamInputStateAction({ type: "resetAll" });
+		setActionLoaded(null);
+	}
+	function manageExamsClicked() {
+		setActionLoaded("manageExams");
+		router.push("/admin/exams-table");
+	}
 	return (
-		<section className={styles.ManageExamSection}>
-			<ManageExamTitles />
-			<div className={styles.RadioAndDoctors}>
-				<ManageExamRadio />
-				<TinyTabs />
+		<>
+			<div className={styles.ExamsUI}>
+				{!actionLoaded && <ButtonAdd onClick={setFieldsForNewExamEntry} />}
+				{actionLoaded && <ButtonSave onClick={handleSubmitNewExam} />}
+				{actionLoaded && <ButtonClose onClick={buttonCloseClicked} />}
+				<Button onClick={manageExamsClicked}>Manage</Button>
 			</div>
-			<ExamTags />
-			<ExamBuildingsManagement />
-			<ManageExamPreparation />
-			<ManageExamsEco />
-			<Button onClick={() => console.log(examInputState)}>Submit</Button>
-		</section>
+			{(actionLoaded === "addNewExam" || actionLoaded === "editExam") && (
+				<ManageExamForm />
+			)}
+			{actionLoaded == "manageExams" && <ExamsTable />}
+		</>
 	);
 }
 
