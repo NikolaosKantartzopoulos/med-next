@@ -12,6 +12,7 @@ import Button from "../../../../UI/Button";
 import TinyTabs from "./TinyTabs";
 
 import styles from "./ManageExam.module.css";
+import InfoPanel from "../../../../UI/InfoPanel";
 
 function ManageExamForm({ insertExamToForm }) {
 	const {
@@ -20,6 +21,7 @@ function ManageExamForm({ insertExamToForm }) {
 		allActiveDepartments,
 		allActiveDoctors,
 	} = useContext(ExamContext);
+
 	const [editingExam, setEditingExam] = useState(false);
 	useEffect(() => {
 		if (insertExamToForm) {
@@ -41,6 +43,7 @@ function ManageExamForm({ insertExamToForm }) {
 	}
 	return (
 		<>
+			<InfoPanel info={info} />
 			{editingExam && (
 				<Button onClick={submitEditedExam}>Save edited exam</Button>
 			)}

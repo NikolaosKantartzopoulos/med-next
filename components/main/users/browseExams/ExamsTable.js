@@ -9,13 +9,16 @@ import LoadingSpinner from "../../../UI/LoadingSpinner";
 function ExamsTable({ allActiveExams }) {
 	const router = useRouter();
 
-	function setEditItem(e, item) {
-		router.push({
-			pathname: `/users/browse-exams/${item.name}/${item.department}/${item.subdepartment}`,
-		});
-	}
+	// function setEditItem(e, item) {
+	// 	router.push({
+	// 		pathname: `/users/browse-exams/${item.name}/${item.department}/${item.subdepartment}`,
+	// 	});
+	// }
 
-	function deleteItem() {}
+	// async function deleteItem(e, item) {
+	// 	console.log("test");
+	// 	console.log(item);
+	// }
 
 	return (
 		<>
@@ -26,7 +29,7 @@ function ExamsTable({ allActiveExams }) {
 							<th>Name</th>
 							<th>Department</th>
 							<th>Subdepartment</th>
-							<th colSpan="2">Actions</th>
+							{/* <th colSpan="2">Actions</th> */}
 						</tr>
 					</thead>
 					<tbody className={tableStyles.tableBody}>
@@ -35,7 +38,7 @@ function ExamsTable({ allActiveExams }) {
 								<td>{item.name}</td>
 								<td>{item.department}</td>
 								<td>{item.subdepartment}</td>
-								<td>
+								{/* <td>
 									<Image
 										src={editIcon}
 										alt="edititem"
@@ -48,7 +51,7 @@ function ExamsTable({ allActiveExams }) {
 										alt="deleteItem"
 										onClick={(e) => deleteItem(e, item)}
 									/>
-								</td>
+								</td> */}
 							</tr>
 						))}
 					</tbody>

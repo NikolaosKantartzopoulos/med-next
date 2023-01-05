@@ -4,11 +4,7 @@ import React from "react";
 import BrowseExams from "../../../components/main/users/browseExams/BrowseExams";
 
 function BrowseExamsRoute({ allExams, allDepartments }) {
-	return (
-		<div>
-			<BrowseExams allExams={allExams} allDepartments={allDepartments} />
-		</div>
-	);
+	return <BrowseExams allExams={allExams} allDepartments={allDepartments} />;
 }
 
 export default BrowseExamsRoute;
@@ -29,5 +25,5 @@ export async function getStaticProps() {
 	}));
 
 	client.close();
-	return { props: { allExams, allDepartments } };
+	return { props: { allExams, allDepartments }, revalidate: 600 };
 }

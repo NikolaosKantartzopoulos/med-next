@@ -12,4 +12,18 @@ export default async function (req, res) {
 			);
 		client.close();
 	}
+
+	if (req.method === "DELETE") {
+		console.log(req.body);
+		const [client, db] = await connectDatabase();
+		const resDB = await db
+			.collection("exams")
+			.deleteOne({ _id: new ObjectId(req.body._id) });
+		console.log(resDB);
+		if (resDB.acknowledged == true) {
+			res.status(200).json({ deleted: true });
+		}
+
+		client.close();
+	}
 }

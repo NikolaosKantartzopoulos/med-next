@@ -1,13 +1,16 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import tableStyles from "./ExamsTable.module.css";
 import editIcon from "../../../../../public/images/edit.svg";
 import deleteIcon from "../../../../../public/images/delete.svg";
 import LoadingSpinner from "../../../../UI/LoadingSpinner";
+import InfoPanel from "../../../../UI/InfoPanel";
 
 function ExamsTable({ allActiveExams }) {
 	const router = useRouter();
+
+	const [info, setInfo] = useState(null);
 
 	function setEditItem(e, item) {
 		router.push({
@@ -15,10 +18,32 @@ function ExamsTable({ allActiveExams }) {
 		});
 	}
 
-	function deleteItem() {}
+	function deleteItem(e, item) {
+		fetch("/api/admin/edit-exam", {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(item),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+
+				if (data.deleted) {
+					setInfo({ type: "ok", text: "Data deleted" });
+					setTimeout(() => setInfo(null), 2000);
+					router.reload();
+				} else {
+					setInfo({ type: "error", text: "Error" });
+					setTimeout(() => setInfo(null), 2000);
+				}
+			});
+	}
 
 	return (
 		<>
+			<InfoPanel info={info} />
 			{allActiveExams ? (
 				<table className={tableStyles.table}>
 					<thead className={tableStyles.tableHead}>
