@@ -30,5 +30,5 @@ export async function getServerSideProps() {
 		.project({ _id: 0 })
 		.toArray();
 	client.close();
-	return { props: { allDepartments: data }, revalidate: 600 };
+	return { props: { allDepartments: data } };
 }
