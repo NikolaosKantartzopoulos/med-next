@@ -22,6 +22,8 @@ function ManageExamForm({ insertExamToForm }) {
 		allActiveDoctors,
 	} = useContext(ExamContext);
 
+	const [info, setInfo] = useState(null);
+
 	const [editingExam, setEditingExam] = useState(false);
 	useEffect(() => {
 		if (insertExamToForm) {
