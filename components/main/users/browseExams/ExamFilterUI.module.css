@@ -1,0 +1,11 @@
+.FilterUISection {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+
+.departmentCheckbox {
+  background-color: var(--dark-main-1);
+  color: var(--light-main-1);
+}

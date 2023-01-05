@@ -1,6 +1,6 @@
 export const initialObject = {
 	name: "Sample Name",
-	nhsDescription: "Sampe NHS description",
+	nhsDescription: "Sample NHS description",
 	department: "MR",
 	subdepartment: "MRI",
 	tags: [],

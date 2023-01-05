@@ -10,7 +10,6 @@ export default async function (req, res) {
 				{ _id: new ObjectId(req.body._id) },
 				{ ...req.body, _id: new ObjectId(req.body._id) }
 			);
-		console.log(dbRes);
 		client.close();
 	}
 }
