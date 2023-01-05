@@ -7,7 +7,9 @@ const UrlContext = createContext({
 export function UrlContextProvider(props) {
 	const dbURL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.oftkpuh.mongodb.net/?retryWrites=true&w=majority`;
 
-	const urlContext = { dbURL: dbURL };
+	const buildingsAPIURL = "/api/admin/manage-buildings";
+
+	const urlContext = { dbURL: dbURL, buildingsAPIURL: buildingsAPIURL };
 
 	return (
 		<UrlContext.Provider value={urlContext}>

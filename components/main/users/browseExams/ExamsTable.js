@@ -2,23 +2,10 @@ import React, { useContext } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import tableStyles from "./ExamsTable.module.css";
-import editIcon from "../../../../public/images/edit.svg";
-import deleteIcon from "../../../../public/images/delete.svg";
 import LoadingSpinner from "../../../UI/LoadingSpinner";
 
 function ExamsTable({ allActiveExams }) {
 	const router = useRouter();
-
-	// function setEditItem(e, item) {
-	// 	router.push({
-	// 		pathname: `/users/browse-exams/${item.name}/${item.department}/${item.subdepartment}`,
-	// 	});
-	// }
-
-	// async function deleteItem(e, item) {
-	// 	console.log("test");
-	// 	console.log(item);
-	// }
 
 	return (
 		<>

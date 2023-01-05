@@ -3,8 +3,8 @@ import Footer from "./footer";
 
 import styles from "./layout.module.css";
 
-import { useRouter } from "next/router";
-import Transition from "./Transition/index";
+// import { useRouter } from "next/router";
+// import Transition from "./Transition/index";
 
 export default function Layout({ children }) {
 	// const router = useRouter();

@@ -28,8 +28,6 @@ function ExamsTable({ allActiveExams }) {
 		})
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data);
-
 				if (data.deleted) {
 					setInfo({ type: "ok", text: "Data deleted" });
 					setTimeout(() => setInfo(null), 2000);

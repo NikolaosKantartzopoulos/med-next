@@ -6,7 +6,7 @@ import ManageDepartments from "../../components/main/admin/manageAssets/manageDe
 import AdminNavbar from "../../components/main/admin/AdminNavbar";
 
 function ManageDepartmentsRoute({ allDepartments }) {
-	return -(
+	return (
 		<DepartmentContextProvider allDepartments={allDepartments}>
 			{!allDepartments ? (
 				<LoadingSpinner />

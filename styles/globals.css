@@ -50,7 +50,7 @@ h5 {
 a {
   transition: all 0.1;
   font-size: 1.25rem;
-  margin: 1rem;
+  margin: 0.25rem;
   text-decoration: none;
   padding: 0.25rem 0.5rem;
   border-bottom: 3px solid rgba(0, 0, 0, 0);
