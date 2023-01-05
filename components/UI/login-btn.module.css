@@ -1,0 +1,18 @@
+.buttonDiv {
+  height: 2rem;
+  display: flex;
+  flex-direction: row;
+  width: 12rem;
+}
+
+
+
+.info {
+  border: 1px solid var(--dark-main-1);
+  width: 10rem;
+  height: 2rem;
+  font-size: 1.25rem;
+  padding-top: 0.25rem;
+  text-align: center;
+  color: var(--dark-main-1);
+}

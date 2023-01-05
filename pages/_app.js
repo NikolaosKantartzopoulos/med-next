@@ -1,6 +1,6 @@
 import Layout from "../components/helper/layout";
 import { SessionProvider } from "next-auth/react";
-
+import { UrlContextProvider } from "../helper/store/url-context";
 import "../styles/globals.css";
 
 export default function App({
@@ -10,9 +10,11 @@ export default function App({
 }) {
 	return (
 		<SessionProvider session={session}>
-			<Layout>
-				<Component {...pageProps} key={router.route} />
-			</Layout>
+			<UrlContextProvider>
+				<Layout>
+					<Component {...pageProps} key={router.route} />
+				</Layout>
+			</UrlContextProvider>
 		</SessionProvider>
 	);
 }

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 
 import ListExistingBuildings from "./ListExistingBuildings";
@@ -6,10 +6,8 @@ import ListExistingBuildings from "./ListExistingBuildings";
 import SingleInputForm from "../../../../../components/UI/SingleInputForm";
 import InfoPanel from "../../../../../components/UI/InfoPanel.js";
 import LoadingSpinner from "../../../../../components/UI/LoadingSpinner.js";
-import UrlContext from "../../../../../helper/store/url-context";
 
 function ManageBuildings({ allBuildings }) {
-	const { buildingsAPIURL } = useContext(UrlContext);
 	const router = useRouter();
 	const [activeBuildings, setActiveBuildings] = useState(allBuildings);
 	const [newBuilding, setNewBuilding] = useState("");
@@ -26,7 +24,7 @@ function ManageBuildings({ allBuildings }) {
 		let toPost = { address: newBuilding };
 		try {
 			setIsLoading(true);
-			let response = await fetch(buildingsAPIURL, {
+			let response = await fetch("/api/admin/manage-buildings", {
 				method: "POST",
 				body: JSON.stringify(toPost),
 				headers: {
