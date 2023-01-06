@@ -10,9 +10,9 @@ import checkStyles from "./ManageExamsEco.module.css";
 function ManageExamsEco() {
 	const { examInputState, dispatchExamInputStateAction, allActiveEco } =
 		useContext(ExamContext);
-	const insurancesOfThisDepartment = allActiveEco.filter(
-		(i) => i.department === examInputState.department
-	);
+	const insurancesOfThisDepartment = allActiveEco
+		.filter((i) => i.department === examInputState.department)
+		.filter((i) => i.subdepartment === examInputState.subdepartment);
 	const uniqueInsurances = _.uniq(
 		insurancesOfThisDepartment.map((ins) => ins.title)
 	);
@@ -34,6 +34,7 @@ function ManageExamsEco() {
 			dispatchExamInputStateAction({
 				type: "addCommonPayment",
 				commonInsTitle: item,
+				subdepartmentInsTitle: examInputState.subdepartment,
 			});
 		}
 	}

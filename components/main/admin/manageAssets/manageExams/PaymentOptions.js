@@ -51,13 +51,7 @@ function PaymentOptions({
 				{commonPayment ? (
 					<div className={styles.commonPayment}>
 						<div>€</div>
-						<div>
-							{
-								allActiveEco
-									.filter((i) => i.department === insurance.department)
-									.filter((i) => i.title === insurance.title)[0].cost
-							}
-						</div>
+						<div>{insurance.cost}</div>
 					</div>
 				) : (
 					<Input
@@ -79,13 +73,16 @@ function PaymentOptions({
 
 			{commonPayment ? (
 				<div className={styles.commonDetails}>
-					{allActiveEco
+					{/* {allActiveEco
 						.filter((i) => i.department === insurance.department)
 						.filter((i) => i.title === insurance.title)[0].details === ""
 						? "---No details---"
 						: allActiveEco
 								.filter((i) => i.department === insurance.department)
-								.filter((i) => i.title === insurance.title)[0].details}
+								.filter((i) => i.title === insurance.title)[0].details} */}
+					{insurance.details.trim() === ""
+						? "---No details---"
+						: insurance.details}
 				</div>
 			) : (
 				<Textarea

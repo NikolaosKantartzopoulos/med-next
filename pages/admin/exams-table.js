@@ -3,11 +3,20 @@ import AdminNavbar from "../../components/main/admin/AdminNavbar";
 import { connectDatabase } from "../../helper/database/db";
 import ExamsTable from "../../components/main/admin/manageAssets/manageExams/ExamsTable";
 
-function ManageExamsTableRoute({ allActiveExams }) {
+import FilterUI from "../../components/main/admin/manageAssets/manageExams/ExamFilterUI";
+
+function ManageExamsTableRoute({ allActiveExams, allDepartments }) {
+	const [visibleExams, setVisibleExams] = useState(allActiveExams);
 	return (
 		<>
 			<AdminNavbar />
-			<ExamsTable allActiveExams={allActiveExams} />
+			<FilterUI
+				allDepartments={allDepartments}
+				allExams={allActiveExams}
+				visibleExams={visibleExams}
+				setVisibleExams={setVisibleExams}
+			/>
+			<ExamsTable allActiveExams={visibleExams} />
 		</>
 	);
 }
@@ -23,12 +32,17 @@ export async function getServerSideProps() {
 		...exam,
 		_id: `${exam._id}`,
 	}));
-
+	const data = await db
+		.collection("assets")
+		.find({ department: { $exists: true } })
+		.project({ _id: 0 })
+		.toArray();
 	client.close();
 
 	return {
 		props: {
 			allActiveExams: allActiveExams,
+			allDepartments: data,
 		},
 	};
 }

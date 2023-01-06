@@ -9,7 +9,9 @@ import {
 } from "./reducers/manage-eco-reducer.js";
 
 const EcoContext = createContext({
+	allDepartments: [],
 	actionLoaded: "",
+	allInsuranceDocuments: [],
 	activeItem: {},
 	aFieldIsEmpty: () => {},
 	allActiveInsurances: [],
@@ -38,6 +40,7 @@ const EcoContext = createContext({
 export function EcoContextProvider({
 	distinctDepartments,
 	allInsuranceDocuments,
+	allDepartments,
 	children,
 }) {
 	const [allActiveInsurances, setAllActiveInsurances] = useState(
@@ -67,7 +70,8 @@ export function EcoContextProvider({
 			inputsState.title.trim() === "" ||
 			inputsState.cost.trim() === "" ||
 			inputsState.cost.trim() === "" ||
-			inputsState.department === ""
+			inputsState.department === "" ||
+			inputsState.subdepartment === ""
 		) {
 			return true;
 		}
@@ -107,7 +111,7 @@ export function EcoContextProvider({
 		allActiveInsurances.forEach((ins) => {
 			if (
 				inputsState.title === ins.title &&
-				inputsState.department === ins.department
+				inputsState.subdepartment === ins.subdepartment
 			) {
 				setInfo((info) => ({ ...info, type: "error", text: "Already exists" }));
 				problem = true;
@@ -151,6 +155,8 @@ export function EcoContextProvider({
 	}
 
 	const ecoContext = {
+		allDepartments,
+		allInsuranceDocuments,
 		aFieldIsEmpty,
 		resetInputs,
 		setEditItem,

@@ -6,6 +6,8 @@ export function manageEcoReducer(state, action) {
 			return { ...state, title: action.newTitle };
 		case "setDepartment":
 			return { ...state, department: action.newDepartment };
+		case "setSubdepartment":
+			return { ...state, subdepartment: action.newSubdepartment };
 		case "setCost":
 			return { ...state, cost: action.newCost };
 		case "setDetails":
@@ -21,6 +23,7 @@ export const initialObject = {
 	_id: "",
 	title: "",
 	department: "",
+	subdepartment: "",
 	cost: "",
 	details: "",
 	eco: "",

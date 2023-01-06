@@ -21,7 +21,7 @@
 }
 
 
-.tableBody td:nth-child(4),
+.tableBody td:nth-child(6),
 .tableBody td:nth-child(5) {
   text-align: center;
 }

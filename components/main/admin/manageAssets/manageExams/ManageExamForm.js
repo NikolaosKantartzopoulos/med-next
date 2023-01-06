@@ -56,10 +56,10 @@ function ManageExamForm({ insertExamToForm }) {
 					<ManageExamRadio />
 					<TinyTabs />
 				</div>
+				<ManageExamsEco />
 				<ExamTags />
 				<ExamBuildingsManagement />
 				<ManageExamPreparation />
-				<ManageExamsEco />
 			</section>
 		</>
 	);

@@ -1,14 +1,17 @@
 .UITopLine {
-  display: grid;
-  grid-template-columns: 8rem 16rem 1fr 5rem;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 1rem;
+
   margin: auto;
   width: 100%;
   margin-bottom: 1rem;
 
 }
+
+.UITopFirstLine {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+
 
 @media screen and (max-width: 500px) {
   .UITopLine {

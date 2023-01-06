@@ -9,8 +9,10 @@ import styles from "./EcoUITopLine.module.css";
 function EcoUITopLine() {
 	return (
 		<div id="UITopLine" className={styles.UITopLine}>
-			<ManageEcoUI />
-			<EcoTitleCost />
+			<div className={styles.UITopFirstLine}>
+				<ManageEcoUI />
+				<EcoTitleCost />
+			</div>
 			<EcoRadioButtons />
 		</div>
 	);

@@ -4,7 +4,11 @@ import AdminNavbar from "../../components/main/admin/AdminNavbar.js";
 import { connectDatabase } from "../../helper/database/db";
 import { EcoContextProvider } from "../../helper/store/eco-context";
 
-function ManageEcoRoute({ distinctDepartments, allInsuranceDocuments }) {
+function ManageEcoRoute({
+	distinctDepartments,
+	allDepartments,
+	allInsuranceDocuments,
+}) {
 	return (
 		<>
 			{!allInsuranceDocuments ? (
@@ -13,6 +17,7 @@ function ManageEcoRoute({ distinctDepartments, allInsuranceDocuments }) {
 				<EcoContextProvider
 					distinctDepartments={distinctDepartments}
 					allInsuranceDocuments={allInsuranceDocuments}
+					allDepartments={allDepartments}
 				>
 					<div>
 						<AdminNavbar />
@@ -39,7 +44,19 @@ export async function getServerSideProps() {
 		.collection("assets")
 		.distinct("department", { sub: { $exists: true } });
 
+	const allDepartmentsArray = await db
+		.collection("assets")
+		.find({ sub: { $exists: true } })
+		.toArray();
+
+	const allDepartments = allDepartmentsArray.map((dep) => ({
+		...dep,
+		_id: `${dep._id}`,
+	}));
+
 	client.close();
 
-	return { props: { distinctDepartments, allInsuranceDocuments } };
+	return {
+		props: { allDepartments, distinctDepartments, allInsuranceDocuments },
+	};
 }

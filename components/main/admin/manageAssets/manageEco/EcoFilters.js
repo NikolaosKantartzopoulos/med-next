@@ -9,6 +9,7 @@ function EcoFilters() {
 		checkedInsurances,
 		setCheckedInsurances,
 		checkedDepartments,
+		allDepartments,
 		setCheckedDepartments,
 	} = useContext(EcoContext);
 	const uniqueDeps = _.uniq(allActiveInsurances.map((ins) => ins.department));

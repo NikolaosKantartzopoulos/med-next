@@ -21,6 +21,7 @@ function EcoTable() {
 				<tr>
 					<th>Insurance</th>
 					<th>Department</th>
+					<th>Subdep.</th>
 					<th>Cost</th>
 					<th colSpan="2">Actions</th>
 				</tr>
@@ -33,6 +34,7 @@ function EcoTable() {
 						<tr key={item._id}>
 							<td>{item.title}</td>
 							<td>{item.department}</td>
+							<td>{item.subdepartment}</td>
 							<td>{item.cost}</td>
 							<td>
 								<Image

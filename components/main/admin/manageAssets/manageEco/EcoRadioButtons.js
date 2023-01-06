@@ -12,33 +12,78 @@ function EcoRadioButtons() {
 		distinctDepartments,
 		inputsState,
 		actionLoaded,
+		allDepartments,
 	} = useContext(EcoContext);
 	return (
 		<>
-			{actionLoaded == "addEco" && (
-				<div
-					className={styles.EcoRadioButtonsSection}
-					onChange={(e) => {
-						setInfo(null);
-						dispatchEcoReducerAction({
-							type: "setDepartment",
-							newDepartment: e.target.value,
-						});
-					}}
-				>
-					{distinctDepartments.map((dep) => (
-						<RadioButton
-							value={dep}
-							key={dep}
-							label={dep}
-							name="departmentSelect"
-							checked={inputsState.department === dep}
-						/>
-					))}
+			{actionLoaded && (
+				<div className={styles.asdf}>
+					{actionLoaded == "addEco" && (
+						<div>
+							<h4>Departments</h4>
+							<div
+								className={styles.EcoRadioButtonsSection}
+								onChange={(e) => {
+									setInfo(null);
+									dispatchEcoReducerAction({
+										type: "setDepartment",
+										newDepartment: e.target.value,
+									});
+								}}
+							>
+								{distinctDepartments.map((dep) => (
+									<RadioButton
+										value={dep}
+										key={dep}
+										label={dep}
+										name="departmentSelect"
+										checked={inputsState.department === dep}
+									/>
+								))}
+							</div>
+						</div>
+					)}
+					{actionLoaded == "addEco" && (
+						<div className={styles.ecoSubCheck}>
+							{inputsState.department != "" && actionLoaded == "addEco" && (
+								<>
+									<h4>Subdepartments</h4>
+									<div
+										className={styles.EcoRadioButtonsSection}
+										onChange={(e) => {
+											setInfo(null);
+											dispatchEcoReducerAction({
+												type: "setSubdepartment",
+												newSubdepartment: e.target.value,
+											});
+										}}
+									>
+										{allDepartments
+											.find((a) => inputsState.department == a.department)
+											.sub.map((selSub) => (
+												<RadioButton
+													value={selSub}
+													key={selSub}
+													label={selSub}
+													name="subdepartmentSelect"
+													checked={inputsState.subdepartment === selSub}
+												/>
+											))}
+									</div>
+								</>
+							)}
+						</div>
+					)}
 				</div>
 			)}
 			{actionLoaded == "editEco" && (
-				<h4 style={{ width: "8rem" }}>{inputsState.department}</h4>
+				<div className={styles.editDivisions}>
+					<div></div>
+					<div className={styles.editDivisionsFlex}>
+						<h4 className={styles.editDiv}>{inputsState.department}</h4>
+						<h4 className={styles.editDiv}>{inputsState.subdepartment}</h4>
+					</div>
+				</div>
 			)}
 		</>
 	);

@@ -32,6 +32,7 @@ export function examInputReducer(state, action) {
 					...state.eco,
 					{
 						title: action.commonInsTitle,
+						subdepartment: action.subdepartmentInsTitle,
 						common: true,
 					},
 				],
@@ -130,6 +131,31 @@ export function examInputReducer(state, action) {
 				],
 			};
 			return { ...toRetADD };
+		case "fillBuildingSchedule":
+			console.log(action.fillWith);
+			console.log(action.buildingToFillName);
+			const filteredBuild = state.buildingsSchedule.filter(
+				(bld) => bld.buildingName != action.buildingToFillName
+			);
+			const toRetFill = {
+				...state,
+				buildingsSchedule: [
+					...filteredBuild,
+					{
+						buildingName: action.buildingToFillName,
+						schedule: [
+							{ day: "Monday", value: action.fillWith },
+							{ day: "Tuesday", value: action.fillWith },
+							{ day: "Wednesday", value: action.fillWith },
+							{ day: "Thursday", value: action.fillWith },
+							{ day: "Friday", value: action.fillWith },
+							{ day: "Saturday", value: action.fillWith },
+							{ day: "Sunday", value: "1" },
+						],
+					},
+				],
+			};
+			return toRetFill;
 		case "removeBuilding":
 			const filteredBuildingsScheduleDEL = state.buildingsSchedule.filter(
 				(bld) => bld.buildingName != action.RemoveBuildingName
