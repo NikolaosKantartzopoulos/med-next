@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ExamsTable from "./ExamsTable";
-import FilterUI from "./ExamFilterUI.js";
+import FilterUI from "../../../UI/ExamFilterUI.js";
 
 function BrowseExams({ allExams, allDepartments }) {
 	const [visibleExams, setVisibleExams] = useState(allExams);

@@ -3,6 +3,9 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { connectDatabase } from "../../../helper/database/db";
 
 export const authOptions = {
+	theme: {
+		colorScheme: "light",
+	},
 	session: {
 		//make sure that json web token is created
 		strategy: "jwt",
@@ -37,12 +40,20 @@ export const authOptions = {
 				const user = await db
 					.collection("assets")
 					.findOne({ username: credentials.username });
+
 				if (!user) {
 					client.close();
 					throw new Error("No user found");
 				}
 				client.close();
-				return user;
+				if (
+					user.username === credentials.username &&
+					user.password === credentials.password
+				) {
+					return user;
+				} else {
+					return null;
+				}
 			},
 		}),
 	],

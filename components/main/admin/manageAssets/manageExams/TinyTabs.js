@@ -31,7 +31,7 @@ function TinyTabs() {
 					key={doc.username}
 					style={{
 						backgroundColor: examInputState.doctors.includes(doc.username)
-							? "green"
+							? "white"
 							: "darkred",
 					}}
 					onClick={() => {

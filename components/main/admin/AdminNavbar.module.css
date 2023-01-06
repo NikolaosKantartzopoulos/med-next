@@ -5,11 +5,12 @@
 
 
 .adminNavbar {
+  border-top: 1px solid var(--dark-main-1);
   height: 2.5rem;
   max-width: 760px;
   margin: 0.25rem auto;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 2fr 2fr;
   text-align: center;
   width: 100%;
 }

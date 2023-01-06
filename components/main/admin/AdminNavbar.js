@@ -39,16 +39,7 @@ function AdminNavbar() {
 			>
 				Eco
 			</Link>
-			<Link
-				href={"/admin/manage-exams"}
-				className={
-					currentRoute === "/admin/manage-exams"
-						? `${styles.activeLink}`
-						: undefined
-				}
-			>
-				Exams
-			</Link>
+
 			<Link
 				href={"/admin/manage-preparations"}
 				className={
@@ -68,6 +59,28 @@ function AdminNavbar() {
 				}
 			>
 				Users
+			</Link>
+
+			<Link
+				href={"/admin/manage-exams"}
+				className={
+					currentRoute === "/admin/manage-exams"
+						? `${styles.activeLink}`
+						: undefined
+				}
+			>
+				Add Exam
+			</Link>
+
+			<Link
+				href={"/admin/exams-table"}
+				className={
+					currentRoute === "/admin/exams-table"
+						? `${styles.activeLink}`
+						: undefined
+				}
+			>
+				Exams Table
 			</Link>
 		</div>
 	);

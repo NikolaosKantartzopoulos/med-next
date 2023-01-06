@@ -32,7 +32,7 @@
 }
 
 .tableBody tr:hover {
-  background-color: white;
+  background-color: var(--support-1);
   cursor: default;
 }
 

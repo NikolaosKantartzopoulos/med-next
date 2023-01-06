@@ -21,7 +21,7 @@ function EcoTable() {
 				<tr>
 					<th>Insurance</th>
 					<th>Department</th>
-					<th>Subdep.</th>
+					<th>Subd.</th>
 					<th>Cost</th>
 					<th colSpan="2">Actions</th>
 				</tr>

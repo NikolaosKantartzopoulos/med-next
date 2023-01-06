@@ -3,7 +3,7 @@ import AdminNavbar from "../../components/main/admin/AdminNavbar";
 import { connectDatabase } from "../../helper/database/db";
 import ExamsTable from "../../components/main/admin/manageAssets/manageExams/ExamsTable";
 
-import FilterUI from "../../components/main/admin/manageAssets/manageExams/ExamFilterUI";
+import FilterUI from "../../components/UI/ExamFilterUI";
 
 function ManageExamsTableRoute({ allActiveExams, allDepartments }) {
 	const [visibleExams, setVisibleExams] = useState(allActiveExams);

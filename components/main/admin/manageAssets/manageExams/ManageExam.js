@@ -8,23 +8,25 @@ import ManageExamForm from "./ManageExamForm";
 import { useRouter } from "next/router";
 import styles from "./ManageExam.module.css";
 import ExamsTable from "./ExamsTable";
+import InfoPanel from "../../../../UI/InfoPanel";
 
 function ManageExam() {
 	const router = useRouter();
+	const [info, setInfo] = useState(null);
 	const {
 		examInputState,
 		dispatchExamInputStateAction,
 		allActiveDepartments,
 		allActiveDoctors,
 	} = useContext(ExamContext);
-	const [actionLoaded, setActionLoaded] = useState(null);
+	// const [actionLoaded, setActionLoaded] = useState(null);
 
 	function setFieldsForNewExamEntry() {
-		setActionLoaded("addNewExam");
+		// setActionLoaded("addNewExam");
 		dispatchExamInputStateAction({ type: "resetAll" });
 	}
 	async function handleSubmitNewExam() {
-		setActionLoaded(null);
+		// setActionLoaded(null);
 		const response = await fetch("/api/admin/add-exam", {
 			method: "POST",
 			headers: {
@@ -33,19 +35,28 @@ function ManageExam() {
 			body: JSON.stringify(examInputState),
 		});
 		const data = await response.json();
+		if (response.ok) {
+			setInfo({ type: "ok", text: "Exam Submited" });
+			setTimeout(() => setInfo(null), 3000);
+		} else {
+			setInfo({ type: "error", text: "Exam Exists" });
+			setTimeout(() => setInfo(null), 3000);
+		}
 	}
 
 	function buttonCloseClicked() {
 		dispatchExamInputStateAction({ type: "resetAll" });
-		setActionLoaded(null);
 	}
-	function manageExamsClicked() {
-		setActionLoaded("manageExams");
-		router.push("/admin/exams-table");
-	}
+	// function manageExamsClicked() {
+	// 	setActionLoaded("manageExams");
+	// 	router.push("/admin/exams-table");
+	// }
 	return (
 		<>
-			<div className={styles.ExamsUI}>
+			<ButtonSave onClick={handleSubmitNewExam} />
+			{info && <InfoPanel info={info} />}
+			<ManageExamForm />
+			{/* <div className={styles.ExamsUI}>
 				{!actionLoaded && <ButtonAdd onClick={setFieldsForNewExamEntry} />}
 				{actionLoaded && <ButtonSave onClick={handleSubmitNewExam} />}
 				{actionLoaded && <ButtonClose onClick={buttonCloseClicked} />}
@@ -54,7 +65,7 @@ function ManageExam() {
 			{(actionLoaded === "addNewExam" || actionLoaded === "editExam") && (
 				<ManageExamForm />
 			)}
-			{actionLoaded == "manageExams" && <ExamsTable />}
+			{actionLoaded == "manageExams" && <ExamsTable />} */}{" "}
 		</>
 	);
 }

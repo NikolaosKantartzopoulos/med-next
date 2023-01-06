@@ -20,14 +20,14 @@
   padding: 3px 10px;
 }
 
-.tableHead th:nth-child(3),
+.tableHead th:nth-child(1),
 .tableHead th:nth-child(2) {
   max-width: 3rem;
 }
 
 
 
-.tableBody td:nth-child(3),
+.tableBody td:nth-child(1),
 .tableBody td:nth-child(2) {
   text-align: center;
   max-width: 3rem;
@@ -50,8 +50,8 @@
 }
 
 .tableBody tr:hover {
-  background-color: white;
-  cursor: default;
+  background-color: var(--support-1);
+  cursor: pointer;
 }
 
 .tableBody td img {

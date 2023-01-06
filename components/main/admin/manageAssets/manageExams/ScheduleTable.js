@@ -10,7 +10,6 @@ function ScheduleTable({ building, dispatchExamInputStateAction }) {
 	const [activeDays, setActiveDays] = useState(building.schedule);
 	const [fillFrom, setFillFrom] = useState("");
 	function handleSave() {
-		console.log(fillFrom);
 		dispatchExamInputStateAction({
 			type: "fillBuildingSchedule",
 			buildingToFillName: building.buildingName,

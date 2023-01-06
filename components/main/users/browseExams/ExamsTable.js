@@ -13,32 +13,18 @@ function ExamsTable({ allActiveExams }) {
 				<table className={tableStyles.table}>
 					<thead className={tableStyles.tableHead}>
 						<tr>
-							<th>Name</th>
 							<th>Department</th>
-							<th>Subdepartment</th>
+							<th>Subd.</th>
+							<th>Name</th>
 							{/* <th colSpan="2">Actions</th> */}
 						</tr>
 					</thead>
 					<tbody className={tableStyles.tableBody}>
 						{allActiveExams.map((item) => (
 							<tr key={item._id}>
-								<td>{item.name}</td>
 								<td>{item.department}</td>
 								<td>{item.subdepartment}</td>
-								{/* <td>
-									<Image
-										src={editIcon}
-										alt="edititem"
-										onClick={(e) => setEditItem(e, item)}
-									/>
-								</td>
-								<td>
-									<Image
-										src={deleteIcon}
-										alt="deleteItem"
-										onClick={(e) => deleteItem(e, item)}
-									/>
-								</td> */}
+								<td>{item.name}</td>
 							</tr>
 						))}
 					</tbody>

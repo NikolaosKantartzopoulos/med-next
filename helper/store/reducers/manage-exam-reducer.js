@@ -132,8 +132,6 @@ export function examInputReducer(state, action) {
 			};
 			return { ...toRetADD };
 		case "fillBuildingSchedule":
-			console.log(action.fillWith);
-			console.log(action.buildingToFillName);
 			const filteredBuild = state.buildingsSchedule.filter(
 				(bld) => bld.buildingName != action.buildingToFillName
 			);

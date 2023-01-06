@@ -1,0 +1,75 @@
+.FilterUISection {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.filtersWindow {
+  background-color: var(--dark-main-1);
+  margin: 1rem auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 8px;
+  gap: 0.8rem;
+}
+
+.filtersWindow>div:nth-child(1) {
+  scale: 1.2;
+  padding-top: 0.25rem;
+  cursor: pointer;
+}
+
+.filtersWindow>div:nth-child(2) {
+  scale: 0.9;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  cursor: pointer;
+  gap: 1rem;
+}
+
+.filtersWindow img:hover {
+  scale: 1.1;
+}
+
+.departmentCheckbox {
+  background-color: var(--dark-main-1);
+  color: var(--light-main-1);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.departmentCheckbox>input,
+.departmentCheckbox>label {
+  cursor: pointer;
+}
+
+.departmentCheckbox>label {
+  flex-basis: 100%
+}
+
+
+.subdepCheckbox>input,
+.subdepCheckbox>label {
+  cursor: pointer;
+}
+
+.subdepCheckbox>label {
+  flex-basis: 100%
+}
+
+.subdepCheckbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.subdepCheckbox:hover {
+  background-color: var(--support-1);
+  cursor: pointer;
+}

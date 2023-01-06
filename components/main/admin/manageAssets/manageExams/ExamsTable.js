@@ -41,14 +41,14 @@ function ExamsTable({ allActiveExams }) {
 
 	return (
 		<>
-			<InfoPanel info={info} />
+			{info && <InfoPanel info={info} />}
 			{allActiveExams ? (
 				<table className={tableStyles.table}>
 					<thead className={tableStyles.tableHead}>
 						<tr>
 							<th>Name</th>
 							<th>Department</th>
-							<th>Subdepartment</th>
+							<th>Subd.</th>
 							<th colSpan="2">Actions</th>
 						</tr>
 					</thead>
