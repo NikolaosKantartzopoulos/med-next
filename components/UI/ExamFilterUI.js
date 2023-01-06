@@ -5,6 +5,8 @@ import menuFold from "../../public/images/menu-up.svg";
 import menuUnfold from "../../public/images/menu-down.svg";
 import selectAll from "../../public/images/check-all.svg";
 import clearAll from "../../public/images/backspace-outline.svg";
+import searchIcon from "../../public/images/magnify.svg";
+import TinyInput from "../UI/TinyInput";
 
 function ExamFilterUI({
 	allExams,
@@ -46,6 +48,7 @@ function ExamFilterUI({
 				uniqueDepartmentsChecked.includes(depTested.department)
 			)
 		);
+		searchExams();
 	}
 	function handleSubdepartmentClick(e, dep, sub) {
 		const filteredDepartmentArray = checkedDepSub.filter(
@@ -89,6 +92,7 @@ function ExamFilterUI({
 			}
 		});
 		setVisibleExams(arrayToSet);
+		searchExams();
 	}
 
 	const [filterMenuVisible, setFilterMenuVisible] = useState(true);
@@ -109,9 +113,48 @@ function ExamFilterUI({
 		setFilterMenuVisible(true);
 	}
 
+	function searchExams() {
+		if (searchFieldValue.trim() === "") {
+			return;
+		}
+		const regex = new RegExp(searchFieldValue);
+		const filteredExams = allExams.filter((xm) => !xm.name.search(regex));
+
+		let uniqueDepartmentsChecked = checkedDepSub
+			.filter((elem) => elem.checked)
+			.map((elem) => elem.department);
+		console.log(uniqueDepartmentsChecked);
+
+		const dblFiltered = filteredExams.filter((depTested) =>
+			uniqueDepartmentsChecked.includes(depTested.department)
+		);
+		setVisibleExams(dblFiltered);
+	}
+
+	const [searchFieldValue, setSearchFieldValue] = useState("");
+
 	return (
 		<div>
 			<div className={styles.filtersWindow}>
+				<div>
+					<TinyInput
+						customStyle={{ width: "10rem" }}
+						value={searchFieldValue}
+						onChange={(e) => setSearchFieldValue(e.target.value)}
+						onKeyDown={(e) => {
+							if (e.key === "Enter") {
+								searchExams();
+							}
+						}}
+					>
+						<Image
+							src={searchIcon}
+							alt="searchIcon"
+							onClick={searchExams}
+							style={{ cursor: "pointer" }}
+						/>
+					</TinyInput>
+				</div>
 				<div>
 					{filterMenuVisible ? (
 						<Image
