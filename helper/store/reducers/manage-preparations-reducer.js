@@ -4,9 +4,7 @@ export function preparationsReducer(state, action) {
 			return preparationsSample;
 		case "setTitle":
 			return {
-				_id: state._id,
-				details: state.details,
-				common: state.common,
+				...state,
 				title: action.newTitleValue,
 			};
 		case "setDetails":

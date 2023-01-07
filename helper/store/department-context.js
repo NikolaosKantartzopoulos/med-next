@@ -45,6 +45,7 @@ export function DepartmentContextProvider({ allDepartments, children }) {
 		]);
 		setDepartmentName("");
 		setNewDepartmentInput("");
+		handlePostRequest();
 	}
 	function editDepartmentNameHandler(e, currentName) {
 		setEditItemVisible("editDepartment");
@@ -88,12 +89,14 @@ export function DepartmentContextProvider({ allDepartments, children }) {
 		setSubdepartmentNameBeforeEdit(null);
 		setDepartmentName("");
 		setNewDepartmentInput("");
+		handlePostRequest();
 	}
 	function deleteDepartmentHandler(e, toBeDeleted) {
 		const filteredArray = activeDepartments.filter(
 			(entry) => entry.department !== toBeDeleted
 		);
 		setActiveDepartments([...filteredArray]);
+		handlePostRequest();
 	}
 
 	// SUBDEPARTMENTS MANAGEMENT
@@ -113,6 +116,7 @@ export function DepartmentContextProvider({ allDepartments, children }) {
 
 			setEditItemVisible(null);
 			setSwitchIcons("showEdit");
+			handlePostRequest();
 			return;
 		}
 		const departmentToChange = activeDepartments.find(
@@ -145,6 +149,7 @@ export function DepartmentContextProvider({ allDepartments, children }) {
 		setActiveDepartments(toSet);
 		setEditItemVisible(null);
 		setSwitchIcons("showEdit");
+		handlePostRequest();
 	}
 	function editSubHandler(e, departmentNameValue, subdepartmentNameValue) {
 		setEditItemVisible("editSubdepartment");
@@ -188,6 +193,7 @@ export function DepartmentContextProvider({ allDepartments, children }) {
 		setActiveDepartments(toSet);
 		setEditItemVisible(null);
 		setSubdepartmentNameBeforeEdit(null);
+		handlePostRequest();
 	}
 	function deleteSubHandler(e, departmentNameValue, subdepartmentNameValue) {
 		const departmentToChange = activeDepartments.find(
@@ -213,6 +219,7 @@ export function DepartmentContextProvider({ allDepartments, children }) {
 		);
 
 		setActiveDepartments(toSet);
+		handlePostRequest();
 	}
 	//POST
 	async function handlePostRequest() {

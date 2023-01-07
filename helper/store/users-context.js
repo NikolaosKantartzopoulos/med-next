@@ -83,6 +83,7 @@ export function UsersContextProvider({ allUsers, children }) {
 			position: manageUsersState.userPosition,
 			position2: manageUsersState.userPosition2,
 		};
+		handlePostRequest([...activeUsers, newUserInfo]);
 		setActiveUsers([...activeUsers, newUserInfo]);
 		dispatchManageUsersAction({ type: "resetAll" });
 		setActionLoaded(null);
@@ -123,7 +124,7 @@ export function UsersContextProvider({ allUsers, children }) {
 			position2: manageUsersState.userPosition2,
 		};
 		setActiveUsers([...filteredUsers, userToAdd]);
-
+		handlePostRequest([...filteredUsers, userToAdd]);
 		dispatchManageUsersAction({ type: "resetAll" });
 		setActionLoaded(null);
 		setInfo({ type: "success", text: "Edit submited" });
@@ -134,11 +135,12 @@ export function UsersContextProvider({ allUsers, children }) {
 
 	function deleteThisUser(e, user) {
 		const filteredUsers = activeUsers.filter((entry) => user._id !== entry._id);
+		handlePostRequest(filteredUsers);
 		setActiveUsers(filteredUsers);
 	}
 
-	async function handlePostRequest() {
-		let toPost = { activeUsers: activeUsers };
+	async function handlePostRequest(these) {
+		let toPost = { activeUsers: these };
 		setIsLoading(true);
 		const result = await fetch("/api/admin/manage-users", {
 			method: "POST",

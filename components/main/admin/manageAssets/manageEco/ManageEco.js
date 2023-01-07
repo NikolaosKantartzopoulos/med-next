@@ -48,9 +48,9 @@ function ManageEco() {
 				/>
 			)}
 			{info && <InfoPanel info={info} />}
-			<Button onClick={handleSubmit} disabled={actionLoaded ? true : false}>
+			{/* <Button onClick={handleSubmit} disabled={actionLoaded ? true : false}>
 				Submit
-			</Button>
+			</Button> */}
 			<EcoFilters />
 			<EcoTable />
 		</div>

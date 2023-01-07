@@ -25,13 +25,7 @@ function ManageUsers() {
 				{showThis === "showManageUserInputs" && <ManageUserInputs />}
 			</div>
 			{info && <InfoPanel info={info} />}
-			<Button
-				onClick={handlePostRequest}
-				customStyle={{ margin: "1rem auto", width: "100%" }}
-				disabled={actionLoaded ? true : false}
-			>
-				Submit
-			</Button>
+
 			<ManageUsersTable />
 		</div>
 	);

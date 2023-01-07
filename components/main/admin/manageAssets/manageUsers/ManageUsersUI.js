@@ -34,7 +34,7 @@ function ManageUsersUI() {
 				</>
 			)}
 			{actionLoaded === "addUser" && (
-				<Button onClick={submitNewUserHandler} customStyle={{ width: "8rem" }}>
+				<Button onClick={submitNewUserHandler} customStyle={{ width: "6rem" }}>
 					<Image src={saveIcon} alt="save new user" />
 					Add
 				</Button>

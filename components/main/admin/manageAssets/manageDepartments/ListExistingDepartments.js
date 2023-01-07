@@ -37,13 +37,13 @@ function ListExistingDepartments() {
 				)}
 			</div>
 			{info && <InfoPanel info={info} />}
-			<Button
+			{/* <Button
 				onClick={handlePostRequest}
 				customStyle={{ margin: "auto", width: "100%", marginBottom: "1rem" }}
 				disabled={editItemVisible ? true : false}
 			>
 				Submit
-			</Button>
+			</Button> */}
 			<DepBoard />
 		</div>
 	);

@@ -117,13 +117,13 @@ function ExamFilterUI({
 		if (searchFieldValue.trim() === "") {
 			return;
 		}
-		const regex = new RegExp(searchFieldValue);
+		const str = `.*${searchFieldValue}.*`;
+		const regex = new RegExp(str);
 		const filteredExams = allExams.filter((xm) => !xm.name.search(regex));
 
 		let uniqueDepartmentsChecked = checkedDepSub
 			.filter((elem) => elem.checked)
 			.map((elem) => elem.department);
-		console.log(uniqueDepartmentsChecked);
 
 		const dblFiltered = filteredExams.filter((depTested) =>
 			uniqueDepartmentsChecked.includes(depTested.department)

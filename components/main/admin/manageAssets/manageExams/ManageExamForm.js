@@ -20,18 +20,22 @@ function ManageExamForm({ insertExamToForm }) {
 		allActiveDepartments,
 		allActiveDoctors,
 	} = useContext(ExamContext);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const [editingExam, setEditingExam] = useState(false);
 	useEffect(() => {
+		setIsLoading(true);
 		if (insertExamToForm) {
 			setEditingExam(true);
 			dispatchExamInputStateAction({
 				type: "setExamForEdit",
 				exam: insertExamToForm.exam,
 			});
+			setIsLoading(false);
 		}
 	}, []);
 	async function submitEditedExam() {
+		setIsLoading(true);
 		await fetch("/api/admin/edit-exam", {
 			method: "PUT",
 			headers: {
@@ -39,6 +43,7 @@ function ManageExamForm({ insertExamToForm }) {
 			},
 			body: JSON.stringify(examInputState),
 		});
+		setIsLoading(false);
 	}
 	return (
 		<>

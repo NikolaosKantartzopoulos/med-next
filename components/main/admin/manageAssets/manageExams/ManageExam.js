@@ -1,24 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import ExamContext from "../../../../../helper/store/exam-context";
-import ButtonAdd from "../../../../UI/ButtonAdd";
 import ButtonSave from "../../../../UI/ButtonSave";
-import ButtonClose from "../../../../UI/ButtonClose";
-import Button from "../../../../UI/Button";
 import ManageExamForm from "./ManageExamForm";
-import { useRouter } from "next/router";
-import styles from "./ManageExam.module.css";
-import ExamsTable from "./ExamsTable";
 import InfoPanel from "../../../../UI/InfoPanel";
+import LoadingSpinner from "../../../../UI/LoadingSpinner";
 
 function ManageExam() {
-	const router = useRouter();
 	const [info, setInfo] = useState(null);
-	const {
-		examInputState,
-		dispatchExamInputStateAction,
-		allActiveDepartments,
-		allActiveDoctors,
-	} = useContext(ExamContext);
+	const { examInputState, dispatchExamInputStateAction } =
+		useContext(ExamContext);
+	const [isLoading, setIsLoading] = useState(false);
 	// const [actionLoaded, setActionLoaded] = useState(null);
 
 	function setFieldsForNewExamEntry() {
@@ -27,6 +18,7 @@ function ManageExam() {
 	}
 	async function handleSubmitNewExam() {
 		// setActionLoaded(null);
+		setIsLoading(true);
 		const response = await fetch("/api/admin/add-exam", {
 			method: "POST",
 			headers: {
@@ -35,6 +27,7 @@ function ManageExam() {
 			body: JSON.stringify(examInputState),
 		});
 		const data = await response.json();
+		setIsLoading(false);
 		if (response.ok) {
 			setInfo({ type: "ok", text: "Exam Submited" });
 			setTimeout(() => setInfo(null), 3000);
@@ -44,13 +37,17 @@ function ManageExam() {
 		}
 	}
 
-	function buttonCloseClicked() {
-		dispatchExamInputStateAction({ type: "resetAll" });
-	}
+	// function buttonCloseClicked() {
+	// 	dispatchExamInputStateAction({ type: "resetAll" });
+	// }
 	// function manageExamsClicked() {
 	// 	setActionLoaded("manageExams");
 	// 	router.push("/admin/exams-table");
 	// }
+
+	if (isLoading) {
+		return <LoadingSpinner />;
+	}
 	return (
 		<>
 			<ButtonSave onClick={handleSubmitNewExam} />

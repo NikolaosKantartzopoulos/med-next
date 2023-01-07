@@ -5,8 +5,8 @@ import styles from "./CommonPreparationsList.module.css";
 
 function ActivePreparationsList() {
 	const {
-		activeItem,
 		activePreparationsList,
+		preparationsInputs,
 		deleteItem,
 		saveUpdatedItem,
 		setEditItem,
@@ -21,10 +21,10 @@ function ActivePreparationsList() {
 						.map((pr) => (
 							<ResponsiveItem
 								key={pr._id}
-								tier2={pr.title}
-								helperValue={activeItem ? activeItem.title : ""}
+								tier2={pr.id}
+								helperValue={preparationsInputs._id}
 								editItemHandler={(e) => setEditItem(e, pr)}
-								saveItemHandler={saveUpdatedItem}
+								saveItemHandler={(e) => saveUpdatedItem(e, pr)}
 								deleteItemHandler={(e) => deleteItem(e, pr)}
 							>
 								{pr.title}
@@ -40,10 +40,10 @@ function ActivePreparationsList() {
 						.map((pr) => (
 							<ResponsiveItem
 								key={pr._id}
-								tier2={pr.title}
-								helperValue={activeItem ? activeItem.title : ""}
+								tier2={pr._id}
+								helperValue={preparationsInputs._id}
 								editItemHandler={(e) => setEditItem(e, pr)}
-								saveItemHandler={saveUpdatedItem}
+								saveItemHandler={(e) => saveUpdatedItem(e, pr)}
 								deleteItemHandler={(e) => deleteItem(e, pr)}
 							>
 								{pr.title}

@@ -97,6 +97,7 @@ export function EcoContextProvider({
 		setActionLoaded(null);
 		setActiveItem(null);
 		setAllActiveInsurances(newArray);
+		handleSubmit();
 	}
 	function setAddItem() {
 		resetInputs();
@@ -132,6 +133,7 @@ export function EcoContextProvider({
 		dispatchEcoReducerAction({ type: "resetAll" });
 		setActionLoaded(null);
 		setActiveItem(null);
+		handleSubmit();
 	}
 	function deleteItem(e, item) {
 		setAllActiveInsurances([
@@ -139,6 +141,7 @@ export function EcoContextProvider({
 				return ins.title != item.title || ins.department != item.department;
 			}),
 		]);
+		handleSubmit();
 	}
 
 	async function handleSubmit() {

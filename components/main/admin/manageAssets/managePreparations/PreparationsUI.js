@@ -19,7 +19,6 @@ function PreparationsUI() {
 		saveAddItem,
 		saveUpdatedItem,
 		setActionLoaded,
-		setActiveItem,
 		setAddItem,
 		setInfo,
 	} = useContext(PreparationsContext);
