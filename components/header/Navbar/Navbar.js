@@ -6,8 +6,10 @@ import LoginButton from "../../UI/login-btn";
 import LocaleSwitcher from "../../helper/locale-switcher";
 import styles from "./navbar.module.css";
 import LanguageContext from "../../../helper/store/language-context";
+import ToolsContext from "../../../helper/store/tools-context";
 function Navbar() {
 	const { lng } = useContext(LanguageContext);
+	const { theme } = useContext(ToolsContext);
 	const router = useRouter();
 	const currentRoute = router.pathname;
 	return (
@@ -17,6 +19,7 @@ function Navbar() {
 				className={
 					currentRoute === "/users" ? `${styles.activeLink}` : undefined
 				}
+				style={{ color: theme == "dark" ? "white" : null }}
 			>
 				{lng("UsersHome")}
 			</Link>
@@ -27,6 +30,7 @@ function Navbar() {
 						? `${styles.activeLink}`
 						: undefined
 				}
+				style={{ color: theme == "dark" ? "white" : null }}
 			>
 				{lng("BrowseExams")}
 			</Link>
@@ -35,6 +39,7 @@ function Navbar() {
 				className={
 					currentRoute.includes("/admin") ? `${styles.activeLink}` : undefined
 				}
+				style={{ color: theme == "dark" ? "white" : null }}
 			>
 				{lng("ManageAssets")}
 			</Link>

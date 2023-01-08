@@ -4,6 +4,7 @@ import ScheduleTable from "./ScheduleTable";
 import styles from "./ManageExam.module.css";
 import checkStyles from "./BuildingFilters.module.css";
 import LanguageContext from "../../../../../helper/store/language-context";
+import ToolsContext from "../../../../../helper/store/tools-context";
 function ExamBuildingsManagement() {
 	const {
 		examInputState,
@@ -12,6 +13,8 @@ function ExamBuildingsManagement() {
 		allActiveDoctors,
 		allActiveBuildings,
 	} = useContext(ExamContext);
+
+	const { theme } = useContext(ToolsContext);
 	const { lng } = useContext(LanguageContext);
 	const allAddresses = allActiveBuildings.map((addr) => addr.address);
 	const examAddresses = examInputState.buildingsSchedule.map(
@@ -39,7 +42,10 @@ function ExamBuildingsManagement() {
 
 	return (
 		<div>
-			<div className={checkStyles.EcoFilter}>
+			<div
+				className={checkStyles.EcoFilter}
+				style={{ color: theme == "dark" ? "white" : null }}
+			>
 				<h4>{lng("Buildings")}</h4>
 				<div className={checkStyles.checkLine}>
 					{allAddresses.map((ins) => (

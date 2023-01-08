@@ -7,10 +7,12 @@ import PaymentOptions from "./PaymentOptions";
 import styles from "./ManageExam.module.css";
 import checkStyles from "./ManageExamsEco.module.css";
 import LanguageContext from "../../../../../helper/store/language-context";
+import ToolsContext from "../../../../../helper/store/tools-context";
 
 function ManageExamsEco() {
 	const { examInputState, dispatchExamInputStateAction, allActiveEco } =
 		useContext(ExamContext);
+	const { theme } = useContext(ToolsContext);
 	const { lng } = useContext(LanguageContext);
 	const insurancesOfThisDepartment = allActiveEco
 		.filter((i) => i.department === examInputState.department)
@@ -42,7 +44,11 @@ function ManageExamsEco() {
 	}
 
 	return (
-		<section id="ecoSection" className={styles.ecoSection}>
+		<section
+			id="ecoSection"
+			className={styles.ecoSection}
+			style={{ color: theme == "dark" ? "white" : null }}
+		>
 			<div className={checkStyles.EcoFilter}>
 				<h4>{lng("Insurance")}</h4>
 				<div className={checkStyles.checkLine}>

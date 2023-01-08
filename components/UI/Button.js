@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import ToolsContext from "../../helper/store/tools-context";
 
 import styles from "./Button.module.css";
 
 const Button = (props) => {
+	const { theme } = useContext(ToolsContext);
 	return (
 		<button
 			className={styles.myButton}

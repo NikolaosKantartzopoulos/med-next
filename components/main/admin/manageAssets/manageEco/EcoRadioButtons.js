@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import LanguageContext from "../../../../../helper/store/language-context.js";
 import EcoContext from "../../../../../helper/store/eco-context.js";
 import RadioButton from "../../../../UI/RadioButton.js";
-
+import ToolsContext from "../../../../../helper/store/tools-context.js";
 import styles from "./EcoRadioButtons.module.css";
 
 function EcoRadioButtons() {
@@ -15,8 +15,11 @@ function EcoRadioButtons() {
 		actionLoaded,
 		allDepartments,
 	} = useContext(EcoContext);
+
+	const { theme } = useContext(ToolsContext);
+
 	return (
-		<>
+		<div style={{ color: theme == "dark" ? "white" : null }}>
 			{actionLoaded && (
 				<div className={styles.asdf}>
 					{actionLoaded == "addEco" && (
@@ -86,7 +89,7 @@ function EcoRadioButtons() {
 					</div>
 				</div>
 			)}
-		</>
+		</div>
 	);
 }
 

@@ -1,5 +1,9 @@
 .mainSection {
-  min-height: calc(100vh - 5rem);
   max-width: 760px;
   margin: auto;
+}
+
+.layoutSection {
+  position: relative;
+  min-height: 100vh;
 }

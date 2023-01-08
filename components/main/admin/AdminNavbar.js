@@ -4,8 +4,10 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import styles from "./AdminNavbar.module.css";
 import LanguageContext from "../../../helper/store/language-context";
+import ToolsContext from "../../../helper/store/tools-context";
 
 function AdminNavbar() {
+	const { theme } = useContext(ToolsContext);
 	const router = useRouter();
 	const { lng } = useContext(LanguageContext);
 	const currentRoute = router.pathname;
@@ -18,6 +20,7 @@ function AdminNavbar() {
 						? `${styles.activeLink}`
 						: undefined
 				}
+				style={{ color: theme == "dark" ? "white" : null }}
 			>
 				{lng("Buildings")}
 			</Link>
@@ -28,6 +31,7 @@ function AdminNavbar() {
 						? `${styles.activeLink}`
 						: undefined
 				}
+				style={{ color: theme == "dark" ? "white" : null }}
 			>
 				{lng("Departments")}
 			</Link>
@@ -38,6 +42,7 @@ function AdminNavbar() {
 						? `${styles.activeLink}`
 						: undefined
 				}
+				style={{ color: theme == "dark" ? "white" : null }}
 			>
 				{lng("Eco")}
 			</Link>
@@ -49,6 +54,7 @@ function AdminNavbar() {
 						? `${styles.activeLink}`
 						: undefined
 				}
+				style={{ color: theme == "dark" ? "white" : null }}
 			>
 				{lng("Preparations")}
 			</Link>
@@ -59,6 +65,7 @@ function AdminNavbar() {
 						? `${styles.activeLink}`
 						: undefined
 				}
+				style={{ color: theme == "dark" ? "white" : null }}
 			>
 				{lng("Users")}
 			</Link>
@@ -70,6 +77,7 @@ function AdminNavbar() {
 						? `${styles.activeLink}`
 						: undefined
 				}
+				style={{ color: theme == "dark" ? "white" : null }}
 			>
 				{lng("AddExam")}
 			</Link>
@@ -81,6 +89,7 @@ function AdminNavbar() {
 						? `${styles.activeLink}`
 						: undefined
 				}
+				style={{ color: theme == "dark" ? "white" : null }}
 			>
 				{lng("ExamsTable")}
 			</Link>

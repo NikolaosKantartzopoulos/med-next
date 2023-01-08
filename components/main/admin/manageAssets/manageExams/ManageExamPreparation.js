@@ -1,11 +1,13 @@
 import React, { useContext, useState } from "react";
 import ExamContext from "../../../../../helper/store/exam-context";
 import LanguageContext from "../../../../../helper/store/language-context";
+import ToolsContext from "../../../../../helper/store/tools-context";
 
 import Textarea from "../../../../UI/Textarea";
 import styles from "./ManageExam.module.css";
 
 function ManageExamPreparation() {
+	const { theme } = useContext(ToolsContext);
 	const {
 		examInputState,
 		dispatchExamInputStateAction,
@@ -25,7 +27,9 @@ function ManageExamPreparation() {
 	}
 	return (
 		<fieldset id="preparationsSection" className={styles.preparationsSection}>
-			<legend>{lng("Preparations")}</legend>
+			<legend style={{ color: theme == "dark" ? "white" : null }}>
+				{lng("Preparations")}
+			</legend>
 
 			<select onChange={(e) => handleGeneralPrep(e)}>
 				{allActivePreparations

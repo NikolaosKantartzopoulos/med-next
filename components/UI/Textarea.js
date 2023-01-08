@@ -1,4 +1,5 @@
-import React from "react";
+import { useContext } from "react";
+import ToolsContext from "../../helper/store/tools-context";
 
 import styles from "./Textarea.module.css";
 
@@ -12,11 +13,16 @@ function Textarea({
 	children,
 	customStyles,
 }) {
+	const { theme } = useContext(ToolsContext);
 	return (
 		<>
 			{label && (
 				<div style={customStyles} className={styles.labelAndTextarea}>
-					<label className={styles.TextareaLabel} htmlFor={id}>
+					<label
+						className={styles.TextareaLabel}
+						htmlFor={id}
+						style={{ color: theme == "dark" ? "white" : null }}
+					>
 						{label}
 					</label>
 					<textarea

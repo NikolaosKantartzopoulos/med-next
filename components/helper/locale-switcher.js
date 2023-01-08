@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useContext } from "react";
+import ToolsContext from "../../helper/store/tools-context";
 
 export default function LocaleSwitcher() {
+	const { theme } = useContext(ToolsContext);
 	const { locales, locale, pathname, query, asPath } = useRouter();
 	const otherLocales = locales.filter((l) => l !== locale); // Find all the locales apart from the current locale.
 
@@ -14,6 +17,9 @@ export default function LocaleSwitcher() {
 						href={{ pathname, query }}
 						as={asPath}
 						locale={locale}
+						style={{
+							color: theme == "dark" ? "white" : null,
+						}}
 					>
 						{locale}
 					</Link>

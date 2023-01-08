@@ -1,11 +1,16 @@
-import React from "react";
-
+import { useContext } from "react";
+import ToolsContext from "../../helper/store/tools-context";
 import styles from "./Input.module.css";
 
 function Input({ id, label, value, onChange, customStyle }) {
+	const { theme } = useContext(ToolsContext);
 	return (
 		<div className={styles.inputDiv} style={customStyle}>
-			<label className={styles.myLabel} htmlFor={id}>
+			<label
+				className={styles.myLabel}
+				htmlFor={id}
+				style={{ color: theme == "dark" ? "white" : null }}
+			>
 				{label}
 			</label>
 			<input

@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import tableStyles from "./ScheduleTable.module.css";
 import TableInput from "../../../../UI/TableInput";
 import TinyInput from "../../../../UI/TinyInput";
 import saveIcon from "../../../../../public/images/save.svg";
 
 import Image from "next/image";
+import ToolsContext from "../../../../../helper/store/tools-context";
 
 function ScheduleTable({ building, dispatchExamInputStateAction }) {
 	const [activeDays, setActiveDays] = useState(building.schedule);
 	const [fillFrom, setFillFrom] = useState("");
+	const { theme } = useContext(ToolsContext);
+
 	function handleSave() {
 		dispatchExamInputStateAction({
 			type: "fillBuildingSchedule",
@@ -28,7 +31,10 @@ function ScheduleTable({ building, dispatchExamInputStateAction }) {
 
 	return (
 		<table className={tableStyles.table}>
-			<thead className={tableStyles.tableHead}>
+			<thead
+				className={tableStyles.tableHead}
+				style={{ color: theme == "dark" ? "white" : null }}
+			>
 				<tr>
 					<th colSpan={2}>{building.buildingName}</th>
 				</tr>

@@ -3,6 +3,7 @@ import EcoContext from "../../../../../helper/store/eco-context";
 import styles from "./EcoFilters.module.css";
 import _ from "lodash";
 import LanguageContext from "../../../../../helper/store/language-context";
+import ToolsContext from "../../../../../helper/store/tools-context";
 function EcoFilters() {
 	const {
 		allActiveInsurances,
@@ -13,6 +14,7 @@ function EcoFilters() {
 		setCheckedDepartments,
 	} = useContext(EcoContext);
 	const { lng } = useContext(LanguageContext);
+	const { theme } = useContext(ToolsContext);
 	const uniqueDeps = _.uniq(allActiveInsurances.map((ins) => ins.department));
 	const uniqueInsurances = _.uniq(allActiveInsurances.map((ins) => ins.title));
 	const [depShown, setDepShown] = useState(uniqueDeps);
@@ -36,7 +38,10 @@ function EcoFilters() {
 	}
 
 	return (
-		<section className={styles.EcoFiltersSection}>
+		<section
+			className={styles.EcoFiltersSection}
+			style={{ color: theme == "dark" ? "white" : null }}
+		>
 			<div className={styles.EcoFilter}>
 				<h4>{lng("Insurance")}</h4>
 				<div className={styles.checkLine}>

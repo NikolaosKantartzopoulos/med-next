@@ -1,11 +1,12 @@
-import React from "react";
-
+import React, { useContext } from "react";
+import LanguageContext from "../../../../../helper/store/language-context";
 import Input from "../../../../UI/Input";
 import RadioButton from "../../../../UI/RadioButton";
 
 import styles from "./CommonPreparationsList.module.css";
 
 function TitleAndRadio({ preparationsInputs, dispatchPreparationsAction }) {
+	const { lng } = useContext(LanguageContext);
 	return (
 		<div className={styles.titleAndRadio}>
 			<Input

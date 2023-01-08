@@ -23,7 +23,7 @@ export default function Layout({ children }) {
 		}
 	}, [toolsCtx.theme]);
 	return (
-		<div className={styles.mainSection}>
+		<div className={styles.layoutSection}>
 			<Navbar />
 			{/* <Transition location={router.pathname}> */}
 			<main className={styles.mainSection}>{children}</main>
