@@ -4,7 +4,7 @@ import { connectDatabase } from "../../../helper/database/db";
 
 export const authOptions = {
 	theme: {
-		colorScheme: "light",
+		colorScheme: "auto",
 	},
 	session: {
 		//make sure that json web token is created

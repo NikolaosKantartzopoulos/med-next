@@ -45,7 +45,13 @@ export function DepartmentContextProvider({ allDepartments, children }) {
 		]);
 		setDepartmentName("");
 		setNewDepartmentInput("");
-		handlePostRequest();
+		handlePostRequest([
+			...activeDepartments,
+			{
+				department: newDepartmentInput,
+				sub: [],
+			},
+		]);
 	}
 	function editDepartmentNameHandler(e, currentName) {
 		setEditItemVisible("editDepartment");
@@ -89,14 +95,14 @@ export function DepartmentContextProvider({ allDepartments, children }) {
 		setSubdepartmentNameBeforeEdit(null);
 		setDepartmentName("");
 		setNewDepartmentInput("");
-		handlePostRequest();
+		handlePostRequest(toSet);
 	}
 	function deleteDepartmentHandler(e, toBeDeleted) {
 		const filteredArray = activeDepartments.filter(
 			(entry) => entry.department !== toBeDeleted
 		);
 		setActiveDepartments([...filteredArray]);
-		handlePostRequest();
+		handlePostRequest([...filteredArray]);
 	}
 
 	// SUBDEPARTMENTS MANAGEMENT
@@ -116,7 +122,6 @@ export function DepartmentContextProvider({ allDepartments, children }) {
 
 			setEditItemVisible(null);
 			setSwitchIcons("showEdit");
-			handlePostRequest();
 			return;
 		}
 		const departmentToChange = activeDepartments.find(
@@ -149,7 +154,7 @@ export function DepartmentContextProvider({ allDepartments, children }) {
 		setActiveDepartments(toSet);
 		setEditItemVisible(null);
 		setSwitchIcons("showEdit");
-		handlePostRequest();
+		handlePostRequest(newArray);
 	}
 	function editSubHandler(e, departmentNameValue, subdepartmentNameValue) {
 		setEditItemVisible("editSubdepartment");
@@ -193,7 +198,7 @@ export function DepartmentContextProvider({ allDepartments, children }) {
 		setActiveDepartments(toSet);
 		setEditItemVisible(null);
 		setSubdepartmentNameBeforeEdit(null);
-		handlePostRequest();
+		handlePostRequest(toSet);
 	}
 	function deleteSubHandler(e, departmentNameValue, subdepartmentNameValue) {
 		const departmentToChange = activeDepartments.find(
@@ -219,11 +224,12 @@ export function DepartmentContextProvider({ allDepartments, children }) {
 		);
 
 		setActiveDepartments(toSet);
-		handlePostRequest();
+		handlePostRequest(toSet);
 	}
 	//POST
-	async function handlePostRequest() {
-		let toPut = { activeDepartments: activeDepartments };
+	async function handlePostRequest(these) {
+		let toPut = { activeDepartments: these };
+		console.log(these);
 		setIsLoading(true);
 		const result = await fetch("/api/admin/manage-departments", {
 			method: "PUT",

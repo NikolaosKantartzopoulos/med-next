@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import DepartmentContext from "../../../../../helper/store/department-context.js";
 
 import Image from "next/image.js";
@@ -9,7 +9,7 @@ import addIcon from "../../../../../public/images/plus.svg";
 import editIcon from "../../../../../public/images/edit.svg";
 import deleteIcon from "../../../../../public/images/delete.svg";
 import saveIcon from "../../../../../public/images/save.svg";
-import styles from "./ListExistingDepartments.module.css";
+import styles from "./ManageDepartments.module.css";
 
 function DepBoard() {
 	const {
@@ -33,6 +33,7 @@ function DepBoard() {
 		subdepartmentNameBeforeEdit,
 		switchIcons,
 	} = useContext(DepartmentContext);
+
 	return (
 		<div className={styles.arrayComponent}>
 			{activeDepartments.map((dep) => (

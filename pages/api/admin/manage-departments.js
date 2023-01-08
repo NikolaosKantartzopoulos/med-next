@@ -13,10 +13,11 @@ export default async function handler(req, res) {
 			// 	res.status(406).json({ message: "Invalid Input" });
 			// 	return;
 			// }
-			let query = { department: { $exists: true } };
-			const result = await db.collection("assets").deleteMany(query);
+			const result = await db.collection("departments").deleteMany({});
 
-			const sent = await db.collection("assets").insertMany(newDepartments);
+			const sent = await db
+				.collection("departments")
+				.insertMany(newDepartments);
 
 			res.status(200).json({ message: "message", added: newDepartments });
 		} finally {

@@ -24,11 +24,9 @@ export default ManageDepartmentsRoute;
 
 export async function getServerSideProps() {
 	const [client, db] = await connectDatabase();
-	const data = await db
-		.collection("assets")
-		.find({ department: { $exists: true } })
-		.project({ _id: 0 })
-		.toArray();
+	const dataID = await db.collection("departments").find().toArray();
+
+	const data = dataID.map((a) => ({ ...a, _id: a._id.toString() }));
 	client.close();
 	return { props: { allDepartments: data } };
 }

@@ -7,11 +7,19 @@ import LocaleSwitcher from "../../helper/locale-switcher";
 import styles from "./navbar.module.css";
 import LanguageContext from "../../../helper/store/language-context";
 import ToolsContext from "../../../helper/store/tools-context";
+import { useSession } from "next-auth/react";
 function Navbar() {
+	const { data: session, status } = useSession();
+
 	const { lng } = useContext(LanguageContext);
 	const { theme } = useContext(ToolsContext);
 	const router = useRouter();
 	const currentRoute = router.pathname;
+
+	if (status === "loading") {
+		return <p>Loading...</p>;
+	}
+
 	return (
 		<div className={styles.navbarSection}>
 			<div className={styles.leftNavbarPart}>
@@ -35,15 +43,19 @@ function Navbar() {
 				>
 					{lng("BrowseExams")}
 				</Link>
-				<Link
-					href={"/admin/manage-assets"}
-					className={
-						currentRoute.includes("/admin") ? `${styles.activeLink}` : undefined
-					}
-					style={{ color: theme == "dark" ? "white" : null }}
-				>
-					{lng("ManageAssets")}
-				</Link>
+				{status === "authenticated" && (
+					<Link
+						href={"/admin/manage-assets"}
+						className={
+							currentRoute.includes("/admin")
+								? `${styles.activeLink}`
+								: undefined
+						}
+						style={{ color: theme == "dark" ? "white" : null }}
+					>
+						{lng("ManageAssets")}
+					</Link>
+				)}
 			</div>
 			<div className={styles.navbarRightPart}>
 				<LocaleSwitcher />
