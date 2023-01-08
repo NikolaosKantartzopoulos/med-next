@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import tableStyles from "./ManageUsersTable.module.css";
+import tableStyles from "./ManageExamsTable.module.css";
 import editIcon from "../../../../../public/images/edit.svg";
 import deleteIcon from "../../../../../public/images/delete.svg";
 

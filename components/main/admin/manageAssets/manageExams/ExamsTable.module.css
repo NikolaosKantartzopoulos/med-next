@@ -68,3 +68,20 @@
   transition: all 0.05s;
   scale: 1.3;
 }
+
+@media screen and (max-width: 500px) {
+
+
+  .tableBody td:nth-child(4),
+  .tableBody td:nth-child(5) {
+    display: none;
+
+  }
+
+
+  .tableHead th:nth-child(4),
+  .tableHead th:nth-child(5) {
+    display: none;
+  }
+
+}
