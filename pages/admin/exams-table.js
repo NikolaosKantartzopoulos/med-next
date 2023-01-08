@@ -33,8 +33,8 @@ export async function getServerSideProps() {
 		_id: `${exam._id}`,
 	}));
 	const data = await db
-		.collection("assets")
-		.find({ department: { $exists: true } })
+		.collection("departments")
+		.find({})
 		.project({ _id: 0 })
 		.toArray();
 	client.close();

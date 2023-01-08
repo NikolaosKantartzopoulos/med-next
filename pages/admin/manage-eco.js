@@ -41,12 +41,12 @@ export async function getServerSideProps() {
 		_id: `${doc._id}`,
 	}));
 	const distinctDepartments = await db
-		.collection("assets")
+		.collection("departments")
 		.distinct("department", { sub: { $exists: true } });
 
 	const allDepartmentsArray = await db
-		.collection("assets")
-		.find({ sub: { $exists: true } })
+		.collection("departments")
+		.find({})
 		.toArray();
 
 	const allDepartments = allDepartmentsArray.map((dep) => ({

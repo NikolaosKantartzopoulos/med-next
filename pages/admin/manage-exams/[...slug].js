@@ -4,11 +4,7 @@ import ManageExamForm from "../../../components/main/admin/manageAssets/manageEx
 import AdminNavbar from "../../../components/main/admin/AdminNavbar";
 import LoadingSpinner from "../../../components/UI/LoadingSpinner";
 import { ExamContextProvider } from "../../../helper/store/exam-context";
-import {
-	connectDatabase,
-	getDocumentsWithValue,
-} from "../../../helper/database/db";
-import Button from "../../../components/UI/Button";
+import { connectDatabase } from "../../../helper/database/db";
 function ManageLoadedExam({
 	allActiveDepartments,
 	allActiveDoctors,
@@ -62,11 +58,10 @@ export default ManageLoadedExam;
 export async function getServerSideProps() {
 	const [client, db] = await connectDatabase();
 
-	const allActiveDepartmentsArray = await getDocumentsWithValue(
-		db,
-		"assets",
-		"department"
-	);
+	const allActiveDepartmentsArray = await db
+		.collection("departments")
+		.find({})
+		.toArray();
 	const allActiveDepartments = allActiveDepartmentsArray.map((a) => ({
 		...a,
 		_id: `${a._id}`,

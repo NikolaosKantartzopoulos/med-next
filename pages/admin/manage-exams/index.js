@@ -1,10 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import ManageExam from "../../../components/main/admin/manageAssets/manageExams/ManageExam";
 import AdminNavbar from "../../../components/main/admin/AdminNavbar";
-import {
-	connectDatabase,
-	getDocumentsWithValue,
-} from "../../../helper/database/db";
+import { connectDatabase } from "../../../helper/database/db";
 import { ExamContextProvider } from "../../../helper/store/exam-context";
 import LoadingSpinner from "../../../components/UI/LoadingSpinner";
 
@@ -35,11 +32,10 @@ export default ManageExamsRoute;
 export async function getServerSideProps() {
 	const [client, db] = await connectDatabase();
 
-	const allActiveDepartmentsArray = await getDocumentsWithValue(
-		db,
-		"assets",
-		"department"
-	);
+	const allActiveDepartmentsArray = await db
+		.collection("departments")
+		.find({})
+		.toArray();
 	const allActiveDepartments = allActiveDepartmentsArray.map((a) => ({
 		...a,
 		_id: `${a._id}`,

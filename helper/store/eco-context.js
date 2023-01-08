@@ -97,7 +97,7 @@ export function EcoContextProvider({
 		setActionLoaded(null);
 		setActiveItem(null);
 		setAllActiveInsurances(newArray);
-		handleSubmit();
+		handleSubmit([...filteredArray, inputsState]);
 	}
 	function setAddItem() {
 		resetInputs();
@@ -133,7 +133,10 @@ export function EcoContextProvider({
 		dispatchEcoReducerAction({ type: "resetAll" });
 		setActionLoaded(null);
 		setActiveItem(null);
-		handleSubmit();
+		handleSubmit([
+			...allActiveInsurances,
+			{ ...inputsState, _id: uuid(), eco: "departmentWide" },
+		]);
 	}
 	function deleteItem(e, item) {
 		setAllActiveInsurances([
@@ -141,14 +144,18 @@ export function EcoContextProvider({
 				return ins.title != item.title || ins.department != item.department;
 			}),
 		]);
-		handleSubmit();
+		handleSubmit([
+			...allActiveInsurances.filter((ins) => {
+				return ins.title != item.title || ins.department != item.department;
+			}),
+		]);
 	}
 
-	async function handleSubmit() {
+	async function handleSubmit(these) {
 		setIsLoading(true);
 		const response = await fetch("/api/admin/manage-eco", {
 			method: "POST",
-			body: JSON.stringify(allActiveInsurances),
+			body: JSON.stringify(these),
 			headers: {
 				"Content-Type": "application/json",
 			},
