@@ -5,14 +5,13 @@ import Button from "../../components/UI/Button";
 function ManageAssets() {
 	async function handleClick() {
 		const response = await fetch("/api/files/file");
-		const data = await response.blob();
-		console.log(data);
-		console.log(data.toString());
-		// var link = document.createElement("a"); // once we have the file buffer BLOB from the post request we simply need to send a GET request to retrieve the file data
-		// link.href = window.URL.createObjectURL(fileBlob);
-		// link.download = objFileState.strFileName;
-		// link.click();
-		// link.remove();
+		const blob = await response.blob();
+
+		var link = document.createElement("a");
+		link.href = window.URL.createObjectURL(blob);
+		link.setAttribute("download", `FileName.pdf`);
+		link.click();
+		link.remove();
 	}
 
 	return (

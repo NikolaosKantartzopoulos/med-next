@@ -21,7 +21,7 @@ export default function LocaleSwitcher() {
 							color: theme == "dark" ? "white" : null,
 						}}
 					>
-						{locale}
+						<span style={{ position: "relative", top: 2 }}>{locale}</span>
 					</Link>
 				);
 			})}
