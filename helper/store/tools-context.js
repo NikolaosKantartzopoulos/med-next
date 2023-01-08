@@ -13,12 +13,10 @@ export function ToolsContextProvider(props) {
 	function enableLightTheme() {
 		localStorage.setItem("theme", "light");
 		setTheme("light");
-		console.log("Light theme enabled");
 	}
 	function enableDarkTheme() {
 		localStorage.setItem("theme", "dark");
 		setTheme("dark");
-		console.log("Dark theme enabled");
 	}
 	const toolsContext = { theme, setTheme, enableLightTheme, enableDarkTheme };
 	return (

@@ -3,7 +3,6 @@ import { connectDatabase } from "../../../helper/database/db";
 export default async function handler(req, res) {
 	if (req.method === "POST") {
 		const [client, db] = await connectDatabase();
-		console.log(req.body.entry);
 		const downloaded = req.body.entry;
 
 		const a1 = await db.collection("preparations").deleteMany();

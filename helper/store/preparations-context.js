@@ -69,9 +69,7 @@ export function PreparationsContextProvider({ allPreparations, children }) {
 		const filteredArray = activePreparationsList.filter(
 			(a) => a._id != preparationsInputs._id
 		);
-		console.log(filteredArray);
-		console.log(preparationsInputs);
-		console.log([...filteredArray, preparationsInputs]);
+
 		setActivePreparationsList([...filteredArray, preparationsInputs]);
 		await handlePost([...filteredArray, preparationsInputs]);
 		setActionLoaded(null);

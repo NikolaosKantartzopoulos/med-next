@@ -14,35 +14,37 @@ function Navbar() {
 	const currentRoute = router.pathname;
 	return (
 		<div className={styles.navbarSection}>
-			<Link
-				href={"/users"}
-				className={
-					currentRoute === "/users" ? `${styles.activeLink}` : undefined
-				}
-				style={{ color: theme == "dark" ? "white" : null }}
-			>
-				{lng("UsersHome")}
-			</Link>
-			<Link
-				href={"/users/browse-exams"}
-				className={
-					currentRoute === "/users/browse-exams"
-						? `${styles.activeLink}`
-						: undefined
-				}
-				style={{ color: theme == "dark" ? "white" : null }}
-			>
-				{lng("BrowseExams")}
-			</Link>
-			<Link
-				href={"/admin/manage-assets"}
-				className={
-					currentRoute.includes("/admin") ? `${styles.activeLink}` : undefined
-				}
-				style={{ color: theme == "dark" ? "white" : null }}
-			>
-				{lng("ManageAssets")}
-			</Link>
+			<div className={styles.leftNavbarPart}>
+				<Link
+					href={"/users"}
+					className={
+						currentRoute === "/users" ? `${styles.activeLink}` : undefined
+					}
+					style={{ color: theme == "dark" ? "white" : null }}
+				>
+					{lng("UsersHome")}
+				</Link>
+				<Link
+					href={"/users/browse-exams"}
+					className={
+						currentRoute === "/users/browse-exams"
+							? `${styles.activeLink}`
+							: undefined
+					}
+					style={{ color: theme == "dark" ? "white" : null }}
+				>
+					{lng("BrowseExams")}
+				</Link>
+				<Link
+					href={"/admin/manage-assets"}
+					className={
+						currentRoute.includes("/admin") ? `${styles.activeLink}` : undefined
+					}
+					style={{ color: theme == "dark" ? "white" : null }}
+				>
+					{lng("ManageAssets")}
+				</Link>
+			</div>
 			<div className={styles.navbarRightPart}>
 				<LocaleSwitcher />
 				<ThemeSwitch />
