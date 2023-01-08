@@ -1,21 +1,21 @@
 import React, { useContext } from "react";
 import { useRouter } from "next/router";
-import Image from "next/image";
 import tableStyles from "./ExamsTable.module.css";
 import LoadingSpinner from "../../../UI/LoadingSpinner";
+import LanguageContext from "../../../../helper/store/language-context";
 
 function ExamsTable({ allActiveExams }) {
 	const router = useRouter();
-
+	const { lng } = useContext(LanguageContext);
 	return (
 		<>
 			{allActiveExams ? (
 				<table className={tableStyles.table}>
 					<thead className={tableStyles.tableHead}>
 						<tr>
-							<th>Department</th>
-							<th>Subd.</th>
-							<th>Name</th>
+							<th>{lng("Department")}</th>
+							<th>{lng("Subdepartment")}</th>
+							<th>{lng("Name")}</th>
 							{/* <th colSpan="2">Actions</th> */}
 						</tr>
 					</thead>

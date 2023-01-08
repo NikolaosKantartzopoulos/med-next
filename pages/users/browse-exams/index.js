@@ -16,8 +16,8 @@ export async function getStaticProps() {
 	const allExams = allExamsArray.map((a) => ({ ...a, _id: `${a._id}` }));
 
 	const allDepartmentsArray = await db
-		.collection("assets")
-		.find({ sub: { $exists: true } })
+		.collection("departments")
+		.find({})
 		.toArray();
 	const allDepartments = allDepartmentsArray.map((a) => ({
 		...a,

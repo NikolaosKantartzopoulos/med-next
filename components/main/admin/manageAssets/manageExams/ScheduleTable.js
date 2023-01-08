@@ -6,6 +6,7 @@ import saveIcon from "../../../../../public/images/save.svg";
 
 import Image from "next/image";
 import ToolsContext from "../../../../../helper/store/tools-context";
+import LanguageContext from "../../../../../helper/store/language-context";
 
 function ScheduleTable({ building, dispatchExamInputStateAction }) {
 	const [activeDays, setActiveDays] = useState(building.schedule);
@@ -28,7 +29,7 @@ function ScheduleTable({ building, dispatchExamInputStateAction }) {
 			{ day: "Sunday", value: "" },
 		]);
 	}
-
+	const { lng } = useContext(LanguageContext);
 	return (
 		<table className={tableStyles.table}>
 			<thead
@@ -39,7 +40,7 @@ function ScheduleTable({ building, dispatchExamInputStateAction }) {
 					<th colSpan={2}>{building.buildingName}</th>
 				</tr>
 				<tr>
-					<th>Fill from</th>
+					<th>{lng("FillFrom")}</th>
 					<th className={tableStyles.fillTable}>
 						<TinyInput
 							value={fillFrom}

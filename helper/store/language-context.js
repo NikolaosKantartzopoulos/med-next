@@ -11,6 +11,10 @@ export function LanguageContextProvider({ locale, children }) {
 			"el-GR": "Γειά",
 			"en-US": "Hello",
 		},
+		FillFrom: {
+			"el-GR": "Γέμισε",
+			"en-US": "Fill From",
+		},
 		Details: {
 			"el-GR": "Λεπτομέρειες",
 			"en-US": "Details",

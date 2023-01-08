@@ -89,7 +89,10 @@ function AdminNavbar() {
 						? `${styles.activeLink}`
 						: undefined
 				}
-				style={{ color: theme == "dark" ? "white" : null }}
+				style={{
+					color: theme == "dark" ? "white" : null,
+					gridColumn: "span 2",
+				}}
 			>
 				{lng("ExamsTable")}
 			</Link>
