@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import ExamContext from "../../../../../helper/store/exam-context";
+import LanguageContext from "../../../../../helper/store/language-context";
 
 import Textarea from "../../../../UI/Textarea";
-import Select from "../../../../UI/Select.js";
 import styles from "./ManageExam.module.css";
 
 function ManageExamPreparation() {
@@ -11,7 +11,7 @@ function ManageExamPreparation() {
 		dispatchExamInputStateAction,
 		allActivePreparations,
 	} = useContext(ExamContext);
-
+	const { lng } = useContext(LanguageContext);
 	const [activeGeneralPrep, setActiveGeneralPrep] = useState(
 		allActivePreparations[0].title
 	);
@@ -25,20 +25,8 @@ function ManageExamPreparation() {
 	}
 	return (
 		<fieldset id="preparationsSection" className={styles.preparationsSection}>
-			<legend>Preparations</legend>
-			{/* <Textarea
-				id="generalPreparation"
-				label="General"
-				value={examInputState.generalPreparation}
-				onChange={(e) =>
-					dispatchExamInputStateAction({
-						type: "setGeneralPreparation",
-						newGeneralPreparation: e.target.value,
-					})
-				}
-				rows={5}
-				cols={200}
-			/> */}
+			<legend>{lng("Preparations")}</legend>
+
 			<select onChange={(e) => handleGeneralPrep(e)}>
 				{allActivePreparations
 					.sort((a, b) => (a.title > b.title ? 1 : -1))
@@ -50,7 +38,7 @@ function ManageExamPreparation() {
 			</select>
 			<Textarea
 				id="generalPreparation"
-				label="General"
+				label={lng("General")}
 				value={
 					allActivePreparations.find((prep) => prep.title === activeGeneralPrep)
 						.details
@@ -62,7 +50,7 @@ function ManageExamPreparation() {
 
 			<Textarea
 				id="uniquePreparation"
-				label="Unique"
+				label={lng("Unique")}
 				value={examInputState.uniquePreparation}
 				onChange={(e) =>
 					dispatchExamInputStateAction({

@@ -36,7 +36,7 @@ function TitleAndRadio({ preparationsInputs, dispatchPreparationsAction }) {
 				/>
 				<RadioButton
 					name="preparationCategory"
-					label="Unique"
+					label={lng("Unique")}
 					value={false}
 					checked={preparationsInputs.common == false}
 				/>

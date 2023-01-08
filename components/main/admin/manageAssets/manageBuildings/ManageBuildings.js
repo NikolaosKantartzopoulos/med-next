@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useRouter } from "next/router";
 
+import LanguageContext from "../../../../../helper/store/language-context";
 import ListExistingBuildings from "./ListExistingBuildings";
 
 import SingleInputForm from "../../../../../components/UI/SingleInputForm";
@@ -9,6 +10,7 @@ import LoadingSpinner from "../../../../../components/UI/LoadingSpinner.js";
 
 function ManageBuildings({ allBuildings }) {
 	const router = useRouter();
+	const { lng } = useContext(LanguageContext);
 	const [activeBuildings, setActiveBuildings] = useState(allBuildings);
 	const [newBuilding, setNewBuilding] = useState("");
 	const [info, setInfo] = useState(null);
@@ -69,7 +71,8 @@ function ManageBuildings({ allBuildings }) {
 				<>
 					<SingleInputForm
 						id="buildingsInput"
-						label="Add"
+						label={lng("Add")}
+						buttonText={lng("Add")}
 						onSubmit={(e) => addNewBuildingHandler(e)}
 						value={newBuilding}
 						onChange={(e) => {

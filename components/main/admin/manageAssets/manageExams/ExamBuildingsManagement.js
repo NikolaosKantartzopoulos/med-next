@@ -1,10 +1,9 @@
 import React, { useContext, useState } from "react";
 import ExamContext from "../../../../../helper/store/exam-context";
 import ScheduleTable from "./ScheduleTable";
-import Button from "../../../../UI/Button";
 import styles from "./ManageExam.module.css";
 import checkStyles from "./BuildingFilters.module.css";
-
+import LanguageContext from "../../../../../helper/store/language-context";
 function ExamBuildingsManagement() {
 	const {
 		examInputState,
@@ -13,6 +12,7 @@ function ExamBuildingsManagement() {
 		allActiveDoctors,
 		allActiveBuildings,
 	} = useContext(ExamContext);
+	const { lng } = useContext(LanguageContext);
 	const allAddresses = allActiveBuildings.map((addr) => addr.address);
 	const examAddresses = examInputState.buildingsSchedule.map(
 		(b) => b.buildingName
@@ -40,7 +40,7 @@ function ExamBuildingsManagement() {
 	return (
 		<div>
 			<div className={checkStyles.EcoFilter}>
-				<h4>Buildings</h4>
+				<h4>{lng("Buildings")}</h4>
 				<div className={checkStyles.checkLine}>
 					{allAddresses.map((ins) => (
 						<div className={checkStyles.setInputLabel} key={ins}>

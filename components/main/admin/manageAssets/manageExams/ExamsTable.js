@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import tableStyles from "./ExamsTable.module.css";
@@ -6,10 +6,11 @@ import editIcon from "../../../../../public/images/edit.svg";
 import deleteIcon from "../../../../../public/images/delete.svg";
 import LoadingSpinner from "../../../../UI/LoadingSpinner";
 import InfoPanel from "../../../../UI/InfoPanel";
+import LanguageContext from "../../../../../helper/store/language-context";
 
 function ExamsTable({ allActiveExams }) {
 	const router = useRouter();
-
+	const { lng } = useContext(LanguageContext);
 	const [info, setInfo] = useState(null);
 
 	function setEditItem(e, item) {
@@ -46,10 +47,10 @@ function ExamsTable({ allActiveExams }) {
 				<table className={tableStyles.table}>
 					<thead className={tableStyles.tableHead}>
 						<tr>
-							<th>Name</th>
-							<th>Department</th>
-							<th>Subd.</th>
-							<th colSpan="2">Actions</th>
+							<th>{lng("Name")}</th>
+							<th>{lng("Department")}</th>
+							<th>{lng("Subdepartment")}</th>
+							<th colSpan="2">{lng("Actions")}</th>
 						</tr>
 					</thead>
 					<tbody className={tableStyles.tableBody}>

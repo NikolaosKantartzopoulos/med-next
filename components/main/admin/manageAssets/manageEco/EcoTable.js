@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-
+import LanguageContext from "../../../../../helper/store/language-context.js";
 import EcoContext from "../../../../../helper/store/eco-context.js";
 
 import Image from "next/image";
@@ -8,6 +8,7 @@ import editIcon from "../../../../../public/images/edit.svg";
 import deleteIcon from "../../../../../public/images/delete.svg";
 
 function EcoTable() {
+	const { lng } = useContext(LanguageContext);
 	const {
 		setEditItem,
 		deleteItem,
@@ -19,11 +20,11 @@ function EcoTable() {
 		<table className={tableStyles.table}>
 			<thead className={tableStyles.tableHead}>
 				<tr>
-					<th>Insurance</th>
-					<th>Department</th>
-					<th>Subd.</th>
-					<th>Cost</th>
-					<th colSpan="2">Actions</th>
+					<th>{lng("Insurance")}</th>
+					<th>{lng("Department")}</th>
+					<th>{lng("Subdepartment")}</th>
+					<th>{lng("Cost")}</th>
+					<th colSpan="2">{lng("Actions")}</th>
 				</tr>
 			</thead>
 			<tbody className={tableStyles.tableBody}>

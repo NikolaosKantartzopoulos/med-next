@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import LanguageContext from "../../../../../helper/store/language-context";
 import DepartmentContext from "../../../../../helper/store/department-context.js";
 import Button from "../../../../UI/Button.js";
 import SingleInputForm from "../../../../UI/SingleInputForm";
@@ -9,6 +10,7 @@ import LoadingSpinner from "../../../../UI/LoadingSpinner";
 import styles from "./ListExistingDepartments.module.css";
 
 function ListExistingDepartments() {
+	const { lng } = useContext(LanguageContext);
 	const {
 		addNewDepartmentHandler,
 		editItemVisible,
@@ -28,11 +30,11 @@ function ListExistingDepartments() {
 				{!editItemVisible && (
 					<SingleInputForm
 						id="addNewDepartment"
-						label="Add"
+						label={lng("Add")}
+						buttonText={lng("Add")}
 						onSubmit={(e) => addNewDepartmentHandler(e)}
 						value={newDepartmentInput}
 						onChange={(e) => setNewDepartmentInput(e.target.value)}
-						buttonText="Add"
 					/>
 				)}
 			</div>

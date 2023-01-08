@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 
 import closeIcon from "../../public/images/close.svg";
+import LanguageContext from "../../helper/store/language-context";
 
 import styles from "./ButtonClose.module.css";
 
 const ButtonClose = (props) => {
+	const { lng } = useContext(LanguageContext);
 	return (
 		<button
 			className={styles.myButton}
@@ -18,7 +20,7 @@ const ButtonClose = (props) => {
 				alt="close"
 				style={{ position: "relative", left: "8px" }}
 			/>
-			Close
+			{lng("Close")}
 		</button>
 	);
 };

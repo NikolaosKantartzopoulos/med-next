@@ -10,14 +10,11 @@ function ManageExam() {
 	const { examInputState, dispatchExamInputStateAction } =
 		useContext(ExamContext);
 	const [isLoading, setIsLoading] = useState(false);
-	// const [actionLoaded, setActionLoaded] = useState(null);
 
 	function setFieldsForNewExamEntry() {
-		// setActionLoaded("addNewExam");
 		dispatchExamInputStateAction({ type: "resetAll" });
 	}
 	async function handleSubmitNewExam() {
-		// setActionLoaded(null);
 		setIsLoading(true);
 		const response = await fetch("/api/admin/add-exam", {
 			method: "POST",
@@ -37,14 +34,6 @@ function ManageExam() {
 		}
 	}
 
-	// function buttonCloseClicked() {
-	// 	dispatchExamInputStateAction({ type: "resetAll" });
-	// }
-	// function manageExamsClicked() {
-	// 	setActionLoaded("manageExams");
-	// 	router.push("/admin/exams-table");
-	// }
-
 	if (isLoading) {
 		return <LoadingSpinner />;
 	}
@@ -53,16 +42,6 @@ function ManageExam() {
 			<ButtonSave onClick={handleSubmitNewExam} />
 			{info && <InfoPanel info={info} />}
 			<ManageExamForm />
-			{/* <div className={styles.ExamsUI}>
-				{!actionLoaded && <ButtonAdd onClick={setFieldsForNewExamEntry} />}
-				{actionLoaded && <ButtonSave onClick={handleSubmitNewExam} />}
-				{actionLoaded && <ButtonClose onClick={buttonCloseClicked} />}
-				<Button onClick={manageExamsClicked}>Manage</Button>
-			</div>
-			{(actionLoaded === "addNewExam" || actionLoaded === "editExam") && (
-				<ManageExamForm />
-			)}
-			{actionLoaded == "manageExams" && <ExamsTable />} */}{" "}
 		</>
 	);
 }

@@ -3,13 +3,15 @@ import EcoContext from "../../../../../helper/store/eco-context.js";
 import ButtonClose from "../../../../UI/ButtonClose";
 import Button from "../../../../UI/Button";
 import Image from "next/image";
+import LanguageContext from "../../../../../helper/store/language-context.js";
 
 import addIcon from "../../../../../public/images/plus.svg";
 import saveIcon from "../../../../../public/images/save.svg";
-
+import { useRouter } from "next/router.js";
 import styles from "./ManageEcoUI.module.css";
 
 function ManageEcoUI() {
+	const { lng } = useContext(LanguageContext);
 	const {
 		saveEditedItem,
 		setAddItem,
@@ -20,6 +22,7 @@ function ManageEcoUI() {
 		setActiveItem,
 		setInfo,
 	} = useContext(EcoContext);
+	const router = useRouter();
 	return (
 		<div className={styles.headerBar}>
 			<div className={styles.buttonSection}>
@@ -27,20 +30,20 @@ function ManageEcoUI() {
 					<>
 						<Button onClick={setAddItem} customStyle={{ width: "8rem" }}>
 							<Image src={addIcon} alt="add preparation" />
-							Add
+							{lng("Add")}
 						</Button>
 					</>
 				)}
 				{actionLoaded === "addEco" && (
 					<Button onClick={saveAddItem} customStyle={{ width: "8rem" }}>
 						<Image src={saveIcon} alt="save preparation" />
-						Add
+						{lng("Save")}
 					</Button>
 				)}
 				{actionLoaded == "editEco" && (
 					<Button onClick={saveEditedItem} customStyle={{ width: "8rem" }}>
 						<Image src={addIcon} alt="submit edited preparation" />
-						Update
+						{lng("Update")}
 					</Button>
 				)}
 				{(actionLoaded === "addEco" || actionLoaded === "editEco") && (

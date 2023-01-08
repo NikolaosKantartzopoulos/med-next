@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import ExamContext from "../../../../../helper/store/exam-context";
+import LanguageContext from "../../../../../helper/store/language-context";
 
 import Input from "../../../../UI/Input";
 
@@ -8,11 +9,12 @@ import styles from "./ManageExamTitles.module.css";
 function ManageExamTitles() {
 	const { examInputState, dispatchExamInputStateAction } =
 		useContext(ExamContext);
+	const { lng } = useContext(LanguageContext);
 	return (
 		<div className={styles.manageExamTitlesSection}>
 			<Input
 				id="examName"
-				label="Name"
+				label={lng("Name")}
 				value={examInputState.name}
 				onChange={(e) =>
 					dispatchExamInputStateAction({
@@ -23,7 +25,7 @@ function ManageExamTitles() {
 			/>
 			<Input
 				id="nhsTitle"
-				label="NHS Title"
+				label={lng("NHSTitle")}
 				value={examInputState.nhsDescription}
 				onChange={(e) =>
 					dispatchExamInputStateAction({

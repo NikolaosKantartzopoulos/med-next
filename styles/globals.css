@@ -5,9 +5,16 @@
 body,
 html {
   min-height: 100vh;
-  width: 95vw;
+  width: 100%;
   padding: 0px;
-  margin: 0;
+  margin: 0px;
+  position: absolute;
+}
+
+
+
+#__next {
+  width: 100%;
 }
 
 * {
@@ -48,29 +55,29 @@ h5 {
 }
 
 a {
-  transition: all 0.1;
-  font-size: 1.25rem;
-  margin: 0.25rem;
+  transition: all 0.2s;
+  font-size: 1.1rem;
+  margin: 0.25 auto;
   text-decoration: none;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 0px;
   border-bottom: 3px solid rgba(0, 0, 0, 0);
 
 }
 
 a:hover {
-  transition: all 0.1s;
+  transition: all 0.2s;
   border-bottom: 3px solid var(--dark-main-1);
 }
 
 a:active {
-  transition: all 0.1s;
+  transition: all 0.2s;
   background-color: var(--support-2);
   border-bottom: 3px solid var(--dark-main-1);
 }
 
 
 a:visited {
-  transition: all 0.1s;
+  transition: all 0.2s;
   color: var(--dark-main-1);
 }
 

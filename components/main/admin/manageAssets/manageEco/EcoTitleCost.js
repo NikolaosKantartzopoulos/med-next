@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import LanguageContext from "../../../../../helper/store/language-context";
 
 import EcoContext from "../../../../../helper/store/eco-context.js";
 
@@ -9,12 +10,13 @@ import styles from "./EcoTitleCost.module.css";
 function EcoTitleCost() {
 	const { dispatchEcoReducerAction, inputsState, setInfo, actionLoaded } =
 		useContext(EcoContext);
+	const { lng } = useContext(LanguageContext);
 	return (
 		<div id="ecoTitleCost" className={styles.ecoTitleCost}>
 			{actionLoaded == "addEco" && (
 				<Input
 					id="ecoTitle"
-					label="Title"
+					label={lng("Title")}
 					value={inputsState.title}
 					onChange={(e) => {
 						setInfo(null);

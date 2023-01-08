@@ -1,0 +1,13 @@
+.moonIcon {
+  background-color: black;
+  border-radius: 25%;
+  padding: 2px;
+}
+
+.navbarSection img {
+  cursor: pointer;
+  height: 32px;
+  width: 32px;
+  position: relative;
+  top: 2px;
+}

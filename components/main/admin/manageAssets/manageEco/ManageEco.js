@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-
 import EcoContext from "../../../../../helper/store/eco-context.js";
 
 import EcoUITopLine from "./EcoUITopLine.js";
@@ -10,7 +9,7 @@ import EcoTable from "./EcoTable.js";
 import LoadingSpinner from "../../../../UI/LoadingSpinner";
 
 import styles from "./ManageEco.module.css";
-import Button from "../../../../UI/Button.js";
+import LanguageContext from "../../../../../helper/store/language-context.js";
 
 function ManageEco() {
 	const {
@@ -19,10 +18,9 @@ function ManageEco() {
 		inputsState,
 		setInfo,
 		actionLoaded,
-		handleSubmit,
 		isLoading,
 	} = useContext(EcoContext);
-
+	const { lng } = useContext(LanguageContext);
 	if (isLoading) {
 		return <LoadingSpinner />;
 	}
@@ -33,7 +31,7 @@ function ManageEco() {
 			{actionLoaded && (
 				<Textarea
 					id="ecoDetails"
-					label="Details"
+					label={lng("Details")}
 					value={inputsState.details}
 					rows={10}
 					columns={40}

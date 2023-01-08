@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+
 import { useRouter } from "next/router";
 import Link from "next/link";
-
 import styles from "./AdminNavbar.module.css";
+import LanguageContext from "../../../helper/store/language-context";
 
 function AdminNavbar() {
 	const router = useRouter();
+	const { lng } = useContext(LanguageContext);
 	const currentRoute = router.pathname;
 	return (
 		<div className={styles.adminNavbar}>
@@ -17,7 +19,7 @@ function AdminNavbar() {
 						: undefined
 				}
 			>
-				Buildings
+				{lng("Buildings")}
 			</Link>
 			<Link
 				href={"/admin/manage-departments"}
@@ -27,7 +29,7 @@ function AdminNavbar() {
 						: undefined
 				}
 			>
-				Departments
+				{lng("Departments")}
 			</Link>
 			<Link
 				href={"/admin/manage-eco"}
@@ -37,7 +39,7 @@ function AdminNavbar() {
 						: undefined
 				}
 			>
-				Eco
+				{lng("Eco")}
 			</Link>
 
 			<Link
@@ -48,7 +50,7 @@ function AdminNavbar() {
 						: undefined
 				}
 			>
-				Preparations
+				{lng("Preparations")}
 			</Link>
 			<Link
 				href={"/admin/manage-users"}
@@ -58,7 +60,7 @@ function AdminNavbar() {
 						: undefined
 				}
 			>
-				Users
+				{lng("Users")}
 			</Link>
 
 			<Link
@@ -69,7 +71,7 @@ function AdminNavbar() {
 						: undefined
 				}
 			>
-				Add Exam
+				{lng("AddExam")}
 			</Link>
 
 			<Link
@@ -80,7 +82,7 @@ function AdminNavbar() {
 						: undefined
 				}
 			>
-				Exams Table
+				{lng("ExamsTable")}
 			</Link>
 		</div>
 	);

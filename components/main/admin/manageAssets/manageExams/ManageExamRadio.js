@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import ExamContext from "../../../../../helper/store/exam-context";
+import LanguageContext from "../../../../../helper/store/language-context";
 
 import RadioButton from "../../../../UI/RadioButton";
 
@@ -8,12 +9,12 @@ import styles from "./ManageExam.module.css";
 function ManageExamRadio() {
 	const { dispatchExamInputStateAction, allActiveDepartments, examInputState } =
 		useContext(ExamContext);
-
+	const { lng } = useContext(LanguageContext);
 	return (
 		<div className={styles.ManageExamRadio}>
 			<div className={styles.radioButtons}>
 				<div>
-					<h4>Department</h4>
+					<h4>{lng("Department")}</h4>
 					<div
 						onChange={(e) =>
 							dispatchExamInputStateAction({
@@ -37,7 +38,7 @@ function ManageExamRadio() {
 					</div>
 				</div>
 				<div>
-					<h4>Subdepartment</h4>
+					<h4>{lng("Subdepartment")}</h4>
 					<div
 						onChange={(e) =>
 							dispatchExamInputStateAction({

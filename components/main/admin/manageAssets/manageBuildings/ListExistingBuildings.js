@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import ClickableItem from "../../../../UI/ClickableItem";
 import Image from "next/image";
-
+import LanguageContext from "../../../../../helper/store/language-context";
 import styles from "./ListExistingAssets.module.css";
 import deleteIcon from "../../../../../public/images/delete.svg";
 
 function ListExistingBuildings({ allBuildings, deleteBuildingHandler }) {
 	const addresses = allBuildings.map((b) => b.address).sort();
+	const { lng } = useContext(LanguageContext);
 	return (
 		<div className={styles.entries}>
-			<p className={styles.titleDivision}>ExistingBuildings</p>
+			<p className={styles.titleDivision}>{lng("ExistingBuildings")}</p>
 			{addresses.map((addr) => (
 				<ClickableItem key={addr}>
 					{addr}

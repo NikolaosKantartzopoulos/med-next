@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import LanguageContext from "../../helper/store/language-context";
 import addIcon from "../../public/images/plus.svg";
 import styles from "./ButtonAdd.module.css";
 import Image from "next/image";
 
 const ButtonAdd = (props) => {
+	const { lng } = useContext(LanguageContext);
 	return (
 		<button
 			className={styles.myButton}
@@ -13,7 +15,7 @@ const ButtonAdd = (props) => {
 			disabled={props.disabled}
 		>
 			<Image src={addIcon} alt="add preparation" />
-			Add
+			{lng("Add")}
 			{props.children}
 		</button>
 	);
