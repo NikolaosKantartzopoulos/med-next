@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import ManagePreparation from "../../components/main/admin/manageAssets/managePreparations/ManagePreparations.js";
 import AdminNavbar from "../../components/main/admin/AdminNavbar.js";
 import LoadingSpinner from "../../components/UI/LoadingSpinner.js";
-import { PreparationsContextProvider } from "../../helper/store/preparations-context";
+import { PreparationsContextProvider } from "../../helper/store/contexts/preparations-context";
 
 import { connectDatabase } from "../../helper/database/db";
 

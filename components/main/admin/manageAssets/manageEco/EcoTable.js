@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import LanguageContext from "../../../../../helper/store/language-context.js";
-import EcoContext from "../../../../../helper/store/eco-context.js";
+import LanguageContext from "../../../../../helper/store/contexts/language-context.js";
+import EcoContext from "../../../../../helper/store/contexts/eco-context.js";
 
 import Image from "next/image";
 import tableStyles from "./EcoTable.module.css";

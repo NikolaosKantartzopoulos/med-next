@@ -3,8 +3,8 @@ import React, { useContext } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import styles from "./AdminNavbar.module.css";
-import LanguageContext from "../../../helper/store/language-context";
-import ToolsContext from "../../../helper/store/tools-context";
+import LanguageContext from "../../../helper/store/contexts/language-context";
+import ToolsContext from "../../../helper/store/contexts/tools-context";
 
 function AdminNavbar() {
 	const { theme } = useContext(ToolsContext);

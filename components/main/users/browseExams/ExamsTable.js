@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useRouter } from "next/router";
 import tableStyles from "./ExamsTable.module.css";
 import LoadingSpinner from "../../../UI/LoadingSpinner";
-import LanguageContext from "../../../../helper/store/language-context";
+import LanguageContext from "../../../../helper/store/contexts/language-context";
 
 function ExamsTable({ allActiveExams }) {
 	const router = useRouter();

@@ -6,7 +6,7 @@ import _ from "lodash";
 import {
 	manageEcoReducer,
 	initialObject,
-} from "./reducers/manage-eco-reducer.js";
+} from "../../reducers/manage-eco-reducer.js";
 
 const EcoContext = createContext({
 	allDepartments: [],

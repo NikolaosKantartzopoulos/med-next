@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useRouter } from "next/router";
 
-import LanguageContext from "../../../../../helper/store/language-context";
+import LanguageContext from "../../../../../helper/store/contexts/language-context";
 import ListExistingBuildings from "./ListExistingBuildings";
 
 import SingleInputForm from "../../../../../components/UI/SingleInputForm";

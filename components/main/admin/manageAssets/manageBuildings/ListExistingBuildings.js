@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import ClickableItem from "../../../../UI/ClickableItem";
 import Image from "next/image";
-import LanguageContext from "../../../../../helper/store/language-context";
+import LanguageContext from "../../../../../helper/store/contexts/language-context";
 import styles from "./ListExistingAssets.module.css";
 import deleteIcon from "../../../../../public/images/delete.svg";
 

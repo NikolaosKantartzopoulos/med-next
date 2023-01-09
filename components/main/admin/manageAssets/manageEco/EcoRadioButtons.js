@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import LanguageContext from "../../../../../helper/store/language-context.js";
-import EcoContext from "../../../../../helper/store/eco-context.js";
+import LanguageContext from "../../../../../helper/store/contexts/language-context.js";
+import EcoContext from "../../../../../helper/store/contexts/eco-context.js";
 import RadioButton from "../../../../UI/RadioButton.js";
-import ToolsContext from "../../../../../helper/store/tools-context.js";
+import ToolsContext from "../../../../../helper/store/contexts/tools-context.js";
 import styles from "./EcoRadioButtons.module.css";
 
 function EcoRadioButtons() {

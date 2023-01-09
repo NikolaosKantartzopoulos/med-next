@@ -6,7 +6,7 @@ import ManageEco from "../../components/main/admin/manageAssets/manageEco/Manage
 import AdminNavbar from "../../components/main/admin/AdminNavbar.js";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import { connectDatabase } from "../../helper/database/db";
-import { EcoContextProvider } from "../../helper/store/eco-context";
+import { EcoContextProvider } from "../../helper/store/contexts/eco-context";
 
 function ManageEcoRoute({
 	distinctDepartments,

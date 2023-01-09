@@ -5,8 +5,8 @@ import TinyInput from "../../../../UI/TinyInput";
 import saveIcon from "../../../../../public/images/save.svg";
 
 import Image from "next/image";
-import ToolsContext from "../../../../../helper/store/tools-context";
-import LanguageContext from "../../../../../helper/store/language-context";
+import ToolsContext from "../../../../../helper/store/contexts/tools-context";
+import LanguageContext from "../../../../../helper/store/contexts/language-context";
 
 function ScheduleTable({ building, dispatchExamInputStateAction }) {
 	const [activeDays, setActiveDays] = useState(building.schedule);

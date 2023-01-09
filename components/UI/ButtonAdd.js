@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import LanguageContext from "../../helper/store/language-context";
+import LanguageContext from "../../helper/store/contexts/language-context";
 import addIcon from "../../public/images/plus.svg";
 import styles from "./ButtonAdd.module.css";
 import Image from "next/image";

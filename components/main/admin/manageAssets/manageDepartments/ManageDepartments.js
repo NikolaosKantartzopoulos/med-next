@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import LanguageContext from "../../../../../helper/store/language-context";
-import DepartmentContext from "../../../../../helper/store/department-context.js";
+import LanguageContext from "../../../../../helper/store/contexts/language-context";
+import DepartmentContext from "../../../../../helper/store/contexts/department-context.js";
 import Button from "../../../../UI/Button.js";
 import SingleInputForm from "../../../../UI/SingleInputForm";
 import DepBoard from "./DepBoard.js";

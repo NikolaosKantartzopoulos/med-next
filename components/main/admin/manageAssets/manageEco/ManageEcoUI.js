@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import EcoContext from "../../../../../helper/store/eco-context.js";
+import EcoContext from "../../../../../helper/store/contexts/eco-context.js";
 import ButtonClose from "../../../../UI/ButtonClose";
 import Button from "../../../../UI/Button";
 import Image from "next/image";
-import LanguageContext from "../../../../../helper/store/language-context.js";
+import LanguageContext from "../../../../../helper/store/contexts/language-context.js";
 
 import addIcon from "../../../../../public/images/plus.svg";
 import saveIcon from "../../../../../public/images/save.svg";

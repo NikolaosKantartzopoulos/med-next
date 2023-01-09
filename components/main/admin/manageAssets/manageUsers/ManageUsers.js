@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import UsersContext from "../../../../../helper/store/users-context";
+import UsersContext from "../../../../../helper/store/contexts/users-context";
 
 import ManageUserInputs from "./ManageUserInputs";
 

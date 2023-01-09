@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import LanguageContext from "../../../../../helper/store/language-context";
+import LanguageContext from "../../../../../helper/store/contexts/language-context";
 
-import EcoContext from "../../../../../helper/store/eco-context.js";
+import EcoContext from "../../../../../helper/store/contexts/eco-context.js";
 
 import Input from "../../../../UI/Input.js";
 

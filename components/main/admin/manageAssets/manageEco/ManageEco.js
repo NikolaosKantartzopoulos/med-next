@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import EcoContext from "../../../../../helper/store/eco-context.js";
+import EcoContext from "../../../../../helper/store/contexts/eco-context.js";
 
 import EcoUITopLine from "./EcoUITopLine.js";
 import InfoPanel from "../../../../UI/InfoPanel";
@@ -9,7 +9,7 @@ import EcoTable from "./EcoTable.js";
 import LoadingSpinner from "../../../../UI/LoadingSpinner";
 
 import styles from "./ManageEco.module.css";
-import LanguageContext from "../../../../../helper/store/language-context.js";
+import LanguageContext from "../../../../../helper/store/contexts/language-context.js";
 
 function ManageEco() {
 	const {

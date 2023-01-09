@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Image from "next/image";
 
 import closeIcon from "../../public/images/close.svg";
-import LanguageContext from "../../helper/store/language-context";
+import LanguageContext from "../../helper/store/contexts/language-context";
 
 import styles from "./ButtonClose.module.css";
 

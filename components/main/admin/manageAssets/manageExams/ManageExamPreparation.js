@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-import ExamContext from "../../../../../helper/store/exam-context";
-import LanguageContext from "../../../../../helper/store/language-context";
-import ToolsContext from "../../../../../helper/store/tools-context";
+import ExamContext from "../../../../../helper/store/contexts/exam-context";
+import LanguageContext from "../../../../../helper/store/contexts/language-context";
+import ToolsContext from "../../../../../helper/store/contexts/tools-context";
 
 import Textarea from "../../../../UI/Textarea";
 import styles from "./ManageExam.module.css";

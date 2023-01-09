@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import LanguageContext from "../../../../../helper/store/language-context";
-import PreparationsContext from "../../../../../helper/store/preparations-context";
+import LanguageContext from "../../../../../helper/store/contexts/language-context";
+import PreparationsContext from "../../../../../helper/store/contexts/preparations-context";
 import ResponsiveItem from "../../../../UI/ResponsiveItem";
 import styles from "./CommonPreparationsList.module.css";
 

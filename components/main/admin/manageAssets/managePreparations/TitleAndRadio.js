@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import LanguageContext from "../../../../../helper/store/language-context";
+import LanguageContext from "../../../../../helper/store/contexts/language-context";
 import Input from "../../../../UI/Input";
 import RadioButton from "../../../../UI/RadioButton";
 

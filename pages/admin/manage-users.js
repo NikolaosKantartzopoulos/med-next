@@ -7,7 +7,7 @@ import {
 	getDocumentsWithValue,
 } from "../../helper/database/db";
 
-import { UsersContextProvider } from "../../helper/store/users-context";
+import { UsersContextProvider } from "../../helper/store/contexts/users-context";
 
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import ManageUsers from "../../components/main/admin/manageAssets/manageUsers/ManageUsers";

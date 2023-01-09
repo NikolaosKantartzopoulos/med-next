@@ -3,7 +3,7 @@ import { useRouter } from "next/router.js";
 import {
 	preparationsReducer,
 	preparationsSample,
-} from "../store/reducers/manage-preparations-reducer.js";
+} from "../../store/reducers/manage-preparations-reducer.js";
 
 import uuid from "react-uuid";
 

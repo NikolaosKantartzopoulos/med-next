@@ -3,7 +3,7 @@ import { useState, useReducer, createContext } from "react";
 import {
 	initialObject,
 	examInputReducer,
-} from "../store/reducers/manage-exam-reducer";
+} from "../../store/reducers/manage-exam-reducer";
 
 const ExamContext = createContext({
 	examInputState: {},

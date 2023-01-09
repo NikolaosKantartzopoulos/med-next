@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import ToolsContext from "../../helper/store/tools-context";
+import ToolsContext from "../../helper/store/contexts/tools-context";
 import styles from "./RadioButton.module.css";
 
 function RadioButton({ id, label, name, disabled, value, checked }) {

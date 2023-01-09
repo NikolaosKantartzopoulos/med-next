@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import LanguageContext from "../../../../../helper/store/language-context";
+import LanguageContext from "../../../../../helper/store/contexts/language-context";
 
 import Input from "../../../../UI/Input";
 import Textarea from "../../../../UI/Textarea";

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import ExamContext from "../../../../../helper/store/exam-context";
+import ExamContext from "../../../../../helper/store/contexts/exam-context";
 
 import styles from "./TinyTabs.module.css";
 

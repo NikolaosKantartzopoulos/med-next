@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
-import ExamContext from "../../../../../helper/store/exam-context";
-import LanguageContext from "../../../../../helper/store/language-context";
+import ExamContext from "../../../../../helper/store/contexts/exam-context";
+import LanguageContext from "../../../../../helper/store/contexts/language-context";
 
 import RadioButton from "../../../../UI/RadioButton";
 

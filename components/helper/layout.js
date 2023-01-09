@@ -1,6 +1,6 @@
 import Navbar from "../header/Navbar/Navbar";
 import Footer from "./footer";
-import ToolsContext from "../../helper/store/tools-context";
+import ToolsContext from "../../helper/store/contexts/tools-context";
 import styles from "./layout.module.css";
 import { useContext, useEffect } from "react";
 // import Transition from "./Transition/index";

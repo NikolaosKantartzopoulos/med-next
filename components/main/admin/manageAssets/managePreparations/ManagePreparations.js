@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import PreparationsContext from "../../../../../helper/store/preparations-context";
+import PreparationsContext from "../../../../../helper/store/contexts/preparations-context";
 
 import "../../../../UI/ResponsiveItem";
 

@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import UsersContext from "../../../../../helper/store/users-context";
+import UsersContext from "../../../../../helper/store/contexts/users-context";
 import Image from "next/image";
 import tableStyles from "./ManageUsersTable.module.css";
 import editIcon from "../../../../../public/images/edit.svg";
 import deleteIcon from "../../../../../public/images/delete.svg";
-import LanguageContext from "../../../../../helper/store/language-context";
+import LanguageContext from "../../../../../helper/store/contexts/language-context";
 
 function ManageUsersTable() {
 	const { activeUsers, editThisUser, deleteThisUser } =

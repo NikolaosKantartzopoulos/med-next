@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import ManageExamForm from "../../../components/main/admin/manageAssets/manageExams/ManageExamForm";
 import AdminNavbar from "../../../components/main/admin/AdminNavbar";
 import LoadingSpinner from "../../../components/UI/LoadingSpinner";
-import { ExamContextProvider } from "../../../helper/store/exam-context";
+import { ExamContextProvider } from "../../../helper/store/contexts/exam-context";
 import { connectDatabase } from "../../../helper/database/db";
 
 function ManageLoadedExam({

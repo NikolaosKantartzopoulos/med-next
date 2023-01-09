@@ -9,8 +9,8 @@ import Image from "next/image";
 import addIcon from "../../../../../public/images/plus.svg";
 import saveIcon from "../../../../../public/images/save.svg";
 import styles from "./CommonPreparationsList.module.css";
-import PreparationsContext from "../../../../../helper/store/preparations-context";
-import LanguageContext from "../../../../../helper/store/language-context";
+import PreparationsContext from "../../../../../helper/store/contexts/preparations-context";
+import LanguageContext from "../../../../../helper/store/contexts/language-context";
 
 function PreparationsUI() {
 	const {

@@ -6,7 +6,7 @@ import editIcon from "../../../../../public/images/edit.svg";
 import deleteIcon from "../../../../../public/images/delete.svg";
 import LoadingSpinner from "../../../../UI/LoadingSpinner";
 import InfoPanel from "../../../../UI/InfoPanel";
-import LanguageContext from "../../../../../helper/store/language-context";
+import LanguageContext from "../../../../../helper/store/contexts/language-context";
 
 function ExamsTable({ allActiveExams }) {
 	const router = useRouter();

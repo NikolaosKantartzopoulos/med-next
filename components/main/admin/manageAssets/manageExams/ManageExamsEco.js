@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react";
-import ExamContext from "../../../../../helper/store/exam-context";
+import ExamContext from "../../../../../helper/store/contexts/exam-context";
 import _ from "lodash";
 
 import PaymentOptions from "./PaymentOptions";
 
 import styles from "./ManageExam.module.css";
 import checkStyles from "./ManageExamsEco.module.css";
-import LanguageContext from "../../../../../helper/store/language-context";
-import ToolsContext from "../../../../../helper/store/tools-context";
+import LanguageContext from "../../../../../helper/store/contexts/language-context";
+import ToolsContext from "../../../../../helper/store/contexts/tools-context";
 
 function ManageExamsEco() {
 	const { examInputState, dispatchExamInputStateAction, allActiveEco } =

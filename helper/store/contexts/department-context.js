@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import { infoMessage } from "../fn/ui";
+import { infoMessage } from "../../fn/ui";
 
 const DepartmentContext = createContext({});
 

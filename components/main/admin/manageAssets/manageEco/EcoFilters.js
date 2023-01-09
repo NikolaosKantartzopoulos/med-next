@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
-import EcoContext from "../../../../../helper/store/eco-context";
+import EcoContext from "../../../../../helper/store/contexts/eco-context";
 import styles from "./EcoFilters.module.css";
 import _ from "lodash";
-import LanguageContext from "../../../../../helper/store/language-context";
-import ToolsContext from "../../../../../helper/store/tools-context";
+import LanguageContext from "../../../../../helper/store/contexts/language-context";
+import ToolsContext from "../../../../../helper/store/contexts/tools-context";
 function EcoFilters() {
 	const {
 		allActiveInsurances,

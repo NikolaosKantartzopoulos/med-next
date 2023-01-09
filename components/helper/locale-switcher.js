@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext } from "react";
-import ToolsContext from "../../helper/store/tools-context";
+import ToolsContext from "../../helper/store/contexts/tools-context";
 import Image from "next/image";
 import gbIcon from "../../public/images/GB.png";
 import grIcon from "../../public/images/GR.png";

@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import Input from "../../../../UI/Input";
 import RadioButton from "../../../../UI/RadioButton";
 
-import UsersContext from "../../../../../helper/store/users-context";
-import LanguageContext from "../../../../../helper/store/language-context";
+import UsersContext from "../../../../../helper/store/contexts/users-context";
+import LanguageContext from "../../../../../helper/store/contexts/language-context";
 
 import styles from "./ManageUserInputs.module.css";
 

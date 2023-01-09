@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import styles from "./login-btn.module.css";
 import Button from "./Button";
 import { useContext } from "react";
-import LanguageContext from "../../helper/store/language-context";
-import ToolsContext from "../../helper/store/tools-context";
+import LanguageContext from "../../helper/store/contexts/language-context";
+import ToolsContext from "../../helper/store/contexts/tools-context";
 export default function Component() {
 	const { data: session } = useSession();
 	const router = useRouter();

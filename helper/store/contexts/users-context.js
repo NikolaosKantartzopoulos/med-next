@@ -1,5 +1,5 @@
 import { createContext, useReducer, useState } from "react";
-import manageUsersReducer from "../store/reducers/manage-users-reducer";
+import manageUsersReducer from "../../store/reducers/manage-users-reducer";
 import { useRouter } from "next/router";
 
 const UsersContext = createContext({});

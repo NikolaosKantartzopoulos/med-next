@@ -1,5 +1,5 @@
 import Image from "next/image";
-import ToolsContext from "../../helper/store/tools-context";
+import ToolsContext from "../../helper/store/contexts/tools-context";
 import React, { useContext } from "react";
 import sunIcon from "../../public/images/sun.svg";
 import moonIcon from "../../public/images/moon.svg";

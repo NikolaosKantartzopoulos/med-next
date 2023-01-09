@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import ManageExam from "../../../components/main/admin/manageAssets/manageExams/ManageExam";
 import AdminNavbar from "../../../components/main/admin/AdminNavbar";
 import { connectDatabase } from "../../../helper/database/db";
-import { ExamContextProvider } from "../../../helper/store/exam-context";
+import { ExamContextProvider } from "../../../helper/store/contexts/exam-context";
 import LoadingSpinner from "../../../components/UI/LoadingSpinner";
 
 function ManageExamsRoute({

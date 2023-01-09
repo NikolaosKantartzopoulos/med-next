@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import ExamContext from "../../../../../helper/store/exam-context";
+import ExamContext from "../../../../../helper/store/contexts/exam-context";
 import ButtonSave from "../../../../UI/ButtonSave";
 import ManageExamForm from "./ManageExamForm";
 import InfoPanel from "../../../../UI/InfoPanel";

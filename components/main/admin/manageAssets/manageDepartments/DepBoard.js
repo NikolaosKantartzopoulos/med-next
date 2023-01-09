@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import DepartmentContext from "../../../../../helper/store/department-context.js";
+import DepartmentContext from "../../../../../helper/store/contexts/department-context.js";
 
 import Image from "next/image.js";
 import TinyInput from "../../../../UI/TinyInput.js";

@@ -5,8 +5,8 @@ import ThemeSwitch from "../../UI/ThemeSwitch";
 import LoginButton from "../../UI/login-btn";
 import LocaleSwitcher from "../../helper/locale-switcher";
 import styles from "./navbar.module.css";
-import LanguageContext from "../../../helper/store/language-context";
-import ToolsContext from "../../../helper/store/tools-context";
+import LanguageContext from "../../../helper/store/contexts/language-context";
+import ToolsContext from "../../../helper/store/contexts/tools-context";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 

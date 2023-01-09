@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import ExamContext from "../../../../../helper/store/exam-context";
-import LanguageContext from "../../../../../helper/store/language-context";
+import ExamContext from "../../../../../helper/store/contexts/exam-context";
+import LanguageContext from "../../../../../helper/store/contexts/language-context";
 
 import Input from "../../../../UI/Input";
 
