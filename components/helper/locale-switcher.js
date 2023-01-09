@@ -2,6 +2,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import ToolsContext from "../../helper/store/tools-context";
+import Image from "next/image";
+import gbIcon from "../../public/images/GB.png";
+import grIcon from "../../public/images/GR.png";
 
 export default function LocaleSwitcher() {
 	const { theme } = useContext(ToolsContext);
@@ -21,7 +24,23 @@ export default function LocaleSwitcher() {
 							color: theme == "dark" ? "white" : null,
 						}}
 					>
-						<span style={{ position: "relative", top: 2 }}>{locale}</span>
+						{locale == "en-US" ? (
+							<Image
+								src={gbIcon}
+								alt="select english language"
+								height={32}
+								width={32}
+								style={{ position: "relative", top: 4 }}
+							/>
+						) : (
+							<Image
+								src={grIcon}
+								alt="select greek language"
+								height={32}
+								width={32}
+								style={{ position: "relative", top: 4 }}
+							/>
+						)}
 					</Link>
 				);
 			})}

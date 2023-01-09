@@ -8,6 +8,8 @@ import styles from "./navbar.module.css";
 import LanguageContext from "../../../helper/store/language-context";
 import ToolsContext from "../../../helper/store/tools-context";
 import { useSession } from "next-auth/react";
+import LoadingSpinner from "../../UI/LoadingSpinner";
+
 function Navbar() {
 	const { data: session, status } = useSession();
 
@@ -17,7 +19,7 @@ function Navbar() {
 	const currentRoute = router.pathname;
 
 	if (status === "loading") {
-		return <p>Loading...</p>;
+		return <LoadingSpinner />;
 	}
 
 	return (

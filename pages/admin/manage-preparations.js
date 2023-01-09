@@ -1,11 +1,26 @@
 import React from "react";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
+
 import ManagePreparation from "../../components/main/admin/manageAssets/managePreparations/ManagePreparations.js";
 import AdminNavbar from "../../components/main/admin/AdminNavbar.js";
+import LoadingSpinner from "../../components/UI/LoadingSpinner.js";
 import { PreparationsContextProvider } from "../../helper/store/preparations-context";
 
 import { connectDatabase } from "../../helper/database/db";
 
 function ManagePreparationsRoute({ allPreparations }) {
+	const { data: session, status } = useSession();
+	const router = useRouter();
+
+	if (status === "loading") {
+		return <LoadingSpinner />;
+	}
+
+	if (status === "unauthenticated") {
+		router.replace("/users/browse-exams");
+	}
+
 	return (
 		<>
 			{!allPreparations ? (

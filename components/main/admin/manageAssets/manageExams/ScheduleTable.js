@@ -29,6 +29,31 @@ function ScheduleTable({ building, dispatchExamInputStateAction }) {
 			{ day: "Sunday", value: "" },
 		]);
 	}
+
+	function translateDays(day) {
+		switch (day) {
+			case "Monday":
+				return lng("Monday");
+
+			case "Tuesday":
+				return lng("Tuesday");
+
+			case "Wednesday":
+				return lng("Wednesday");
+
+			case "Thursday":
+				return lng("Thursday");
+
+			case "Friday":
+				return lng("Friday");
+
+			case "Saturday":
+				return lng("Saturday");
+			case "Sunday":
+				return lng("Sunday");
+		}
+	}
+
 	const { lng } = useContext(LanguageContext);
 	return (
 		<table className={tableStyles.table}>
@@ -57,7 +82,7 @@ function ScheduleTable({ building, dispatchExamInputStateAction }) {
 			<tbody className={tableStyles.tableBody}>
 				{activeDays.map((entry, index) => (
 					<tr key={entry.day} className={tableStyles.tableRow}>
-						<td>{entry.day}</td>
+						<td>{translateDays(entry.day)}</td>
 						<td className={tableStyles.inputTd}>
 							<TableInput
 								value={activeDays.map((a) => a.value)[index]}

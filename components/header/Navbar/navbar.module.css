@@ -1,5 +1,5 @@
 .navbarSection {
-  height: 2.5rem;
+  height: 3rem;
   width: clamp(300px, 100%, 760px);
   margin: auto;
   display: flex;

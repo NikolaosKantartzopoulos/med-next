@@ -1,7 +1,9 @@
 import React from "react";
 import AdminNavbar from "../../components/main/admin/AdminNavbar";
 import Button from "../../components/UI/Button";
-import { useSession, getSession } from "next-auth/react";
+import LoadingSpinner from "../../components/UI/LoadingSpinner";
+
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 function ManageAssets() {
@@ -17,6 +19,10 @@ function ManageAssets() {
 		link.setAttribute("download", `FileName.pdf`);
 		link.click();
 		link.remove();
+	}
+
+	if (status === "loading") {
+		return <LoadingSpinner />;
 	}
 
 	if (status === "unauthenticated") {

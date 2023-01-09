@@ -1,4 +1,7 @@
 import React from "react";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
+
 import {
 	connectDatabase,
 	getDocumentsWithValue,
@@ -6,10 +9,22 @@ import {
 
 import { UsersContextProvider } from "../../helper/store/users-context";
 
+import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import ManageUsers from "../../components/main/admin/manageAssets/manageUsers/ManageUsers";
 import AdminNavbar from "../../components/main/admin/AdminNavbar";
 
 function ManageUsersRoute({ allUsers }) {
+	const { data: session, status } = useSession();
+	const router = useRouter();
+
+	if (status === "loading") {
+		return <LoadingSpinner />;
+	}
+
+	if (status === "unauthenticated") {
+		router.replace("/users/browse-exams");
+	}
+
 	return (
 		<>
 			{!allUsers ? (

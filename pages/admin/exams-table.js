@@ -2,11 +2,25 @@ import React, { useState } from "react";
 import AdminNavbar from "../../components/main/admin/AdminNavbar";
 import { connectDatabase } from "../../helper/database/db";
 import ExamsTable from "../../components/main/admin/manageAssets/manageExams/ExamsTable";
-
+import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import FilterUI from "../../components/UI/ExamFilterUI";
+
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 
 function ManageExamsTableRoute({ allActiveExams, allDepartments }) {
 	const [visibleExams, setVisibleExams] = useState(allActiveExams);
+	const { data: session, status } = useSession();
+	const router = useRouter();
+
+	if (status === "loading") {
+		return <LoadingSpinner />;
+	}
+
+	if (status === "unauthenticated") {
+		router.replace("/users/browse-exams");
+	}
+
 	return (
 		<>
 			<AdminNavbar />

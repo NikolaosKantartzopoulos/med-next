@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 import AdminNavbar from "../../components/main/admin/AdminNavbar";
 import ManageBuildings from "../../components/main/admin/manageAssets/manageBuildings/ManageBuildings";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import { connectDatabase } from "../../helper/database/db";
-LoadingSpinner;
 
 function ManageBuildingsRoute({ allBuildings }) {
 	const [inProp, setInProp] = useState(false);
@@ -13,6 +13,17 @@ function ManageBuildingsRoute({ allBuildings }) {
 		setInProp(true);
 		return () => setInProp(false);
 	}, [inProp]);
+
+	const { data: session, status } = useSession();
+	const router = useRouter();
+
+	if (status === "loading") {
+		return <LoadingSpinner />;
+	}
+
+	if (status === "unauthenticated") {
+		router.replace("/users/browse-exams");
+	}
 
 	return (
 		<>

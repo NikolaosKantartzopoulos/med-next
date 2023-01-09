@@ -11,9 +11,39 @@ export function LanguageContextProvider({ locale, children }) {
 			"el-GR": "Γειά",
 			"en-US": "Hello",
 		},
+
+		Monday: {
+			"el-GR": "Δευτέρα",
+			"en-US": "Monday",
+		},
+		Tuesday: {
+			"el-GR": "Τρίτη",
+			"en-US": "Tuesday",
+		},
+		Wednesday: {
+			"el-GR": "Τετάρτη",
+			"en-US": "Wednesday",
+		},
+		Thursday: {
+			"el-GR": "Πέμπτη",
+			"en-US": "Thursday",
+		},
+		Friday: {
+			"el-GR": "Παρασκευή",
+			"en-US": "Friday",
+		},
+		Saturday: {
+			"el-GR": "Σάββατο",
+			"en-US": "Saturday",
+		},
+		Sunday: {
+			"el-GR": "Κυριακή",
+			"en-US": "Sunday",
+		},
+
 		FillFrom: {
-			"el-GR": "Γέμισε",
-			"en-US": "Fill From",
+			"el-GR": "Όλα",
+			"en-US": "Set all",
 		},
 		Details: {
 			"el-GR": "Λεπτομέρειες",

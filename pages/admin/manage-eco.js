@@ -1,6 +1,10 @@
 import React from "react";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
+
 import ManageEco from "../../components/main/admin/manageAssets/manageEco/ManageEco";
 import AdminNavbar from "../../components/main/admin/AdminNavbar.js";
+import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import { connectDatabase } from "../../helper/database/db";
 import { EcoContextProvider } from "../../helper/store/eco-context";
 
@@ -9,6 +13,17 @@ function ManageEcoRoute({
 	allDepartments,
 	allInsuranceDocuments,
 }) {
+	const { data: session, status } = useSession();
+	const router = useRouter();
+
+	if (status === "loading") {
+		return <LoadingSpinner />;
+	}
+
+	if (status === "unauthenticated") {
+		router.replace("/users/browse-exams");
+	}
+
 	return (
 		<>
 			{!allInsuranceDocuments ? (
