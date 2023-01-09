@@ -25,7 +25,6 @@ function ManageUsers() {
 				{showThis === "showManageUserInputs" && <ManageUserInputs />}
 			</div>
 			{info && <InfoPanel info={info} />}
-
 			<ManageUsersTable />
 		</div>
 	);

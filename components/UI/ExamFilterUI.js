@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import ToolsContext from "../../helper/store/tools-context";
+
 import styles from "./ExamFilterUI.module.css";
 import Image from "next/image";
 import menuFold from "../../public/images/menu-up.svg";
@@ -21,6 +23,7 @@ function ExamFilterUI({
 	}));
 
 	const [checkedDepSub, setCheckedDepSub] = useState(mappedArray);
+	const { theme } = useContext(ToolsContext);
 
 	function handleDepartmentClick(e, item) {
 		const filteredArray = checkedDepSub.filter((a) => a.department != item);
@@ -225,7 +228,10 @@ function ExamFilterUI({
 														.checked == true
 												}
 											/>
-											<label htmlFor={`${dep.department}-${sub.subName}`}>
+											<label
+												htmlFor={`${dep.department}-${sub.subName}`}
+												style={{ color: theme == "dark" && "darkorange" }}
+											>
 												{sub.subName}
 											</label>
 										</div>
