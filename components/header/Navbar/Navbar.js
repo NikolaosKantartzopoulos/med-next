@@ -8,7 +8,7 @@ import styles from "./navbar.module.css";
 import LanguageContext from "../../../helper/store/language-context";
 import ToolsContext from "../../../helper/store/tools-context";
 import { useSession } from "next-auth/react";
-import LoadingSpinner from "../../UI/LoadingSpinner";
+import Image from "next/image";
 
 function Navbar() {
 	const { data: session, status } = useSession();
@@ -21,14 +21,30 @@ function Navbar() {
 	return (
 		<div className={styles.navbarSection}>
 			<div className={styles.leftNavbarPart}>
-				<Link
+				{/* <Link
 					href={"/users"}
 					className={
 						currentRoute === "/users" ? `${styles.activeLink}` : undefined
 					}
 					style={{ color: theme == "dark" ? "white" : null }}
+				> */}
+				<Image
+					src="/images/cross.png"
+					alt="Home Icon"
+					height={24}
+					width={24}
+					style={{ position: "relative", top: 2, cursor: "pointer" }}
+					onClick={() => router.push("/")}
+				/>
+				{/* </Link> */}
+				<Link
+					href={"/users/news/"}
+					className={
+						currentRoute === "/users/news" ? `${styles.activeLink}` : undefined
+					}
+					style={{ color: theme == "dark" ? "white" : null }}
 				>
-					{lng("UsersHome")}
+					{lng("News")}
 				</Link>
 				<Link
 					href={"/users/browse-exams"}

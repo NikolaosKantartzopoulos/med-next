@@ -11,6 +11,10 @@ export function LanguageContextProvider({ locale, children }) {
 			"el-GR": "Γειά",
 			"en-US": "Hello",
 		},
+		News: {
+			"el-GR": "Νέα",
+			"en-US": "News",
+		},
 		CommonPaymentAndDetails: {
 			"el-GR": "Κοινή προετοιμασία & λεπτομέριες",
 			"en-US": "Common Payment & Details",
@@ -166,11 +170,11 @@ export function LanguageContextProvider({ locale, children }) {
 		},
 		BrowseExams: {
 			"el-GR": "Εξετάσεις",
-			"en-US": "Browse Exams",
+			"en-US": "Exams",
 		},
 		ManageAssets: {
 			"el-GR": "Διαχείρηση",
-			"en-US": "Manage Assets",
+			"en-US": "Assets",
 		},
 		SignOut: {
 			"el-GR": "Έξοδος",

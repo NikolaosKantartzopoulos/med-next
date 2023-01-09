@@ -29,17 +29,15 @@ export default function LocaleSwitcher() {
 							<Image
 								src={gbIcon}
 								alt="select english language"
-								height={32}
-								width={32}
-								style={{ position: "relative", top: 4 }}
+								height={28}
+								width={28}
 							/>
 						) : (
 							<Image
 								src={grIcon}
 								alt="select greek language"
-								height={32}
-								width={32}
-								style={{ position: "relative", top: 4 }}
+								height={28}
+								width={28}
 							/>
 						)}
 					</Link>
