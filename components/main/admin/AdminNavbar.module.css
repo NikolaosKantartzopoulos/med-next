@@ -24,7 +24,7 @@
 @media screen and (max-width: 450px) {
   .adminNavbar {
     margin: 0.25rem auto;
-
+    margin-top: 1.5rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     text-align: center;
