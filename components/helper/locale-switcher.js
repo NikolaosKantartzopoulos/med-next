@@ -22,6 +22,7 @@ export default function LocaleSwitcher() {
 						locale={locale}
 						style={{
 							color: theme == "dark" ? "white" : null,
+							border: "none",
 						}}
 					>
 						{locale == "en-US" ? (

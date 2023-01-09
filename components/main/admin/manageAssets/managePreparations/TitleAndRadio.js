@@ -11,7 +11,7 @@ function TitleAndRadio({ preparationsInputs, dispatchPreparationsAction }) {
 		<div className={styles.titleAndRadio}>
 			<Input
 				id="prepTitle"
-				label="Title"
+				label={lng("Title")}
 				value={preparationsInputs.title}
 				onChange={(e) => {
 					dispatchPreparationsAction({
@@ -31,7 +31,7 @@ function TitleAndRadio({ preparationsInputs, dispatchPreparationsAction }) {
 			>
 				<RadioButton
 					name="preparationCategory"
-					label="Common"
+					label={lng("Common")}
 					value={true}
 					checked={preparationsInputs.common == true}
 				/>

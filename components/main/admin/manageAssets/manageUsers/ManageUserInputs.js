@@ -3,12 +3,14 @@ import Input from "../../../../UI/Input";
 import RadioButton from "../../../../UI/RadioButton";
 
 import UsersContext from "../../../../../helper/store/users-context";
+import LanguageContext from "../../../../../helper/store/language-context";
 
 import styles from "./ManageUserInputs.module.css";
 
 function manageUserInputs() {
 	const { setInfo, isLoading, manageUsersState, dispatchManageUsersAction } =
 		useContext(UsersContext);
+	const { lng } = useContext(LanguageContext);
 
 	return (
 		<div className={styles.manageUserInputs}>
@@ -82,14 +84,14 @@ function manageUserInputs() {
 						value="doctor"
 						checked={manageUsersState.userPosition === "doctor"}
 						id="doctor"
-						label="Doctor"
+						label={lng("Doctor")}
 						name="selectPosition"
 					/>
 					<RadioButton
 						value="secretary"
 						checked={manageUsersState.userPosition === "secretary"}
 						id="secretary"
-						label="Secretary"
+						label={lng("Secretary")}
 						name="selectPosition"
 					/>
 				</div>
@@ -108,21 +110,21 @@ function manageUserInputs() {
 							value="frontDesk"
 							checked={manageUsersState.userPosition2 === "frontDesk"}
 							id="secrFront"
-							label="Front Desk"
+							label={lng("FrontDesk")}
 							name="selectPosition2"
 						/>
 						<RadioButton
 							value="trascriptionist"
 							checked={manageUsersState.userPosition2 === "trascriptionist"}
 							id="secrTrascriptionist"
-							label="Trascriptionist"
+							label={lng("Transcriptionist")}
 							name="selectPosition2"
 						/>
 						<RadioButton
 							value="phoneCenter"
 							checked={manageUsersState.userPosition2 === "phoneCenter"}
 							id="secrPhone"
-							label="Phone Center"
+							label={lng("PhoneCenter")}
 							name="selectPosition2"
 						/>
 					</div>

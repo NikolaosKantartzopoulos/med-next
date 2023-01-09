@@ -19,7 +19,6 @@ function ManageEcoUI() {
 		actionLoaded,
 		dispatchEcoReducerAction,
 		setActionLoaded,
-		setActiveItem,
 		setInfo,
 	} = useContext(EcoContext);
 	const router = useRouter();
@@ -50,7 +49,6 @@ function ManageEcoUI() {
 					<ButtonClose
 						onClick={() => {
 							dispatchEcoReducerAction({ type: "resetAll" });
-							setActiveItem(null);
 							setActionLoaded(null);
 							setInfo(null);
 						}}

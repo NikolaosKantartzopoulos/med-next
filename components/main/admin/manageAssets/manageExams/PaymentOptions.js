@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import LanguageContext from "../../../../../helper/store/language-context";
 
 import Input from "../../../../UI/Input";
 import Textarea from "../../../../UI/Textarea";
@@ -11,6 +12,7 @@ function PaymentOptions({
 	examInputState,
 	insurancesOfThisDepartment,
 }) {
+	const { lng } = useContext(LanguageContext);
 	const [commonPayment, setCommonPayment] = useState(
 		examInputState.eco.find((a) => a.title === insurance.title).common
 	);
@@ -39,7 +41,7 @@ function PaymentOptions({
 					htmlFor={`commonPay-${insurance.title}`}
 					style={{ height: "1rem" }}
 				>
-					Common Payment & Details
+					{lng("CommonPaymentAndDetails")}
 					<input
 						type="checkbox"
 						id={`commonPay-${insurance.title}`}

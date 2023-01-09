@@ -12,7 +12,6 @@ const EcoContext = createContext({
 	allDepartments: [],
 	actionLoaded: "",
 	allInsuranceDocuments: [],
-	activeItem: {},
 	aFieldIsEmpty: () => {},
 	allActiveInsurances: [],
 	deleteItem: () => {},
@@ -26,7 +25,6 @@ const EcoContext = createContext({
 	saveAddItem: () => {},
 	saveEditedItem: () => {},
 	setActionLoaded: () => {},
-	setActiveItem: () => {},
 	setAddItem: () => {},
 	setAllActiveInsurances: () => {},
 	setEditItem: () => {},
@@ -47,7 +45,6 @@ export function EcoContextProvider({
 		allInsuranceDocuments
 	);
 
-	const [activeItem, setActiveItem] = useState(null);
 	const [actionLoaded, setActionLoaded] = useState(null);
 	const [info, setInfo] = useState(null);
 	const [checkedInsurances, setCheckedInsurances] = useState(
@@ -95,7 +92,6 @@ export function EcoContextProvider({
 		});
 		const newArray = [...filteredArray, inputsState];
 		setActionLoaded(null);
-		setActiveItem(null);
 		setAllActiveInsurances(newArray);
 		handleSubmit([...filteredArray, inputsState]);
 	}
@@ -132,7 +128,6 @@ export function EcoContextProvider({
 
 		dispatchEcoReducerAction({ type: "resetAll" });
 		setActionLoaded(null);
-		setActiveItem(null);
 		handleSubmit([
 			...allActiveInsurances,
 			{ ...inputsState, _id: uuid(), eco: "departmentWide" },
@@ -175,7 +170,6 @@ export function EcoContextProvider({
 		saveAddItem,
 		deleteItem,
 		actionLoaded,
-		activeItem,
 		allActiveInsurances,
 		dispatchEcoReducerAction,
 		isLoading,
@@ -185,7 +179,6 @@ export function EcoContextProvider({
 		inputsState,
 		manageEcoReducer,
 		setActionLoaded,
-		setActiveItem,
 		setAllActiveInsurances,
 		setInfo,
 		distinctDepartments,

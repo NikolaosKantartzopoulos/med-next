@@ -11,7 +11,18 @@ export function LanguageContextProvider({ locale, children }) {
 			"el-GR": "Γειά",
 			"en-US": "Hello",
 		},
-
+		CommonPaymentAndDetails: {
+			"el-GR": "Κοινή προετοιμασία & λεπτομέριες",
+			"en-US": "Common Payment & Details",
+		},
+		Common: {
+			"el-GR": "Κοινές",
+			"en-US": "Common",
+		},
+		Unique: {
+			"el-GR": "Ιδιαίτερες",
+			"en-US": "Unique",
+		},
 		Monday: {
 			"el-GR": "Δευτέρα",
 			"en-US": "Monday",
@@ -24,6 +35,36 @@ export function LanguageContextProvider({ locale, children }) {
 			"el-GR": "Τετάρτη",
 			"en-US": "Wednesday",
 		},
+
+		Doctor: {
+			"el-GR": "Ιατρός",
+			"en-US": "Doctor",
+		},
+		Secretary: {
+			"el-GR": "Γραμματέας",
+			"en-US": "Secretary",
+		},
+		Position: {
+			"el-GR": "Ως",
+			"en-US": "As",
+		},
+		Position2: {
+			"el-GR": "σε",
+			"en-US": "In",
+		},
+		FrontDesk: {
+			"el-GR": "Υποδοχή",
+			"en-US": "FrontDesk",
+		},
+		Transcriptionist: {
+			"el-GR": "Δακτυλογράφηση",
+			"en-US": "Transcriptionist",
+		},
+		PhoneCenter: {
+			"el-GR": "Τηλεφωνικό",
+			"en-US": "PhoneCenter",
+		},
+
 		Thursday: {
 			"el-GR": "Πέμπτη",
 			"en-US": "Thursday",
@@ -79,7 +120,7 @@ export function LanguageContextProvider({ locale, children }) {
 			"en-US": "Update",
 		},
 		Add: {
-			"el-GR": "Προσθήκη",
+			"el-GR": "Νέο",
 			"en-US": "Add",
 		},
 		Delete: {

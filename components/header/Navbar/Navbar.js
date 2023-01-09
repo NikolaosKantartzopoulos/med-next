@@ -18,10 +18,6 @@ function Navbar() {
 	const router = useRouter();
 	const currentRoute = router.pathname;
 
-	if (status === "loading") {
-		return <LoadingSpinner />;
-	}
-
 	return (
 		<div className={styles.navbarSection}>
 			<div className={styles.leftNavbarPart}>

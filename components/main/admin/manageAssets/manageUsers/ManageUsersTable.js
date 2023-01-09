@@ -4,34 +4,37 @@ import Image from "next/image";
 import tableStyles from "./ManageUsersTable.module.css";
 import editIcon from "../../../../../public/images/edit.svg";
 import deleteIcon from "../../../../../public/images/delete.svg";
-
-function printPosition(value) {
-	switch (value) {
-		case "doctor":
-			return "Doctor";
-		case "secretary":
-			return "Secretary";
-		default:
-			return "";
-	}
-}
-
-function printPosition2(value) {
-	switch (value) {
-		case "frontDesk":
-			return "Front Desk";
-		case "trascriptionist":
-			return "Trascriptionist";
-		case "phoneCenter":
-			return "Phone Center";
-		default:
-			return "";
-	}
-}
+import LanguageContext from "../../../../../helper/store/language-context";
 
 function ManageUsersTable() {
 	const { activeUsers, editThisUser, deleteThisUser } =
 		useContext(UsersContext);
+	const { lng } = useContext(LanguageContext);
+
+	function printPosition(value) {
+		switch (value) {
+			case "doctor":
+				return lng("Doctor");
+			case "secretary":
+				return lng("Secretary");
+			default:
+				return "";
+		}
+	}
+
+	function printPosition2(value) {
+		switch (value) {
+			case "frontDesk":
+				return lng("FrontDesk");
+			case "trascriptionist":
+				return lng("Transcriptionist");
+			case "phoneCenter":
+				return lng("PhoneCenter");
+			default:
+				return "";
+		}
+	}
+
 	return (
 		<table className={tableStyles.table}>
 			<thead className={tableStyles.tableHead}>
@@ -39,8 +42,8 @@ function ManageUsersTable() {
 					<th>Username</th>
 					<th>Email</th>
 					<th>Password</th>
-					<th>Position</th>
-					<th>Position2</th>
+					<th>{lng("Position")}</th>
+					<th>{lng("Position2")}</th>
 					<th colSpan="2">Actions</th>
 				</tr>
 			</thead>

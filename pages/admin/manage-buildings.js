@@ -44,8 +44,8 @@ export default ManageBuildingsRoute;
 export async function getServerSideProps() {
 	const [client, db] = await connectDatabase();
 	const data = await db
-		.collection("assets")
-		.find({ address: { $exists: true } })
+		.collection("buildings")
+		.find({})
 		.project({ _id: 0 })
 		.toArray();
 	return { props: { allBuildings: data } };

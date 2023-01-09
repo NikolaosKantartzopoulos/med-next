@@ -16,7 +16,7 @@ export default async function handler(req, res) {
 				res.status(406).json({ message: "Invalid Input" });
 				return;
 			}
-			const result = await db.collection("assets").insertOne(newBuilding);
+			const result = await db.collection("buildings").insertOne(newBuilding);
 
 			res.status(200).json({ message: "message", added: newBuilding });
 		} finally {
