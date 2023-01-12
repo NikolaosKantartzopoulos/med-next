@@ -7,8 +7,10 @@ import Textarea from "../../../UI/Textarea";
 
 import NewsContext from "../../../../helper/store/contexts/news-context";
 import ButtonAdd from "../../../UI/ButtonAdd.js";
+import ToolsContext from "../../../../helper/store/contexts/tools-context.js";
 
 function NewsForm() {
+	const { info, setInfo, infoMessage } = useContext(ToolsContext);
 	const newsContext = useContext(NewsContext);
 	const [tagInput, setTagInput] = useState("");
 
@@ -28,7 +30,9 @@ function NewsForm() {
 			<button onClick={() => console.log(newsContext.newsState)}>
 				Check state
 			</button>
-			<button onClick={newsContext.saveAddedNews}>Save</button>
+			{newsContext.actionLoaded === "addNews" && (
+				<button onClick={newsContext.saveAddedNews}>Add news</button>
+			)}
 			<Input
 				id="title"
 				label="title"
@@ -68,9 +72,16 @@ function NewsForm() {
 					onChange={(e) => setTagInput(e.target.value)}
 				/>
 				<ButtonAdd
-					onClick={() =>
-						newsContext.dispatchNewsAction({ type: "addTag", newTag: tagInput })
-					}
+					onClick={() => {
+						if (tagInput.trim() === "") {
+							infoMessage("error", "Tag field is empty");
+							return;
+						}
+						newsContext.dispatchNewsAction({
+							type: "addTag",
+							newTag: tagInput,
+						});
+					}}
 				/>
 			</div>
 		</div>
