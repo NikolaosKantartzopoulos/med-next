@@ -5,6 +5,9 @@ const ToolsContext = createContext({
 	setTheme: () => {},
 	enableLightTheme: () => {},
 	enableDarkTheme: () => {},
+	info: null,
+	setInfo: () => {},
+	infoMessage: () => {},
 });
 
 export function ToolsContextProvider(props) {
@@ -18,7 +21,23 @@ export function ToolsContextProvider(props) {
 		localStorage.setItem("theme", "dark");
 		setTheme("dark");
 	}
-	const toolsContext = { theme, setTheme, enableLightTheme, enableDarkTheme };
+
+	const [info, setInfo] = useState(null);
+
+	function infoMessage(type, text) {
+		setInfo({ type: type, text: text });
+		setTimeout(() => setInfo(null), 3000);
+	}
+
+	const toolsContext = {
+		theme,
+		setTheme,
+		enableLightTheme,
+		enableDarkTheme,
+		info,
+		setInfo,
+		infoMessage,
+	};
 	return (
 		<ToolsContext.Provider value={toolsContext}>
 			{props.children}

@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
+
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
+import { connectDatabase } from "../../helper/database/db";
+
+import ToolsContext from "../../helper/store/contexts/tools-context.js";
+import { PreparationsContextProvider } from "../../helper/store/contexts/preparations-context";
 
 import ManagePreparation from "../../components/main/admin/manageAssets/managePreparations/ManagePreparations.js";
 import AdminNavbar from "../../components/main/admin/AdminNavbar.js";
 import LoadingSpinner from "../../components/UI/LoadingSpinner.js";
-import { PreparationsContextProvider } from "../../helper/store/contexts/preparations-context";
-
-import { connectDatabase } from "../../helper/database/db";
 
 function ManagePreparationsRoute({ allPreparations }) {
 	const { data: session, status } = useSession();
+
+	const { info, setInfo } = useContext(ToolsContext);
+
 	const router = useRouter();
 
 	if (status === "loading") {
@@ -26,7 +31,11 @@ function ManagePreparationsRoute({ allPreparations }) {
 			{!allPreparations ? (
 				<LoadingSpinner />
 			) : (
-				<PreparationsContextProvider allPreparations={allPreparations}>
+				<PreparationsContextProvider
+					allPreparations={allPreparations}
+					info={info}
+					setInfo={setInfo}
+				>
 					<AdminNavbar />
 					<ManagePreparation />
 				</PreparationsContextProvider>

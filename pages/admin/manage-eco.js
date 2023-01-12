@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 
@@ -7,6 +7,7 @@ import AdminNavbar from "../../components/main/admin/AdminNavbar.js";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import { connectDatabase } from "../../helper/database/db";
 import { EcoContextProvider } from "../../helper/store/contexts/eco-context";
+import ToolsContext from "../../helper/store/contexts/tools-context";
 
 function ManageEcoRoute({
 	distinctDepartments,
@@ -15,6 +16,8 @@ function ManageEcoRoute({
 }) {
 	const { data: session, status } = useSession();
 	const router = useRouter();
+
+	const { info, setInfo } = useContext(ToolsContext);
 
 	if (status === "loading") {
 		return <LoadingSpinner />;
@@ -33,6 +36,8 @@ function ManageEcoRoute({
 					distinctDepartments={distinctDepartments}
 					allInsuranceDocuments={allInsuranceDocuments}
 					allDepartments={allDepartments}
+					info={info}
+					setInfo={setInfo}
 				>
 					<div>
 						<AdminNavbar />

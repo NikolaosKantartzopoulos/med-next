@@ -3,6 +3,7 @@ import Footer from "./footer";
 import ToolsContext from "../../helper/store/contexts/tools-context";
 import styles from "./layout.module.css";
 import { useContext, useEffect } from "react";
+import InfoPanel from "../UI/InfoPanel";
 // import Transition from "./Transition/index";
 
 export default function Layout({ children }) {
@@ -24,6 +25,7 @@ export default function Layout({ children }) {
 	}, [toolsCtx.theme]);
 	return (
 		<div className={styles.layoutSection}>
+			<InfoPanel />
 			<Navbar />
 			{/* <Transition location={router.pathname}> */}
 			<main className={styles.mainSection}>{children}</main>

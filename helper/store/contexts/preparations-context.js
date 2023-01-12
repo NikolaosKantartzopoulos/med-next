@@ -26,18 +26,22 @@ const PreparationsContext = createContext({
 	setInfo: {},
 });
 
-export function PreparationsContextProvider({ allPreparations, children }) {
+export function PreparationsContextProvider({
+	allPreparations,
+	info,
+	setInfo,
+	children,
+}) {
 	const [activePreparationsList, setActivePreparationsList] =
 		useState(allPreparations);
 	const [actionLoaded, setActionLoaded] = useState(null);
-	const [info, setInfo] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 
 	const router = useRouter();
 
 	function checkFieldValidity() {
 		if (preparationsInputs.title.trim() === "") {
-			setInfo({ type: "error", text: "Title filed is empty" });
+			setInfo({ type: "error", text: "Title field is empty" });
 			return false;
 		}
 		if (preparationsInputs.details.trim() === "") {

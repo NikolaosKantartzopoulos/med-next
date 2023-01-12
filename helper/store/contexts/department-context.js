@@ -3,7 +3,13 @@ import { infoMessage } from "../../fn/ui";
 
 const DepartmentContext = createContext({});
 
-export function DepartmentContextProvider({ allDepartments, children }) {
+export function DepartmentContextProvider({
+	allDepartments,
+	info,
+	setInfo,
+	infoMessage,
+	children,
+}) {
 	const [editItemVisible, setEditItemVisible] = useState(null);
 	const [activeDepartments, setActiveDepartments] = useState(
 		[...allDepartments].sort((a, b) => (a.department > b.department ? 1 : -1))
@@ -16,7 +22,6 @@ export function DepartmentContextProvider({ allDepartments, children }) {
 	const [newDepartmentInput, setNewDepartmentInput] = useState("");
 	const [newSubdepartmentInput, setNewSubdepartmentInput] = useState("");
 	const [switchIcons, setSwitchIcons] = useState("showEdit");
-	const [info, setInfo] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 
 	// DEPARTMENTS MANAGEMENT
@@ -28,11 +33,11 @@ export function DepartmentContextProvider({ allDepartments, children }) {
 				.map((dep) => dep.department)
 				.includes(newDepartmentInput)
 		) {
-			infoMessage(setInfo, "error", "Department exists");
+			infoMessage("error", "Department exists");
 			return;
 		}
 		if (newDepartmentInput.trim() == "") {
-			infoMessage(setInfo, "error", "A field is empty");
+			infoMessage("error", "A field is empty");
 			return;
 		}
 
@@ -65,6 +70,8 @@ export function DepartmentContextProvider({ allDepartments, children }) {
 			departmentName.trim() == "" ||
 			activeDepartments.map((dep) => dep.department).includes(departmentName)
 		) {
+			infoMessage("error", "A field is empty");
+
 			setSwitchIcons("showEdit");
 			setEditItemVisible(null);
 			return;
@@ -119,6 +126,7 @@ export function DepartmentContextProvider({ allDepartments, children }) {
 			setDepartmentName("");
 			setNewDepartmentInput("");
 			setNewSubdepartmentInput("");
+			infoMessage("error", "A field is empty");
 
 			setEditItemVisible(null);
 			setSwitchIcons("showEdit");
@@ -168,6 +176,12 @@ export function DepartmentContextProvider({ allDepartments, children }) {
 		selectedSubdepartment
 	) {
 		e.preventDefault();
+
+		if (subdepartmentName.trim() === "") {
+			infoMessage("error", "A field is empty");
+			return;
+		}
+
 		const departmentToChange = activeDepartments.find(
 			(entry) => entry.department === selectedDepartment
 		);
@@ -229,7 +243,6 @@ export function DepartmentContextProvider({ allDepartments, children }) {
 	//POST
 	async function handlePostRequest(these) {
 		let toPut = { activeDepartments: these };
-		console.log(these);
 		setIsLoading(true);
 		const result = await fetch("/api/admin/manage-departments", {
 			method: "PUT",

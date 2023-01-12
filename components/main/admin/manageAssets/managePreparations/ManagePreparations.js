@@ -3,7 +3,6 @@ import PreparationsContext from "../../../../../helper/store/contexts/preparatio
 
 import "../../../../UI/ResponsiveItem";
 
-import InfoPanel from "../../../../UI/InfoPanel";
 import PreparationsUI from "./PreparationsUI";
 import ActivePreparationsList from "./ActivePreparationsList.js";
 
@@ -12,7 +11,7 @@ import LoadingSpinner from "../../../../UI/LoadingSpinner";
 import PrepTextarea from "./PrepTextarea";
 
 function CommonPreparationsList() {
-	const { info, isLoading } = useContext(PreparationsContext);
+	const { isLoading } = useContext(PreparationsContext);
 	if (isLoading) {
 		return <LoadingSpinner />;
 	}
@@ -22,7 +21,6 @@ function CommonPreparationsList() {
 				<PreparationsUI />
 				<PrepTextarea />
 			</div>
-			{info && <InfoPanel info={info} />}
 
 			<ActivePreparationsList />
 		</section>

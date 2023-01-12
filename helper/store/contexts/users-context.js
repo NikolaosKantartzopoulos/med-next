@@ -4,11 +4,10 @@ import { useRouter } from "next/router";
 
 const UsersContext = createContext({});
 
-export function UsersContextProvider({ allUsers, children }) {
+export function UsersContextProvider({ allUsers, info, setInfo, children }) {
 	const router = useRouter();
 	const [actionLoaded, setActionLoaded] = useState(null);
 	const [activeUsers, setActiveUsers] = useState(allUsers);
-	const [info, setInfo] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 	const [showThis, setShowThis] = useState(null);
 	const [manageUsersState, dispatchManageUsersAction] = useReducer(

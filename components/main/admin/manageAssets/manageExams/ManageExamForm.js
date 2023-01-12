@@ -14,12 +14,8 @@ import TinyTabs from "./TinyTabs";
 import styles from "./ManageExam.module.css";
 
 function ManageExamForm({ insertExamToForm }) {
-	const {
-		examInputState,
-		dispatchExamInputStateAction,
-		allActiveDepartments,
-		allActiveDoctors,
-	} = useContext(ExamContext);
+	const { examInputState, dispatchExamInputStateAction } =
+		useContext(ExamContext);
 	const [isLoading, setIsLoading] = useState(false);
 
 	const [editingExam, setEditingExam] = useState(false);

@@ -2,18 +2,18 @@ import React, { useContext, useState } from "react";
 import { useRouter } from "next/router";
 
 import LanguageContext from "../../../../../helper/store/contexts/language-context";
+import ToolsContext from "../../../../../helper/store/contexts/tools-context";
 import ListExistingBuildings from "./ListExistingBuildings";
 
 import SingleInputForm from "../../../../../components/UI/SingleInputForm";
-import InfoPanel from "../../../../../components/UI/InfoPanel.js";
 import LoadingSpinner from "../../../../../components/UI/LoadingSpinner.js";
 
 function ManageBuildings({ allBuildings }) {
 	const router = useRouter();
+	const { info, setInfo } = useContext(ToolsContext);
 	const { lng } = useContext(LanguageContext);
 	const [activeBuildings, setActiveBuildings] = useState(allBuildings);
 	const [newBuilding, setNewBuilding] = useState("");
-	const [info, setInfo] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 	async function addNewBuildingHandler(e) {
 		e.preventDefault();
@@ -76,6 +76,7 @@ function ManageBuildings({ allBuildings }) {
 						onSubmit={(e) => addNewBuildingHandler(e)}
 						value={newBuilding}
 						onChange={(e) => {
+							setInfo(null);
 							setNewBuilding(e.target.value);
 						}}
 					/>
@@ -83,7 +84,6 @@ function ManageBuildings({ allBuildings }) {
 						allBuildings={activeBuildings}
 						deleteBuildingHandler={deleteBuildingHandler}
 					/>
-					<InfoPanel info={info}></InfoPanel>
 				</>
 			)}
 		</div>

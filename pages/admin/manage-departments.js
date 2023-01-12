@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 
@@ -8,8 +8,10 @@ import { DepartmentContextProvider } from "../../helper/store/contexts/departmen
 import ManageDepartments from "../../components/main/admin/manageAssets/manageDepartments/ManageDepartments";
 import AdminNavbar from "../../components/main/admin/AdminNavbar";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
+import ToolsContext from "../../helper/store/contexts/tools-context";
 
 function ManageDepartmentsRoute({ allDepartments }) {
+	const { info, setInfo, infoMessage } = useContext(ToolsContext);
 	const { data: session, status } = useSession();
 	const router = useRouter();
 
@@ -22,7 +24,12 @@ function ManageDepartmentsRoute({ allDepartments }) {
 	}
 
 	return (
-		<DepartmentContextProvider allDepartments={allDepartments}>
+		<DepartmentContextProvider
+			allDepartments={allDepartments}
+			info={info}
+			setInfo={setInfo}
+			infoMessage={infoMessage}
+		>
 			{!allDepartments ? (
 				<LoadingSpinner />
 			) : (

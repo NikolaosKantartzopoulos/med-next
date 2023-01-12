@@ -7,13 +7,6 @@ import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import { connectDatabase } from "../../helper/database/db";
 
 function ManageBuildingsRoute({ allBuildings }) {
-	const [inProp, setInProp] = useState(false);
-
-	useEffect(() => {
-		setInProp(true);
-		return () => setInProp(false);
-	}, [inProp]);
-
 	const { data: session, status } = useSession();
 	const router = useRouter();
 

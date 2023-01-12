@@ -12,15 +12,10 @@ import styles from "./ManageEco.module.css";
 import LanguageContext from "../../../../../helper/store/contexts/language-context.js";
 
 function ManageEco() {
-	const {
-		dispatchEcoReducerAction,
-		info,
-		inputsState,
-		setInfo,
-		actionLoaded,
-		isLoading,
-	} = useContext(EcoContext);
+	const { dispatchEcoReducerAction, inputsState, actionLoaded, isLoading } =
+		useContext(EcoContext);
 	const { lng } = useContext(LanguageContext);
+
 	if (isLoading) {
 		return <LoadingSpinner />;
 	}
@@ -45,10 +40,7 @@ function ManageEco() {
 					customStyles={{ margin: "auto", width: "100%", marginBottom: "1rem" }}
 				/>
 			)}
-			{info && <InfoPanel info={info} />}
-			{/* <Button onClick={handleSubmit} disabled={actionLoaded ? true : false}>
-				Submit
-			</Button> */}
+
 			<EcoFilters />
 			<EcoTable />
 		</div>

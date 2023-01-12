@@ -42,7 +42,6 @@ function ExamsTable({ allActiveExams }) {
 
 	return (
 		<>
-			{info && <InfoPanel info={info} />}
 			{allActiveExams ? (
 				<table className={tableStyles.table}>
 					<thead className={tableStyles.tableHead}>

@@ -230,7 +230,7 @@ function ExamFilterUI({
 											/>
 											<label
 												htmlFor={`${dep.department}-${sub.subName}`}
-												style={{ color: theme == "dark" && "darkorange" }}
+												style={{ color: theme == "dark" ? "darkorange" : null }}
 											>
 												{sub.subName}
 											</label>

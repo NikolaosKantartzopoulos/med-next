@@ -6,7 +6,7 @@ import _ from "lodash";
 import {
 	manageEcoReducer,
 	initialObject,
-} from "../../reducers/manage-eco-reducer.js";
+} from "../reducers/manage-eco-reducer";
 
 const EcoContext = createContext({
 	allDepartments: [],
@@ -39,6 +39,8 @@ export function EcoContextProvider({
 	distinctDepartments,
 	allInsuranceDocuments,
 	allDepartments,
+	info,
+	setInfo,
 	children,
 }) {
 	const [allActiveInsurances, setAllActiveInsurances] = useState(
@@ -46,7 +48,6 @@ export function EcoContextProvider({
 	);
 
 	const [actionLoaded, setActionLoaded] = useState(null);
-	const [info, setInfo] = useState(null);
 	const [checkedInsurances, setCheckedInsurances] = useState(
 		_.uniq(allActiveInsurances.map((ins) => ins.title))
 	);

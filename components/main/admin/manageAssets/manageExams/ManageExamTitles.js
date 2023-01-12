@@ -16,12 +16,12 @@ function ManageExamTitles() {
 				id="examName"
 				label={lng("Name")}
 				value={examInputState.name}
-				onChange={(e) =>
+				onChange={(e) => {
 					dispatchExamInputStateAction({
 						type: "setName",
 						newName: e.target.value,
-					})
-				}
+					});
+				}}
 			/>
 			<Input
 				id="nhsTitle"

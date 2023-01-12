@@ -8,9 +8,9 @@ const ButtonAdd = (props) => {
 	const { lng } = useContext(LanguageContext);
 	return (
 		<button
+			onClick={props.onClick}
 			className={styles.myButton}
 			type={props.type || "button"}
-			onClick={props.onClick}
 			style={props.customStyle}
 			disabled={props.disabled}
 		>

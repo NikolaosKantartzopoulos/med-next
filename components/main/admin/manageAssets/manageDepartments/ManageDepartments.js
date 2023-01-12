@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import LanguageContext from "../../../../../helper/store/contexts/language-context";
 import DepartmentContext from "../../../../../helper/store/contexts/department-context.js";
-import Button from "../../../../UI/Button.js";
-import SingleInputForm from "../../../../UI/SingleInputForm";
+
 import DepBoard from "./DepBoard.js";
-import InfoPanel from "../../../../UI/InfoPanel";
+
+import SingleInputForm from "../../../../UI/SingleInputForm";
 import LoadingSpinner from "../../../../UI/LoadingSpinner";
 
 import styles from "./ManageDepartments.module.css";
@@ -14,10 +14,8 @@ function ManageDepartments() {
 	const {
 		addNewDepartmentHandler,
 		editItemVisible,
-		handlePostRequest,
 		newDepartmentInput,
 		setNewDepartmentInput,
-		info,
 		isLoading,
 	} = useContext(DepartmentContext);
 
@@ -38,14 +36,7 @@ function ManageDepartments() {
 					/>
 				)}
 			</div>
-			{info && <InfoPanel info={info} />}
-			{/* <Button
-				onClick={handlePostRequest}
-				customStyle={{ margin: "auto", width: "100%", marginBottom: "1rem" }}
-				disabled={editItemVisible ? true : false}
-			>
-				Submit
-			</Button> */}
+
 			<DepBoard />
 		</div>
 	);
