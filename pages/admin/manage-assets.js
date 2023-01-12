@@ -1,7 +1,7 @@
 import React from "react";
-import AdminNavbar from "../../components/main/admin/AdminNavbar";
 import Button from "../../components/UI/Button";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
+import AdminLayout from "../../components/helper/adminLayout";
 
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -30,10 +30,9 @@ function ManageAssets() {
 	}
 
 	return (
-		<div>
-			<AdminNavbar />
+		<AdminLayout>
 			<Button onClick={handleClick}>asdf</Button>
-		</div>
+		</AdminLayout>
 	);
 }
 

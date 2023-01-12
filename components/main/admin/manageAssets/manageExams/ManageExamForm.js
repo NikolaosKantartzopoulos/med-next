@@ -12,10 +12,12 @@ import Button from "../../../../UI/Button";
 import TinyTabs from "./TinyTabs";
 
 import styles from "./ManageExam.module.css";
+import LanguageContext from "../../../../../helper/store/contexts/language-context";
 
 function ManageExamForm({ insertExamToForm }) {
 	const { examInputState, dispatchExamInputStateAction } =
 		useContext(ExamContext);
+	const { lng } = useContext(LanguageContext);
 	const [isLoading, setIsLoading] = useState(false);
 
 	const [editingExam, setEditingExam] = useState(false);
@@ -43,9 +45,7 @@ function ManageExamForm({ insertExamToForm }) {
 	}
 	return (
 		<>
-			{editingExam && (
-				<Button onClick={submitEditedExam}>Save edited exam</Button>
-			)}
+			{editingExam && <Button onClick={submitEditedExam}>{lng("Save")}</Button>}
 
 			<section className={styles.ManageExamSection}>
 				<ManageExamTitles />

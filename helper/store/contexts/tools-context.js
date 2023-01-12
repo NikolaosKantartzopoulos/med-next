@@ -8,6 +8,8 @@ const ToolsContext = createContext({
 	info: null,
 	setInfo: () => {},
 	infoMessage: () => {},
+	mainComponentVisible: true,
+	setMainComponentVisible: () => {},
 });
 
 export function ToolsContextProvider(props) {
@@ -29,6 +31,8 @@ export function ToolsContextProvider(props) {
 		setTimeout(() => setInfo(null), 3000);
 	}
 
+	const [mainComponentVisible, setMainComponentVisible] = useState();
+
 	const toolsContext = {
 		theme,
 		setTheme,
@@ -37,6 +41,8 @@ export function ToolsContextProvider(props) {
 		info,
 		setInfo,
 		infoMessage,
+		mainComponentVisible,
+		setMainComponentVisible,
 	};
 	return (
 		<ToolsContext.Provider value={toolsContext}>

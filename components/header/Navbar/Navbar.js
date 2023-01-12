@@ -10,7 +10,7 @@ import ToolsContext from "../../../helper/store/contexts/tools-context";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 
-function Navbar() {
+function Navbar({ setInProp }) {
 	const { data: session, status } = useSession();
 
 	const { lng } = useContext(LanguageContext);
@@ -34,11 +34,18 @@ function Navbar() {
 					height={24}
 					width={24}
 					style={{ position: "relative", top: 2, cursor: "pointer" }}
-					onClick={() => router.push("/")}
+					onClick={() => {
+						router.push("/");
+					}}
 				/>
-				{/* </Link> */}
 				<Link
 					href={"/users/news/"}
+					onClick={() => {
+						if (currentRoute === "/users/news") {
+							return;
+						}
+						setInProp(false);
+					}}
 					className={
 						currentRoute === "/users/news" ? `${styles.activeLink}` : undefined
 					}
@@ -48,6 +55,12 @@ function Navbar() {
 				</Link>
 				<Link
 					href={"/users/browse-exams"}
+					onClick={() => {
+						if (currentRoute === "/users/browse-exams") {
+							return;
+						}
+						setInProp(false);
+					}}
 					className={
 						currentRoute === "/users/browse-exams"
 							? `${styles.activeLink}`
@@ -60,6 +73,12 @@ function Navbar() {
 				{status === "authenticated" && (
 					<Link
 						href={"/admin/manage-assets"}
+						onClick={() => {
+							if (currentRoute === "/users/manage-assets") {
+								return;
+							}
+							setInProp(false);
+						}}
 						className={
 							currentRoute.includes("/admin")
 								? `${styles.activeLink}`

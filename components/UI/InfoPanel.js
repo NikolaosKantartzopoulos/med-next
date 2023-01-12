@@ -7,7 +7,7 @@ import styles from "./InfoPanel.module.css";
 function InfoPanel() {
 	const { info } = useContext(ToolsContext);
 	const nodeRef = createRef(null);
-	const [isMoving, setIsMoving] = useState(false);
+	const [inProp, setInProp] = useState(false);
 
 	const [infoText, setInfoText] = useState("");
 	const [infoType, setInfoType] = useState("");
@@ -16,16 +16,16 @@ function InfoPanel() {
 		if (info) {
 			setInfoText(info.text);
 			setInfoType(info.type);
-			setIsMoving(true);
+			setInProp(true);
 		} else {
-			setIsMoving(false);
+			setInProp(false);
 			setInfoText(null);
 		}
 	}, [info]);
 
 	return (
 		<CSSTransition
-			in={isMoving}
+			in={inProp}
 			timeout={300}
 			classNames={{ ...styles }}
 			nodeRef={nodeRef}

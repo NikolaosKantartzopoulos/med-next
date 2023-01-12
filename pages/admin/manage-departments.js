@@ -6,7 +6,8 @@ import { connectDatabase } from "../../helper/database/db";
 import { DepartmentContextProvider } from "../../helper/store/contexts/department-context";
 
 import ManageDepartments from "../../components/main/admin/manageAssets/manageDepartments/ManageDepartments";
-import AdminNavbar from "../../components/main/admin/AdminNavbar";
+import AdminLayout from "../../components/helper/adminLayout";
+
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import ToolsContext from "../../helper/store/contexts/tools-context";
 
@@ -30,14 +31,9 @@ function ManageDepartmentsRoute({ allDepartments }) {
 			setInfo={setInfo}
 			infoMessage={infoMessage}
 		>
-			{!allDepartments ? (
-				<LoadingSpinner />
-			) : (
-				<div>
-					<AdminNavbar />
-					<ManageDepartments allDepartments={allDepartments} />
-				</div>
-			)}
+			<AdminLayout>
+				<ManageDepartments allDepartments={allDepartments} />
+			</AdminLayout>
 		</DepartmentContextProvider>
 	);
 }

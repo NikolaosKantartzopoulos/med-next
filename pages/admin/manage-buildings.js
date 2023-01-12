@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-import AdminNavbar from "../../components/main/admin/AdminNavbar";
+import AdminLayout from "../../components/helper/adminLayout";
+
 import ManageBuildings from "../../components/main/admin/manageAssets/manageBuildings/ManageBuildings";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import { connectDatabase } from "../../helper/database/db";
@@ -19,16 +20,9 @@ function ManageBuildingsRoute({ allBuildings }) {
 	}
 
 	return (
-		<>
-			{!allBuildings ? (
-				<LoadingSpinner />
-			) : (
-				<div>
-					<AdminNavbar />
-					<ManageBuildings allBuildings={allBuildings} />
-				</div>
-			)}
-		</>
+		<AdminLayout>
+			<ManageBuildings allBuildings={allBuildings} />
+		</AdminLayout>
 	);
 }
 

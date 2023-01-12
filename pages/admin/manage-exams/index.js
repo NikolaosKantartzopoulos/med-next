@@ -7,6 +7,7 @@ import AdminNavbar from "../../../components/main/admin/AdminNavbar";
 import { connectDatabase } from "../../../helper/database/db";
 import { ExamContextProvider } from "../../../helper/store/contexts/exam-context";
 import LoadingSpinner from "../../../components/UI/LoadingSpinner";
+import AdminLayout from "../../../components/helper/adminLayout";
 
 function ManageExamsRoute({
 	allActiveDepartments,
@@ -34,9 +35,9 @@ function ManageExamsRoute({
 			allActivePreparations={allActivePreparations}
 			allActiveEco={allActiveEco}
 		>
-			<AdminNavbar />
-
-			<ManageExam />
+			<AdminLayout>
+				<ManageExam />
+			</AdminLayout>
 		</ExamContextProvider>
 	);
 }

@@ -1,16 +1,3 @@
-.mainSection {
-  max-width: 760px;
-  margin: auto;
-  padding-bottom: 3rem;
-
-}
-
-.layoutSection {
-  position: relative;
-  min-height: 100vh;
-}
-
-
 .enter {
   opacity: 0;
   transform: translateX(-30px);

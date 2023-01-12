@@ -8,7 +8,7 @@ import ToolsContext from "../../helper/store/contexts/tools-context.js";
 import { PreparationsContextProvider } from "../../helper/store/contexts/preparations-context";
 
 import ManagePreparation from "../../components/main/admin/manageAssets/managePreparations/ManagePreparations.js";
-import AdminNavbar from "../../components/main/admin/AdminNavbar.js";
+import AdminLayout from "../../components/helper/adminLayout";
 import LoadingSpinner from "../../components/UI/LoadingSpinner.js";
 
 function ManagePreparationsRoute({ allPreparations }) {
@@ -27,20 +27,15 @@ function ManagePreparationsRoute({ allPreparations }) {
 	}
 
 	return (
-		<>
-			{!allPreparations ? (
-				<LoadingSpinner />
-			) : (
-				<PreparationsContextProvider
-					allPreparations={allPreparations}
-					info={info}
-					setInfo={setInfo}
-				>
-					<AdminNavbar />
-					<ManagePreparation />
-				</PreparationsContextProvider>
-			)}
-		</>
+		<AdminLayout>
+			<PreparationsContextProvider
+				allPreparations={allPreparations}
+				info={info}
+				setInfo={setInfo}
+			>
+				<ManagePreparation />
+			</PreparationsContextProvider>
+		</AdminLayout>
 	);
 }
 

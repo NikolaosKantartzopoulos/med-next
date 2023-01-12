@@ -7,6 +7,7 @@ import FilterUI from "../../components/UI/ExamFilterUI";
 
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
+import AdminLayout from "../../components/helper/adminLayout";
 
 function ManageExamsTableRoute({ allActiveExams, allDepartments }) {
 	const [visibleExams, setVisibleExams] = useState(allActiveExams);
@@ -22,8 +23,7 @@ function ManageExamsTableRoute({ allActiveExams, allDepartments }) {
 	}
 
 	return (
-		<>
-			<AdminNavbar />
+		<AdminLayout>
 			<FilterUI
 				allDepartments={allDepartments}
 				allExams={allActiveExams}
@@ -31,7 +31,7 @@ function ManageExamsTableRoute({ allActiveExams, allDepartments }) {
 				setVisibleExams={setVisibleExams}
 			/>
 			<ExamsTable allActiveExams={visibleExams} />
-		</>
+		</AdminLayout>
 	);
 }
 

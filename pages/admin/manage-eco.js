@@ -3,7 +3,8 @@ import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 
 import ManageEco from "../../components/main/admin/manageAssets/manageEco/ManageEco";
-import AdminNavbar from "../../components/main/admin/AdminNavbar.js";
+import AdminLayout from "../../components/helper/adminLayout";
+
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import { connectDatabase } from "../../helper/database/db";
 import { EcoContextProvider } from "../../helper/store/contexts/eco-context";
@@ -28,24 +29,17 @@ function ManageEcoRoute({
 	}
 
 	return (
-		<>
-			{!allInsuranceDocuments ? (
-				<LoadingSpinner />
-			) : (
-				<EcoContextProvider
-					distinctDepartments={distinctDepartments}
-					allInsuranceDocuments={allInsuranceDocuments}
-					allDepartments={allDepartments}
-					info={info}
-					setInfo={setInfo}
-				>
-					<div>
-						<AdminNavbar />
-						<ManageEco />
-					</div>
-				</EcoContextProvider>
-			)}
-		</>
+		<AdminLayout>
+			<EcoContextProvider
+				distinctDepartments={distinctDepartments}
+				allInsuranceDocuments={allInsuranceDocuments}
+				allDepartments={allDepartments}
+				info={info}
+				setInfo={setInfo}
+			>
+				<ManageEco />
+			</EcoContextProvider>
+		</AdminLayout>
 	);
 }
 

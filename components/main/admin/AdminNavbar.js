@@ -1,16 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useRef } from "react";
 
-import { useRouter } from "next/router";
 import Link from "next/link";
-import styles from "./AdminNavbar.module.css";
+import { useRouter } from "next/router";
+
 import LanguageContext from "../../../helper/store/contexts/language-context";
 import ToolsContext from "../../../helper/store/contexts/tools-context";
 
+import { CSSTransition } from "react-transition-group";
+
+import styles from "./AdminNavbar.module.css";
+
 function AdminNavbar() {
-	const { theme } = useContext(ToolsContext);
 	const router = useRouter();
+
+	const { theme } = useContext(ToolsContext);
 	const { lng } = useContext(LanguageContext);
+
 	const currentRoute = router.pathname;
+
+	const [inProp, setInProp] = useState(false);
+	const nodeRef = useRef(null);
+
 	return (
 		<div className={styles.adminNavbar}>
 			<Link

@@ -9,9 +9,9 @@ import {
 
 import { UsersContextProvider } from "../../helper/store/contexts/users-context";
 
+import AdminLayout from "../../components/helper/adminLayout";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import ManageUsers from "../../components/main/admin/manageAssets/manageUsers/ManageUsers";
-import AdminNavbar from "../../components/main/admin/AdminNavbar";
 import ToolsContext from "../../helper/store/contexts/tools-context";
 
 function ManageUsersRoute({ allUsers }) {
@@ -29,16 +29,11 @@ function ManageUsersRoute({ allUsers }) {
 	}
 
 	return (
-		<>
-			{!allUsers ? (
-				<LoadingSpinner />
-			) : (
-				<UsersContextProvider allUsers={allUsers} info={info} setInfo={setInfo}>
-					<AdminNavbar />
-					<ManageUsers />
-				</UsersContextProvider>
-			)}
-		</>
+		<AdminLayout>
+			<UsersContextProvider allUsers={allUsers} info={info} setInfo={setInfo}>
+				<ManageUsers />
+			</UsersContextProvider>
+		</AdminLayout>
 	);
 }
 
