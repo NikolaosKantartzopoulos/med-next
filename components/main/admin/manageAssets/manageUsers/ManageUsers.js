@@ -1,19 +1,17 @@
 import React, { useContext } from "react";
+
 import UsersContext from "../../../../../helper/store/contexts/users-context";
 
-import ManageUserInputs from "./ManageUserInputs";
-
-import InfoPanel from "../../../../UI/InfoPanel";
-import LoadingSpinner from "../../../../UI/LoadingSpinner";
-import ManageUsersTable from "./ManageUsersTable";
 import ManageUsersUI from "./ManageUsersUI";
-import Button from "../../../../UI/Button";
+import ManageUserInputs from "./ManageUserInputs";
+import ManageUsersTable from "./ManageUsersTable";
+
+import LoadingSpinner from "../../../../UI/LoadingSpinner";
 
 import styles from "./ManageUsers.module.css";
 
 function ManageUsers() {
-	const { actionLoaded, info, isLoading, showThis, handlePostRequest } =
-		useContext(UsersContext);
+	const { isLoading, actionLoaded } = useContext(UsersContext);
 
 	if (isLoading) {
 		return <LoadingSpinner />;
@@ -22,7 +20,7 @@ function ManageUsers() {
 		<div className={styles.ManageUsersSection}>
 			<div className={styles.UISection}>
 				<ManageUsersUI />
-				{showThis === "showManageUserInputs" && <ManageUserInputs />}
+				{actionLoaded && <ManageUserInputs />}
 			</div>
 			<ManageUsersTable />
 		</div>

@@ -13,18 +13,13 @@ function ManageExam() {
 	const { info, setInfo, infoMessage } = useContext(ToolsContext);
 	const [isLoading, setIsLoading] = useState(false);
 
-	function setFieldsForNewExamEntry() {
-		dispatchExamInputStateAction({ type: "resetAll" });
-	}
 	async function handleSubmitNewExam() {
 		if (examInputState.name.trim() === "") {
 			infoMessage("error", "Name field is empty");
-			console.log("inside");
 			return;
 		}
 		if (examInputState.nhsDescription.trim() === "") {
 			infoMessage("error", "A field is empty");
-			console.log("inside");
 			return;
 		}
 

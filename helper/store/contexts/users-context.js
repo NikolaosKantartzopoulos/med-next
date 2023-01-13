@@ -82,14 +82,33 @@ export function UsersContextProvider({ allUsers, info, setInfo, children }) {
 			position: manageUsersState.userPosition,
 			position2: manageUsersState.userPosition2,
 		};
-		handlePostRequest([...activeUsers, newUserInfo]);
-		setActiveUsers([...activeUsers, newUserInfo]);
+
+		setIsLoading(true);
+		const response = await fetch("/api/admin/manage-users", {
+			method: "POST",
+			body: JSON.stringify({ newUserInfo }),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		if (response.ok) {
+			const data = await response.json();
+			console.log(data.insertedId);
+			setActiveUsers([
+				...activeUsers.filter((usr) => usr._id != data.insertedId),
+				{ ...newUserInfo, _id: data.insertedId },
+			]);
+			setInfo({ type: "ok", text: "New user submited successfully" });
+			setTimeout(() => setInfo(null), 3000);
+		} else {
+			setInfo({ type: "error", text: "Something went wrong" });
+			setTimeout(() => setInfo(null), 3000);
+			router.reload();
+		}
+		setIsLoading(false);
+
 		dispatchManageUsersAction({ type: "resetAll" });
 		setActionLoaded(null);
-		setInfo({ type: "success", text: "User submited" });
-		setTimeout(() => {
-			setInfo(null);
-		}, 3000);
 	}
 
 	function editThisUser(e, user) {
@@ -107,51 +126,46 @@ export function UsersContextProvider({ allUsers, info, setInfo, children }) {
 		});
 	}
 
-	function submitEditedUser() {
-		const userToEdit = activeUsers.find(
-			(user) => user.username === manageUsersState.userNameBuffer
-		);
-		const filteredUsers = activeUsers.filter(
-			(user) => user.username !== manageUsersState.userNameBuffer
-		);
-		let userToAdd = {
-			...userToEdit,
-			username: manageUsersState.userName,
-			password: manageUsersState.userPassword,
-			email: manageUsersState.userEmail,
-			position: manageUsersState.userPosition,
-			position2: manageUsersState.userPosition2,
-		};
-		setActiveUsers([...filteredUsers, userToAdd]);
-		handlePostRequest([...filteredUsers, userToAdd]);
-		dispatchManageUsersAction({ type: "resetAll" });
-		setActionLoaded(null);
-		setInfo({ type: "success", text: "Edit submited" });
-		setTimeout(() => {
-			setInfo(null);
-		}, 3000);
-	}
-
-	function deleteThisUser(e, user) {
-		const filteredUsers = activeUsers.filter((entry) => user._id !== entry._id);
-		handlePostRequest(filteredUsers);
-		setActiveUsers(filteredUsers);
-	}
-
-	async function handlePostRequest(these) {
-		let toPost = { activeUsers: these };
+	async function submitEditedUser() {
 		setIsLoading(true);
-		const result = await fetch("/api/admin/manage-users", {
-			method: "POST",
-			body: JSON.stringify(toPost),
+		const response = await fetch("/api/admin/manage-users", {
+			method: "PUT",
+			body: JSON.stringify({ editedUser: manageUsersState }),
 			headers: {
 				"Content-Type": "application/json",
 			},
 		});
-		const data = await result.json();
+		if (response.ok) {
+			const data = await response.json();
+			const filteredUsers = activeUsers.filter(
+				(usr) => usr._id != manageUsersState.userId
+			);
+			setActiveUsers([...filteredUsers, { ...data.editedUserNewState }]);
+			setInfo(data);
+			setTimeout(() => setInfo(null), 3000);
+		}
 		setIsLoading(false);
-		setInfo({ type: "ok", text: "Changes submited" });
-		setTimeout(() => setInfo(null));
+		dispatchManageUsersAction({ type: "resetAll" });
+		setActionLoaded(null);
+	}
+
+	async function deleteThisUser(e, user) {
+		setIsLoading(true);
+		const res = await fetch("/api/admin/manage-users", {
+			method: "DELETE",
+			body: JSON.stringify({ toDelete: user }),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+
+		if (res.ok) {
+			const data = await res.json();
+			setInfo(data);
+			setTimeout(() => setInfo(null), 3000);
+		}
+		setActiveUsers([...activeUsers.filter((usr) => usr._id != user._id)]);
+		setIsLoading(false);
 	}
 
 	const usersContext = {
@@ -161,7 +175,6 @@ export function UsersContextProvider({ allUsers, info, setInfo, children }) {
 		deleteThisUser,
 		dispatchManageUsersAction,
 		editThisUser,
-		handlePostRequest,
 		info,
 		isLoading,
 		manageUsersState,

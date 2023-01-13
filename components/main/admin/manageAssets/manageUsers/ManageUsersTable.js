@@ -10,7 +10,6 @@ function ManageUsersTable() {
 	const { activeUsers, editThisUser, deleteThisUser } =
 		useContext(UsersContext);
 	const { lng } = useContext(LanguageContext);
-
 	function printPosition(value) {
 		switch (value) {
 			case "doctor":
@@ -49,7 +48,7 @@ function ManageUsersTable() {
 			</thead>
 			<tbody className={tableStyles.tableBody}>
 				{activeUsers.map((user) => (
-					<tr key={user.email}>
+					<tr key={user._id}>
 						<td>{user.username}</td>
 						<td>{user.email}</td>
 						<td>{user.password}</td>

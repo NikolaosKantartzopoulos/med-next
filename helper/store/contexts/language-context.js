@@ -58,7 +58,7 @@ export function LanguageContextProvider({ locale, children }) {
 		},
 		FrontDesk: {
 			"el-GR": "Υποδοχή",
-			"en-US": "FrontDesk",
+			"en-US": "Front Desk",
 		},
 		Transcriptionist: {
 			"el-GR": "Δακτυλογράφηση",
@@ -66,7 +66,7 @@ export function LanguageContextProvider({ locale, children }) {
 		},
 		PhoneCenter: {
 			"el-GR": "Τηλεφωνικό",
-			"en-US": "PhoneCenter",
+			"en-US": "Phone Center",
 		},
 
 		Thursday: {

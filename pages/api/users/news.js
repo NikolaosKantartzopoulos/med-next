@@ -5,7 +5,6 @@ export default async function handler(req, res) {
 		case "POST":
 			const [client, db] = await connectDatabase();
 			const dbRes = await db.collection("news").insertOne(req.body);
-			console.log(dbRes);
 			client.close();
 			return;
 	}
