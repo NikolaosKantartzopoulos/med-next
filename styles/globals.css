@@ -20,7 +20,7 @@ html {
 
 * {
   --dark-main-1: darkblue;
-  --dark-main-2: dodgerblue;
+  --dark-main-2: #2A52BE;
   --light-main-1: white;
   --light-main-2: bisque;
   --support-1: rgb(245, 236, 236);
