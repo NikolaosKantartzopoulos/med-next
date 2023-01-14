@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { createContext, useReducer, useState } from "react";
 import { initialNewsState, newsReducer } from "../reducers/news-reducer";
 
@@ -15,16 +16,30 @@ const NewsContext = createContext({
 	setEditNews: () => {},
 	saveEditedNews: () => {},
 	deleteNews: () => {},
+	resetUI: () => {},
+	allUsers: [],
 });
 
-export function NewsContextProvider({ children }) {
+export function NewsContextProvider({
+	children,
+	allNews,
+	allUsers,
+	info,
+	setInfo,
+}) {
 	const [newsState, dispatchNewsAction] = useReducer(
 		newsReducer,
 		initialNewsState
 	);
 	const [loading, setLoading] = useState(false);
-	const [actionLoaded, setActionLoaded] = useState("");
-	const [info, setInfo] = useState(null);
+	const [actionLoaded, setActionLoaded] = useState(null);
+
+	const router = useRouter();
+
+	function resetUI() {
+		setActionLoaded(null);
+		dispatchNewsAction({ type: "resetAll" });
+	}
 
 	function setAddNews(e, item) {
 		setActionLoaded("addNews");
@@ -41,9 +56,33 @@ export function NewsContextProvider({ children }) {
 		});
 		setLoading(false);
 	}
-	function setEditNews() {}
-	function saveEditedNews() {}
-	function deleteNews() {}
+	function setEditNews(e, item) {
+		setActionLoaded("editItem");
+		dispatchNewsAction({ type: "setFieldsForEdit", itemToEdit: item });
+	}
+
+	async function saveEditedNews() {}
+
+	async function deleteNews(e, item) {
+		setLoading(true);
+		const res = await fetch("/api/users/news", {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ toDelete: item }),
+		});
+
+		if (res.ok) {
+			const data = await res.json();
+			console.log(data);
+			setInfo(data);
+			setTimeout(() => setInfo(null), 3000);
+			setTimeout(() => router.reload(), 3200);
+		}
+
+		setLoading(false);
+	}
 
 	const newsContext = {
 		actionLoaded,
@@ -58,7 +97,10 @@ export function NewsContextProvider({ children }) {
 		saveAddedNews,
 		setEditNews,
 		saveEditedNews,
+		resetUI,
 		deleteNews,
+		allNews,
+		allUsers,
 	};
 	return (
 		<NewsContext.Provider value={newsContext}>{children}</NewsContext.Provider>

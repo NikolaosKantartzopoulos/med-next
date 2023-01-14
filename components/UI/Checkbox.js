@@ -4,7 +4,7 @@ import checkStyles from "./Checkbox.module.css";
 
 function Checkbox({ value, label, checkedIf, onChange }) {
 	return (
-		<div className={checkStyles.setInputLabel} key={label}>
+		<div className={checkStyles.EcoFiltersSection} key={label}>
 			<input
 				type="checkbox"
 				value={value}

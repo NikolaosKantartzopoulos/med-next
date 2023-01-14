@@ -15,6 +15,10 @@ export function LanguageContextProvider({ locale, children }) {
 			"el-GR": "Νέα",
 			"en-US": "News",
 		},
+		Featured: {
+			"el-GR": "Σημαντικό",
+			"en-US": "Featured",
+		},
 		CommonPaymentAndDetails: {
 			"el-GR": "Κοινή προετοιμασία & λεπτομέριες",
 			"en-US": "Common Payment & Details",

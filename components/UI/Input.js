@@ -6,13 +6,15 @@ function Input({ id, label, value, onChange, customStyle }) {
 	const { theme } = useContext(ToolsContext);
 	return (
 		<div className={styles.inputDiv} style={customStyle}>
-			<label
-				className={styles.myLabel}
-				htmlFor={id}
-				style={{ color: theme == "dark" ? "white" : null }}
-			>
-				{label}
-			</label>
+			{label && (
+				<label
+					className={styles.myLabel}
+					htmlFor={id}
+					style={{ color: theme == "dark" ? "white" : null }}
+				>
+					{label}
+				</label>
+			)}
 			<input
 				className={styles.myInput}
 				id={id}

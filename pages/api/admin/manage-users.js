@@ -21,9 +21,7 @@ export default async function handler(req, res) {
 				}
 
 				const response = await db.collection("assets").insertOne(newUserInfo);
-				console.log(response);
 				if (response.acknowledged) {
-					console.log(response.insertedId.toString());
 					res.status(206).json({ insertedId: response.insertedId.toString() });
 				} else {
 					res.status(400).json({ message: "There was a problem" });

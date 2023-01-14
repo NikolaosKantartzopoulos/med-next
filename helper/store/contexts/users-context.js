@@ -93,7 +93,6 @@ export function UsersContextProvider({ allUsers, info, setInfo, children }) {
 		});
 		if (response.ok) {
 			const data = await response.json();
-			console.log(data.insertedId);
 			setActiveUsers([
 				...activeUsers.filter((usr) => usr._id != data.insertedId),
 				{ ...newUserInfo, _id: data.insertedId },

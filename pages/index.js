@@ -5,7 +5,7 @@ import styles from "./Home.module.css";
 export default function Index() {
 	const router = useRouter();
 	useEffect(() => {
-		router.replace("/users/browse-exams");
+		router.replace("/users/news");
 	}, []);
 	return <div className={styles.Home}></div>;
 }

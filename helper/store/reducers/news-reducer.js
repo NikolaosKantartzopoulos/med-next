@@ -5,6 +5,7 @@ export const initialNewsState = {
 	text: "",
 	title: "",
 	userID: "",
+	username: "",
 };
 
 export function newsReducer(state, action) {
@@ -20,7 +21,19 @@ export function newsReducer(state, action) {
 		case "setDate":
 			return { ...state, dateCreated: action.newDate };
 		case "addTag":
+			if (state.tags.length > 2 || state.tags.includes(action.newTag)) {
+				return { ...state };
+			}
+
 			return { ...state, tags: [...state.tags, action.newTag] };
+		case "deleteTag":
+			if (state.tags.length == 0) {
+				return { ...state };
+			}
+			return {
+				...state,
+				tags: [...state.tags.filter((t) => t != action.tagToDelete)],
+			};
 		case "setAddNewsFields":
 			return {
 				dateCreated: new Date().toLocaleDateString("el-GR"),
@@ -29,6 +42,17 @@ export function newsReducer(state, action) {
 				text: "",
 				title: "",
 				userID: action.user._id,
+				username: action.user.username,
+			};
+		case "setFieldsForEdit":
+			return {
+				dateCreated: new Date().toLocaleDateString("el-GR"),
+				featured: action.itemToEdit.featured,
+				tags: action.itemToEdit.tags,
+				text: action.itemToEdit.text,
+				title: action.itemToEdit.title,
+				userID: action._id,
+				username: action.username,
 			};
 	}
 }

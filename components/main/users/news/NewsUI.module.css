@@ -1,0 +1,12 @@
+.newsUI {
+  display: flex;
+  flex-direction: row wrap;
+  width: 100%;
+  gap: 1rem;
+}
+
+.controlButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
