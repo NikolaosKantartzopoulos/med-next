@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import NewsContext from "../../../../helper/store/contexts/news-context";
+import LoadingSpinner from "../../../UI/LoadingSpinner";
 
 import styles from "./FeaturedNews.module.css";
 import NewsTab from "./NewsTab";
@@ -15,13 +16,17 @@ const snew = {
 };
 
 function FeaturedNews() {
-	const { allNews, allUsers } = useContext(NewsContext);
+	const { allNews, allUsers, activeNews } = useContext(NewsContext);
 
 	return (
 		<>
-			{allNews.map((n) => (
-				<NewsTab item={n} key={n._id} />
-			))}
+			{activeNews.map((n) => {
+				if (n._id) {
+					return <NewsTab item={n} key={n._id} />;
+				} else {
+					return <LoadingSpinner />;
+				}
+			})}
 		</>
 	);
 }

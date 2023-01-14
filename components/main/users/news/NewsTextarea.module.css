@@ -1,30 +1,32 @@
 .Textarea {
   background-color: var(--support-1);
   outline: none;
-  border: none;
-  box-shadow: 0 0 2px 2px var(--dark-main-1);
-  width: clamp(200px, 100%, 760px);
-  max-width: 100vw;
+
+  border: 1px solid var(--dark-main-1);
+  width: clamp(320px, 100%, 760px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  margin-left: auto;
-  margin-right: auto;
+
 }
 
 
 .TextareaLabel {
-  color: var(--dark-main-1);
+  color: var(--light-main-1);
   font-size: 1rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
   justify-content: flex-start;
   align-items: flex-start;
+  background-color: var(--dark-main-1);
+  width: 100%;
+  text-align: center;
+  height: 2rem;
+  padding-top: 0.5rem;
 }
 
 .labelAndTextarea {
-  width: 100%;
   margin-bottom: 1rem;
   display: flex;
   flex-direction: column;

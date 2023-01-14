@@ -24,7 +24,6 @@ export function newsReducer(state, action) {
 			if (state.tags.length > 2 || state.tags.includes(action.newTag)) {
 				return { ...state };
 			}
-
 			return { ...state, tags: [...state.tags, action.newTag] };
 		case "deleteTag":
 			if (state.tags.length == 0) {
@@ -46,13 +45,14 @@ export function newsReducer(state, action) {
 			};
 		case "setFieldsForEdit":
 			return {
+				_id: action.itemToEdit._id,
 				dateCreated: new Date().toLocaleDateString("el-GR"),
 				featured: action.itemToEdit.featured,
 				tags: action.itemToEdit.tags,
 				text: action.itemToEdit.text,
 				title: action.itemToEdit.title,
-				userID: action._id,
-				username: action.username,
+				userID: action.itemToEdit._id,
+				username: action.itemToEdit.username,
 			};
 	}
 }

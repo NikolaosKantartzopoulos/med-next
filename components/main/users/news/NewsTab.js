@@ -8,8 +8,11 @@ import deleteIcon from "../../../../public/images/delete.svg";
 import styles from "./NewsTab.module.css";
 import NewsContext from "../../../../helper/store/contexts/news-context";
 
+import LoadingSpinner from "../../../UI/LoadingSpinner";
+
 function NewsTab({ item }) {
 	const newsCtx = useContext(NewsContext);
+
 	return (
 		<div className={styles.newsFrame}>
 			<h4 className={styles.newsh4}>

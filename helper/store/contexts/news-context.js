@@ -18,6 +18,8 @@ const NewsContext = createContext({
 	deleteNews: () => {},
 	resetUI: () => {},
 	allUsers: [],
+	activeNews: [],
+	setActiveNews: () => {},
 });
 
 export function NewsContextProvider({
@@ -31,6 +33,7 @@ export function NewsContextProvider({
 		newsReducer,
 		initialNewsState
 	);
+	const [activeNews, setActiveNews] = useState(allNews);
 	const [loading, setLoading] = useState(false);
 	const [actionLoaded, setActionLoaded] = useState(null);
 
@@ -47,13 +50,20 @@ export function NewsContextProvider({
 	}
 	async function saveAddedNews() {
 		setLoading(true);
-		fetch("/api/users/news", {
+		const res = await fetch("/api/users/news", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(newsState),
 		});
+		if (res.ok) {
+			const data = await res.json();
+			setActiveNews([...activeNews, data.item]);
+			setInfo(data);
+			setTimeout(() => setInfo(null), 3000);
+		}
+
 		setLoading(false);
 	}
 	function setEditNews(e, item) {
@@ -61,7 +71,27 @@ export function NewsContextProvider({
 		dispatchNewsAction({ type: "setFieldsForEdit", itemToEdit: item });
 	}
 
-	async function saveEditedNews() {}
+	async function saveEditedNews() {
+		setLoading(true);
+		const res = await fetch("/api/users/news", {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ toPut: newsState }),
+		});
+
+		if (res.ok) {
+			const data = await res.json();
+			const filtered = activeNews.filter((n) => n._id != newsState._id);
+
+			setActiveNews([...filtered, data.editedItem]);
+			setInfo(data);
+			setTimeout(() => setInfo(null), 3000);
+		}
+		setActionLoaded(null);
+		setLoading(false);
+	}
 
 	async function deleteNews(e, item) {
 		setLoading(true);
@@ -75,10 +105,14 @@ export function NewsContextProvider({
 
 		if (res.ok) {
 			const data = await res.json();
-			console.log(data);
 			setInfo(data);
 			setTimeout(() => setInfo(null), 3000);
-			setTimeout(() => router.reload(), 3200);
+
+			setActiveNews(activeNews.filter((n) => n._id != item._id));
+		} else {
+			setInfo({ type: "error", text: "Error" });
+			setTimeout(() => setInfo(null), 3000);
+			router.reload();
 		}
 
 		setLoading(false);
@@ -101,6 +135,8 @@ export function NewsContextProvider({
 		deleteNews,
 		allNews,
 		allUsers,
+		activeNews,
+		setActiveNews,
 	};
 	return (
 		<NewsContext.Provider value={newsContext}>{children}</NewsContext.Provider>

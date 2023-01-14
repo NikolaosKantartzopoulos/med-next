@@ -104,7 +104,7 @@ function NewsForm() {
 				label={lng("Details")}
 				value={newsContext.newsState.text}
 				rows={14}
-				columns={50}
+				columns={20}
 				onChange={(e) =>
 					newsContext.dispatchNewsAction({
 						type: "setText",

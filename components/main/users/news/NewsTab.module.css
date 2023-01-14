@@ -2,7 +2,7 @@
   max-width: 380px;
   border: 1px solid var(--dark-main-1);
   margin: 8px auto;
-
+  cursor: default;
 }
 
 .newsh4 {
@@ -27,11 +27,7 @@
 }
 
 
-
-
-
 .newsTags {
-  background-color: var(--dark-main-2);
   color: white;
   display: flex;
   flex-flow: row wrap;
@@ -44,7 +40,10 @@
 .newsTag {
   flex-basis: 100%;
   max-width: 10rem;
-  padding: 0px 1rem;
+  padding: 4px 1rem;
+  border: 1px solid var(--dark-main-1);
+  background-color: var(--dark-main-2);
+  ;
 }
 
 
@@ -60,10 +59,10 @@
   align-items: center;
   justify-content: flex-end;
   gap: .5rem;
-  cursor: pointer;
 }
 
-.controlIcon:hover {
+.controlIcon:hover:nth-child(2),
+.controlIcon:hover:nth-child(3) {
   transition: all 0.15s;
   scale: 1.25;
   ;
