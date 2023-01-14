@@ -10,13 +10,14 @@ import FeaturedNews from "../../../components/main/users/news/FeaturedNews";
 import NewsHistory from "../../../components/main/users/news/NewsHistory";
 
 function NewsIndexRoute({ allNews, allUsers }) {
-	const { theme, info, setInfo } = useContext(ToolsContext);
+	const { theme, info, setInfo, infoMessage } = useContext(ToolsContext);
 	return (
 		<NewsContextProvider
 			allNews={allNews}
 			allUsers={allUsers}
 			info={info}
 			setInfo={setInfo}
+			infoMessage={infoMessage}
 		>
 			<div style={{ color: theme === "dark" ? "white" : null }}>
 				<NewsUI />

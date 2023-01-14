@@ -23,10 +23,11 @@ const NewsContext = createContext({
 });
 
 export function NewsContextProvider({
-	children,
 	allNews,
 	allUsers,
+	children,
 	info,
+	infoMessage,
 	setInfo,
 }) {
 	const [newsState, dispatchNewsAction] = useReducer(
@@ -44,11 +45,22 @@ export function NewsContextProvider({
 		dispatchNewsAction({ type: "resetAll" });
 	}
 
+	function basicValidationOK() {
+		if (newsState.title.trim() === "" || newsState.text.trim() === "") {
+			infoMessage("error", "A field is empty");
+			return false;
+		}
+		return true;
+	}
+
 	function setAddNews(e, item) {
 		setActionLoaded("addNews");
 		dispatchNewsAction({ type: "setAddNewsFields", user: item });
 	}
 	async function saveAddedNews() {
+		if (!basicValidationOK()) {
+			return;
+		}
 		setLoading(true);
 		const res = await fetch("/api/users/news", {
 			method: "POST",
@@ -64,14 +76,20 @@ export function NewsContextProvider({
 			setTimeout(() => setInfo(null), 3000);
 		}
 
+		resetUI();
 		setLoading(false);
 	}
-	function setEditNews(e, item) {
+	function setEditNews(e, item, user) {
 		setActionLoaded("editItem");
-		dispatchNewsAction({ type: "setFieldsForEdit", itemToEdit: item });
+		dispatchNewsAction({
+			type: "setFieldsForEdit",
+			itemToEdit: item,
+			user: user,
+		});
 	}
 
 	async function saveEditedNews() {
+		basicValidationOK();
 		setLoading(true);
 		const res = await fetch("/api/users/news", {
 			method: "PUT",
@@ -89,7 +107,7 @@ export function NewsContextProvider({
 			setInfo(data);
 			setTimeout(() => setInfo(null), 3000);
 		}
-		setActionLoaded(null);
+		resetUI();
 		setLoading(false);
 	}
 
@@ -115,6 +133,7 @@ export function NewsContextProvider({
 			router.reload();
 		}
 
+		resetUI();
 		setLoading(false);
 	}
 

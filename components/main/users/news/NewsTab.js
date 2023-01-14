@@ -9,10 +9,14 @@ import styles from "./NewsTab.module.css";
 import NewsContext from "../../../../helper/store/contexts/news-context";
 
 import LoadingSpinner from "../../../UI/LoadingSpinner";
+import { useSession } from "next-auth/react";
 
 function NewsTab({ item }) {
+	const { data: session } = useSession();
 	const newsCtx = useContext(NewsContext);
-
+	const date = new Date(item.dateCreated);
+	console.log(newsCtx.allUsers);
+	console.log(item);
 	return (
 		<div className={styles.newsFrame}>
 			<h4 className={styles.newsh4}>
@@ -23,7 +27,7 @@ function NewsTab({ item }) {
 						src={editIcon}
 						alt="Edit news"
 						className={styles.controlIcon}
-						onClick={(e) => newsCtx.setEditNews(e, item)}
+						onClick={(e) => newsCtx.setEditNews(e, item, session.user)}
 					/>
 					<Image
 						src={deleteIcon}
@@ -35,11 +39,19 @@ function NewsTab({ item }) {
 			</h4>
 			<div className={styles.idAndDate}>
 				<span>
-					{newsCtx.allUsers.find((usr) => usr._id == item._id)
-						? newsCtx.allUsers.find((usr) => usr._id == item._id).username
-						: item.username}
+					{newsCtx.allUsers.find((usr) => usr._id == item.userID)
+						? newsCtx.allUsers.find((usr) => usr._id == item.userID).username
+						: "---"}
 				</span>
-				<span>{item.dateCreated}</span>
+				<span>
+					{date.getDate() +
+						"-" +
+						(date.getMonth() + 1) +
+						"-" +
+						date.getFullYear() +
+						" " +
+						item.dateCreated.substring(11, 16)}
+				</span>
 			</div>
 			<div className={styles.newsTags}>
 				{item.tags.map((t) => (

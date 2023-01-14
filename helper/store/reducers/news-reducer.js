@@ -35,7 +35,7 @@ export function newsReducer(state, action) {
 			};
 		case "setAddNewsFields":
 			return {
-				dateCreated: new Date().toLocaleDateString("el-GR"),
+				dateCreated: new Date().toISOString(),
 				featured: false,
 				tags: [],
 				text: "",
@@ -44,15 +44,17 @@ export function newsReducer(state, action) {
 				username: action.user.username,
 			};
 		case "setFieldsForEdit":
+			console.log("-----------------");
+			console.log(action.itemToEdit);
 			return {
 				_id: action.itemToEdit._id,
-				dateCreated: new Date().toLocaleDateString("el-GR"),
+				dateCreated: new Date().toISOString(),
 				featured: action.itemToEdit.featured,
 				tags: action.itemToEdit.tags,
 				text: action.itemToEdit.text,
 				title: action.itemToEdit.title,
-				userID: action.itemToEdit._id,
-				username: action.itemToEdit.username,
+				userID: action.user._id,
+				username: action.user.username,
 			};
 	}
 }
