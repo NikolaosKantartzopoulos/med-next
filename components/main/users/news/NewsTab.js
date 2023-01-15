@@ -20,20 +20,25 @@ function NewsTab({ item }) {
 		<div className={styles.newsFrame}>
 			<h4 className={styles.newsh4}>
 				{item.title}
+
 				<div className={styles.controlIcons}>
-					{item.featured && <Image src={starIcon} alt="featured news" />}
-					<Image
-						src={editIcon}
-						alt="Edit news"
-						className={styles.controlIcon}
-						onClick={(e) => newsCtx.setEditNews(e, item, session.user)}
-					/>
-					<Image
-						src={deleteIcon}
-						alt="Edit news"
-						className={styles.controlIcon}
-						onClick={(e) => newsCtx.deleteNews(e, item)}
-					/>
+					{item.featured && <Image src={starIcon} alt="featured news" />}{" "}
+					{session && (
+						<>
+							<Image
+								src={editIcon}
+								alt="Edit news"
+								className={styles.controlIcon}
+								onClick={(e) => newsCtx.setEditNews(e, item, session.user)}
+							/>
+							<Image
+								src={deleteIcon}
+								alt="Edit news"
+								className={styles.controlIcon}
+								onClick={(e) => newsCtx.deleteNews(e, item)}
+							/>
+						</>
+					)}
 				</div>
 			</h4>
 			<div className={styles.idAndDate}>
