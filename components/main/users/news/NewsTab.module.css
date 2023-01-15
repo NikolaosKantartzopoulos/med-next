@@ -1,8 +1,9 @@
 .newsFrame {
-  max-width: 380px;
+  width: 100%;
   border: 1px solid var(--dark-main-1);
   margin: 8px auto;
   cursor: default;
+  box-shadow: 0 0 2px 2px var(--dark-main-1);
 }
 
 .newsh4 {
@@ -24,6 +25,11 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.timez {
+  display: flex;
+  gap: 1.5rem;
 }
 
 

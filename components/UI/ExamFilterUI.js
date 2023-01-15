@@ -121,7 +121,7 @@ function ExamFilterUI({
 			return;
 		}
 		const str = `.*${searchFieldValue}.*`;
-		const regex = new RegExp(str);
+		const regex = new RegExp(str, "gi");
 		const filteredExams = allExams.filter((xm) => !xm.name.search(regex));
 
 		let uniqueDepartmentsChecked = checkedDepSub

@@ -7,7 +7,8 @@ import ToolsContext from "../../../helper/store/contexts/tools-context";
 
 import NewsUI from "../../../components/main/users/news/NewsUI";
 import FeaturedNews from "../../../components/main/users/news/FeaturedNews";
-import NewsHistory from "../../../components/main/users/news/NewsHistory";
+
+import Button from "../../../components/UI/Button";
 
 function NewsIndexRoute({ allNews, allUsers }) {
 	const { theme, info, setInfo, infoMessage } = useContext(ToolsContext);
@@ -19,11 +20,8 @@ function NewsIndexRoute({ allNews, allUsers }) {
 			setInfo={setInfo}
 			infoMessage={infoMessage}
 		>
-			<div style={{ color: theme === "dark" ? "white" : null }}>
-				<NewsUI />
-				<FeaturedNews />
-				<NewsHistory />
-			</div>
+			<NewsUI />
+			<FeaturedNews />
 		</NewsContextProvider>
 	);
 }

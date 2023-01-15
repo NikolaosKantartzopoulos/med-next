@@ -1,0 +1,22 @@
+.filterNewsSection {
+  margin: 1rem auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+}
+
+.checkboxDiv {
+  margin: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+
+.checkboxDiv>* {
+  width: 6rem;
+  display: flex;
+  justify-content: center;
+}

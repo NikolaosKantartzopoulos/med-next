@@ -39,7 +39,10 @@ export default function Layout({ children }) {
 	}, [router.pathname]);
 
 	return (
-		<div className={styles.layoutSection}>
+		<div
+			className={styles.layoutSection}
+			style={{ color: toolsCtx.theme === "dark" ? "white" : null }}
+		>
 			<InfoPanel />
 			<Navbar setInProp={setInProp} />
 			<CSSTransition

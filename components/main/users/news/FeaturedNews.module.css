@@ -1,0 +1,8 @@
+.newsSection {
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  max-width: 760px;
+  justify-content: flex-start;
+  align-items: center;
+}

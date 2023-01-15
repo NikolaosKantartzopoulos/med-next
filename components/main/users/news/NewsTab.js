@@ -15,8 +15,7 @@ function NewsTab({ item }) {
 	const { data: session } = useSession();
 	const newsCtx = useContext(NewsContext);
 	const date = new Date(item.dateCreated);
-	console.log(newsCtx.allUsers);
-	console.log(item);
+
 	return (
 		<div className={styles.newsFrame}>
 			<h4 className={styles.newsh4}>
@@ -43,14 +42,15 @@ function NewsTab({ item }) {
 						? newsCtx.allUsers.find((usr) => usr._id == item.userID).username
 						: "---"}
 				</span>
-				<span>
-					{date.getDate() +
-						"-" +
-						(date.getMonth() + 1) +
-						"-" +
-						date.getFullYear() +
-						" " +
-						item.dateCreated.substring(11, 16)}
+				<span className={styles.timez}>
+					<span>
+						{date.getDate() +
+							" / " +
+							(date.getMonth() + 1) +
+							" / " +
+							date.getFullYear().toString().substring(2, 4)}
+					</span>
+					<span>{date.getHours() + ":" + date.getMinutes()}</span>
 				</span>
 			</div>
 			<div className={styles.newsTags}>

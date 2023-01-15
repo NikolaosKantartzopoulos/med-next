@@ -7,11 +7,11 @@ const Button = (props) => {
 	const { theme } = useContext(ToolsContext);
 	return (
 		<button
+			onClick={props.onClick}
+			disabled={props.disabled}
 			className={styles.myButton}
 			type={props.type || "button"}
-			onClick={props.onClick}
 			style={props.customStyle}
-			disabled={props.disabled}
 		>
 			{props.children}
 		</button>

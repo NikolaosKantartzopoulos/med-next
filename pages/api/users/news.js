@@ -5,6 +5,18 @@ export default async function handler(req, res) {
 	const [client, db] = await connectDatabase();
 	try {
 		switch (req.method) {
+			case "GET":
+				console.log(req.body);
+				const documents = await db.collection("news").find().toArray();
+				const docs = documents.map((doc) => ({
+					...doc,
+					_id: doc._id.toString(),
+				}));
+
+				newsCtx.setActiveNews(docs);
+
+				break;
+
 			case "POST":
 				const dbRes = await db.collection("news").insertOne(req.body);
 				if (dbRes.acknowledged) {

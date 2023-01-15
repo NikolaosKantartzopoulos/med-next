@@ -44,8 +44,6 @@ export function newsReducer(state, action) {
 				username: action.user.username,
 			};
 		case "setFieldsForEdit":
-			console.log("-----------------");
-			console.log(action.itemToEdit);
 			return {
 				_id: action.itemToEdit._id,
 				dateCreated: new Date().toISOString(),

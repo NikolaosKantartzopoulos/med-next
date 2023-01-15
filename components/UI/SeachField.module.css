@@ -1,0 +1,8 @@
+.searchDivision {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+  background-color: darkblue;
+  padding: 4px 8px;
+}
