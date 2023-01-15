@@ -16,13 +16,6 @@ function NewsUI() {
 	const router = useRouter();
 	const { data: session, status } = useSession();
 
-	// useEffect(() => {
-	// 	newsCtx.setActionLoaded(null);
-	// 	if (!session) {
-	// 		router.replace("/users/browse-exams");
-	// 	}
-	// }, [session]);
-
 	return (
 		<div className={styles.newsUI}>
 			<div className={styles.controlButtons}>

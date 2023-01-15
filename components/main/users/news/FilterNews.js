@@ -7,10 +7,11 @@ import Checkbox from "../../../UI/Checkbox";
 
 import styles from "./FilterNews.module.css";
 import SeachField from "../../../UI/SeachField";
-import LoadingSpinner from "../../../UI/LoadingSpinner";
+import LanguageContext from "../../../../helper/store/contexts/language-context";
 
 function FilterNews({ activeNews, setVisibleNews }) {
 	const newsCtx = useContext(NewsContext);
+	const { lng } = useContext(LanguageContext);
 
 	const [showFeatured, setShowFeatured] = useState(true);
 	const [showRest, setShowRest] = useState(true);
@@ -54,16 +55,16 @@ function FilterNews({ activeNews, setVisibleNews }) {
 	return (
 		<div className={styles.filterNewsSection}>
 			<div className={styles.buttonDiv}>
-				<Button onClick={() => fetchNews(1)}>1 month</Button>
-				<Button onClick={() => fetchNews(3)}>3 months</Button>
-				<Button onClick={() => fetchNews(12)}>12 months</Button>
+				<Button onClick={() => fetchNews(1)}>1 {lng("Month")}</Button>
+				<Button onClick={() => fetchNews(3)}>3 {lng("Months")}</Button>
+				<Button onClick={() => fetchNews(12)}>12 {lng("Months")}</Button>
 			</div>
 
 			<div className={styles.filtersss}>
 				<div className={styles.checkboxDiv}>
 					<Checkbox
 						value={showFeatured}
-						label="Featured"
+						label={lng("Featured")}
 						checkedIf={showFeatured}
 						onChange={() => {
 							setShowFeatured(!showFeatured);
@@ -71,7 +72,7 @@ function FilterNews({ activeNews, setVisibleNews }) {
 					/>
 					<Checkbox
 						value={showRest}
-						label="Rest"
+						label={lng("Rest")}
 						checkedIf={showRest}
 						onChange={() => {
 							setShowRest(!showRest);

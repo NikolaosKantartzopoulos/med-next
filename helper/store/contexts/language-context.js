@@ -16,8 +16,20 @@ export function LanguageContextProvider({ locale, children }) {
 			"en-US": "News",
 		},
 		Featured: {
-			"el-GR": "Σημαντικό",
+			"el-GR": "Αστέρι",
 			"en-US": "Featured",
+		},
+		Rest: {
+			"el-GR": "Άλλα",
+			"en-US": "Rest",
+		},
+		Months: {
+			"el-GR": "Μήνες",
+			"en-US": "Months",
+		},
+		Month: {
+			"el-GR": "Μήνας",
+			"en-US": "Month",
 		},
 		CommonPaymentAndDetails: {
 			"el-GR": "Κοινή προετοιμασία & λεπτομέριες",
