@@ -59,26 +59,30 @@ function FilterNews({ activeNews, setVisibleNews }) {
 				ctrlElementsFunction={setVisibleNews}
 				allItems={activeNews}
 			/>
-			<div className={styles.checkboxDiv}>
-				<Checkbox
-					value={showFeatured}
-					label="Featured"
-					checkedIf={showFeatured}
-					onChange={() => {
-						setShowFeatured(!showFeatured);
-					}}
-				/>
-				<Checkbox
-					value={showRest}
-					label="Rest"
-					checkedIf={showRest}
-					onChange={() => {
-						setShowRest(!showRest);
-					}}
-				/>
-				<Button onClick={() => fetchNews(1)}>1 month</Button>
-				<Button onClick={() => fetchNews(3)}>3 months</Button>
-				<Button onClick={() => fetchNews(12)}>12 months</Button>
+			<div className={styles.filtersss}>
+				<div className={styles.checkboxDiv}>
+					<Checkbox
+						value={showFeatured}
+						label="Featured"
+						checkedIf={showFeatured}
+						onChange={() => {
+							setShowFeatured(!showFeatured);
+						}}
+					/>
+					<Checkbox
+						value={showRest}
+						label="Rest"
+						checkedIf={showRest}
+						onChange={() => {
+							setShowRest(!showRest);
+						}}
+					/>
+				</div>
+				<div className={styles.buttonDiv}>
+					<Button onClick={() => fetchNews(1)}>1 month</Button>
+					<Button onClick={() => fetchNews(3)}>3 months</Button>
+					<Button onClick={() => fetchNews(12)}>12 months</Button>
+				</div>
 			</div>
 		</div>
 	);

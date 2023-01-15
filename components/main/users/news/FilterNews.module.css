@@ -7,16 +7,35 @@
   gap: 1rem;
 }
 
+.filtersss {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
 .checkboxDiv {
   margin: auto;
   display: flex;
-  justify-content: flex-start;
+  flex-flow: row wrap;
+  justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: .5rem;
 }
 
 .checkboxDiv>* {
   width: 6rem;
   display: flex;
   justify-content: center;
+}
+
+.checkDiv {}
+
+.buttonDiv {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: space-around;
+  align-items: center;
 }
