@@ -53,13 +53,12 @@ function FilterNews({ activeNews, setVisibleNews }) {
 
 	return (
 		<div className={styles.filterNewsSection}>
-			<SeachField
-				searchFn={searchNews}
-				searchFieldValue={searchFieldValue}
-				setSearchFieldValue={setSearchFieldValue}
-				ctrlElementsFunction={setVisibleNews}
-				allItems={activeNews}
-			/>
+			<div className={styles.buttonDiv}>
+				<Button onClick={() => fetchNews(1)}>1 month</Button>
+				<Button onClick={() => fetchNews(3)}>3 months</Button>
+				<Button onClick={() => fetchNews(12)}>12 months</Button>
+			</div>
+
 			<div className={styles.filtersss}>
 				<div className={styles.checkboxDiv}>
 					<Checkbox
@@ -79,11 +78,14 @@ function FilterNews({ activeNews, setVisibleNews }) {
 						}}
 					/>
 				</div>
-				<div className={styles.buttonDiv}>
-					<Button onClick={() => fetchNews(1)}>1 month</Button>
-					<Button onClick={() => fetchNews(3)}>3 months</Button>
-					<Button onClick={() => fetchNews(12)}>12 months</Button>
-				</div>
+
+				<SeachField
+					searchFn={searchNews}
+					searchFieldValue={searchFieldValue}
+					setSearchFieldValue={setSearchFieldValue}
+					ctrlElementsFunction={setVisibleNews}
+					allItems={activeNews}
+				/>
 			</div>
 		</div>
 	);
