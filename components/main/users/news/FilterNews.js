@@ -28,12 +28,13 @@ function FilterNews({ activeNews, setVisibleNews }) {
 		newsCtx.setActiveNews(data.newActiveNews);
 		newsCtx.setLoading(false);
 	}
-
 	function searchNews() {
 		const str = `.*${searchFieldValue}.*`;
 		const regex = new RegExp(str, "gi");
 
-		const filteredNews = activeNews.filter((xm) => !xm.title.search(regex));
+		const filteredNews = activeNews.filter(
+			(xm) => !xm.title.search(regex) || xm.tags.some((a) => !a.search(regex))
+		);
 
 		const checkFiltered = filteredNews.filter((a) => {
 			if ((showFeatured && a.featured) || (showRest && !a.featured)) {
