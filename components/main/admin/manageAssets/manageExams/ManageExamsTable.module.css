@@ -1,6 +1,8 @@
 .table {
   width: clamp(350px, 100%, 760px);
   margin: auto;
+  color: black;
+
 }
 
 

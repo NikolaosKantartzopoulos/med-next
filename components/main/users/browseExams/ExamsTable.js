@@ -1,16 +1,31 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import tableStyles from "./ExamsTable.module.css";
 import LoadingSpinner from "../../../UI/LoadingSpinner";
 import LanguageContext from "../../../../helper/store/contexts/language-context";
+import ToolsContext from "../../../../helper/store/contexts/tools-context";
 
 function ExamsTable({ allActiveExams }) {
 	const router = useRouter();
+	const toolsCtx = useContext(ToolsContext);
 	const { lng } = useContext(LanguageContext);
+
+	function handleRowCLick(e, item) {
+		toolsCtx.setExamLoaded(item);
+	}
+
+	useEffect(() => {
+		if (toolsCtx.examLoaded) {
+			setTimeout(() => {
+				router.push(`/users/browse-exams/${toolsCtx.examLoaded.name}`);
+			}, 500);
+		}
+	}, [toolsCtx.examLoaded]);
+
 	return (
-		<>
+		<div style={{ color: "black" }}>
 			{allActiveExams ? (
-				<table className={tableStyles.table}>
+				<table className={tableStyles.table} style={{ color: "black" }}>
 					<thead className={tableStyles.tableHead}>
 						<tr>
 							<th>{lng("Department")}</th>
@@ -21,7 +36,7 @@ function ExamsTable({ allActiveExams }) {
 					</thead>
 					<tbody className={tableStyles.tableBody}>
 						{allActiveExams.map((item) => (
-							<tr key={item._id}>
+							<tr key={item._id} onClick={(e) => handleRowCLick(e, item)}>
 								<td>{item.department}</td>
 								<td>{item.subdepartment}</td>
 								<td>{item.name}</td>
@@ -32,7 +47,7 @@ function ExamsTable({ allActiveExams }) {
 			) : (
 				<LoadingSpinner />
 			)}
-		</>
+		</div>
 	);
 }
 

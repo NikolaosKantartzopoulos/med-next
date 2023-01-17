@@ -56,7 +56,7 @@ function ScheduleTable({ building, dispatchExamInputStateAction }) {
 
 	const { lng } = useContext(LanguageContext);
 	return (
-		<table className={tableStyles.table}>
+		<table className={tableStyles.table} style={{ color: "black" }}>
 			<thead
 				className={tableStyles.tableHead}
 				style={{ color: theme == "dark" ? "white" : null }}

@@ -6,12 +6,16 @@ import {
 } from "../../store/reducers/manage-exam-reducer";
 
 const ExamContext = createContext({
-	examInputState: {},
-	dispatchExamInputStateAction: () => {},
+	allActiveBuildings: [],
 	allActiveDepartments: [],
 	allActiveDoctors: [],
-	allActiveBuildings: [],
 	allActivePreparations: [],
+	dispatchExamInputStateAction: () => {},
+	examInputState: {},
+	examLoaded: {},
+	isLoading: false,
+	setExamLoaded: () => {},
+	setIsLoading: () => {},
 });
 
 export function ExamContextProvider({
@@ -26,15 +30,21 @@ export function ExamContextProvider({
 		examInputReducer,
 		initialObject
 	);
+	const [isLoading, setIsLoading] = useState(false);
+	const [examLoaded, setExamLoaded] = useState();
 
 	const examContext = {
-		examInputState,
-		dispatchExamInputStateAction,
+		allActiveBuildings,
 		allActiveDepartments,
 		allActiveDoctors,
-		allActiveBuildings,
-		allActivePreparations,
 		allActiveEco,
+		allActivePreparations,
+		dispatchExamInputStateAction,
+		examInputState,
+		examLoaded,
+		isLoading,
+		setExamLoaded,
+		setIsLoading,
 	};
 
 	return (

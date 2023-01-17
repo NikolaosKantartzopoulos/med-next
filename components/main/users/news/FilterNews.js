@@ -25,7 +25,7 @@ function FilterNews({ activeNews, setVisibleNews }) {
 			body: JSON.stringify({ num: num }),
 		});
 		const data = await getRes.json();
-		console.log(data);
+
 		newsCtx.setActiveNews(data.newActiveNews);
 		newsCtx.setLoading(false);
 	}

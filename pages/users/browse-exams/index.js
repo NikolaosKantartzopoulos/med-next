@@ -12,7 +12,11 @@ export default BrowseExamsRoute;
 export async function getStaticProps() {
 	const [client, db] = await connectDatabase();
 
-	const allExamsArray = await db.collection("exams").find({}).toArray();
+	const allExamsArray = await db
+		.collection("exams")
+		.find({})
+		.project({ name: 1, department: 1, subdepartment: 1 })
+		.toArray();
 	const allExams = allExamsArray.map((a) => ({ ...a, _id: `${a._id}` }));
 
 	const allDepartmentsArray = await db

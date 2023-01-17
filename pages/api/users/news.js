@@ -6,7 +6,6 @@ export default async function handler(req, res) {
 	try {
 		switch (req.method) {
 			case "GET":
-				console.log(req.body);
 				const documents = await db.collection("news").find().toArray();
 				const docs = documents.map((doc) => ({
 					...doc,

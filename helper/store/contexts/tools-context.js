@@ -10,6 +10,8 @@ const ToolsContext = createContext({
 	infoMessage: () => {},
 	mainComponentVisible: true,
 	setMainComponentVisible: () => {},
+	examLoaded: null,
+	setExamLoaded: () => {},
 });
 
 export function ToolsContextProvider(props) {
@@ -33,6 +35,8 @@ export function ToolsContextProvider(props) {
 
 	const [mainComponentVisible, setMainComponentVisible] = useState();
 
+	const [examLoaded, setExamLoaded] = useState(null);
+
 	const toolsContext = {
 		theme,
 		setTheme,
@@ -43,6 +47,8 @@ export function ToolsContextProvider(props) {
 		infoMessage,
 		mainComponentVisible,
 		setMainComponentVisible,
+		examLoaded,
+		setExamLoaded,
 	};
 	return (
 		<ToolsContext.Provider value={toolsContext}>

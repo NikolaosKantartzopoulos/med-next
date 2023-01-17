@@ -35,7 +35,7 @@ function ManageUsersTable() {
 	}
 
 	return (
-		<table className={tableStyles.table}>
+		<table className={tableStyles.table} style={{ color: "black" }}>
 			<thead className={tableStyles.tableHead}>
 				<tr>
 					<th>Username</th>
