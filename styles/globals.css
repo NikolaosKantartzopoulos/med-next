@@ -35,6 +35,18 @@ h1 {
   color: var(--dark-main-1);
 }
 
+
+h3 {
+  background-color: var(--dark-main-1);
+  font-size: 1.25rem;
+
+  color: var(--light-main-1);
+  justify-content: center;
+  margin: auto;
+  height: 2rem;
+  text-align: center;
+}
+
 h4 {
   background-color: var(--dark-main-1);
   color: var(--light-main-1);
@@ -43,6 +55,7 @@ h4 {
   height: 2rem;
   padding-top: 0.4rem;
   text-align: center;
+  width: 100%;
 }
 
 h5 {
@@ -50,6 +63,16 @@ h5 {
   margin: auto;
   text-align: center;
   font-size: 1.5rem;
+  padding: 0.25rem;
+  border-top: 1px solid var(--dark-main-1);
+  border-bottom: 1px solid var(--dark-main-1);
+}
+
+h6 {
+  color: var(--dark-main-1);
+  margin: auto;
+  text-align: center;
+  font-size: 1rem;
   padding: 0.25rem;
   border-top: 1px solid var(--dark-main-1);
   border-bottom: 1px solid var(--dark-main-1);

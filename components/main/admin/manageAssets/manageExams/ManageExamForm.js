@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
+
 import ExamContext from "../../../../../helper/store/contexts/exam-context";
+import LanguageContext from "../../../../../helper/store/contexts/language-context";
 
 import ManageExamTitles from "./ManageExamTitles";
 import ManageExamRadio from "./ManageExamRadio";
@@ -12,7 +14,6 @@ import Button from "../../../../UI/Button";
 import TinyTabs from "./TinyTabs";
 
 import styles from "./ManageExam.module.css";
-import LanguageContext from "../../../../../helper/store/contexts/language-context";
 
 function ManageExamForm({ insertExamToForm }) {
 	const { examInputState, dispatchExamInputStateAction } =

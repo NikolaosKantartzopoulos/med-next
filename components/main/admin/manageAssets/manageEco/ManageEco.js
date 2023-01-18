@@ -1,15 +1,16 @@
 import React, { useContext } from "react";
-import EcoContext from "../../../../../helper/store/contexts/eco-context.js";
 
 import EcoUITopLine from "./EcoUITopLine.js";
-import InfoPanel from "../../../../UI/InfoPanel";
-import Textarea from "../../../../UI/Textarea.js";
 import EcoFilters from "./EcoFilters.js";
 import EcoTable from "./EcoTable.js";
+
+import Textarea from "../../../../UI/Textarea.js";
 import LoadingSpinner from "../../../../UI/LoadingSpinner";
 
-import styles from "./ManageEco.module.css";
+import EcoContext from "../../../../../helper/store/contexts/eco-context.js";
 import LanguageContext from "../../../../../helper/store/contexts/language-context.js";
+
+import styles from "./ManageEco.module.css";
 
 function ManageEco() {
 	const { dispatchEcoReducerAction, inputsState, actionLoaded, isLoading } =

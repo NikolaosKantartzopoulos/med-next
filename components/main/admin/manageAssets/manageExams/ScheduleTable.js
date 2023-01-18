@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import tableStyles from "./ScheduleTable.module.css";
 import TableInput from "../../../../UI/TableInput";
 import TinyInput from "../../../../UI/TinyInput";
@@ -117,13 +117,13 @@ function ScheduleTable({ building, dispatchExamInputStateAction }) {
 									});
 									setActiveDays(newActiveDays);
 								}}
-								onBlur={() =>
+								onBlur={() => {
 									dispatchExamInputStateAction({
 										type: "setSchedule",
 										buildingToHandle: building.buildingName,
 										newBuildingSchedule: activeDays,
-									})
-								}
+									});
+								}}
 							/>
 						</td>
 					</tr>

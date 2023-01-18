@@ -1,0 +1,19 @@
+.FoldUnfold {}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 0px;
+  border-bottom: 2px solid var(--dark-main-2);
+  border-top: 2px solid var(--dark-main-2);
+}
+
+
+.headerText {
+  width: 90%;
+}
+
+.FoldUnfold img {
+  width: clamp(1rem, 10%, 1.5rem);
+}

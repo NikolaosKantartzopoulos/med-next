@@ -15,6 +15,15 @@ export function LanguageContextProvider({ locale, children }) {
 			"el-GR": "Νέα",
 			"en-US": "News",
 		},
+		Schedule: {
+			"el-GR": "Προγράμματα",
+			"en-US": "Schedule",
+		},
+		Doctors: {
+			"el-GR": "Ιατροί",
+			"en-US": "Doctors",
+		},
+
 		Duration: {
 			"el-GR": "Διάρκεια",
 			"en-US": "Duration",

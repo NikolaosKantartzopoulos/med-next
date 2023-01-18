@@ -190,21 +190,28 @@ export function examInputReducer(state, action) {
 			};
 			return { ...toRetDEL };
 		case "setSchedule":
+			console.log(action);
 			const filteredBuildingsSchedule = state.buildingsSchedule.filter(
-				(bld) => bld.buildingName != action.buildingName
+				(bld) => bld.buildingName != action.buildingToHandle
 			);
+
+			const thisBuildingFindSet = state.buildingsSchedule.find(
+				(bld) => bld.buildingName == action.buildingToHandle
+			);
+
+			console.log(filteredBuildingsSchedule);
 
 			const toRet = {
 				...state,
 				buildingsSchedule: [
 					...filteredBuildingsSchedule,
 					{
-						buildingName: action.buildingName,
+						...thisBuildingFindSet,
 						schedule: action.newBuildingSchedule,
 					},
 				],
 			};
-			return { ...toRet };
+			return toRet;
 		case "setTags":
 			return { ...state, tags: action.newTags };
 		case "setDepartment":
