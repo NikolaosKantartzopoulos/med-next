@@ -65,6 +65,21 @@ function ScheduleTable({ building, dispatchExamInputStateAction }) {
 					<th colSpan={2}>{building.buildingName}</th>
 				</tr>
 				<tr>
+					<th>{lng("Duration")}</th>
+					<th>
+						<TinyInput
+							value={building.duration}
+							onChange={(e) =>
+								dispatchExamInputStateAction({
+									type: "setDuration",
+									newDuration: e.target.value,
+									buildingToHandle: building.buildingName,
+								})
+							}
+						></TinyInput>
+					</th>
+				</tr>
+				<tr>
 					<th>{lng("FillFrom")}</th>
 					<th className={tableStyles.fillTable}>
 						<TinyInput
@@ -105,7 +120,7 @@ function ScheduleTable({ building, dispatchExamInputStateAction }) {
 								onBlur={() =>
 									dispatchExamInputStateAction({
 										type: "setSchedule",
-										buildingName: building.buildingName,
+										buildingToHandle: building.buildingName,
 										newBuildingSchedule: activeDays,
 									})
 								}
@@ -119,27 +134,3 @@ function ScheduleTable({ building, dispatchExamInputStateAction }) {
 }
 
 export default ScheduleTable;
-
-// function printPosition(value) {
-// 	switch (value) {
-// 		case "doctor":
-// 			return "Doctor";
-// 		case "secretary":
-// 			return "Secretary";
-// 		default:
-// 			return "";
-// 	}
-// }
-
-// function printPosition2(value) {
-// 	switch (value) {
-// 		case "frontDesk":
-// 			return "Front Desk";
-// 		case "trascriptionist":
-// 			return "Trascriptionist";
-// 		case "	phoneCenter":
-// 			return "Phone Center";
-// 		default:
-// 			return "";
-// 	}
-// }

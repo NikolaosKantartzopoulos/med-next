@@ -15,6 +15,14 @@ export function LanguageContextProvider({ locale, children }) {
 			"el-GR": "Νέα",
 			"en-US": "News",
 		},
+		Duration: {
+			"el-GR": "Διάρκεια",
+			"en-US": "Duration",
+		},
+		Results: {
+			"el-GR": "Αποτελέσματα",
+			"en-US": "Results",
+		},
 		Featured: {
 			"el-GR": "Αστέρι",
 			"en-US": "Featured",

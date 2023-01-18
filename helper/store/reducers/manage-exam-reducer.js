@@ -9,6 +9,7 @@ export const initialObject = {
 	generalPreparation: "",
 	uniquePreparation: "",
 	eco: [],
+	results: "2days",
 };
 
 export function examInputReducer(state, action) {
@@ -21,6 +22,8 @@ export function examInputReducer(state, action) {
 			return { ...state, name: action.newName };
 		case "setNhsDescription":
 			return { ...state, nhsDescription: action.newNhsDescription };
+		case "setResults":
+			return { ...state, results: action.newResults };
 		case "setGeneralPreparation":
 			return { ...state, generalPreparation: action.generalPrepTitle };
 		case "setUniquePreparation":
@@ -127,10 +130,32 @@ export function examInputReducer(state, action) {
 							{ day: "Saturday", value: "08:00 - 15:00" },
 							{ day: "Sunday", value: "" },
 						],
+						duration: "15 mins",
 					},
 				],
 			};
 			return { ...toRetADD };
+
+		case "setDuration":
+			const filteredBuildDuration = state.buildingsSchedule.filter(
+				(bld) => bld.buildingName != action.buildingToHandle
+			);
+			const thisBuildingFind = state.buildingsSchedule.find(
+				(bld) => bld.buildingName == action.buildingToHandle
+			);
+			const toRetDuration = {
+				...state,
+				buildingsSchedule: [
+					...filteredBuildDuration,
+					{
+						...thisBuildingFind,
+						duration: action.newDuration,
+					},
+				],
+			};
+
+			return toRetDuration;
+
 		case "fillBuildingSchedule":
 			const filteredBuild = state.buildingsSchedule.filter(
 				(bld) => bld.buildingName != action.buildingToFillName

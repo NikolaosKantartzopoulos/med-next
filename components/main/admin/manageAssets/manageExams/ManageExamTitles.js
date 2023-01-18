@@ -3,6 +3,7 @@ import ExamContext from "../../../../../helper/store/contexts/exam-context";
 import LanguageContext from "../../../../../helper/store/contexts/language-context";
 
 import Input from "../../../../UI/Input";
+import TinyInput from "../../../../UI/TinyInput";
 
 import styles from "./ManageExamTitles.module.css";
 
@@ -35,6 +36,20 @@ function ManageExamTitles() {
 				}
 				customStyle={{ width: "100%" }}
 			/>
+			<div className={styles.results}>
+				<h4 style={{ width: "50%" }}>{lng("Results")}</h4>
+				<TinyInput
+					value={examInputState.results}
+					id="results"
+					onChange={(e) =>
+						dispatchExamInputStateAction({
+							type: "setResults",
+							newResults: e.target.value,
+						})
+					}
+					customStyle={{ width: "50%", height: "2rem" }}
+				/>
+			</div>
 		</div>
 	);
 }

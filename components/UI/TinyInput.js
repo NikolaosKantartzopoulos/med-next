@@ -10,6 +10,7 @@ function TinyInput({
 	customStyle,
 	children,
 	onKeyDown,
+	readOnly,
 }) {
 	return (
 		<>
@@ -21,6 +22,7 @@ function TinyInput({
 				onBlur={onBlur}
 				style={customStyle}
 				onKeyDown={onKeyDown}
+				readOnly={readOnly}
 			/>
 			{children}
 		</>
