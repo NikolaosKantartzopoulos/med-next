@@ -60,9 +60,11 @@ function ExamShowcase() {
 
 					{xm.buildingsSchedule && (
 						<FoldUnfold headerText={lng("Schedule")}>
-							{xm.buildingsSchedule.map((b) => (
-								<ScheduleTable building={b} key={b.buildingName} />
-							))}
+							<div className={styles.schDiv}>
+								{xm.buildingsSchedule.map((b) => (
+									<ScheduleTable building={b} key={b.buildingName} />
+								))}
+							</div>
 						</FoldUnfold>
 					)}
 					{xm.eco && (

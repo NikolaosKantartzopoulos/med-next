@@ -16,3 +16,9 @@
 .ecoSection {
   margin: 1rem auto;
 }
+
+.schDiv {
+  display: flex;
+  flex-flow: row wrap;
+  padding-top: 1rem;
+}

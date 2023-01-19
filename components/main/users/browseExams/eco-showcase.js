@@ -50,7 +50,9 @@ function EcoShowcase({ eco, department, subdepartment }) {
 				{commonEco ? (
 					<p>{commonEco.details.trim() ? commonEco.details : "-----"}</p>
 				) : (
-					<p>eco.details</p>
+					<p>
+						{eco.details && eco.details.trim() == "" ? "-----" : eco.details}
+					</p>
 				)}
 			</div>
 		</div>
