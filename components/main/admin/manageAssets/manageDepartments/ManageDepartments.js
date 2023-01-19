@@ -28,7 +28,7 @@ function ManageDepartments() {
 				{!editItemVisible && (
 					<SingleInputForm
 						id="addNewDepartment"
-						label={lng("Add")}
+						label={null}
 						buttonText={lng("Add")}
 						onSubmit={(e) => addNewDepartmentHandler(e)}
 						value={newDepartmentInput}

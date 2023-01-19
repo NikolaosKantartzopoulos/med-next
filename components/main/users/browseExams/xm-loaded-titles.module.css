@@ -1,0 +1,25 @@
+.titleHeader {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 2rem;
+  position: relative;
+}
+
+.depHeader {
+  position: absolute;
+  left: .5rem;
+  font-size: 1rem;
+}
+
+.examName {
+  flex-basis: 1;
+  flex-grow: 1;
+  margin: auto;
+}
+
+.nhsDescr {
+  margin: 1rem auto;
+
+}

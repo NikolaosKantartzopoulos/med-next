@@ -2,6 +2,7 @@
   width: clamp(210px, 100%, 300px);
   margin: auto;
   min-width: 210px;
+  text-align: center;
 }
 
 .tableHead th {

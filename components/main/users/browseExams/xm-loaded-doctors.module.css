@@ -1,0 +1,16 @@
+.doctorsTab {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  margin: 0.5rem auto;
+  padding: 0px 1rem;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.doctorsTab span {
+  font-size: 1.25rem;
+  background-color: var(--dark-main-1);
+  color: white;
+  padding: .25rem 0.5rem;
+}

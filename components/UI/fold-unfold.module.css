@@ -1,4 +1,7 @@
-.FoldUnfold {}
+.FoldUnfold {
+  cursor: pointer;
+  margin: 1rem auto;
+}
 
 .header {
   display: flex;

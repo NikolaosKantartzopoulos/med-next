@@ -190,7 +190,6 @@ export function examInputReducer(state, action) {
 			};
 			return { ...toRetDEL };
 		case "setSchedule":
-			console.log(action);
 			const filteredBuildingsSchedule = state.buildingsSchedule.filter(
 				(bld) => bld.buildingName != action.buildingToHandle
 			);
@@ -198,8 +197,6 @@ export function examInputReducer(state, action) {
 			const thisBuildingFindSet = state.buildingsSchedule.find(
 				(bld) => bld.buildingName == action.buildingToHandle
 			);
-
-			console.log(filteredBuildingsSchedule);
 
 			const toRet = {
 				...state,

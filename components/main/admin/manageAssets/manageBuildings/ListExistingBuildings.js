@@ -11,15 +11,15 @@ function ListExistingBuildings({ allBuildings, deleteBuildingHandler }) {
 	return (
 		<div className={styles.entries}>
 			<p className={styles.titleDivision}>{lng("ExistingBuildings")}</p>
-			{addresses
-				.sort((a, b) => (a < b ? 1 : -1))
-				.map((addr) => (
-					<ClickableItem key={addr}>
-						{addr}
+			{allBuildings
+				.sort((a, b) => (a.address < b.address ? 1 : -1))
+				.map((b) => (
+					<ClickableItem key={b.address}>
+						{b.address}
 						<Image
 							src={deleteIcon}
 							alt="delete"
-							onClick={(e) => deleteBuildingHandler(e, addr)}
+							onClick={(e) => deleteBuildingHandler(e, b)}
 						/>
 					</ClickableItem>
 				))}

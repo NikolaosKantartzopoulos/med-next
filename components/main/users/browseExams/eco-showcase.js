@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+
+import LanguageContext from "../../../../helper/store/contexts/language-context";
+
 import LoadingSpinner from "../../../UI/LoadingSpinner";
 
 import styles from "./eco-showcase.module.css";
@@ -6,6 +9,8 @@ import styles from "./eco-showcase.module.css";
 function EcoShowcase({ eco, department, subdepartment }) {
 	const [commonEco, setCommonEco] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
+
+	const { lng } = useContext(LanguageContext);
 
 	useEffect(() => {
 		setIsLoading(true);
@@ -15,7 +20,6 @@ function EcoShowcase({ eco, department, subdepartment }) {
 			subdepartment: subdepartment,
 		};
 		if (eco.common) {
-			console.log("eco.common exists");
 			async function getCommonEco() {
 				const res = await fetch("/api/users/get-common-eco", {
 					method: "POST",
@@ -35,23 +39,18 @@ function EcoShowcase({ eco, department, subdepartment }) {
 	if (isLoading) {
 		return <LoadingSpinner />;
 	}
-
 	return (
-		<div>
+		<div className={styles.ecoDiv}>
 			<h5 className={styles.titleHeader}>
 				<span>{commonEco ? commonEco.title : eco.title}</span>
-				<span>{commonEco ? commonEco.cost : eco.cost} </span>
+				<span>{commonEco ? commonEco.cost : eco.cost} €</span>
 			</h5>
-			<div>
-				<p className={styles.detailsHeader}>Details</p>
+			<div className={styles.detDiv}>
+				<p className={styles.detailsHeader}>{lng("Details")}</p>
 				{commonEco ? (
-					commonEco.details ? (
-						<p>{commonEco.details}</p>
-					) : (
-						<p className={styles.noDetails}>-----</p>
-					)
+					<p>{commonEco.details.trim() ? commonEco.details : "-----"}</p>
 				) : (
-					eco.details
+					<p>eco.details</p>
 				)}
 			</div>
 		</div>

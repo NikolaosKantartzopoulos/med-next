@@ -1,0 +1,13 @@
+.preparationsSection {
+  margin: 1rem auto;
+
+}
+
+.preparationsSection>div {
+  margin: 0.5rem auto;
+  min-height: 5rem;
+}
+
+.prepText {
+  padding: 0.5rem;
+}

@@ -128,7 +128,7 @@ export function EcoContextProvider({
 		setCheckedDepartments([...checkedDepartments, inputsState.department]);
 
 		dispatchEcoReducerAction({ type: "resetAll" });
-		setActionLoaded(null);
+		// setActionLoaded(null);
 		handleSubmit([
 			...allActiveInsurances,
 			{ ...inputsState, _id: uuid(), eco: "departmentWide" },

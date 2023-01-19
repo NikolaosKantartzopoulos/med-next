@@ -32,7 +32,6 @@ function ManageEco() {
 					rows={10}
 					columns={40}
 					onChange={(e) => {
-						setInfo(null);
 						dispatchEcoReducerAction({
 							type: "setDetails",
 							newDetails: e.target.value,

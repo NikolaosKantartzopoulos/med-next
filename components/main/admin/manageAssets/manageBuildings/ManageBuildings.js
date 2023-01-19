@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 
 import LanguageContext from "../../../../../helper/store/contexts/language-context";
 import ToolsContext from "../../../../../helper/store/contexts/tools-context";
+
 import ListExistingBuildings from "./ListExistingBuildings";
 
 import SingleInputForm from "../../../../../components/UI/SingleInputForm";
@@ -10,11 +11,14 @@ import LoadingSpinner from "../../../../../components/UI/LoadingSpinner.js";
 
 function ManageBuildings({ allBuildings }) {
 	const router = useRouter();
+
 	const { info, setInfo } = useContext(ToolsContext);
 	const { lng } = useContext(LanguageContext);
+
 	const [activeBuildings, setActiveBuildings] = useState(allBuildings);
 	const [newBuilding, setNewBuilding] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
+
 	async function addNewBuildingHandler(e) {
 		e.preventDefault();
 		if (newBuilding.trim() === "") {
@@ -42,12 +46,11 @@ function ManageBuildings({ allBuildings }) {
 		}
 	}
 
-	async function deleteBuildingHandler(e, deleteAddress) {
+	async function deleteBuildingHandler(e, item) {
 		e.preventDefault();
 		setIsLoading(true);
-		const newValue = activeBuildings.filter((b) => b.address !== deleteAddress);
-		setActiveBuildings(newValue);
-		let toDel = { deleteAddress: deleteAddress };
+
+		let toDel = { toDel_id: item._id };
 		try {
 			let response = await fetch("/api/admin/manage-buildings", {
 				method: "DELETE",

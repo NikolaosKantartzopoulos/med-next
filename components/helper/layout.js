@@ -41,7 +41,7 @@ export default function Layout({ children }) {
 	return (
 		<div
 			className={styles.layoutSection}
-			style={{ color: toolsCtx.theme === "dark" ? "white" : null }}
+			style={{ color: toolsCtx.theme === "dark" ? "white" : "darkblue" }}
 		>
 			<InfoPanel />
 			<Navbar setInProp={setInProp} />

@@ -11,6 +11,9 @@ import ScheduleTable from "../../../components/main/users/browseExams/xm-schedul
 import EcoShowcase from "../../../components/main/users/browseExams/eco-showcase.js";
 
 import styles from "./ExamLoaded.module.css";
+import ExamLoadedTitles from "../../../components/main/users/browseExams/xm-loaded-titles";
+import ExamLoadedDoctors from "../../../components/main/users/browseExams/xm-loaded-doctors";
+import ExamLoadedPreparations from "../../../components/main/users/browseExams/xm-loaded-preparations";
 
 function ExamShowcase() {
 	const toolsCtx = useContext(ToolsContext);
@@ -46,41 +49,14 @@ function ExamShowcase() {
 	}, []);
 
 	return (
-		<div>
-			<h1></h1>
+		<>
 			{toolsCtx.examLoaded ? (
 				<>
-					<h3 className={styles.titleHeader}>
-						<span className={styles.depHeader}>
-							{xm.department + " ( " + xm.subdepartment + " ) "}
-						</span>
-						<span className={styles.examName}>{xm.name}</span>
-					</h3>
-
-					{xm.nhsDescription && (
-						<h6 className={styles.nhsDescr}>{xm.nhsDescription}</h6>
+					<ExamLoadedTitles xm={xm} />
+					{xm.doctors && <ExamLoadedDoctors xm={xm} />}
+					{(xm.generalPreparation || xm.uniquePreparation) && (
+						<ExamLoadedPreparations xm={xm} />
 					)}
-					{xm.doctors && (
-						<FoldUnfold headerText={lng("Doctors")}>
-							<div className={styles.doctorsTab}>
-								{xm.doctors && xm.doctors.map((d) => <div key={d}>{d}</div>)}
-							</div>
-						</FoldUnfold>
-					)}
-					<FoldUnfold headerText={lng("Preparations")}>
-						{xm.generalPreparation && (
-							<div>
-								<h6>{lng("General")}</h6>
-								<div>{xm.generalPreparation}</div>
-							</div>
-						)}
-						{xm.uniquePreparation && (
-							<div>
-								<h6>{lng("Unique")}</h6>
-								<div>{xm.uniquePreparation}</div>
-							</div>
-						)}
-					</FoldUnfold>
 
 					{xm.buildingsSchedule && (
 						<FoldUnfold headerText={lng("Schedule")}>
@@ -105,7 +81,7 @@ function ExamShowcase() {
 			) : (
 				<LoadingSpinner />
 			)}
-		</div>
+		</>
 	);
 }
 

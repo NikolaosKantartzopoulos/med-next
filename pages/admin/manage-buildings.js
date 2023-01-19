@@ -30,10 +30,8 @@ export default ManageBuildingsRoute;
 
 export async function getServerSideProps() {
 	const [client, db] = await connectDatabase();
-	const data = await db
-		.collection("buildings")
-		.find({})
-		.project({ _id: 0 })
-		.toArray();
-	return { props: { allBuildings: data } };
+	const data = await db.collection("buildings").find({}).toArray();
+
+	const docs = data.map((d) => ({ ...d, _id: d._id.toString() }));
+	return { props: { allBuildings: docs } };
 }

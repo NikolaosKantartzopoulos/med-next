@@ -1,4 +1,5 @@
 import { connectDatabase } from "../../../helper/database/db";
+import { ObjectId } from "mongodb";
 
 export default async function handler(req, res) {
 	if (req.method === "POST") {
@@ -26,13 +27,13 @@ export default async function handler(req, res) {
 
 	if (req.method === "DELETE") {
 		const [client, db] = await connectDatabase();
-		const { deleteAddress } = req.body;
+		const del_id = req.body.toDel_id;
 
 		try {
 			let result = await db
-				.collection("assets")
-				.deleteOne({ address: deleteAddress });
-			res.status(200).json({ message: "Entry deleted", entry: deleteAddress });
+				.collection("buildings")
+				.deleteOne({ _id: new ObjectId(del_id) });
+			res.status(200).json({ message: "Entry deleted", entry: result });
 		} finally {
 			await client.close();
 		}

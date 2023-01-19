@@ -39,7 +39,6 @@ function ExamBuildingsManagement() {
 			});
 		}
 	}
-	console.log(examInputState.buildingsSchedule);
 
 	return (
 		<div>
