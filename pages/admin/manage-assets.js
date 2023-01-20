@@ -52,7 +52,7 @@ export async function getServerSideProps(context) {
 		props: { session },
 		redirect: {
 			destination: "/admin/exams-table",
-			permanent: true,
+			permanent: false,
 		},
 	};
 }
