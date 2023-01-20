@@ -20,22 +20,23 @@
 }
 
 .tableHead th:nth-child(1),
-.tableHead th:nth-child(2) {
-  max-width: 3rem;
+.tableBody td:nth-child(1) {
+  min-width: 4rem;
+  text-align: center;
 }
 
 
 
-.tableBody td:nth-child(1),
+.tableHead th:nth-child(2),
 .tableBody td:nth-child(2) {
   text-align: center;
-  max-width: 3rem;
+  min-width: 4rem;
 }
 
-.tableBody td:nth-child(4),
-.tableBody td:nth-child(5) {
-  text-align: center;
-  max-width: 1rem;
+.tableHead th:nth-child(3),
+.tableBody td:nth-child(3) {
+  padding-left: 1rem;
+  width: 66%
 }
 
 
@@ -66,9 +67,4 @@
 .tableBody td img:active {
   transition: all 0.05s;
   scale: 1.3;
-}
-
-.tableHead th:nth-child(1),
-.tableHead th:nth-child(2) {
-  min-width: 6rem;
 }

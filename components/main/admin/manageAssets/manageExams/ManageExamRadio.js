@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import ExamContext from "../../../../../helper/store/contexts/exam-context";
 import LanguageContext from "../../../../../helper/store/contexts/language-context";
+import LoadingSpinner from "../../../../UI/LoadingSpinner";
 
 import RadioButton from "../../../../UI/RadioButton";
 
@@ -10,6 +11,11 @@ function ManageExamRadio() {
 	const { dispatchExamInputStateAction, allActiveDepartments, examInputState } =
 		useContext(ExamContext);
 	const { lng } = useContext(LanguageContext);
+
+	if (!allActiveDepartments) {
+		return <LoadingSpinner />;
+	}
+
 	return (
 		<div className={styles.ManageExamRadio}>
 			<div className={styles.radioButtons}>
@@ -48,19 +54,20 @@ function ManageExamRadio() {
 						}
 						className={styles.radioButtonsDiv}
 					>
-						{allActiveDepartments
-							.find((d) => d.department === examInputState.department)
-							.sub.map((sub) => (
-								<RadioButton
-									key={sub}
-									id={sub}
-									label={sub}
-									name={"sub"}
-									disabled={false}
-									value={sub}
-									checked={sub === examInputState.subdepartment}
-								/>
-							))}
+						{examInputState.department &&
+							allActiveDepartments
+								.find((d) => d.department === examInputState.department)
+								.sub.map((sub) => (
+									<RadioButton
+										key={sub}
+										id={sub}
+										label={sub}
+										name={"sub"}
+										disabled={false}
+										value={sub}
+										checked={sub === examInputState.subdepartment}
+									/>
+								))}
 					</div>
 				</div>
 			</div>

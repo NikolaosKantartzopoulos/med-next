@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 
-import ManageExam from "../../../components/main/admin/manageAssets/manageExams/ManageExam";
-import AdminNavbar from "../../../components/main/admin/AdminNavbar";
-import { connectDatabase } from "../../../helper/database/db";
 import { ExamContextProvider } from "../../../helper/store/contexts/exam-context";
-import LoadingSpinner from "../../../components/UI/LoadingSpinner";
+import { connectDatabase } from "../../../helper/database/db";
+
 import AdminLayout from "../../../components/helper/adminLayout";
+import ManageExam from "../../../components/main/admin/manageAssets/manageExams/ManageExam";
+
+import LoadingSpinner from "../../../components/UI/LoadingSpinner";
 
 function ManageExamsRoute({
 	allActiveDepartments,
@@ -35,6 +38,9 @@ function ManageExamsRoute({
 			allActivePreparations={allActivePreparations}
 			allActiveEco={allActiveEco}
 		>
+			<Head>
+				<title>Admin</title>
+			</Head>
 			<AdminLayout>
 				<ManageExam />
 			</AdminLayout>

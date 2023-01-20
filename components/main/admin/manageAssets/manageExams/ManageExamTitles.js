@@ -47,7 +47,11 @@ function ManageExamTitles() {
 							newResults: e.target.value,
 						})
 					}
-					customStyle={{ width: "50%", height: "2rem" }}
+					customStyle={{
+						width: "50%",
+						height: "2rem",
+						borderRight: "2px solid darkblue",
+					}}
 				/>
 			</div>
 		</div>

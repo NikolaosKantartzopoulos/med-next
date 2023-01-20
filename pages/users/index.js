@@ -1,4 +1,4 @@
-import { useSession, getSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
 
 function UsersRoute() {
 	return <div></div>;

@@ -1,12 +1,16 @@
-import { useRouter, useContext } from "next/router";
-import { useSession } from "next-auth/react";
-
 import React, { useEffect, useState } from "react";
-import ManageExamForm from "../../../components/main/admin/manageAssets/manageExams/ManageExamForm";
-import AdminNavbar from "../../../components/main/admin/AdminNavbar";
-import LoadingSpinner from "../../../components/UI/LoadingSpinner";
+
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
+import Head from "next/head";
+
 import { ExamContextProvider } from "../../../helper/store/contexts/exam-context";
 import { connectDatabase } from "../../../helper/database/db";
+
+import AdminNavbar from "../../../components/main/admin/AdminNavbar";
+import ManageExamForm from "../../../components/main/admin/manageAssets/manageExams/ManageExamForm";
+
+import LoadingSpinner from "../../../components/UI/LoadingSpinner";
 
 function ManageLoadedExam({
 	allActiveDepartments,
@@ -21,6 +25,7 @@ function ManageLoadedExam({
 	const { data: session, status } = useSession();
 	const router = useRouter();
 	const item = router.query;
+
 	useEffect(() => {
 		setLoading(true);
 		fetch("/api/admin/fetch-exam", {
@@ -53,6 +58,9 @@ function ManageLoadedExam({
 			allActivePreparations={allActivePreparations}
 			allActiveEco={allActiveEco}
 		>
+			<Head>
+				<title>{item.subdepartment + item.title}</title>
+			</Head>
 			<AdminNavbar />
 			{!loading ? (
 				<>

@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 
 import { connectDatabase } from "../../../helper/database/db";
 
+import Head from "next/head";
+
+import LanguageContext from "../../../helper/store/contexts/language-context";
 import { NewsContextProvider } from "../../../helper/store/contexts/news-context";
 import ToolsContext from "../../../helper/store/contexts/tools-context";
 
@@ -12,6 +15,8 @@ import Button from "../../../components/UI/Button";
 
 function NewsIndexRoute({ allNews, allUsers }) {
 	const { theme, info, setInfo, infoMessage } = useContext(ToolsContext);
+	const { lng } = useContext(LanguageContext);
+
 	return (
 		<NewsContextProvider
 			allNews={allNews}
@@ -20,6 +25,9 @@ function NewsIndexRoute({ allNews, allUsers }) {
 			setInfo={setInfo}
 			infoMessage={infoMessage}
 		>
+			<Head>
+				<title>{lng("News")}</title>
+			</Head>
 			<NewsUI />
 			<FeaturedNews />
 		</NewsContextProvider>

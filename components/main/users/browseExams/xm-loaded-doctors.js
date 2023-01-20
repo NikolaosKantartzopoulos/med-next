@@ -11,7 +11,10 @@ function ExamLoadedDoctors({ xm }) {
 	return (
 		<FoldUnfold headerText={lng("Doctors")}>
 			<div className={styles.doctorsTab}>
-				{xm.doctors && xm.doctors.map((d) => <div key={d}>{d}</div>)}
+				{xm.doctors &&
+					xm.doctors
+						.sort((a, b) => (a > b ? 1 : -1))
+						.map((d) => <div key={d}>{d}</div>)}
 			</div>
 		</FoldUnfold>
 	);

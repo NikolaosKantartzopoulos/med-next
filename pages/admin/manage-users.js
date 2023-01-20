@@ -1,18 +1,20 @@
 import React, { useContext } from "react";
+
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 
+import ToolsContext from "../../helper/store/contexts/tools-context";
+import { UsersContextProvider } from "../../helper/store/contexts/users-context";
 import {
 	connectDatabase,
 	getDocumentsWithValue,
 } from "../../helper/database/db";
 
-import { UsersContextProvider } from "../../helper/store/contexts/users-context";
-
 import AdminLayout from "../../components/helper/adminLayout";
-import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import ManageUsers from "../../components/main/admin/manageAssets/manageUsers/ManageUsers";
-import ToolsContext from "../../helper/store/contexts/tools-context";
+
+import LoadingSpinner from "../../components/UI/LoadingSpinner";
 
 function ManageUsersRoute({ allUsers }) {
 	const { info, setInfo } = useContext(ToolsContext);
@@ -30,6 +32,9 @@ function ManageUsersRoute({ allUsers }) {
 
 	return (
 		<AdminLayout>
+			<Head>
+				<title>Admin</title>
+			</Head>
 			<UsersContextProvider allUsers={allUsers} info={info} setInfo={setInfo}>
 				<ManageUsers />
 			</UsersContextProvider>

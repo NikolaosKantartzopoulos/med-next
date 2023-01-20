@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import AdminNavbar from "../../components/main/admin/AdminNavbar";
+
+import Head from "next/head";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
+
 import { connectDatabase } from "../../helper/database/db";
+
+import AdminLayout from "../../components/helper/adminLayout";
+
 import ExamsTable from "../../components/main/admin/manageAssets/manageExams/ExamsTable";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import FilterUI from "../../components/UI/ExamFilterUI";
-
-import { useRouter } from "next/router";
-import { useSession } from "next-auth/react";
-import AdminLayout from "../../components/helper/adminLayout";
 
 function ManageExamsTableRoute({ allActiveExams, allDepartments }) {
 	const [visibleExams, setVisibleExams] = useState(allActiveExams);
@@ -24,6 +27,9 @@ function ManageExamsTableRoute({ allActiveExams, allDepartments }) {
 
 	return (
 		<AdminLayout>
+			<Head>
+				<title>Admin</title>
+			</Head>
 			<FilterUI
 				allDepartments={allDepartments}
 				allExams={allActiveExams}

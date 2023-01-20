@@ -51,6 +51,15 @@
   gap: 1rem;
 }
 
+.prepGenTitle {
+  margin: auto;
+  font-weight: bold;
+}
+
+.prepGenText {
+  margin: auto;
+}
+
 
 .ecoSection {
   margin-top: 1rem;

@@ -1,15 +1,15 @@
 export const initialObject = {
-	name: "Sample Name",
-	nhsDescription: "Sample NHS description",
-	department: "MR",
-	subdepartment: "MRI",
+	name: "",
+	nhsDescription: "",
+	department: "",
+	subdepartment: "",
 	tags: [],
 	buildingsSchedule: [],
 	doctors: [],
 	generalPreparation: "",
 	uniquePreparation: "",
 	eco: [],
-	results: "2days",
+	results: "",
 };
 
 export function examInputReducer(state, action) {

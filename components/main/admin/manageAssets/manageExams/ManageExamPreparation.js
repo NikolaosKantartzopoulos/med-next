@@ -40,7 +40,7 @@ function ManageExamPreparation() {
 						</option>
 					))}
 			</select>
-			<Textarea
+			{/* <Textarea
 				id="generalPreparation"
 				label={lng("General")}
 				value={
@@ -50,7 +50,14 @@ function ManageExamPreparation() {
 				onChange={() => {}}
 				rows={5}
 				cols={200}
-			/>
+			/> */}
+			<p className={styles.prepGenTitle}>{lng("General")}</p>
+			<div className={styles.prepGenText}>
+				{
+					allActivePreparations.find((prep) => prep.title === activeGeneralPrep)
+						.details
+				}
+			</div>
 
 			<Textarea
 				id="uniquePreparation"

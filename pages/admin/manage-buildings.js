@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-import AdminLayout from "../../components/helper/adminLayout";
 
-import ManageBuildings from "../../components/main/admin/manageAssets/manageBuildings/ManageBuildings";
-import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import { connectDatabase } from "../../helper/database/db";
+
+import AdminLayout from "../../components/helper/adminLayout";
+import ManageBuildings from "../../components/main/admin/manageAssets/manageBuildings/ManageBuildings";
+
+import LoadingSpinner from "../../components/UI/LoadingSpinner";
 
 function ManageBuildingsRoute({ allBuildings }) {
 	const { data: session, status } = useSession();
@@ -21,6 +23,9 @@ function ManageBuildingsRoute({ allBuildings }) {
 
 	return (
 		<AdminLayout>
+			<Head>
+				<title>Admin</title>
+			</Head>
 			<ManageBuildings allBuildings={allBuildings} />
 		</AdminLayout>
 	);

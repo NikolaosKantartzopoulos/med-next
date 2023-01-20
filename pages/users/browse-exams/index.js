@@ -1,10 +1,22 @@
+import React, { useContext } from "react";
+
+import Head from "next/head";
+
+import LanguageContext from "../../../helper/store/contexts/language-context";
 import { connectDatabase } from "../../../helper/database/db";
 
-import React from "react";
 import BrowseExams from "../../../components/main/users/browseExams/BrowseExams";
 
 function BrowseExamsRoute({ allExams, allDepartments }) {
-	return <BrowseExams allExams={allExams} allDepartments={allDepartments} />;
+	const { lng } = useContext(LanguageContext);
+	return (
+		<>
+			<Head>
+				<title>{lng("Exams")}</title>
+			</Head>
+			<BrowseExams allExams={allExams} allDepartments={allDepartments} />
+		</>
+	);
 }
 
 export default BrowseExamsRoute;

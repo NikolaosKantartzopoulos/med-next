@@ -1,4 +1,6 @@
 import React, { useContext } from "react";
+
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 
@@ -30,6 +32,9 @@ function ManageEcoRoute({
 
 	return (
 		<AdminLayout>
+			<Head>
+				<title>Admin</title>
+			</Head>
 			<EcoContextProvider
 				distinctDepartments={distinctDepartments}
 				allInsuranceDocuments={allInsuranceDocuments}

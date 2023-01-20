@@ -1,4 +1,6 @@
 import React, { useContext } from "react";
+
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 
@@ -31,6 +33,9 @@ function ManageDepartmentsRoute({ allDepartments }) {
 			setInfo={setInfo}
 			infoMessage={infoMessage}
 		>
+			<Head>
+				<title>Admin</title>
+			</Head>
 			<AdminLayout>
 				<ManageDepartments allDepartments={allDepartments} />
 			</AdminLayout>

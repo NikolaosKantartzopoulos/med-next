@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 
 import { useRouter } from "next/router";
+import Head from "next/head";
+
 import { useSession } from "next-auth/react";
 import { connectDatabase } from "../../helper/database/db";
 
@@ -28,6 +30,9 @@ function ManagePreparationsRoute({ allPreparations }) {
 
 	return (
 		<AdminLayout>
+			<Head>
+				<title>Admin</title>
+			</Head>
 			<PreparationsContextProvider
 				allPreparations={allPreparations}
 				info={info}
