@@ -27,12 +27,22 @@ export default async function handler(req, res) {
 
 	if (req.method === "DELETE") {
 		const [client, db] = await connectDatabase();
-		const del_id = req.body.toDel_id;
+		const { _id, address } = req.body.item;
+
+		console.log(_id, address);
 
 		try {
 			let result = await db
 				.collection("buildings")
-				.deleteOne({ _id: new ObjectId(del_id) });
+				.deleteOne({ _id: new ObjectId(_id) });
+			//todo update nested array mongo db
+			//buildingsSchedule.buildingName find and delete object in array
+			// let informExams = db
+			// 	.collection("exams")
+			// 	.updateMany(
+			// 		{},
+			// 		{ $pull: { "buildingsSchedule.buildingName": address } }
+			// 	);
 			res.status(200).json({ message: "Entry deleted", entry: result });
 		} finally {
 			await client.close();

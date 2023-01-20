@@ -3,7 +3,7 @@ import Button from "../../components/UI/Button";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import AdminLayout from "../../components/helper/adminLayout";
 
-import { useSession } from "next-auth/react";
+import { useSession, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 function ManageAssets() {
@@ -34,6 +34,27 @@ function ManageAssets() {
 			<Button onClick={handleClick}>asdf</Button>
 		</AdminLayout>
 	);
+}
+
+export async function getServerSideProps(context) {
+	const session = await getSession({ req: context.req });
+
+	if (!session) {
+		return {
+			redirect: {
+				destination: "/users/browse-exams",
+				permanent: false,
+			},
+		};
+	}
+
+	return {
+		props: { session },
+		redirect: {
+			destination: "/admin/exams-table",
+			permanent: true,
+		},
+	};
 }
 
 export default ManageAssets;

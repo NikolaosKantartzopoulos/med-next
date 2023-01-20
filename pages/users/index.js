@@ -1,29 +1,24 @@
-import React, { createRef, useState } from "react";
+import { useSession, getSession } from "next-auth/react";
 
-import { CSSTransition } from "react-transition-group";
-
-import styles from "./asdf.module.css";
 function UsersRoute() {
-	const nodeRef = createRef(null);
-	const [isMoving, setIsMoving] = useState(false);
+	return <div></div>;
+}
 
-	return (
-		<div>
-			<button onClick={() => setIsMoving(!isMoving)}>move</button>
-			<div>1</div>
-			<CSSTransition
-				in={isMoving}
-				timeout={2000}
-				classNames={{ ...styles }}
-				nodeRef={nodeRef}
-				mountOnEnter
-				unmountOnExit
-			>
-				<div ref={nodeRef}>2</div>
-			</CSSTransition>
-			<div>3</div>
-		</div>
-	);
+export async function getServerSideProps(context) {
+	const session = await getSession({ req: context.req });
+
+	if (!session) {
+		return {
+			redirect: {
+				destination: "/users/browse-exams",
+				permanent: true,
+			},
+		};
+	}
+
+	return {
+		props: { session },
+	};
 }
 
 export default UsersRoute;

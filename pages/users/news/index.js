@@ -31,8 +31,20 @@ export default NewsIndexRoute;
 export async function getServerSideProps() {
 	const [client, db] = await connectDatabase();
 
-	const documents = await db.collection("news").find().toArray();
-	const docs = documents.map((doc) => ({ ...doc, _id: doc._id.toString() }));
+	const getSince = new Date();
+	getSince.setMonth(getSince.getMonth() - 1);
+	const asdf = getSince.toISOString();
+	const documents = await db
+		.collection("news")
+		.find({ dateCreated: { $gte: asdf } })
+		.toArray();
+	const docs = documents.map((doc) => ({
+		...doc,
+		_id: doc._id.toString(),
+	}));
+
+	// const documents = await db.collection("news").find().toArray();
+	// const docs = documents.map((doc) => ({ ...doc, _id: doc._id.toString() }));
 
 	const usersDocs = await db
 		.collection("assets")
