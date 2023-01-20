@@ -102,7 +102,24 @@ export function DepartmentContextProvider({
 		setSubdepartmentNameBeforeEdit(null);
 		setDepartmentName("");
 		setNewDepartmentInput("");
+
 		handlePostRequest(toSet);
+
+		fetch("/api/admin/update-eco-department-name", {
+			method: "POST",
+			body: JSON.stringify({ departmentNameBeforeEdit, departmentName }),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+
+		fetch("/api/admin/update-exams-department-name", {
+			method: "POST",
+			body: JSON.stringify({ departmentNameBeforeEdit, departmentName }),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
 	}
 	function deleteDepartmentHandler(e, toBeDeleted) {
 		const filteredArray = activeDepartments.filter(
@@ -170,6 +187,7 @@ export function DepartmentContextProvider({
 		setSubepartmentName(subdepartmentNameValue);
 		setSubdepartmentNameBeforeEdit(subdepartmentNameValue);
 	}
+
 	function saveEditedSubdepartmentInfo(
 		e,
 		selectedDepartment,
@@ -213,7 +231,24 @@ export function DepartmentContextProvider({
 		setEditItemVisible(null);
 		setSubdepartmentNameBeforeEdit(null);
 		handlePostRequest(toSet);
+
+		fetch("/api/admin/update-eco-subdepartment-name", {
+			method: "POST",
+			body: JSON.stringify({ selectedSubdepartment, subdepartmentName }),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+
+		fetch("/api/admin/update-exams-subdepartment-name", {
+			method: "POST",
+			body: JSON.stringify({ selectedSubdepartment, subdepartmentName }),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
 	}
+
 	function deleteSubHandler(e, departmentNameValue, subdepartmentNameValue) {
 		const departmentToChange = activeDepartments.find(
 			(entry) => entry.department === departmentNameValue
