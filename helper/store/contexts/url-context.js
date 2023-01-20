@@ -9,7 +9,7 @@ const UrlContext = createContext({
 });
 
 export function UrlContextProvider(props) {
-	const dbURL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.jbkrb9m.mongodb.net/?retryWrites=true&w=majority`;
+	const dbURL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.${process.env.DB_CLUSTER}.mongodb.net/?retryWrites=true&w=majority`;
 
 	const buildingsAPIURL = "/api/admin/manage-buildings";
 	const editExamAPIURL = "/api/admin/edit-exam";
