@@ -9,7 +9,17 @@ export default async function handler(req, res) {
 				{ department: req.body.departmentNameBeforeEdit },
 				{ $set: { department: req.body.departmentName } }
 			);
-		console.log(dbRes);
+
+		client.close();
+		res.status(200);
+	}
+
+	if (req.method === "DELETE") {
+		const [client, db] = await connectDatabase();
+		const dbRes = await db
+			.collection("eco")
+			.deleteMany({ department: req.body });
+
 		client.close();
 		res.status(200);
 	}

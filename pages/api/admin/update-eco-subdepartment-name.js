@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 				{ subdepartment: req.body.selectedSubdepartment },
 				{ $set: { subdepartment: req.body.subdepartmentName } }
 			);
-		console.log(dbRes);
+
 		client.close();
 		res.status(200);
 	}

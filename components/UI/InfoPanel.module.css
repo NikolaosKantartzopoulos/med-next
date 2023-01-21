@@ -2,6 +2,9 @@
   text-align: center;
   width: 100%;
   color: var(--light-main-1);
+  position: absolute;
+  top: 0;
+  z-index: 9999;
 }
 
 .infoPanel>div {

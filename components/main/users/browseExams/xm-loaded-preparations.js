@@ -14,7 +14,6 @@ function ExamLoadedPreparations({ xm }) {
 
 	useEffect(() => {
 		async function getPrepText() {
-			console.log(xm.generalPreparation);
 			const res = await fetch("/api/admin/fetch-prep", {
 				method: "POST",
 				headers: { "Content-Type": "application-json" },

@@ -33,6 +33,7 @@ function ManageDepartments() {
 						onSubmit={(e) => addNewDepartmentHandler(e)}
 						value={newDepartmentInput}
 						onChange={(e) => setNewDepartmentInput(e.target.value)}
+						customStyle={{ borderLeft: "2px solid darkblue" }}
 					/>
 				)}
 			</div>

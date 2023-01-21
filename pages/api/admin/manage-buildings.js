@@ -29,8 +29,6 @@ export default async function handler(req, res) {
 		const [client, db] = await connectDatabase();
 		const { _id, address } = req.body.item;
 
-		console.log(_id, address);
-
 		try {
 			let result = await db
 				.collection("buildings")

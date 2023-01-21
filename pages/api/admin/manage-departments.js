@@ -1,27 +1,57 @@
 import { connectDatabase } from "../../../helper/database/db";
+import { ObjectId } from "mongodb";
 
 export default async function handler(req, res) {
-	if (req.method === "PUT") {
-		const [client, db] = await connectDatabase();
+	const [client, db] = await connectDatabase();
+	try {
+		switch (req.method) {
+			case "POST":
+				const { newDepartmentTitle } = JSON.parse(req.body);
+				//validate name department subdepartment de not exist
+				const dbPostRes = await db
+					.collection("departments")
+					.insertOne({ department: newDepartmentTitle, sub: [] });
+				if (dbPostRes.acknowledged) {
+					res.status(200).json({
+						type: "ok",
+						text: "Department added",
+						_id: dbPostRes.insertedId.toString(),
+					});
+				} else {
+					res.status(500);
+				}
 
-		try {
-			const newDepartments = req.body.activeDepartments;
-			// if (
-			// 	newBuilding.building.address.trim() === "" ||
-			// 	allBuildings.includes(newBuilding)
-			// ) {
-			// 	res.status(406).json({ message: "Invalid Input" });
-			// 	return;
-			// }
-			const result = await db.collection("departments").deleteMany({});
+				break;
+			case "PUT":
+				const { editedDepartmentNewData } = JSON.parse(req.body);
 
-			const sent = await db
-				.collection("departments")
-				.insertMany(newDepartments);
+				const dbPutRes = await db.collection("departments").replaceOne(
+					{ _id: new ObjectId(editedDepartmentNewData._id) },
+					{
+						...editedDepartmentNewData,
+						_id: new ObjectId(editedDepartmentNewData._id),
+					}
+				);
 
-			res.status(200).json({ message: "message", added: newDepartments });
-		} finally {
-			await client.close();
+				if (dbPutRes.acknowledged) {
+					res.status(200).json({ type: "ok", text: "Department edited" });
+				} else {
+					res.status(500);
+				}
+				break;
+			case "DELETE":
+				const dbDelRes = await db
+					.collection("departments")
+					.deleteOne({ _id: new ObjectId(req.body) });
+				if (dbDelRes.acknowledged) {
+					res.status(200).json({ type: "ok", text: "Department deleted" });
+				} else {
+					res.status(500);
+				}
+
+				break;
 		}
+	} finally {
+		await client.close();
 	}
 }

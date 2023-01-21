@@ -49,7 +49,7 @@ function ManageBuildings({ allBuildings }) {
 	async function deleteBuildingHandler(e, item) {
 		e.preventDefault();
 		setIsLoading(true);
-		console.log(item);
+
 		// let toDel = { toDel_id: item._id };
 		let toDel = { item: item };
 

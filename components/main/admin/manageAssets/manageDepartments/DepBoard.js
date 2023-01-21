@@ -81,7 +81,7 @@ function DepBoard() {
 								<Image
 									src={editIcon}
 									alt="edit-department"
-									onClick={(e) => editDepartmentNameHandler(e, dep.department)}
+									onClick={(e) => editDepartmentNameHandler(e, dep)}
 								/>
 							)}
 							{departmentNameBeforeEdit === dep.department &&
@@ -89,17 +89,15 @@ function DepBoard() {
 								editItemVisible === "editDepartment" && (
 									<Image
 										src={saveIcon}
-										alt="save-department"
-										onClick={(e) =>
-											saveDepartmentNameHandler(e, dep.department)
-										}
+										alt="save-edited-department"
+										onClick={(e) => saveDepartmentNameHandler(e, dep)}
 									/>
 								)}
 							{switchIcons === "showEdit" && (
 								<Image
 									src={deleteIcon}
 									alt={"delete-department"}
-									onClick={(e) => deleteDepartmentHandler(e, dep.department)}
+									onClick={(e) => deleteDepartmentHandler(e, dep)}
 								/>
 							)}
 						</div>

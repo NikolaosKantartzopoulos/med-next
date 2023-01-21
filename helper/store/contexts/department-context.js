@@ -24,9 +24,12 @@ export function DepartmentContextProvider({
 	const [switchIcons, setSwitchIcons] = useState("showEdit");
 	const [isLoading, setIsLoading] = useState(false);
 
-	// DEPARTMENTS MANAGEMENT
-
-	function addNewDepartmentHandler(e) {
+	/********************************************************************
+	 ********************************************************************
+	 * DEPARTMENTS MANAGEMENT
+	 ********************************************************************
+	 ********************************************************************* */
+	async function addNewDepartmentHandler(e) {
 		e.preventDefault();
 		if (
 			activeDepartments
@@ -41,51 +44,66 @@ export function DepartmentContextProvider({
 			return;
 		}
 
-		setActiveDepartments([
-			...activeDepartments,
-			{
-				department: newDepartmentInput,
-				sub: [],
+		const addDepRes = await fetch("/api/admin/manage-departments", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application-json",
 			},
-		]);
-		setDepartmentName("");
-		setNewDepartmentInput("");
-		handlePostRequest([
-			...activeDepartments,
-			{
-				department: newDepartmentInput,
-				sub: [],
-			},
-		]);
-	}
-	function editDepartmentNameHandler(e, currentName) {
-		setEditItemVisible("editDepartment");
-		setSwitchIcons("showSave");
-		setDepartmentName(currentName);
-		setDepartmentNameBeforeEdit(currentName);
+			body: JSON.stringify({ newDepartmentTitle: newDepartmentInput }),
+		});
+		if (addDepRes.ok) {
+			const infoObj = await addDepRes.json();
+			infoMessage(infoObj.type, infoObj.text);
+
+			setActiveDepartments([
+				...activeDepartments,
+				{
+					department: newDepartmentInput,
+					sub: [],
+					_id: infoObj._id,
+				},
+			]);
+			setDepartmentName("");
+			setNewDepartmentInput("");
+		}
 	}
 
-	function saveDepartmentNameHandler(e, selectedDepartment) {
+	/********************************************************************
+	 * DEPARTMENT EDIT
+	 ********************************************************************/
+
+	function editDepartmentNameHandler(e, dep) {
+		setEditItemVisible("editDepartment");
+		setSwitchIcons("showSave");
+		setDepartmentName(dep.department);
+		setDepartmentNameBeforeEdit(dep.department);
+	}
+
+	async function saveDepartmentNameHandler(e, item) {
 		if (
 			departmentName.trim() == "" ||
 			activeDepartments.map((dep) => dep.department).includes(departmentName)
 		) {
-			infoMessage("error", "A field is empty");
+			infoMessage(
+				"error",
+				"A field is empty or department name already exists"
+			);
 
 			setSwitchIcons("showEdit");
 			setEditItemVisible(null);
 			return;
 		}
 		const departmentToChange = activeDepartments.find(
-			(entry) => entry.department === departmentNameBeforeEdit
+			(entry) => entry._id === item._id
 		);
 
 		const filteredArray = activeDepartments.filter(
-			(entry) => entry.department !== departmentNameBeforeEdit
+			(entry) => entry._id !== item._id
 		);
 
 		let subdepartmentsIncluded = departmentToChange.sub;
 		let addThisDepartment = {
+			_id: item._id,
 			department: departmentName,
 			sub: subdepartmentsIncluded,
 		};
@@ -103,7 +121,27 @@ export function DepartmentContextProvider({
 		setDepartmentName("");
 		setNewDepartmentInput("");
 
-		handlePostRequest(toSet);
+		const editDepRes = await fetch("/api/admin/manage-departments", {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application-json",
+			},
+			body: JSON.stringify({ editedDepartmentNewData: addThisDepartment }),
+		});
+		if (!editDepRes.ok) {
+			infoMessage("error", "An error occured (500)");
+			return;
+		}
+		const infoObj = await editDepRes.json();
+		infoMessage(infoObj.type, infoObj.text);
+
+		fetch("/api/admin/manage-departments", {
+			method: "POST",
+			body: JSON.stringify({ departmentNameBeforeEdit, departmentName }),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
 
 		fetch("/api/admin/update-eco-department-name", {
 			method: "POST",
@@ -121,15 +159,58 @@ export function DepartmentContextProvider({
 			},
 		});
 	}
-	function deleteDepartmentHandler(e, toBeDeleted) {
-		const filteredArray = activeDepartments.filter(
-			(entry) => entry.department !== toBeDeleted
+
+	async function deleteDepartmentHandler(e, item) {
+		const promptResponse = prompt(
+			"Are you sure? This will delete all exams and all Eco information of this department!"
 		);
+
+		if (promptResponse === null) {
+			return;
+		}
+
+		const filteredArray = activeDepartments.filter(
+			(entry) => entry.department !== item.department
+		);
+
+		const delRes = await fetch("/api/admin/manage-departments", {
+			method: "DELETE",
+			body: item._id,
+			headers: {
+				"Content-Type": "text/plain",
+			},
+		});
+
+		if (!delRes.ok) {
+			infoMessage("error", "An error occured (500)");
+		}
+		const data = await delRes.json();
+		infoMessage(data.type, data.text);
+
+		fetch("/api/admin/update-eco-department-name", {
+			method: "DELETE",
+			body: item.department,
+			headers: {
+				"Content-Type": "text/plain",
+			},
+		});
+
+		fetch("/api/admin/update-exams-department-name", {
+			method: "DELETE",
+			body: item.department,
+			headers: {
+				"Content-Type": "text/plain",
+			},
+		});
+
 		setActiveDepartments([...filteredArray]);
-		handlePostRequest([...filteredArray]);
 	}
 
-	// SUBDEPARTMENTS MANAGEMENT
+	/********************************************************************
+	 ********************************************************************
+	 * SUBDEPARTMENTS MANAGEMENT
+	 ********************************************************************
+	 ********************************************************************* */
 
 	function addNewSubdepartmentHandler(e, departmentToEdit) {
 		setDepartmentName(departmentToEdit);
@@ -275,7 +356,13 @@ export function DepartmentContextProvider({
 		setActiveDepartments(toSet);
 		handlePostRequest(toSet);
 	}
-	//POST
+
+	/********************************************************************
+	 ********************************************************************
+	 * REST
+	 ********************************************************************
+	 ********************************************************************* */
+
 	async function handlePostRequest(these) {
 		let toPut = { activeDepartments: these };
 		setIsLoading(true);
