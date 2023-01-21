@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import DepartmentContext from "../../../../../helper/store/contexts/department-context.js";
 
 import Image from "next/image.js";
@@ -64,7 +64,7 @@ function DepBoard() {
 								<Image
 									src={addIcon}
 									alt="add-subdepartment"
-									onClick={(e) => addNewSubdepartmentHandler(e, dep.department)}
+									onClick={(e) => addNewSubdepartmentHandler(e, dep)}
 								/>
 							) : (
 								<div className={styles.iconPlaceholder}></div>
@@ -74,7 +74,7 @@ function DepBoard() {
 									<Image
 										src={saveIcon}
 										alt="save-subdepartment"
-										onClick={(e) => addNewSubdepartment(e)}
+										onClick={(e) => addNewSubdepartment(e, dep)}
 									/>
 								)}
 							{switchIcons === "showEdit" && (

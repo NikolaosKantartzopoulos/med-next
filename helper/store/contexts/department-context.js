@@ -213,13 +213,17 @@ export function DepartmentContextProvider({
 	 ********************************************************************* */
 
 	function addNewSubdepartmentHandler(e, departmentToEdit) {
-		setDepartmentName(departmentToEdit);
-		setDepartmentNameBeforeEdit(departmentToEdit);
+		setDepartmentName(departmentToEdit.department);
+		setDepartmentNameBeforeEdit(departmentToEdit.department);
 		setSwitchIcons("showSubSave");
 		setEditItemVisible(null);
 	}
 
-	function addNewSubdepartment(e) {
+	/***************************************************
+	 *	ADD NEW SUBDEPARTMENT
+	 ***************************************************/
+
+	async function addNewSubdepartment(e, dep) {
 		if (newSubdepartmentInput.trim() == "") {
 			setDepartmentName("");
 			setNewDepartmentInput("");
@@ -254,14 +258,30 @@ export function DepartmentContextProvider({
 		const toSet = [...newArray].sort((a, b) =>
 			a.department > b.department ? 1 : -1
 		);
-		setDepartmentName("");
-		setNewDepartmentInput("");
-		setNewSubdepartmentInput("");
-		setActiveDepartments(toSet);
-		setEditItemVisible(null);
-		setSwitchIcons("showEdit");
-		handlePostRequest(newArray);
+
+		const addSubRes = await fetch("/api/admin/manage-subdepartments", {
+			method: "POST",
+			headers: { "Content-Type": "application-json" },
+			body: JSON.stringify({
+				dep: dep,
+				newSubdepartment: newSubdepartmentInput,
+			}),
+		});
+
+		if (addSubRes.ok) {
+			const data = await addSubRes.json();
+			infoMessage(data.type, data.text);
+			setDepartmentName("");
+			setNewDepartmentInput("");
+			setNewSubdepartmentInput("");
+			setActiveDepartments(toSet);
+			setEditItemVisible(null);
+			setSwitchIcons("showEdit");
+		} else {
+			infoMessage("error", "An error occured");
+		}
 	}
+
 	function editSubHandler(e, departmentNameValue, subdepartmentNameValue) {
 		setEditItemVisible("editSubdepartment");
 		setDepartmentName(departmentNameValue);
