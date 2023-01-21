@@ -282,19 +282,25 @@ export function DepartmentContextProvider({
 		}
 	}
 
-	function editSubHandler(e, departmentNameValue, subdepartmentNameValue) {
+	function editSubHandler(e, departmentItem, subdepartmentNameValue) {
 		setEditItemVisible("editSubdepartment");
-		setDepartmentName(departmentNameValue);
+		setDepartmentName(departmentItem.department);
 		setSubepartmentName(subdepartmentNameValue);
 		setSubdepartmentNameBeforeEdit(subdepartmentNameValue);
 	}
 
-	function saveEditedSubdepartmentInfo(
+	/***************************************************
+	 *	SAVE EDITED SUBDEPARTMENT
+	 ***************************************************/
+
+	async function saveEditedSubdepartmentInfo(
 		e,
 		selectedDepartment,
 		selectedSubdepartment
 	) {
 		e.preventDefault();
+
+		console.log(selectedDepartment, selectedSubdepartment);
 
 		if (subdepartmentName.trim() === "") {
 			infoMessage("error", "A field is empty");
@@ -302,11 +308,11 @@ export function DepartmentContextProvider({
 		}
 
 		const departmentToChange = activeDepartments.find(
-			(entry) => entry.department === selectedDepartment
+			(entry) => entry.department === selectedDepartment.department
 		);
 
 		const filteredArray = activeDepartments.filter(
-			(entry) => entry.department !== selectedDepartment
+			(entry) => entry.department !== selectedDepartment.department
 		);
 
 		let filteredSubdepartments = departmentToChange.sub.filter(
@@ -318,45 +324,64 @@ export function DepartmentContextProvider({
 			subdepartmentName,
 		].sort((a, b) => (a > b ? 1 : -1));
 
-		let addThisDepartment = {
-			department: selectedDepartment,
-			sub: orderedSubdepartments,
-		};
-
-		const newArray = [...filteredArray, addThisDepartment];
-		const toSet = [...newArray].sort((a, b) =>
-			a.department > b.department ? 1 : -1
-		);
-
-		setActiveDepartments(toSet);
-		setEditItemVisible(null);
-		setSubdepartmentNameBeforeEdit(null);
-		handlePostRequest(toSet);
-
-		fetch("/api/admin/update-eco-subdepartment-name", {
-			method: "POST",
-			body: JSON.stringify({ selectedSubdepartment, subdepartmentName }),
+		const putSubRes = await fetch("/api/admin/manage-subdepartments", {
+			method: "PUT",
+			body: JSON.stringify({
+				selectedDepartment: selectedDepartment,
+				subdepartmentName: subdepartmentName,
+			}),
 			headers: {
 				"Content-Type": "application/json",
 			},
 		});
 
-		fetch("/api/admin/update-exams-subdepartment-name", {
-			method: "POST",
-			body: JSON.stringify({ selectedSubdepartment, subdepartmentName }),
-			headers: {
-				"Content-Type": "application/json",
-			},
-		});
+		if (putSubRes.ok) {
+			const data = await putSubRes.json();
+			infoMessage(data.type, data.text);
+
+			let addThisDepartment = {
+				department: selectedDepartment.department,
+				sub: orderedSubdepartments,
+			};
+
+			const newArray = [...filteredArray, addThisDepartment];
+			const toSet = [...newArray].sort((a, b) =>
+				a.department > b.department ? 1 : -1
+			);
+
+			setActiveDepartments(toSet);
+			setEditItemVisible(null);
+			setSubdepartmentNameBeforeEdit(null);
+
+			fetch("/api/admin/update-eco-subdepartment-name", {
+				method: "POST",
+				body: JSON.stringify({ selectedSubdepartment, subdepartmentName }),
+				headers: {
+					"Content-Type": "application/json",
+				},
+			});
+
+			fetch("/api/admin/update-exams-subdepartment-name", {
+				method: "POST",
+				body: JSON.stringify({ selectedSubdepartment, subdepartmentName }),
+				headers: {
+					"Content-Type": "application/json",
+				},
+			});
+		}
 	}
 
-	function deleteSubHandler(e, departmentNameValue, subdepartmentNameValue) {
+	/************************************************************************
+	 * DELETE SUBDEPARTMENT
+	 ***********************************************************************/
+
+	async function deleteSubHandler(e, departmentItem, subdepartmentNameValue) {
 		const departmentToChange = activeDepartments.find(
-			(entry) => entry.department === departmentNameValue
+			(entry) => entry.department === departmentItem.department
 		);
 
 		const filteredArray = activeDepartments.filter(
-			(entry) => entry.department !== departmentNameValue
+			(entry) => entry.department !== departmentItem.department
 		);
 
 		let filteredSubdepartments = departmentToChange.sub.filter(
@@ -364,7 +389,7 @@ export function DepartmentContextProvider({
 		);
 
 		let addThisDepartment = {
-			department: departmentNameValue,
+			department: departmentItem.department,
 			sub: [...filteredSubdepartments],
 		};
 
@@ -373,8 +398,40 @@ export function DepartmentContextProvider({
 			a.department > b.department ? 1 : -1
 		);
 
+		const delRes = await fetch("/api/admin/manage-subdepartments", {
+			method: "DELETE",
+			body: JSON.stringify({
+				department: departmentItem,
+				subdepartment: subdepartmentNameValue,
+			}),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+
+		if (!delRes.ok) {
+			infoMessage("error", "An error occured (500)");
+		}
+		const data = await delRes.json();
+		infoMessage(data.type, data.text);
+
+		// fetch("/api/admin/update-eco-subdepartment-name", {
+		// 	method: "DELETE",
+		// 	body: item.subdepartmentNameValue,
+		// 	headers: {
+		// 		"Content-Type": "text/plain",
+		// 	},
+		// });
+
+		// fetch("/api/admin/update-exams-subdepartment-name", {
+		// 	method: "DELETE",
+		// 	body: item.subdepartmentNameValue,
+		// 	headers: {
+		// 		"Content-Type": "text/plain",
+		// 	},
+		// });
+
 		setActiveDepartments(toSet);
-		handlePostRequest(toSet);
 	}
 
 	/********************************************************************

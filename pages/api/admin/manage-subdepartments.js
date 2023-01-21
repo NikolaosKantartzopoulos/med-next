@@ -26,28 +26,43 @@ export default async function handler(req, res) {
 
 				break;
 			case "PUT":
-				const { editedDepartmentNewData } = JSON.parse(req.body);
+				console.log(req.body);
+				const { selectedDepartment, subdepartmentName } = req.body;
 
-				const dbPutRes = await db.collection("departments").replaceOne(
-					{ _id: new ObjectId(editedDepartmentNewData._id) },
+				console.log(selectedDepartment, subdepartmentName);
+
+				const dbPutRes = await db.collection("departments").updateOne(
+					{ _id: new ObjectId(selectedDepartment._id) },
 					{
-						...editedDepartmentNewData,
-						_id: new ObjectId(editedDepartmentNewData._id),
+						$push: { sub: subdepartmentName },
 					}
 				);
 
 				if (dbPutRes.acknowledged) {
-					res.status(200).json({ type: "ok", text: "Department edited" });
+					res.status(200).json({ type: "ok", text: "Subepartment edited" });
 				} else {
 					res.status(500);
 				}
 				break;
 			case "DELETE":
+				console.log(req.body);
 				const dbDelRes = await db
 					.collection("departments")
-					.deleteOne({ _id: new ObjectId(req.body) });
+					.updateOne(
+						{ _id: new ObjectId(req.body.department._id) },
+						{ $pull: { sub: req.body.subdepartment } }
+					);
+
+				const delFromExams = await db
+					.collection("exams")
+					.deleteMany({ subdepartment: req.body.subdepartment });
+
+				const delFromEco = await db
+					.collection("eco")
+					.deleteMany({ subdepartment: req.body.subdepartment });
+
 				if (dbDelRes.acknowledged) {
-					res.status(200).json({ type: "ok", text: "Department deleted" });
+					res.status(200).json({ type: "ok", text: "Subdepartment deleted" });
 				} else {
 					res.status(500);
 				}

@@ -107,10 +107,10 @@ function DepBoard() {
 						{dep.sub.map((b) => (
 							<ResponsiveItem
 								key={b}
-								deleteItemHandler={deleteSubHandler}
 								editItemHandler={editSubHandler}
 								saveItemHandler={saveEditedSubdepartmentInfo}
-								tier1={dep.department}
+								deleteItemHandler={deleteSubHandler}
+								tier1={dep}
 								tier2={b}
 								helperValue={subdepartmentNameBeforeEdit}
 							>
