@@ -162,13 +162,18 @@ export function DepartmentContextProvider({
 
 	async function deleteDepartmentHandler(e, item) {
 		const promptResponse = prompt(
-			"Are you sure? This will delete all exams and all Eco information of this department!"
+			"Are you sure? This will delete all exams and all Eco information of this department! Type OK and confirm!"
 		);
+		console.log(promptResponse);
+		const grRegex = new RegExp(/οκ/i);
+		const enRegex = new RegExp(/ok/i);
 
-		if (promptResponse === null) {
+		console.log(!grRegex.test(promptResponse), !enRegex.test(promptResponse));
+
+		if (!grRegex.test(promptResponse) && !enRegex.test(promptResponse)) {
 			return;
 		}
-
+		console.log("pass");
 		const filteredArray = activeDepartments.filter(
 			(entry) => entry.department !== item.department
 		);
