@@ -100,6 +100,9 @@ export function PreparationsContextProvider({
 	 **************************************************************/
 
 	function setEditItem(e, item) {
+		if (item.title == "---") {
+			return;
+		}
 		setInfo(null);
 		setActionLoaded("editPreparation");
 		setPreviousTitle(item.title);
@@ -145,6 +148,10 @@ export function PreparationsContextProvider({
 	 **************************************************************/
 
 	async function deleteItem(e, item) {
+		if (item.title == "---") {
+			return;
+		}
+
 		setActivePreparationsList([
 			...activePreparationsList.filter((it) => it._id != item._id),
 		]);

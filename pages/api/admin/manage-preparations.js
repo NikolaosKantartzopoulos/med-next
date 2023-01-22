@@ -54,7 +54,6 @@ export default async function handler(req, res) {
 
 			case "DELETE":
 				const delId = JSON.parse(req.body)._id;
-				console.log(delId);
 
 				const findTitle = await db
 					.collection("preparations")

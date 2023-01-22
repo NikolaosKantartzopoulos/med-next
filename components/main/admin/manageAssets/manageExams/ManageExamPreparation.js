@@ -19,6 +19,7 @@ function ManageExamPreparation() {
 	);
 
 	function handleGeneralPrep(e) {
+		console.log(e.target.value);
 		setActiveGeneralPrep(e.target.value);
 		dispatchExamInputStateAction({
 			type: "setGeneralPreparation",

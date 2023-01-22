@@ -24,7 +24,7 @@ export default async function handler(req, res) {
 			res.status(406).json({ message: "Exams Exists" });
 			return;
 		}
-
+		console.log(req.body);
 		const dbResponse = await db.collection("exams").insertOne(req.body);
 		res
 			.status(200)

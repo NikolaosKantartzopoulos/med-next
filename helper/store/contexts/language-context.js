@@ -133,11 +133,11 @@ export function LanguageContextProvider({ locale, children }) {
 		},
 
 		Unique: {
-			"el-GR": "Ειδικές",
+			"el-GR": "Ειδική",
 			"en-US": "Unique",
 		},
 		General: {
-			"el-GR": "Γενικές",
+			"el-GR": "Γενική",
 			"en-US": "General",
 		},
 		NHSTitle: {
@@ -231,7 +231,7 @@ export function LanguageContextProvider({ locale, children }) {
 			"en-US": "Eco",
 		},
 		Preparations: {
-			"el-GR": "Προετοιμασίες",
+			"el-GR": "Οδηγίες",
 			"en-US": "Preparations",
 		},
 		Users: {

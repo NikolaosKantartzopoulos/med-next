@@ -6,7 +6,7 @@ export const initialObject = {
 	tags: [],
 	buildingsSchedule: [],
 	doctors: [],
-	generalPreparation: "",
+	generalPreparation: "---",
 	uniquePreparation: "",
 	eco: [],
 	results: "",
