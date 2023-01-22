@@ -5,8 +5,6 @@ import {
 	preparationsSample,
 } from "../../store/reducers/manage-preparations-reducer.js";
 
-import uuid from "react-uuid";
-
 const PreparationsContext = createContext({
 	actionLoaded: "",
 	activePreparationsList: [],
@@ -30,10 +28,13 @@ export function PreparationsContextProvider({
 	allPreparations,
 	info,
 	setInfo,
+	infoMessage,
 	children,
 }) {
 	const [activePreparationsList, setActivePreparationsList] =
 		useState(allPreparations);
+	const [previousTitle, setPreviousTitle] = useState(null);
+
 	const [actionLoaded, setActionLoaded] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -56,28 +57,9 @@ export function PreparationsContextProvider({
 		preparationsSample
 	);
 
-	function setEditItem(e, item) {
-		setInfo(null);
-		setActionLoaded("editPreparation");
-		dispatchPreparationsAction({
-			type: "setItem",
-			item: item,
-		});
-	}
-
-	async function saveUpdatedItem() {
-		if (!checkFieldValidity()) {
-			return;
-		}
-
-		const filteredArray = activePreparationsList.filter(
-			(a) => a._id != preparationsInputs._id
-		);
-
-		setActivePreparationsList([...filteredArray, preparationsInputs]);
-		await handlePost([...filteredArray, preparationsInputs]);
-		setActionLoaded(null);
-	}
+	/*************************************************************
+	 * 	ADD ITEM
+	 **************************************************************/
 
 	function setAddItem() {
 		setInfo(null);
@@ -95,44 +77,93 @@ export function PreparationsContextProvider({
 			setInfo({ type: "error", text: "Existing title" });
 			return;
 		}
-		const toAdd = { ...preparationsInputs, _id: uuid() };
-		setActivePreparationsList([...activePreparationsList, toAdd]);
-		await handlePost([...activePreparationsList, toAdd]);
-		dispatchPreparationsAction({ type: "resetAll" });
-		// setInfo({ type: "good", text: "Entry submited" });
-		// setTimeout(() => setInfo(null), 3000);
+
+		const prepPostRes = await fetch("/api/admin/manage-preparations", {
+			method: "POST",
+			headers: { "Content-Type": "application-json" },
+			body: JSON.stringify(preparationsInputs),
+		});
+		if (prepPostRes.ok) {
+			let data = await prepPostRes.json();
+
+			const toAdd = { ...preparationsInputs, _id: data.item._id };
+			setActivePreparationsList([...activePreparationsList, toAdd]);
+			dispatchPreparationsAction({ type: "resetAll" });
+			infoMessage(data.type, data.text);
+		} else {
+			infoMessage("error", "Something went wrong!");
+		}
 	}
+
+	/*************************************************************
+	 * 	EDIT ITEM
+	 **************************************************************/
+
+	function setEditItem(e, item) {
+		setInfo(null);
+		setActionLoaded("editPreparation");
+		setPreviousTitle(item.title);
+		dispatchPreparationsAction({
+			type: "setItem",
+			item: item,
+		});
+	}
+
+	async function saveUpdatedItem() {
+		if (!checkFieldValidity()) {
+			return;
+		}
+
+		const filteredArray = activePreparationsList.filter(
+			(a) => a._id != preparationsInputs._id
+		);
+
+		const prepPutRes = await fetch("/api/admin/manage-preparations", {
+			method: "PUT",
+			headers: { "Content-Type": "application-json" },
+			body: JSON.stringify({
+				item: preparationsInputs,
+				previousTitle: previousTitle,
+			}),
+		});
+		if (prepPutRes.ok) {
+			let data = await prepPutRes.json();
+			console.log(data);
+
+			setActionLoaded(null);
+			setActivePreparationsList([...filteredArray, preparationsInputs]);
+			dispatchPreparationsAction({ type: "resetAll" });
+			setPreviousTitle(null);
+			infoMessage(data.type, data.text);
+		} else {
+			infoMessage("error", "Something went wrong!");
+		}
+	}
+
+	/*************************************************************
+	 * 	DELETE ITEM
+	 **************************************************************/
 
 	async function deleteItem(e, item) {
 		setActivePreparationsList([
 			...activePreparationsList.filter((it) => it._id != item._id),
 		]);
-		await handlePost([
-			...activePreparationsList.filter((it) => it._id != item._id),
-		]);
-	}
+		console.log(item._id);
 
-	async function handlePost(these) {
-		dispatchPreparationsAction({ type: "resetAll" });
-
-		setIsLoading(true);
-
-		const response = await fetch("/api/admin/manage-preparations", {
-			method: "POST",
-			body: JSON.stringify({ entry: these }),
-			headers: {
-				"Content-Type": "application/json",
-			},
+		const prepDelRes = await fetch("/api/admin/manage-preparations", {
+			method: "DELETE",
+			headers: { "Content-Type": "application-json" },
+			body: JSON.stringify({ _id: item._id }),
 		});
-		const data = await response.json();
-		if (response.ok) {
-			setInfo({ type: "ok", text: "Changes submited" });
-			setTimeout(() => {
-				setInfo(null);
-				router.reload();
-			}, 3000);
+		if (prepDelRes.ok) {
+			let data = await prepDelRes.json();
+			console.log(data);
+			infoMessage(data.type, data.text);
+			setActionLoaded(null);
+			dispatchPreparationsAction({ type: "resetAll" });
+		} else {
+			infoMessage("error", "Something went wrong!");
 		}
-		setIsLoading(false);
 	}
 
 	const preparationsContext = {
@@ -141,7 +172,6 @@ export function PreparationsContextProvider({
 		checkFieldValidity,
 		deleteItem,
 		dispatchPreparationsAction,
-		handlePost,
 		info,
 		isLoading,
 		preparationsInputs,

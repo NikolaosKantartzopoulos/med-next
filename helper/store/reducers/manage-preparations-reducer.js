@@ -26,7 +26,6 @@ export function preparationsReducer(state, action) {
 }
 
 export const preparationsSample = {
-	_id: "",
 	title: "",
 	details: "",
 	common: true,

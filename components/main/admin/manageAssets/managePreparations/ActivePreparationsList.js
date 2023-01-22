@@ -25,7 +25,7 @@ function ActivePreparationsList() {
 						.map((pr) => (
 							<ResponsiveItem
 								key={pr._id}
-								tier2={pr.id}
+								tier2={pr._id}
 								helperValue={preparationsInputs._id}
 								editItemHandler={(e) => setEditItem(e, pr)}
 								saveItemHandler={(e) => saveUpdatedItem(e, pr)}

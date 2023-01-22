@@ -16,7 +16,7 @@ import LoadingSpinner from "../../components/UI/LoadingSpinner.js";
 function ManagePreparationsRoute({ allPreparations }) {
 	const { data: session, status } = useSession();
 
-	const { info, setInfo } = useContext(ToolsContext);
+	const { info, setInfo, infoMessage } = useContext(ToolsContext);
 
 	const router = useRouter();
 
@@ -37,6 +37,7 @@ function ManagePreparationsRoute({ allPreparations }) {
 				allPreparations={allPreparations}
 				info={info}
 				setInfo={setInfo}
+				infoMessage={infoMessage}
 			>
 				<ManagePreparation />
 			</PreparationsContextProvider>
