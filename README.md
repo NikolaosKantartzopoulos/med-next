@@ -1,20 +1,33 @@
-# My ongoing project
+### Ongoing project - [Live link](https://med-next.vercel.app/admin/manage-assets)
 
-Created with [React](https://reactjs.org/) - [NextJS](https://nextjs.org/) - [MongoDB](https://www.mongodb.com/)
+---
 
-At this point you can create forms and add data to database via UI.
-Everything is dynamicaly imported to Exam Tab, where you can crreate an exam based on the assets you have declared in other Tabs.
+### Created with
 
-[Live link](https://med-next.vercel.app/admin/manage-assets)
+- [React](https://reactjs.org/)
+- [NextJS](https://nextjs.org/)
+- [NextAuth.js](https://next-auth.js.org/)
+- [React Transition Group](http://reactcommunity.org/react-transition-group/)
+- [MongoDB](https://www.mongodb.com/)
+
+### Summary
+
+---
+
+Organize and edit a database, as it would be used by a Medical Center.
+Exams are updated dynamically by changes on Preparations and Eco documents.
+
+### Development
+
+---
 
 ```
-git clone https://github.com/NikolaosKantartzopoulos/med-next.git
+git clone https://github.com/NikolaosKantartzopoulos/med-next.git && cd ./med-next && npm i && npm run dev
 ```
 
-```
-npm i
-```
+---
 
-```
-npm run dev
-```
+**Login**
+
+- Username: admin
+- Password: admin
