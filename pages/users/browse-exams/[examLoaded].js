@@ -54,19 +54,7 @@ function ExamShowcase() {
 				<>
 					<ExamLoadedTitles xm={xm} />
 					{xm.doctors && <ExamLoadedDoctors xm={xm} />}
-					{(xm.generalPreparation || xm.uniquePreparation) && (
-						<ExamLoadedPreparations xm={xm} />
-					)}
 
-					{xm.buildingsSchedule && (
-						<FoldUnfold headerText={lng("Schedule")}>
-							<div className={styles.schDiv}>
-								{xm.buildingsSchedule.map((b) => (
-									<ScheduleTable building={b} key={b.buildingName} />
-								))}
-							</div>
-						</FoldUnfold>
-					)}
 					{xm.eco && (
 						<FoldUnfold headerText={lng("Eco")}>
 							{xm.eco.map((ec) => (
@@ -78,6 +66,19 @@ function ExamShowcase() {
 								/>
 							))}
 						</FoldUnfold>
+					)}
+					{xm.buildingsSchedule && (
+						<FoldUnfold headerText={lng("Schedule")}>
+							<div className={styles.schDiv}>
+								{xm.buildingsSchedule.map((b) => (
+									<ScheduleTable building={b} key={b.buildingName} />
+								))}
+							</div>
+						</FoldUnfold>
+					)}
+
+					{(xm.generalPreparation || xm.uniquePreparation) && (
+						<ExamLoadedPreparations xm={xm} />
 					)}
 				</>
 			) : (

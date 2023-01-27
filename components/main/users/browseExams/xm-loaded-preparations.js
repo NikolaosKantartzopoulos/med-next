@@ -27,6 +27,13 @@ function ExamLoadedPreparations({ xm }) {
 
 	return (
 		<FoldUnfold headerText={lng("Preparations")}>
+			{xm.uniquePreparation && (
+				<div>
+					<h6>{lng("Unique")}</h6>
+					<div className={styles.prepText}>{xm.uniquePreparation}</div>
+				</div>
+			)}
+
 			{xm.generalPreparation && (
 				<div>
 					<h6>{lng("General")}</h6>
@@ -35,12 +42,6 @@ function ExamLoadedPreparations({ xm }) {
 					) : (
 						<LoadingSpinner />
 					)}
-				</div>
-			)}
-			{xm.uniquePreparation && (
-				<div>
-					<h6>{lng("Unique")}</h6>
-					<div className={styles.prepText}>{xm.uniquePreparation}</div>
 				</div>
 			)}
 		</FoldUnfold>
