@@ -31,10 +31,10 @@ function ManageExam() {
 			},
 			body: JSON.stringify(examInputState),
 		});
-		const data = await response.json();
 		setIsLoading(false);
 		if (response.ok) {
-			setInfo({ type: "ok", text: "Exam Submited" });
+			const data = await response.json();
+			setInfo(data);
 			setTimeout(() => setInfo(null), 3000);
 		} else {
 			setInfo({ type: "error", text: "Exam Exists" });

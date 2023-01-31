@@ -10,6 +10,11 @@ export default async function (req, res) {
 				{ _id: new ObjectId(req.body._id) },
 				{ ...req.body, _id: new ObjectId(req.body._id) }
 			);
+		if (dbRes.modifiedCount == 1) {
+			res.status(200).json({ type: "ok", text: "Exam edited successfully" });
+		} else {
+			res.status(500);
+		}
 		client.close();
 	}
 
