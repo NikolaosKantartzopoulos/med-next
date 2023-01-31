@@ -14,8 +14,12 @@
 
 ---
 
-Organize and edit a database, as it would be used by a Medical Center.
-Exams are updated dynamically by changes on Preparations and Eco documents.
+- Organize and edit a database, as it would be used by a Medical Center.
+- Exams are updated dynamically by changes on Preparations and Eco documents.
+- Features...
+  - Dark theme persisting on refresh using Local Storage
+  - [i18n Internationalization](https://nextjs.org/docs/advanced-features/i18n-routing)
+  - Favicon
 
 ### Development
 
