@@ -1,4 +1,4 @@
-### Ongoing project - [Live link](https://med-next.vercel.app/admin/manage-assets)
+### Database relations project - [Live link](https://med-next.vercel.app/admin/manage-assets)
 
 ---
 
