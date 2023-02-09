@@ -35,13 +35,15 @@ function ExamsTable({ allActiveExams }) {
 						</tr>
 					</thead>
 					<tbody className={tableStyles.tableBody}>
-						{allActiveExams.map((item) => (
-							<tr key={item._id} onClick={(e) => handleRowCLick(e, item)}>
-								<td>{item.department}</td>
-								<td>{item.subdepartment}</td>
-								<td>{item.name}</td>
-							</tr>
-						))}
+						{allActiveExams
+							.sort((a, b) => (a.name > b.name ? 1 : -1))
+							.map((item) => (
+								<tr key={item._id} onClick={(e) => handleRowCLick(e, item)}>
+									<td>{item.department}</td>
+									<td>{item.subdepartment}</td>
+									<td>{item.name}</td>
+								</tr>
+							))}
 					</tbody>
 				</table>
 			) : (

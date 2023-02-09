@@ -1,6 +1,0 @@
-DB_USER=NikolaosKantartzopoulos
-DB_PASS=Kalamarakia_1234
-DB_NAME=med
-DB_CLUSTER=oftkpuh
-NEXTAUTH_SECRET =  a4de0b882008ce1c6a0e7249d42fdd3c
-NEXTAUTH_URL=http://localhost:3000/

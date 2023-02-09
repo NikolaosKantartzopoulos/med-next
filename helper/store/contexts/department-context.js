@@ -333,7 +333,7 @@ export function DepartmentContextProvider({
 			method: "PUT",
 			body: JSON.stringify({
 				selectedDepartment: selectedDepartment,
-				subdepartmentName: subdepartmentName,
+				orderedSubdepartments: orderedSubdepartments,
 			}),
 			headers: {
 				"Content-Type": "application/json",

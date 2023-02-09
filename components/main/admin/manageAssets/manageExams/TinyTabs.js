@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 import ExamContext from "../../../../../helper/store/contexts/exam-context";
+import ToolsContext from "../../../../../helper/store/contexts/tools-context";
 
 import styles from "./TinyTabs.module.css";
 
 function TinyTabs() {
+	const toolsCtx = useContext(ToolsContext);
 	const { allActiveDoctors, examInputState, dispatchExamInputStateAction } =
 		useContext(ExamContext);
 	const [examDoctors, setExamDoctors] = useState(examInputState.doctors);
@@ -30,6 +32,9 @@ function TinyTabs() {
 				<span
 					key={doc.username}
 					style={{
+						color: examInputState.doctors.includes(doc.username)
+							? "darkblue"
+							: "white",
 						backgroundColor: examInputState.doctors.includes(doc.username)
 							? "white"
 							: "darkred",

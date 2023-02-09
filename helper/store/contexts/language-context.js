@@ -141,7 +141,7 @@ export function LanguageContextProvider({ locale, children }) {
 			"en-US": "General",
 		},
 		NHSTitle: {
-			"el-GR": "ΕΟΠΥΥ",
+			"el-GR": "Αναλυτικά",
 			"en-US": "NHS Title",
 		},
 		Name: {

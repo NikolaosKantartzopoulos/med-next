@@ -27,14 +27,14 @@ export default async function handler(req, res) {
 				break;
 			case "PUT":
 				console.log(req.body);
-				const { selectedDepartment, subdepartmentName } = req.body;
+				const { selectedDepartment, orderedSubdepartments } = req.body;
 
-				console.log(selectedDepartment, subdepartmentName);
+				console.log(selectedDepartment, orderedSubdepartments);
 
 				const dbPutRes = await db.collection("departments").updateOne(
 					{ _id: new ObjectId(selectedDepartment._id) },
 					{
-						$push: { sub: subdepartmentName },
+						$set: { sub: orderedSubdepartments },
 					}
 				);
 
