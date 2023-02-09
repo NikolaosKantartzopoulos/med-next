@@ -4,7 +4,7 @@ export default function Index(props) {
 	return <div className={styles.Home}></div>;
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
 	return {
 		redirect: {
 			destination: "/users/browse-exams",
