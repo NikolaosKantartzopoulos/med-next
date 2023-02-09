@@ -2,7 +2,7 @@
   max-width: 760px;
   margin: auto;
   padding-bottom: 3rem;
-
+  overflow: auto;
 }
 
 .layoutSection {

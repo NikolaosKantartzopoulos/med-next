@@ -31,7 +31,6 @@
 .tableBody td:nth-child(3),
 .tableBody td:nth-child(2) {
   text-align: center;
-  max-width: 3rem;
 }
 
 .tableBody td:nth-child(4),
@@ -72,11 +71,23 @@
 
 @media screen and (max-width: 500px) {
 
+  .table {
+    width: fit-content;
+    margin: auto;
+    margin-top: 2rem;
+    color: black;
+
+  }
 
   .tableBody td:nth-child(4),
   .tableBody td:nth-child(5) {
     display: none;
 
+  }
+
+  .tableBody td:nth-child(2),
+  .tableHead th:nth-child(2) {
+    display: none;
   }
 
 
