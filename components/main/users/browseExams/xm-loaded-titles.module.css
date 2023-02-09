@@ -1,12 +1,40 @@
+.loadedTitles {
+  display: block;
+}
+
 .titleHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 4rem;
+  background-color: var(--dark-main-1);
+  color: var(--light-main-1);
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.titleHeader p {
+  margin: 4px;
+}
+
+@media screen and (min-width: 500px) {
+  .depHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* .titleHeader {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
   padding: 0px 2rem;
   position: relative;
-}
-
+} */
+/* 
 .depHeader {
   position: absolute;
   left: .5rem;
@@ -22,4 +50,4 @@
 .nhsDescr {
   margin: 1rem auto;
 
-}
+} */
