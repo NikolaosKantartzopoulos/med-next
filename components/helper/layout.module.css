@@ -32,7 +32,7 @@
   transform: translateX(0px);
 }
 
-.exitActivective {
+.exitActive {
   opacity: 0;
   transform: translateX(30px);
   transition: all 250ms ease-in-out;
