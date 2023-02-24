@@ -52,10 +52,7 @@ function ManageExamForm({ insertExamToForm }) {
 			const data = await editRes.json();
 			console.log(data);
 			infoMessage(data.type, data.text);
-			setTimeout(
-				() => router.replace("http://localhost:3000/admin/exams-table"),
-				1500
-			);
+					setTimeout(() => router.replace("/admin/exams-table"), 1000);
 		}
 		setIsLoading(false);
 	}
