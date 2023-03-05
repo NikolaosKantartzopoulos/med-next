@@ -219,7 +219,7 @@ export function LanguageContextProvider({ locale, children }) {
 		},
 		SignIn: {
 			"el-GR": "Είσοδος",
-			"en-US": "Sing in",
+			"en-US": "Sign in",
 		},
 		Buildings: {
 			"el-GR": "Κτήρια",
